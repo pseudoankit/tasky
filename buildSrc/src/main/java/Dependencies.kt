@@ -1,9 +1,9 @@
-object DependenciesGradle {
+object GradleDeps {
     const val Kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}"
     const val Android = "com.android.tools.build:gradle:7.2.0"
 }
 
-object DependenciesCompose {
+object ComposeDeps {
     const val Activity = "androidx.activity:activity-compose:${Versions.Compose.Activity}"
     const val Material = "androidx.compose.material:material:${Versions.Compose.Core}"
     const val Material3 = "androidx.compose.material3:material3:${Versions.Compose.Material3}"
@@ -22,4 +22,10 @@ object DependenciesCompose {
         "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
     const val ConstraintLayout =
         "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.ConstraintLayout}"
+}
+
+object KoinDeps {
+    const val Android = "org.koin:koin-android:${Versions.Koin}"
+    const val ViewModel = "org.koin:koin-android-viewmodel:${Versions.Koin}"
+    const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin}"
 }

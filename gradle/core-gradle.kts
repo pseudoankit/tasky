@@ -22,3 +22,7 @@ android {
         kotlinCompilerExtensionVersion = Versions.KotlinCompilerVersion
     }
 }
+
+dependencies {
+//    implementation(KoinDeps.Android)
+}

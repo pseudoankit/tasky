@@ -5,7 +5,7 @@ buildscript {
     }
 
     dependencies {
-        classpath(DependenciesGradle.Kotlin)
-        classpath(DependenciesGradle.Android)
+        classpath(GradleDeps.Kotlin)
+        classpath(GradleDeps.Android)
     }
 }

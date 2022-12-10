@@ -3,8 +3,8 @@ plugins {
 }
 
 apply {
-    applyTaskyCore(rootDir)
-    applyTaskyCompose(rootDir)
+    applyCore(rootDir)
+    applyComposeFeature(rootDir)
 }
 
 android {

@@ -16,3 +16,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Tasky"
 include(":app")
+
+include(":core:core")
+include(":core:core-ui")
+include(":core:navigation")
+
+include(":feature:authentication")

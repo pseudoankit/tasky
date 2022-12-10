@@ -9,16 +9,25 @@ object Plugins {
     const val Ksp = "com.google.devtools.ksp"
     const val Kotlin = "org.jetbrains.kotlin.android"
     const val Library = "com.android.library"
+
+    const val Core = "/gradle/core-gradle.kts"
+    const val CoreLibrary = "/gradle/core-library-gradle.kts"
+    const val ComposeCore = "/gradle/compose-core-gradle.kts"
+    const val ComposeFeature = "/gradle/compose-feature-gradle.kts"
 }
 
-fun ObjectConfigurationAction.applyTaskyCore(rootDir: File) = apply {
-    from("${rootDir}/gradle/core-gradle.kts")
+fun ObjectConfigurationAction.applyCore(rootDir: File) = apply {
+    from("${rootDir}${Plugins.Core}")
 }
 
-fun ObjectConfigurationAction.applyTaskyLibrary(rootDir: File) = apply {
-    from("${rootDir}/gradle/library-gradle.kts")
+fun ObjectConfigurationAction.applyCoreLibrary(rootDir: File) = apply {
+    from("${rootDir}${Plugins.CoreLibrary}")
 }
 
-fun ObjectConfigurationAction.applyTaskyCompose(rootDir: File) = apply {
-    from("${rootDir}/gradle/compose-gradle.kts")
+fun ObjectConfigurationAction.applyComposeCore(rootDir: File) = apply {
+    from("${rootDir}${Plugins.ComposeCore}")
+}
+
+fun ObjectConfigurationAction.applyComposeFeature(rootDir: File) = apply {
+    from("${rootDir}${Plugins.ComposeFeature}")
 }
