@@ -6,8 +6,7 @@ dependencies {
     implementation(project(CoreModules.CoreUI))
     implementation(project(CoreModules.Navigation))
 
-//    implementation(KoinDeps.ViewModel)
-//    implementation(KoinDeps.Compose)
+    implementation(KoinDeps.Compose)
 
     // implementation(ComposeDeps.ComposeDestinations)
     // implementation(ComposeDeps.ComposeDestinationsKsp)

@@ -1,6 +1,5 @@
 object Versions {
     const val Kotlin = "1.7.0"
-    const val Koin = "3.3"
 
     object Compose {
         const val Core = "1.2.0"
@@ -10,6 +9,11 @@ object Versions {
         const val Destinations = "1.7.17-beta"
         const val KspPlugin = "1.7.0-1.0.6"
         const val ConstraintLayout = "1.0.1"
+    }
+
+    object Koin {
+        const val Core = "3.2.2"
+        const val Compose = "3.2.1"
     }
 
     object Gradle {

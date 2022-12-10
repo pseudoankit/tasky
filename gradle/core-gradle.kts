@@ -24,5 +24,6 @@ android {
 }
 
 dependencies {
-//    implementation(KoinDeps.Android)
+    implementation(KoinDeps.Android)
+    implementation(KoinDeps.Core)
 }

@@ -25,7 +25,7 @@ object ComposeDeps {
 }
 
 object KoinDeps {
-    const val Android = "org.koin:koin-android:${Versions.Koin}"
-    const val ViewModel = "org.koin:koin-android-viewmodel:${Versions.Koin}"
-    const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin}"
+    const val Core = "io.insert-koin:koin-core:${Versions.Koin.Core}"
+    const val Android = "io.insert-koin:koin-android:${Versions.Koin.Core}"
+    const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.Compose}"
 }
