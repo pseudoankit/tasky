@@ -1,0 +1,7 @@
+object CoreModules {
+
+}
+
+object CoreFeature {
+
+}
