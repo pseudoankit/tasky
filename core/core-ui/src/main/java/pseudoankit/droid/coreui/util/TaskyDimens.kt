@@ -19,5 +19,6 @@ object TaskyDimens {
 
     object Radius {
         val Large = Dp_30
+        val Small = Dp_12
     }
 }

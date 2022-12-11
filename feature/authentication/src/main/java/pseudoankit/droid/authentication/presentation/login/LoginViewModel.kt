@@ -14,5 +14,5 @@ class LoginViewModel : ViewModel() {
     private val _sideEffect: MutableSharedFlow<LoginSideEffect> = MutableSharedFlow()
     val sideEffect: Flow<LoginSideEffect> = _sideEffect
 
-
+    fun onEmailValueChanged(value: String) {}
 }
