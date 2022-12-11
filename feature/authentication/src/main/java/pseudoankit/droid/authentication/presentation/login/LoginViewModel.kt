@@ -17,4 +17,12 @@ internal class LoginViewModel : BaseViewModel<LoginState, LoginSideEffect>(Login
     fun onLogin() {
 
     }
+
+    fun onNavigateUp() = postSideEffect {
+        LoginSideEffect.NavigateBack
+    }
+
+    fun onSignup() = postSideEffect {
+        LoginSideEffect.NavigateToRegistrationScreen
+    }
 }

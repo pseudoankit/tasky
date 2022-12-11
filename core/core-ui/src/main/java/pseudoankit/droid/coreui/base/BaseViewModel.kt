@@ -27,8 +27,8 @@ abstract class BaseViewModel<STATE, SIDE_EFFECT>(
         _state.value = _state.value.block()
     }
 
-    fun postSideEffect(block: () -> SIDE_EFFECT) {
-        _sideEffect.tryEmit(block())
+    fun postSideEffect(block: () -> SIDE_EFFECT) = intent {
+        _sideEffect.emit(block())
     }
 
     fun intent(

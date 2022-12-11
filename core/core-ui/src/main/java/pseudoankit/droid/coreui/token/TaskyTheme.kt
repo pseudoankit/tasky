@@ -34,7 +34,6 @@ fun TaskyDestinationSurface(
 ) {
     DisposableEffect(Unit) {
         onDispose {
-            println("unloaded ${module?.javaClass?.name}")
             module?.unload()
         }
     }

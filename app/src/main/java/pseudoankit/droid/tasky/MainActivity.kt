@@ -13,7 +13,7 @@ import com.ramcosta.composedestinations.navigation.dependency
 import pseudoankit.droid.coreui.token.TaskyColor
 import pseudoankit.droid.coreui.token.TaskyTheme
 import pseudoankit.droid.tasky.navigation.navgraph.MainNavGraph
-import pseudoankit.droid.tasky.navigation.navigator.MainNavigator
+import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +29,7 @@ class MainActivity : ComponentActivity() {
                     DestinationsNavHost(
                         navGraph = MainNavGraph,
                         dependenciesContainerBuilder = {
-                            dependency(MainNavigator(navController, context))
+                            dependency(CoreFeatureNavigator(navController, context))
                         }
                     )
                 }

@@ -9,6 +9,7 @@ internal data class LoginState(
 )
 
 internal sealed interface LoginSideEffect {
+    object NavigateBack : LoginSideEffect
     object NavigateToRegistrationScreen : LoginSideEffect
     object NavigateToHomeScreen : LoginSideEffect
 }
