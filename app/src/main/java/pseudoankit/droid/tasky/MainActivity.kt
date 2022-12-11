@@ -9,8 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import pseudoankit.droid.coreui.util.TaskyColor
 import pseudoankit.droid.coreui.util.TaskyTheme
-import pseudoankit.droid.navigation.MainScreenNavigator
-import pseudoankit.droid.navigation.util.constant.Routes
+import pseudoankit.droid.tasky.navigation.MainScreenNavigator
+import pseudoankit.droid.tasky.navigation.util.constant.Routes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

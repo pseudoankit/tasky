@@ -1,9 +1,6 @@
 plugins {
     id(Plugins.Library)
-}
-
-apply {
-    applyCore(rootDir)
+    id(Plugins.Core)
 }
 
 android {

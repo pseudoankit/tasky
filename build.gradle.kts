@@ -1,11 +1,28 @@
 buildscript {
     repositories {
+        gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url = uri(Dependencies.Gradle.PluginsRepo) }
     }
-
     dependencies {
-        classpath(GradleDeps.Kotlin)
-        classpath(GradleDeps.Android)
+        classpath(Dependencies.Gradle.AndroidTools)
+        classpath(Dependencies.Gradle.Kotlin)
     }
+}
+
+plugins {
+    id(Plugins.Ksp) version Versions.Compose.KspPlugin apply true
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url = uri(Dependencies.Gradle.PluginsRepo) }
+    }
+}
+
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
 }

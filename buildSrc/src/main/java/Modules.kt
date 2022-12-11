@@ -1,9 +1,11 @@
-object CoreModules {
-    const val Core = ":core:core"
-    const val CoreUI = ":core:core-ui"
-    const val Navigation = ":core:navigation"
-}
+object Modules {
 
-object FeatureModules {
-    const val Authentication = ":feature:authentication"
+    object Feature {
+        const val Authentication = ":feature:authentication"
+    }
+
+    object Core {
+        const val Core = ":core:core"
+        const val CoreUI = ":core:core-ui"
+    }
 }

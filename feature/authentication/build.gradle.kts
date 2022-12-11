@@ -1,10 +1,6 @@
 plugins {
-    id(Plugins.Library)
-}
-
-apply {
-    applyCoreLibrary(rootDir)
-    applyComposeFeature(rootDir)
+    id(Plugins.CoreLibrary)
+    id(Plugins.ComposeLibraryFeature)
 }
 
 android {

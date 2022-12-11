@@ -2,14 +2,59 @@ package pseudoankit.droid.coreui.util
 
 import android.app.Activity
 import android.os.Build
+import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
+import org.koin.core.module.Module
+import pseudoankit.droid.coreui.components.topbar.TaskyTopBar
+import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
+
+@Composable
+fun TaskyDestinationSurface(
+    topBarConfig: TaskyTopBarConfig,
+    module: Module = org.koin.dsl.module { },
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    TaskyTheme {
+        Surface {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(color = TaskyColor.Black)
+            ) {
+                TaskyTopBar(config = topBarConfig)
+                Surface(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(
+                            RoundedCornerShape(
+                                topStart = TaskyDimens.Radius.Large,
+                                topEnd = TaskyDimens.Radius.Large
+                            )
+                        ),
+                    color = TaskyColor.White
+                ) {
+                    Column(modifier = Modifier.padding(TaskyDimens.ScreenPadding)) {
+                        content()
+                    }
+                }
+            }
+        }
+    }
+}
 
 private val DarkColorScheme = darkColorScheme(
     primary = TaskyColor.Purple80,

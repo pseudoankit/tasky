@@ -3,7 +3,7 @@ object Versions {
 
     object Compose {
         const val Core = "1.2.0"
-        const val Compiler = "1.2.0"
+        const val Compiler = Core
         const val Activity = "1.5.0"
         const val Material3 = "1.0.0-alpha16"
         const val Destinations = "1.7.17-beta"
@@ -19,6 +19,4 @@ object Versions {
     object Gradle {
         const val AndroidTools = "7.2.1"
     }
-
-    const val KotlinCompilerVersion = Compose.Core
 }
