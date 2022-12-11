@@ -2,9 +2,14 @@ package pseudoankit.droid.authentication.presentation.login
 
 import pseudoankit.droid.coreui.base.BaseViewModel
 
-class LoginViewModel : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
+internal class LoginViewModel :
+    BaseViewModel<LoginState, LoginSideEffect, LoginEvent>(LoginState()) {
 
-    fun onEmailValueChanged(value: String) = setState {
-        copy(email = value)
+    override fun onEvent(event: LoginEvent) {
+        when (event) {
+            is LoginEvent.OnEmailValueChanged -> setState {
+                copy(email = event.value)
+            }
+        }
     }
 }

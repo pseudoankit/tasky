@@ -40,17 +40,21 @@ fun TaskyTextField(config: TaskyTextFieldConfig) = config.apply {
             keyboardType = keyboardType,
             imeAction = imeAction
         ),
-        placeholder = {
-            Text(text = placeholder)
+        placeholder = placeholder.run {
+            {
+                Text(text = placeholder)
+            }
         },
-        leadingIcon = {
-            leadingIconConfig?.apply {
+        leadingIcon = leadingIconConfig?.run {
+            {
                 TaskyIcon(config = leadingIconConfig)
             }
         },
-        trailingIcon = {
-            trailingIconConfig?.apply {
-                TaskyIcon(config = trailingIconConfig)
+        trailingIcon = trailingIconConfig?.run {
+            {
+                trailingIconConfig.apply {
+                    TaskyIcon(config = trailingIconConfig)
+                }
             }
         },
         isError = isError,

@@ -1,11 +1,15 @@
 package pseudoankit.droid.authentication.presentation.login
 
-data class LoginState(
+internal data class LoginState(
     val email: String = "",
     val password: String = ""
 )
 
-sealed interface LoginSideEffect {
+internal sealed interface LoginSideEffect {
     object NavigateToRegistrationScreen : LoginSideEffect
     object NavigateToHomeScreen : LoginSideEffect
+}
+
+internal sealed interface LoginEvent {
+    data class OnEmailValueChanged(val value: String) : LoginEvent
 }

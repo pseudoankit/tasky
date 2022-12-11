@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseViewModel<STATE, SIDE_EFFECT>(
+abstract class BaseViewModel<STATE, SIDE_EFFECT, EVENT>(
     initialState: STATE
 ) : ViewModel() {
 
@@ -22,6 +22,8 @@ abstract class BaseViewModel<STATE, SIDE_EFFECT>(
 
     private val _sideEffect: MutableSharedFlow<SIDE_EFFECT> = MutableSharedFlow()
     val sideEffect: Flow<SIDE_EFFECT> = _sideEffect
+
+    abstract fun onEvent(event: EVENT)
 
     fun setState(block: STATE.() -> STATE) {
         _state.value = _state.value.block()
