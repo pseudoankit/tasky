@@ -4,33 +4,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import pseudoankit.droid.coreui.components.icon.TaskyIcon
 import pseudoankit.droid.coreui.components.icon.TaskyIconButton
-import pseudoankit.droid.coreui.components.icon.TaskyIconConfig
-import pseudoankit.droid.coreui.components.icon.TaskyIcons
 import pseudoankit.droid.coreui.components.text.TaskyText
 import pseudoankit.droid.coreui.components.text.TaskyTextConfig
 import pseudoankit.droid.coreui.components.text.TaskyTextType
-import pseudoankit.droid.coreui.token.TaskyColor
 import pseudoankit.droid.coreui.token.TaskyDimens
-
-data class TaskyTopBarConfig(
-    val leadingIcon: TaskyIconConfig? = TaskyIconConfig(icon = TaskyIcons.Back),
-    val title: String = "",
-    val type: Type = Type.Small,
-    val trailingSection: TrailingSection? = null,
-    val tintColor: Color = TaskyColor.White
-) {
-
-    data class TrailingSection(
-        val text: TaskyTextConfig?,
-        val icon: TaskyIconConfig?,
-        val modifier: Modifier = Modifier
-    )
-
-    enum class Type { Small }
-}
 
 @Composable
 fun TaskyTopBar(config: TaskyTopBarConfig) {

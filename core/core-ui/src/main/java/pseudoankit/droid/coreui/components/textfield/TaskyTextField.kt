@@ -1,13 +1,10 @@
 package pseudoankit.droid.coreui.components.textfield
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.*
-import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.components.icon.TaskyIcon
 import pseudoankit.droid.coreui.components.icon.TaskyIconButton
 import pseudoankit.droid.coreui.components.icon.TaskyIconConfig
@@ -18,24 +15,6 @@ import pseudoankit.droid.coreui.components.text.TaskyTextType
 import pseudoankit.droid.coreui.token.TaskyColor
 import pseudoankit.droid.coreui.token.TaskyDimens
 import pseudoankit.droid.coreui.util.asString
-
-data class TaskyTextFieldConfig(
-    val value: String,
-    val onValueChange: (String) -> Unit,
-    val keyboardType: KeyboardType = KeyboardType.Text,
-    val placeholder: TextResource? = null,
-    val leadingIcon: TaskyIcons? = null,
-    val trailingIcon: Icon? = null,
-    val errorMessage: TextResource? = null,
-    val modifier: Modifier = Modifier.fillMaxWidth(),
-    val maxLines: Int = Int.MAX_VALUE
-) {
-    sealed interface Icon {
-        object Valid : Icon
-        object Password : Icon
-        data class Custom(val icon: TaskyIcons, val onClick: () -> Unit) : Icon
-    }
-}
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

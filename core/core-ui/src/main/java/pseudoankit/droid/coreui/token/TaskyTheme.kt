@@ -29,8 +29,8 @@ import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
 fun TaskyDestinationSurface(
     topBarConfig: TaskyTopBarConfig,
     singleEvents: suspend CoroutineScope.() -> Unit = {},
-    content: @Composable ColumnScope.() -> Unit,
     module: CoreModule? = null,
+    content: @Composable ColumnScope.() -> Unit,
 ) {
     DisposableEffect(Unit) {
         onDispose {

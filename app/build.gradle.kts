@@ -39,6 +39,7 @@ android {
 dependencies {
     with(Modules.Core) {
         implementation(project(CoreUI))
+        implementation(project(Core))
     }
 
     with(Modules.Feature) {
