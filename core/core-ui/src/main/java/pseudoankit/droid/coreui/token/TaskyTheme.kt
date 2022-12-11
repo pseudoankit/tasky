@@ -1,4 +1,4 @@
-package pseudoankit.droid.coreui.util
+package pseudoankit.droid.coreui.token
 
 import android.app.Activity
 import android.os.Build
@@ -11,6 +11,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -18,16 +20,26 @@ import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
-import org.koin.core.module.Module
+import kotlinx.coroutines.CoroutineScope
+import pseudoankit.droid.core.koin.CoreModule
 import pseudoankit.droid.coreui.components.topbar.TaskyTopBar
 import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
 
 @Composable
 fun TaskyDestinationSurface(
     topBarConfig: TaskyTopBarConfig,
-    module: Module = org.koin.dsl.module { },
+    singleEvents: suspend CoroutineScope.() -> Unit = {},
+    module: CoreModule? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
+    DisposableEffect(Unit) {
+        onDispose {
+            module?.unload()
+        }
+    }
+
+    LaunchedEffect(key1 = Unit, block = singleEvents)
+
     TaskyTheme {
         Surface {
             Column(

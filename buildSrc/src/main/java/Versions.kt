@@ -1,5 +1,6 @@
 object Versions {
     const val Kotlin = "1.7.0"
+    const val Coroutine = "1.6.4"
 
     object Compose {
         const val Core = "1.2.0"

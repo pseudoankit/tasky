@@ -12,7 +12,7 @@ import plugin.util.implementation
 
 /**
  * Plugin containing all common code for any gradle
- * It includes defaultConfigs, compileOptions and kotlinOptions
+ * It includes defaultConfigs, compileOptions, kotlinOptions and koin deps
  */
 open class BasePlugin : Plugin<Project> {
 

@@ -1,18 +1,28 @@
 package pseudoankit.droid.authentication.presentation.login
 
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import pseudoankit.droid.core.util.Validator
+import pseudoankit.droid.coreui.base.BaseViewModel
+import pseudoankit.droid.coreui.components.button.toTaskyButtonState
 
-class LoginViewModel : ViewModel() {
+internal class LoginViewModel : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
 
-    private val _state = mutableStateOf(LoginState())
-    val state: State<LoginState> = _state
+    fun onEmailValueChanged(value: String) = setState {
+        copy(email = value, buttonState = Validator.validate(value, password).toTaskyButtonState)
+    }
 
-    private val _sideEffect: MutableSharedFlow<LoginSideEffect> = MutableSharedFlow()
-    val sideEffect: Flow<LoginSideEffect> = _sideEffect
+    fun onPasswordValueChanged(value: String) = setState {
+        copy(password = value, buttonState = Validator.validate(email, value).toTaskyButtonState)
+    }
 
-    fun onEmailValueChanged(value: String) {}
+    fun onLogin() {
+
+    }
+
+    fun onNavigateUp() = postSideEffect {
+        LoginSideEffect.NavigateBack
+    }
+
+    fun onSignup() = postSideEffect {
+        LoginSideEffect.NavigateToRegistrationScreen
+    }
 }

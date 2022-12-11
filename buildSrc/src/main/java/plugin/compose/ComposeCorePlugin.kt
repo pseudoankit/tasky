@@ -9,7 +9,7 @@ import plugin.util.implementation
 import plugin.util.libraryExtension
 
 /**
- * Plugin containing setup for adding compose in a module
+ * Plugin containing setup for adding compose core deps
  * ###Applicable only for library level module
  */
 open class ComposeCorePlugin : Plugin<Project> {
