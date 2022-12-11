@@ -6,6 +6,11 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import plugin.util.*
 
+/**
+ * Plugin containing setup for adding compose core deps with navigation lib setup
+ * Also includes coreUi and koin deps
+ * ###Applicable only for library level module
+ */
 class ComposeFeaturePlugin : ComposeCorePlugin() {
 
     override fun apply(project: Project) {
