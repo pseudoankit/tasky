@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.*
 import pseudoankit.droid.coreui.components.icon.TaskyIcon
 import pseudoankit.droid.coreui.components.icon.TaskyIconConfig
-import pseudoankit.droid.coreui.util.TaskyDimens
+import pseudoankit.droid.coreui.token.TaskyDimens
 
 data class TaskyTextFieldConfig(
     val value: String,

@@ -11,8 +11,8 @@ import pseudoankit.droid.coreui.components.icon.TaskyIcons
 import pseudoankit.droid.coreui.components.text.TaskyText
 import pseudoankit.droid.coreui.components.text.TaskyTextConfig
 import pseudoankit.droid.coreui.components.text.TaskyTextType
-import pseudoankit.droid.coreui.util.TaskyColor
-import pseudoankit.droid.coreui.util.TaskyDimens
+import pseudoankit.droid.coreui.token.TaskyColor
+import pseudoankit.droid.coreui.token.TaskyDimens
 
 data class TaskyTopBarConfig(
     val leadingIcon: TaskyIconConfig? = TaskyIconConfig(icon = TaskyIcons.Back),

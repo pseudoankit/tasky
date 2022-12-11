@@ -9,7 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import pseudoankit.droid.coreui.util.TaskyDimens
+import pseudoankit.droid.coreui.token.TaskyDimens
 
 data class TaskyIconConfig(
     val icon: TaskyIcons,

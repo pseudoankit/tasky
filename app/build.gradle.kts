@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.Application)
     id(Plugins.Core)
+    id(Plugins.Ksp)
 }
 
 android {
@@ -56,5 +57,7 @@ dependencies {
         implementation(UiTooling)
         implementation(Material3)
         implementation(Activity)
+        implementation(ComposeDestinations)
+        ksp(ComposeDestinationsKsp)
     }
 }

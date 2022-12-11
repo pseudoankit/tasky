@@ -1,4 +1,4 @@
-package pseudoankit.droid.coreui.util
+package pseudoankit.droid.coreui.token
 
 import androidx.compose.ui.graphics.Color
 

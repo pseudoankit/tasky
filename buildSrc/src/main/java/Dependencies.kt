@@ -26,9 +26,15 @@ object Dependencies {
         const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.Compose}"
     }
 
+    object Coroutine {
+        const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
+        const val Android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
+    }
+
     object Gradle {
         const val AndroidTools = "com.android.tools.build:gradle:${Versions.Gradle.AndroidTools}"
-        const val Kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}"
+        const val KotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}"
+        const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:1.1.2"
         const val PluginsRepo = "https://plugins.gradle.org/m2/"
     }
 }
