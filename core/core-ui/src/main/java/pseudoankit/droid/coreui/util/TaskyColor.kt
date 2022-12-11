@@ -1,8 +1,11 @@
-package pseudoankit.droid.coreui.theme
+package pseudoankit.droid.coreui.util
 
 import androidx.compose.ui.graphics.Color
 
 object TaskyColor {
+    val Black = Color.Black
+    val White = Color.White
+
     val Purple80 = Color(0xFFD0BCFF)
     val PurpleGrey80 = Color(0xFFCCC2DC)
     val Pink80 = Color(0xFFEFB8C8)

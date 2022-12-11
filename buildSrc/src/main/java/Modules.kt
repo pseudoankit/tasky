@@ -4,6 +4,6 @@ object CoreModules {
     const val Navigation = ":core:navigation"
 }
 
-object FeatureModule {
+object FeatureModules {
     const val Authentication = ":feature:authentication"
 }

@@ -4,7 +4,6 @@ apply {
 
 dependencies {
     implementation(project(CoreModules.CoreUI))
-    implementation(project(CoreModules.Navigation))
 
     implementation(KoinDeps.Compose)
 

@@ -31,3 +31,9 @@ android {
         }
     }
 }
+
+dependencies {
+    with(CoreModules) {
+        implementation(project(Navigation))
+    }
+}

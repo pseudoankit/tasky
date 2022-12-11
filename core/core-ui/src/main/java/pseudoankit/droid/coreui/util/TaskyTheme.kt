@@ -1,4 +1,4 @@
-package pseudoankit.droid.coreui.theme
+package pseudoankit.droid.coreui.util
 
 import android.app.Activity
 import android.os.Build
@@ -58,7 +58,6 @@ fun TaskyTheme(
 
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
         content = content
     )
 }
