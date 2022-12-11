@@ -4,7 +4,7 @@ plugins {
 
 apply {
     applyCoreLibrary(rootDir)
-    applyComposeCore(rootDir)
+    applyComposeFeature(rootDir)
 }
 
 android {

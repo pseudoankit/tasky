@@ -9,6 +9,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import pseudoankit.droid.coreui.util.TaskyColor
 import pseudoankit.droid.coreui.util.TaskyTheme
+import pseudoankit.droid.navigation.MainScreenNavigator
+import pseudoankit.droid.navigation.util.constant.Routes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,7 +22,10 @@ class MainActivity : ComponentActivity() {
                     color = TaskyColor.White
                 ) {
                     val navController = rememberNavController()
-
+                    MainScreenNavigator(
+                        startDestination = Routes.Login,
+                        navController = navController
+                    )
                 }
             }
         }

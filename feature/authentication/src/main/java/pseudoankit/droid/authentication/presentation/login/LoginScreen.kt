@@ -20,7 +20,7 @@ fun LoginScreen() {
 }
 
 @Composable
-fun LoginScreenInternal(
+private fun LoginScreenInternal(
     viewModel: LoginViewModel = getViewModel()
 ) {
     val state = viewModel.state.value
