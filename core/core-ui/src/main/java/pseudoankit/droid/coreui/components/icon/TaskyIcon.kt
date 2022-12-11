@@ -1,9 +1,9 @@
 package pseudoankit.droid.coreui.components.icon
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,9 +27,6 @@ fun TaskyIcon(config: TaskyIconConfig?) {
     val iconModifier = config.modifier
         .size(config.size)
         .clip(CircleShape)
-        .clickable(enabled = config.onClick != null) {
-            config.onClick?.invoke()
-        }
 
     when (config.icon.iconType) {
         is TaskyIcons.IconTypes.Vector -> Icon(
@@ -38,5 +35,14 @@ fun TaskyIcon(config: TaskyIconConfig?) {
             modifier = iconModifier,
             tint = config.tint
         )
+    }
+}
+
+@Composable
+fun TaskyIconButton(config: TaskyIconConfig?) {
+    if (config == null) return
+
+    IconButton(onClick = { config.onClick?.invoke() }) {
+        TaskyIcon(config = config)
     }
 }

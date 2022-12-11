@@ -1,0 +1,17 @@
+package pseudoankit.droid.coreui.util
+
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+
+@Composable
+fun Modifier.noRippleClickable(invoke: () -> Unit) {
+    clickable(
+        interactionSource = remember { MutableInteractionSource() },
+        indication = null,
+        role = null,
+        onClick = invoke
+    )
+}

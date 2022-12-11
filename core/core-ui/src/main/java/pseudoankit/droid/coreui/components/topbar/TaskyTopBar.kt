@@ -6,6 +6,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import pseudoankit.droid.coreui.components.icon.TaskyIcon
+import pseudoankit.droid.coreui.components.icon.TaskyIconButton
 import pseudoankit.droid.coreui.components.icon.TaskyIconConfig
 import pseudoankit.droid.coreui.components.icon.TaskyIcons
 import pseudoankit.droid.coreui.components.text.TaskyText
@@ -47,7 +48,7 @@ private fun SmallTopBar(config: TaskyTopBarConfig) {
             .padding(TaskyDimens.ScreenPadding)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxSize()) {
-            TaskyIcon(
+            TaskyIconButton(
                 config.leadingIcon?.copy(
                     tint = config.tintColor
                 )

@@ -9,7 +9,3 @@ internal sealed interface LoginSideEffect {
     object NavigateToRegistrationScreen : LoginSideEffect
     object NavigateToHomeScreen : LoginSideEffect
 }
-
-internal sealed interface LoginEvent {
-    data class OnEmailValueChanged(val value: String) : LoginEvent
-}
