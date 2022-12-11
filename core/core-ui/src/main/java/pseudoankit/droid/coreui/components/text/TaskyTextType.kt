@@ -23,16 +23,28 @@ enum class TaskyTextType(
         lineHeight = 24.sp,
         letterSpacing = 0.sp,
     ),
-    BodyLarge(
-        fontWeight = FontWeight.Normal,
-        fontSize = 16.sp,
-        lineHeight = 26.sp,
-        letterSpacing = 0.5.sp
+    LabelLarge(
+        fontWeight = FontWeight.Medium,
+        fontSize = 22.sp,
+        lineHeight = 20.sp,
+        letterSpacing = 0.sp,
+    ),
+    LabelMedium(
+        fontWeight = FontWeight.Medium,
+        fontSize = 18.sp,
+        lineHeight = 16.sp,
+        letterSpacing = 0.sp,
     ),
     LabelSmall(
         fontWeight = FontWeight.Medium,
         fontSize = 12.sp,
-        lineHeight = 20.sp,
+        lineHeight = 14.sp,
+        letterSpacing = 0.sp
+    ),
+    BodyLarge(
+        fontWeight = FontWeight.Normal,
+        fontSize = 16.sp,
+        lineHeight = 26.sp,
         letterSpacing = 0.5.sp
     )
 }

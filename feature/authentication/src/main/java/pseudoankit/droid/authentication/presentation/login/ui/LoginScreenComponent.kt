@@ -2,6 +2,8 @@ package pseudoankit.droid.authentication.presentation.login.ui
 
 import androidx.compose.runtime.Composable
 import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.coreui.components.button.TaskyButton
+import pseudoankit.droid.coreui.components.button.TaskyButtonConfig
 import pseudoankit.droid.coreui.components.icon.TaskyIcons
 import pseudoankit.droid.coreui.components.textfield.TaskyTextField
 import pseudoankit.droid.coreui.components.textfield.TaskyTextFieldConfig
@@ -30,5 +32,11 @@ internal object LoginScreenComponent {
                 trailingIcon = TaskyTextFieldConfig.Icon.Password
             )
         )
+    }
+
+    @Composable
+    fun LoginButton(onLogin: () -> Unit, state: TaskyButtonConfig.State) {
+        println("buttons" + state.name)
+        TaskyButton(config = TaskyButtonConfig(text = "LOGIN", onClick = onLogin, state = state))
     }
 }

@@ -22,6 +22,7 @@ internal fun LoginScreen(
     navigator: LoginNavigator
 ) {
 
+    // todo find a solution
     LoginModule.load()
     val viewModel = getViewModel<LoginViewModel>()
 
@@ -52,6 +53,11 @@ internal fun LoginScreen(
         LoginScreenComponent.Password(
             password = state.password,
             onPasswordChanged = viewModel::onPasswordValueChanged
+        )
+        Spacer(modifier = Modifier.height(12.dp))
+        LoginScreenComponent.LoginButton(
+            state = state.buttonState,
+            onLogin = viewModel::onLogin
         )
     }
 }
