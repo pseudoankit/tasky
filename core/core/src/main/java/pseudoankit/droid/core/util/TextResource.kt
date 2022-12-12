@@ -1,6 +1,8 @@
 package pseudoankit.droid.core.util
 
 import android.content.Context
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 
 sealed interface TextResource {
     data class WithResId(internal val stringId: Int) : TextResource
@@ -11,5 +13,10 @@ sealed interface TextResource {
             is WithResId -> context.resources.getString(stringId)
             is WithString -> text
         }
+    }
+
+    @Composable
+    fun TextResource.asString(): String {
+        return asString(LocalContext.current)
     }
 }

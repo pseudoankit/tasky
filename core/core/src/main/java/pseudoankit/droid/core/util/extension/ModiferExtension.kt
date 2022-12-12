@@ -1,4 +1,4 @@
-package pseudoankit.droid.coreui.util
+package pseudoankit.droid.core.util.extension
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource

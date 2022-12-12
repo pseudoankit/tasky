@@ -5,7 +5,7 @@ import androidx.navigation.NavController
 import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.destinations.RegistrationScreenDestination
-import pseudoankit.droid.core.util.finish
+import pseudoankit.droid.core.util.extension.finish
 
 class CoreFeatureNavigator(
     private val navController: NavController,

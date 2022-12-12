@@ -1,7 +1,7 @@
 package pseudoankit.droid.authentication.presentation.login
 
 import pseudoankit.droid.core.util.Validator
-import pseudoankit.droid.coreui.base.BaseViewModel
+import pseudoankit.droid.core.viewmodel.BaseViewModel
 import pseudoankit.droid.coreui.components.button.toTaskyButtonState
 
 internal class LoginViewModel : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
