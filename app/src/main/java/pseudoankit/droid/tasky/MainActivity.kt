@@ -26,8 +26,10 @@ class MainActivity : ComponentActivity() {
                 ) {
                     val context = LocalContext.current
                     val navController = rememberNavController()
+
                     DestinationsNavHost(
                         navGraph = MainNavGraph,
+                        navController = navController,
                         dependenciesContainerBuilder = {
                             dependency(CoreFeatureNavigator(navController, context))
                         }
