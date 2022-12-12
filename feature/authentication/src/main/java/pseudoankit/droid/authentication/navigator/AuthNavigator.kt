@@ -1,8 +1,8 @@
 package pseudoankit.droid.authentication.navigator
 
-interface AuthNavigator {
+import pseudoankit.droid.core.navigator.CoreNavigator
+
+interface AuthNavigator : CoreNavigator {
     fun navigateToRegistrationScreen()
     fun navigateToHome()
-    fun navigateUp()
-    fun showBackButton(): Boolean
 }
