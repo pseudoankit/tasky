@@ -21,7 +21,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 import kotlinx.coroutines.CoroutineScope
-import pseudoankit.droid.core.koin.CoreModule
+import pseudoankit.droid.core.koin.BaseKoinModule
 import pseudoankit.droid.coreui.components.topbar.TaskyTopBar
 import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
 
@@ -29,7 +29,7 @@ import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
 fun TaskyDestinationSurface(
     topBarConfig: TaskyTopBarConfig,
     singleEvents: suspend CoroutineScope.() -> Unit = {},
-    module: CoreModule? = null,
+    module: BaseKoinModule? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     DisposableEffect(Unit) {

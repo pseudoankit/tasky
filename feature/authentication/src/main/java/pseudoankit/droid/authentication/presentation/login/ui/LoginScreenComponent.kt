@@ -36,7 +36,6 @@ internal object LoginScreenComponent {
 
     @Composable
     fun LoginButton(onLogin: () -> Unit, state: TaskyButtonConfig.State) {
-        println("buttons" + state.name)
         TaskyButton(config = TaskyButtonConfig(text = "LOGIN", onClick = onLogin, state = state))
     }
 
