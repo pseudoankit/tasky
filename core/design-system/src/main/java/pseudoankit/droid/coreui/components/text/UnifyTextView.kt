@@ -28,9 +28,6 @@ fun UnifyTextView(config: UnifyTextView.Config?) = config?.apply {
         textAlign = textAlign,
         maxLines = maxLines,
         fontStyle = fontStyle,
-        fontSize = textType.fontSize,
-        fontWeight = textType.fontWeight,
-        letterSpacing = textType.letterSpacing,
-        lineHeight = textType.lineHeight,
+        style = textType.textStyle
     )
 }
