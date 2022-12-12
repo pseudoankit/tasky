@@ -1,11 +1,11 @@
 package pseudoankit.droid.authentication.presentation.login
 
-import pseudoankit.droid.coreui.components.button.TaskyButtonConfig
+import pseudoankit.droid.coreui.components.button.UnifyButton
 
 internal data class LoginState(
     val email: String = "",
     val password: String = "",
-    val buttonState: TaskyButtonConfig.State = TaskyButtonConfig.State.Disabled
+    val buttonState: UnifyButton.State = UnifyButton.State.Disabled
 )
 
 internal sealed interface LoginSideEffect {

@@ -6,6 +6,6 @@ object Modules {
 
     object Core {
         const val Core = ":core:core"
-        const val CoreUI = ":core:core-ui"
+        const val DesignSystem = ":core:design-system"
     }
 }

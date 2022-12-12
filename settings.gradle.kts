@@ -3,7 +3,7 @@ include(":app")
 
 include(
     ":core:core",
-    ":core:core-ui"
+    ":core:design-system"
 )
 
 include(

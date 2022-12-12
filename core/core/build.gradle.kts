@@ -7,3 +7,9 @@ plugins {
 android {
     namespace = "pseudoankit.droid.core"
 }
+
+dependencies {
+    with(Modules.Core) {
+        implementation(project(DesignSystem))
+    }
+}

@@ -10,8 +10,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.navigation.dependency
-import pseudoankit.droid.coreui.token.TaskyColor
-import pseudoankit.droid.coreui.token.TaskyTheme
+import pseudoankit.droid.coreui.token.UnifyColors
+import pseudoankit.droid.coreui.token.UnifyTheme
 import pseudoankit.droid.tasky.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 
@@ -19,10 +19,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            TaskyTheme {
+            UnifyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = TaskyColor.White
+                    color = UnifyColors.White
                 ) {
                     val context = LocalContext.current
                     val navController = rememberNavController()

@@ -10,11 +10,11 @@ import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.login.LoginSideEffect
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
-import pseudoankit.droid.coreui.components.icon.TaskyIconConfig
-import pseudoankit.droid.coreui.components.icon.TaskyIcons
-import pseudoankit.droid.coreui.components.topbar.TaskyTopBarConfig
-import pseudoankit.droid.coreui.token.TaskyDestinationSurface
-import pseudoankit.droid.coreui.token.TaskyDimens
+import pseudoankit.droid.coreui.components.icon.UnifyIcon
+import pseudoankit.droid.coreui.components.icon.UnifyIcons
+import pseudoankit.droid.coreui.components.topbar.UnifyTopBar
+import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
+import pseudoankit.droid.coreui.token.UnifyDimens
 
 @Destination
 @Composable
@@ -27,10 +27,10 @@ internal fun LoginScreen(
     val viewModel = getViewModel<LoginViewModel>()
 
     TaskyDestinationSurface(
-        topBarConfig = TaskyTopBarConfig(
+        topBarConfig = UnifyTopBar.Config(
             title = "Welcome Back",
             leadingIcon = if (navigator.showBackButton()) {
-                TaskyIconConfig(icon = TaskyIcons.Back, onClick = viewModel::onNavigateUp)
+                UnifyIcon.Config(icon = UnifyIcons.Back, onClick = viewModel::onNavigateUp)
             } else null
         ),
         module = LoginModule,
@@ -50,18 +50,18 @@ internal fun LoginScreen(
             email = state.email,
             onEmailChanged = viewModel::onEmailValueChanged
         )
-        Spacer(modifier = Modifier.height(TaskyDimens.Dp_12))
+        Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
         LoginScreenComponent.Password(
             password = state.password,
             onPasswordChanged = viewModel::onPasswordValueChanged
         )
-        Spacer(modifier = Modifier.height(TaskyDimens.Dp_12))
+        Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
         LoginScreenComponent.LoginButton(
             state = state.buttonState,
             onLogin = viewModel::onLogin
         )
         Spacer(modifier = Modifier.weight(1f))
         LoginScreenComponent.SignupText(viewModel::onSignup)
-        Spacer(modifier = Modifier.height(TaskyDimens.Dp_32))
+        Spacer(modifier = Modifier.height(UnifyDimens.Dp_32))
     }
 }
