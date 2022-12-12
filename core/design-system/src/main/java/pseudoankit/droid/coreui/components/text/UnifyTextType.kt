@@ -13,8 +13,8 @@ enum class UnifyTextType(
 
     TitleLarge(
         fontWeight = FontWeight.Bold,
-        fontSize = 28.sp,
-        lineHeight = 26.sp,
+        fontSize = 26.sp,
+        lineHeight = 24.sp,
         letterSpacing = 0.sp
     ),
     TitleMedium(
