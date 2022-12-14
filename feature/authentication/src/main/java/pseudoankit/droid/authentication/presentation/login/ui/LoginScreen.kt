@@ -10,30 +10,24 @@ import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.login.LoginSideEffect
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
-import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.topbar.UnifyTopBar
+import pseudoankit.droid.coreui.surface.CoreKoinComposable
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.token.UnifyDimens
 
 @Destination
 @Composable
-internal fun LoginScreen(
-    navigator: AuthNavigator
+internal fun LoginScreen(navigator: AuthNavigator) = CoreKoinComposable(module = LoginModule) {
+    LoginScreenInternal(navigator)
+}
+
+@Composable
+private fun LoginScreenInternal(
+    navigator: AuthNavigator,
+    viewModel: LoginViewModel = getViewModel()
 ) {
-
-    // todo find a solution
-    LoginModule.load()
-    val viewModel = getViewModel<LoginViewModel>()
-
     TaskyDestinationSurface(
-        topBarConfig = UnifyTopBar.Config(
-            title = "Welcome Back",
-            leadingIcon = if (navigator.showBackButton()) {
-                UnifyIcon.Config(icon = UnifyIcons.Back, onClick = viewModel::onNavigateUp)
-            } else null
-        ),
-        module = LoginModule,
+        topBarConfig = UnifyTopBar.Config(title = "Welcome Back"),
         singleEvents = {
             viewModel.sideEffect.collect {
                 when (it) {

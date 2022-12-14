@@ -8,30 +8,27 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.coroutines.CoroutineScope
-import pseudoankit.droid.core.koin.BaseKoinModule
 import pseudoankit.droid.coreui.components.topbar.UnifyTopBar
 import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens
 import pseudoankit.droid.coreui.token.UnifyTheme
 
+/**
+ * Helper method to configure repeating logic for any destination
+ * @param[topBarConfig] topBar or actionBar configs
+ * @param[singleEvents] add any code that needs to just run once
+ * @param[content] actual composable content of screen
+ */
 @Composable
 fun TaskyDestinationSurface(
     topBarConfig: UnifyTopBar.Config,
     singleEvents: suspend CoroutineScope.() -> Unit = {},
-    module: BaseKoinModule? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    DisposableEffect(Unit) {
-        onDispose {
-            module?.unload()
-        }
-    }
-
     LaunchedEffect(key1 = Unit, block = singleEvents)
 
     UnifyTheme {
