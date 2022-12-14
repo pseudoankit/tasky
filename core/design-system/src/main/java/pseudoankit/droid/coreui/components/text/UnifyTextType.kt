@@ -2,7 +2,7 @@ package pseudoankit.droid.coreui.components.text
 
 import androidx.compose.ui.text.TextStyle
 
-val typography = androidx.compose.material3.Typography()
+private val typography = androidx.compose.material3.Typography()
 
 enum class UnifyTextType(val textStyle: TextStyle) {
     DisplayLarge(typography.displayLarge),

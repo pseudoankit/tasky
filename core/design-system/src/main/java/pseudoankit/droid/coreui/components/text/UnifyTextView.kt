@@ -2,6 +2,7 @@ package pseudoankit.droid.coreui.components.text
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
@@ -16,6 +17,7 @@ object UnifyTextView {
         val textAlign: TextAlign? = null,
         val maxLines: Int = Int.MAX_VALUE,
         val fontStyle: FontStyle? = null,
+        val modifier: Modifier = Modifier
     )
 }
 
@@ -28,6 +30,7 @@ fun UnifyTextView(config: UnifyTextView.Config?) = config?.apply {
         textAlign = textAlign,
         maxLines = maxLines,
         fontStyle = fontStyle,
-        style = textType.textStyle
+        style = textType.textStyle,
+        modifier = modifier
     )
 }
