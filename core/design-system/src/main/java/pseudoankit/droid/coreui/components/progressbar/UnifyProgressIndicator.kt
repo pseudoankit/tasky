@@ -12,7 +12,7 @@ object UnifyProgressIndicator {
     data class Config(
         val type: Type = Type.Circular,
         val modifier: Modifier = Modifier,
-        val color: Color = UnifyColors.Unspecified,
+        val color: Color = UnifyColors.Black,
         val strokeWidth: Dp = UnifyDimens.Dp_4
     )
 

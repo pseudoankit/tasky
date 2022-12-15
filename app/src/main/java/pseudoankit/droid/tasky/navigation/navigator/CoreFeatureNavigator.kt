@@ -28,5 +28,6 @@ class CoreFeatureNavigator(
     }
 
     override fun navigateToHome() {
+        navController.navigate(RegistrationScreenDestination)
     }
 }

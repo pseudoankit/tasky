@@ -24,7 +24,13 @@ object UnifyButton {
 
     enum class State { Loading, Enabled, Disabled }
 
-    val Boolean.toUnifyButtonState get() = if (this) State.Enabled else State.Disabled
+    fun Boolean.toUnifyButtonState(isLoading: Boolean = false) = when (isLoading) {
+        true -> State.Loading
+        false -> when {
+            this -> State.Enabled
+            else -> State.Disabled
+        }
+    }
 }
 
 @Composable

@@ -38,7 +38,7 @@ private fun LoginScreenInternal(
             }
         }
     ) {
-        val state = viewModel.state.value
+        val state = viewModel.state
 
         LoginScreenComponent.Email(
             email = state.email,

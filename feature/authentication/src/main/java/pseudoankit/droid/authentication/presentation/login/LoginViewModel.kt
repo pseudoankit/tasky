@@ -1,28 +1,38 @@
 package pseudoankit.droid.authentication.presentation.login
 
-import pseudoankit.droid.core.util.Validator
+import pseudoankit.droid.authentication.domain.LoginUseCase
+import pseudoankit.droid.core.util.TaskyResult
+import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.viewmodel.BaseViewModel
-import pseudoankit.droid.coreui.components.button.UnifyButton.toUnifyButtonState
 
-internal class LoginViewModel : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
+internal class LoginViewModel(
+    private val loginUseCase: LoginUseCase
+) : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
 
-    fun onEmailValueChanged(value: String) = setState {
-        copy(email = value, buttonState = Validator.validate(value, password).toUnifyButtonState)
-    }
+    fun onEmailValueChanged(value: String) = setState { copy(email = value) }
 
-    fun onPasswordValueChanged(value: String) = setState {
-        copy(password = value, buttonState = Validator.validate(email, value).toUnifyButtonState)
-    }
+    fun onPasswordValueChanged(value: String) = setState { copy(password = value) }
 
     fun onLogin() {
-
+        setState { copy(isButtonLoading = true) }
+        intent {
+            when (val result = loginUseCase(email = state.email, password = state.password)) {
+                is TaskyResult.Error -> onLoginError(result.error)
+                is TaskyResult.Success -> onLoginSuccess()
+            }
+        }
     }
 
-    fun onNavigateUp() = postSideEffect {
-        LoginSideEffect.NavigateBack
+    private fun onLoginError(error: TextResource) {
+        setState { copy(isButtonLoading = false) }
     }
 
-    fun onSignup() = postSideEffect {
-        LoginSideEffect.NavigateToRegistrationScreen
+    private fun onLoginSuccess() {
+        setState { copy(isButtonLoading = false) }
+        postSideEffect { LoginSideEffect.NavigateToHomeScreen }
     }
+
+    fun onNavigateUp() = postSideEffect { LoginSideEffect.NavigateBack }
+
+    fun onSignup() = postSideEffect { LoginSideEffect.NavigateToRegistrationScreen }
 }

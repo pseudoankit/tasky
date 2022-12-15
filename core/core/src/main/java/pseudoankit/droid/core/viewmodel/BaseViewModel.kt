@@ -1,7 +1,7 @@
 package pseudoankit.droid.core.viewmodel
 
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -18,13 +18,13 @@ abstract class BaseViewModel<STATE, SIDE_EFFECT>(
 ) : ViewModel() {
 
     private val _state: MutableState<STATE> = mutableStateOf(initialState)
-    val state: State<STATE> = _state
+    val state: STATE by _state
 
     private val _sideEffect: MutableSharedFlow<SIDE_EFFECT> = MutableSharedFlow()
     val sideEffect: Flow<SIDE_EFFECT> = _sideEffect
 
     fun setState(block: STATE.() -> STATE) {
-        _state.value = _state.value.block()
+        _state.value = state.block()
     }
 
     fun postSideEffect(block: () -> SIDE_EFFECT) = intent {
