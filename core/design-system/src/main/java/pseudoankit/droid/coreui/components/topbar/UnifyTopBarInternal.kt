@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.icon.UnifyIconButton
 import pseudoankit.droid.coreui.components.text.UnifyTextType
 import pseudoankit.droid.coreui.components.text.UnifyTextView
 import pseudoankit.droid.coreui.token.UnifyDimens
@@ -23,7 +22,7 @@ internal object UnifyTopBarInternal {
                 .padding(UnifyDimens.ScreenPadding)
         ) {
             Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxSize()) {
-                UnifyIconButton(config.leadingIcon?.copy(tint = config.tintColor))
+                UnifyIcon(config.leadingIcon?.copy(tint = config.tintColor))
                 Spacer(modifier = Modifier.weight(1f))
                 config.trailingSection?.apply {
                     Row(

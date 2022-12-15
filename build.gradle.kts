@@ -20,6 +20,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url = uri(Dependencies.Gradle.PluginsRepo) }
+        maven { url = uri("https://jitpack.io") }
     }
 }
 

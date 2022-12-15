@@ -2,7 +2,6 @@ package pseudoankit.droid.coreui.components.textfield
 
 import androidx.compose.runtime.Composable
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.icon.UnifyIconButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.text.UnifyTextType
 import pseudoankit.droid.coreui.components.text.UnifyTextView
@@ -18,7 +17,7 @@ internal object UnifyTextFieldInternal {
     ): @Composable (() -> Unit)? = this?.run {
         {
             when (this) {
-                is UnifyTextField.Icon.Custom -> UnifyIconButton(
+                is UnifyTextField.Icon.Custom -> UnifyIcon(
                     config = UnifyIcon.Config(
                         tint = UnifyColors.Gray,
                         size = UnifyDimens.Dp_24,
@@ -26,7 +25,7 @@ internal object UnifyTextFieldInternal {
                         onClick = this.onClick
                     )
                 )
-                is UnifyTextField.Icon.Password -> UnifyIconButton(
+                is UnifyTextField.Icon.Password -> UnifyIcon(
                     config = UnifyIcon.Config(
                         tint = UnifyColors.Gray,
                         size = UnifyDimens.Dp_24,
