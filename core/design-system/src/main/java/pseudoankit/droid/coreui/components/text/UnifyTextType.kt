@@ -19,6 +19,5 @@ enum class UnifyTextType(val textStyle: TextStyle) {
     BodySmall(typography.bodySmall),
     LabelLarge(typography.labelLarge),
     LabelMedium(typography.labelMedium),
-    LabelSmall(typography.labelSmall),
-
+    LabelSmall(typography.labelSmall)
 }

@@ -1,6 +1,9 @@
 package pseudoankit.droid.coreui.components.textfield
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.text.UnifyTextType
@@ -71,4 +74,17 @@ internal object UnifyTextFieldInternal {
         }
     }
 
+    @Composable
+    fun ErrorMessage(errorMessage: String?) {
+        if (errorMessage == null) return
+
+        Spacer(modifier = Modifier.height(UnifyDimens.Dp_2))
+        UnifyTextView(
+            config = UnifyTextView.Config(
+                text = errorMessage,
+                textType = UnifyTextType.BodySmall,
+                color = UnifyColors.Error
+            )
+        )
+    }
 }
