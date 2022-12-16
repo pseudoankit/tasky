@@ -1,4 +1,4 @@
-package pseudoankit.droid.core.util
+package pseudoankit.droid.core.util.validator
 
 object Validator {
 

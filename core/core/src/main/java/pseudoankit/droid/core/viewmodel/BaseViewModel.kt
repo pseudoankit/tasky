@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-abstract class BaseViewModel<STATE, SIDE_EFFECT>(
+abstract class BaseViewModel<STATE, SIDE_EFFECT, EVENT>(
     initialState: STATE
 ) : ViewModel() {
 
@@ -38,4 +38,6 @@ abstract class BaseViewModel<STATE, SIDE_EFFECT>(
     ) {
         viewModelScope.launch(context, start, block)
     }
+
+    fun onEvent(event: EVENT) {}
 }

@@ -8,7 +8,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
-import pseudoankit.droid.authentication.presentation.login.LoginSideEffect
+import pseudoankit.droid.authentication.presentation.login.LoginUiState
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
 import pseudoankit.droid.coreui.components.topbar.UnifyTopBar
 import pseudoankit.droid.coreui.surface.CoreKoinComposable
@@ -31,9 +31,9 @@ private fun LoginScreenInternal(
         singleEvents = {
             viewModel.sideEffect.collect {
                 when (it) {
-                    LoginSideEffect.NavigateToHomeScreen -> navigator.navigateToHome()
-                    LoginSideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
-                    LoginSideEffect.NavigateBack -> navigator.navigateUp()
+                    LoginUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHome()
+                    LoginUiState.SideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
+                    LoginUiState.SideEffect.NavigateBack -> navigator.navigateUp()
                 }
             }
         }

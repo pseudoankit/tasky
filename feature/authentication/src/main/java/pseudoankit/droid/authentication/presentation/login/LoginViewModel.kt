@@ -7,7 +7,7 @@ import pseudoankit.droid.core.viewmodel.BaseViewModel
 
 internal class LoginViewModel(
     private val loginUseCase: LoginUseCase
-) : BaseViewModel<LoginState, LoginSideEffect>(LoginState()) {
+) : BaseViewModel<LoginUiState.State, LoginUiState.SideEffect, Nothing>(LoginUiState.State()) {
 
     fun onEmailValueChanged(value: String) = setState { copy(email = value) }
 
@@ -29,10 +29,10 @@ internal class LoginViewModel(
 
     private fun onLoginSuccess() {
         setState { copy(isButtonLoading = false) }
-        postSideEffect { LoginSideEffect.NavigateToHomeScreen }
+        postSideEffect { LoginUiState.SideEffect.NavigateToHomeScreen }
     }
 
-    fun onNavigateUp() = postSideEffect { LoginSideEffect.NavigateBack }
+    fun onNavigateUp() = postSideEffect { LoginUiState.SideEffect.NavigateBack }
 
-    fun onSignup() = postSideEffect { LoginSideEffect.NavigateToRegistrationScreen }
+    fun onSignup() = postSideEffect { LoginUiState.SideEffect.NavigateToRegistrationScreen }
 }

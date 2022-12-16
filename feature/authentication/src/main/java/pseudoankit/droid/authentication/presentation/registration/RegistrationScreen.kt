@@ -34,7 +34,7 @@ private fun RegistrationScreenInternal(
         singleEvents = {
             viewModel.sideEffect.collect {
                 when (it) {
-                    RegistrationSideEffect.NavigateBack -> navigator.navigateUp()
+                    RegistrationUiState.SideEffect.NavigateBack -> navigator.navigateUp()
                 }
             }
         }
