@@ -2,6 +2,7 @@ object Modules {
 
     object Feature {
         const val Authentication = ":feature:authentication"
+        const val Home = ":feature:home"
     }
 
     object Core {
