@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/core/design-system" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/authentication" />
+            <option value="$PROJECT_DIR$/home" />
           </set>
         </option>
       </GradleProjectSettings>
