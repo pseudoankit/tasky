@@ -25,10 +25,12 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
 
     HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState)
     TaskyDestinationSurface(
-        topBar = HomeScreenComponents.TopBar(
-            month = state.selectedDate.date.month.toString(),
-            onMonthSelected = viewModel::onHeaderMonthSelected
-        )
+        topBar = {
+            HomeScreenComponents.TopBar(
+                headerDate = state.displayHeaderDate,
+                onMonthSelected = viewModel::onHeaderMonthSelected
+            )
+        }
     ) {
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,

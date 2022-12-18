@@ -25,9 +25,9 @@ internal object HomeScreenComponents {
 
     @Composable
     internal fun TopBar(
-        month: String,
+        headerDate: String,
         onMonthSelected: () -> Unit
-    ): @Composable BoxScope.() -> Unit = {
+    ) {
         Row(
             modifier = Modifier.padding(UnifyDimens.ScreenPadding),
             verticalAlignment = Alignment.CenterVertically
@@ -42,7 +42,7 @@ internal object HomeScreenComponents {
                 UnifyTextView(
                     config = UnifyTextView.Config(
                         textType = UnifyTextType.BodyMedium,
-                        text = month,
+                        text = headerDate,
                         color = UnifyColors.White
                     )
                 )
