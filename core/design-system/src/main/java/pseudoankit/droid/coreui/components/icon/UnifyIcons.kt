@@ -1,10 +1,7 @@
 package pseudoankit.droid.coreui.components.icon
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Check
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import lazycoder21.droid.compose.FaIcon
 import lazycoder21.droid.compose.FaIcons
@@ -16,6 +13,7 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object Check : UnifyIcons(IconType.Vector(Icons.Default.Check))
     object EyeOff : UnifyIcons(IconType.FontAwesome(FaIcons.EyeSlash))
     object EyeOn : UnifyIcons(IconType.FontAwesome(FaIcons.Eye))
+    object DropDown : UnifyIcons(IconType.Vector(Icons.Default.ArrowDropDown))
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType

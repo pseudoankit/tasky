@@ -21,21 +21,39 @@ import pseudoankit.droid.coreui.token.UnifyTheme
  * @param[singleEvents] add any code that needs to just run once
  * @param[content] actual composable content of screen
  */
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskyDestinationSurface(
     topBarConfig: UnifyTopBar.Config? = null,
     singleEvents: suspend CoroutineScope.() -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    LaunchedEffect(key1 = Unit, block = singleEvents)
+    TaskyDestinationSurface(
+        topBar = {
+            UnifyTopBar(topBarConfig)
+        },
+        singleEvents = singleEvents,
+        content = content
+    )
+}
 
+/**
+ * Helper method to configure repeating logic for any destination
+ * @param[topBar] for custom topBars
+ * @param[singleEvents] add any code that needs to just run once
+ * @param[content] actual composable content of screen
+ */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun TaskyDestinationSurface(
+    topBar: @Composable BoxScope.() -> Unit,
+    singleEvents: suspend CoroutineScope.() -> Unit = {},
+    content: @Composable ColumnScope.() -> Unit,
+) {
+    LaunchedEffect(key1 = Unit, block = singleEvents)
     UnifyTheme {
         Scaffold(
             topBar = {
-                Box(modifier = Modifier.height(UnifyDimens.Dp_64)) {
-                    UnifyTopBar(topBarConfig)
-                }
+                Box(modifier = Modifier.height(UnifyDimens.Dp_64), content = topBar)
             },
             containerColor = UnifyColors.Black
         ) {

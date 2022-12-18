@@ -8,14 +8,14 @@ import pseudoankit.droid.coreui.model.TaskyDate
 internal interface HomeUiState {
 
     sealed interface SideEffect {
-        object NavigateUp : SideEffect
+        object ShowDatePickerDialog : SideEffect
     }
 
     @Immutable
     data class State(
         val selectedDate: TaskyDate = DateUtils.today
     ) {
-        val daysRangeOfSelectedDate: ImmutableList<TaskyDate> =
-            DateUtils.getDayRangeForDate(selectedDate)
+        val selectedMonthDateRange: ImmutableList<TaskyDate> =
+            DateUtils.getDateRangeForMonth(selectedDate)
     }
 }

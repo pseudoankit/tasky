@@ -52,7 +52,7 @@ fun UnifyButton(config: UnifyButton.Config) {
         UnifyTextView(
             config = UnifyTextView.Config(
                 text = config.text,
-                textType = UnifyTextType.LabelMedium
+                textType = UnifyTextType.TitleMedium
             )
         )
     }

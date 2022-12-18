@@ -13,26 +13,62 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.coreui.components.icon.UnifyIcon
+import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.text.UnifyTextType
 import pseudoankit.droid.coreui.components.text.UnifyTextView
 import pseudoankit.droid.coreui.model.TaskyDate
 import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens
+import pseudoankit.droid.coreui.util.extension.noRippleClickable
 
-object HomeScreenComponents {
+internal object HomeScreenComponents {
+
+    @Composable
+    internal fun TopBar(
+        month: String,
+        onMonthSelected: () -> Unit
+    ): @Composable BoxScope.() -> Unit = {
+        Row(
+            modifier = Modifier.padding(UnifyDimens.ScreenPadding),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Row(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
+                    .noRippleClickable(onClick = onMonthSelected)
+                    .padding(all = UnifyDimens.Dp_4),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                UnifyTextView(
+                    config = UnifyTextView.Config(
+                        textType = UnifyTextType.BodyMedium,
+                        text = month,
+                        color = UnifyColors.White
+                    )
+                )
+                UnifyIcon(
+                    config = UnifyIcon.Config(
+                        icon = UnifyIcons.DropDown,
+                        tint = UnifyColors.White
+                    )
+                )
+            }
+        }
+    }
 
     @Composable
     internal fun SelectedMonthDatePicker(
-        dayRange: ImmutableList<TaskyDate>,
+        dateRange: ImmutableList<TaskyDate>,
         onDaySelected: (TaskyDate) -> Unit,
         selectedDay: TaskyDate
     ) {
         val listState = rememberLazyListState()
 
         LazyRow(modifier = Modifier.fillMaxWidth(), state = listState) {
-            items(dayRange, key = { it.date.dayOfMonth }) { day ->
+            items(dateRange, key = { it.date.dayOfMonth }) { date ->
                 SelectedMonthDatePickerItem(
-                    date = day,
+                    date = date,
                     onClick = onDaySelected
                 )
             }

@@ -9,4 +9,8 @@ internal class HomeViewModel :
     fun onDaySelected(date: TaskyDate) = setState {
         copy(selectedDate = date)
     }
+
+    fun onMonthSelected() = postSideEffect {
+        HomeUiState.SideEffect.ShowDatePickerDialog
+    }
 }

@@ -7,7 +7,7 @@ import java.time.LocalDate
 import java.time.Month
 
 object DateUtils {
-    private val dayRangeOfMonth = mutableMapOf<Month, List<LocalDate>>()
+    private val dateRangeOfMonthCache = mutableMapOf<Month, List<LocalDate>>()
 
     val today: TaskyDate get() = TaskyDate(LocalDate.now())
 
@@ -15,8 +15,8 @@ object DateUtils {
      * @return[List<LocalDate>] list of days which falls in the same month passed in the param
      * @param[date] date for which range needed
      */
-    fun getDayRangeForDate(date: TaskyDate): ImmutableList<TaskyDate> {
-        return dayRangeOfMonth.getOrPut(date.date.month) {
+    fun getDateRangeForMonth(date: TaskyDate): ImmutableList<TaskyDate> {
+        return dateRangeOfMonthCache.getOrPut(date.date.month) {
             (1..date.date.lengthOfMonth()).map {
                 LocalDate.of(date.date.year, date.date.month, it)
             }
