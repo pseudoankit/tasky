@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontStyle
 import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.components.text.UnifyTextType
@@ -34,11 +35,12 @@ internal object HomeFloatingAgendaItems {
                     UnifyTextView(
                         config = UnifyTextView.Config(
                             text = it.label.asString(),
-                            textType = UnifyTextType.LabelLarge,
-                            color = UnifyColors.White
+                            textType = UnifyTextType.TitleMedium,
+                            color = UnifyColors.White,
+                            fontStyle = FontStyle.Italic
                         )
                     )
-                    Spacer(modifier = Modifier.width(UnifyDimens.Dp_4))
+                    Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
                     UnifyFloatingButton(
                         iconConfig = UnifyIcon.Config(icon = it.icon),
                         onClick = {
