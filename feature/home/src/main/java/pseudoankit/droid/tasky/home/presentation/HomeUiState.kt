@@ -15,7 +15,7 @@ internal interface HomeUiState {
     @Immutable
     data class State(
         val selectedDate: TaskyDate = DateUtils.today,
-        val isFabSelected: Boolean = false
+        val showAgendaItems: Boolean = false
     ) {
         val selectedMonthDateRange: ImmutableList<TaskyDate> =
             DateUtils.getDateRangeForMonth(selectedDate)

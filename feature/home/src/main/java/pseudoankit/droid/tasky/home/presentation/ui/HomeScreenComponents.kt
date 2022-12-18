@@ -9,8 +9,11 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
@@ -21,6 +24,7 @@ import pseudoankit.droid.coreui.model.TaskyDate
 import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
+import pseudoankit.droid.tasky.home.domain.model.AgendaType
 
 internal object HomeScreenComponents {
 
@@ -64,6 +68,19 @@ internal object HomeScreenComponents {
                 size = UnifyDimens.Dp_36
             ),
             onClick = onClick
+        )
+    }
+
+    @OptIn(ExperimentalComposeUiApi::class)
+    @Composable
+    fun AgendaItems(show: Boolean, onDismiss: () -> Unit, onAgendaSelected: (AgendaType) -> Unit) {
+        if (show.not()) return
+        Dialog(
+            onDismissRequest = onDismiss,
+            content = {
+                HomeFloatingAgendaItems(onAgendaSelected = onAgendaSelected, onDismiss = onDismiss)
+            },
+            properties = DialogProperties(usePlatformDefaultWidth = false)
         )
     }
 

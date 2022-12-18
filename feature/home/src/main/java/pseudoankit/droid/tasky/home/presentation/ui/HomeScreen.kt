@@ -21,9 +21,15 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
     val viewModel = getViewModel<HomeViewModel>()
 
     val dateRangeListState = rememberLazyListState()
+    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState)
+
     val state = viewModel.state
 
-    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState)
+    HomeScreenComponents.AgendaItems(
+        show = state.showAgendaItems,
+        onDismiss = viewModel::onAgendaItemsVisibilityToggled,
+        onAgendaSelected = viewModel::onAgendaSelected
+    )
     TaskyDestinationSurface(
         topBar = {
             HomeScreenComponents.TopBar(
@@ -33,8 +39,8 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
         },
         floatingActionButton = {
             HomeScreenComponents.FloatingButton(
-                isSelected = state.isFabSelected,
-                onClick = viewModel::onFloatingButtonClicked
+                isSelected = state.showAgendaItems,
+                onClick = viewModel::onAgendaItemsVisibilityToggled
             )
         }
     ) {

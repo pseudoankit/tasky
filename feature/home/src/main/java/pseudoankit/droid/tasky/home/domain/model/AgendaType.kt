@@ -16,7 +16,7 @@ enum class AgendaType {
     val icon
         get() = when (this) {
             Reminder -> UnifyIcons.Bell
-            Task -> UnifyIcons.CheckCircle
+            Task -> UnifyIcons.Tasks
             Event -> UnifyIcons.Calendar
         }
 }

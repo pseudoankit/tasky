@@ -8,10 +8,12 @@ import java.time.LocalDate
 internal class HomeViewModel :
     BaseViewModel<HomeUiState.State, HomeUiState.SideEffect, Nothing>(HomeUiState.State()) {
 
-    fun onAgendaSelected(agendaType: AgendaType) {}
+    fun onAgendaSelected(agendaType: AgendaType) {
+        onAgendaItemsVisibilityToggled()
+    }
 
-    fun onFloatingButtonClicked() = setState {
-        copy(isFabSelected = isFabSelected.not())
+    fun onAgendaItemsVisibilityToggled() = setState {
+        copy(showAgendaItems = showAgendaItems.not())
     }
 
     fun onDaySelected(date: TaskyDate) = setState {
