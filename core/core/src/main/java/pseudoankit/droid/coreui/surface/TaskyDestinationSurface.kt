@@ -1,9 +1,7 @@
 package pseudoankit.droid.coreui.surface
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ColumnScope
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -34,12 +32,17 @@ fun TaskyDestinationSurface(
 
     UnifyTheme {
         Scaffold(
-            topBar = { UnifyTopBar(config = topBarConfig) },
+            topBar = {
+                Box(modifier = Modifier.height(UnifyDimens.Dp_64)) {
+                    UnifyTopBar(topBarConfig)
+                }
+            },
             containerColor = UnifyColors.Black
         ) {
             Column(
                 modifier = Modifier
                     .padding(it)
+                    .fillMaxSize()
                     .clip(
                         RoundedCornerShape(
                             topStart = UnifyDimens.Radius.Large,

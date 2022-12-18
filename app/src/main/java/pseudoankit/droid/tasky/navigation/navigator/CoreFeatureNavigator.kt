@@ -5,13 +5,14 @@ import androidx.navigation.NavController
 import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.destinations.RegistrationScreenDestination
-import pseudoankit.droid.core.navigator.CoreNavigator
 import pseudoankit.droid.core.util.extension.finish
+import pseudoankit.droid.tasky.home.navigator.HomeNavigator
+import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
 
 class CoreFeatureNavigator(
     private val navController: NavController,
     private val context: Context
-) : CoreNavigator, AuthNavigator {
+) : AuthNavigator, HomeNavigator {
 
     override fun navigateUp() {
         if (navController.popBackStack().not()) {
@@ -28,6 +29,6 @@ class CoreFeatureNavigator(
     }
 
     override fun navigateToHome() {
-        navController.navigate(RegistrationScreenDestination)
+        navController.navigate(HomeScreenDestination)
     }
 }

@@ -44,6 +44,7 @@ dependencies {
 
     with(Modules.Feature) {
         implementation(project(Authentication))
+        implementation(project(Home))
     }
 
     with(Dependencies.Koin) {
