@@ -40,22 +40,22 @@ private fun LoginScreenInternal(
     ) {
         val state = viewModel.state
 
-        LoginScreenComponent.Email(
+        LoginScreenComponents.Email(
             email = state.email,
             onEmailChanged = viewModel::onEmailValueChanged
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
-        LoginScreenComponent.Password(
+        LoginScreenComponents.Password(
             password = state.password,
             onPasswordChanged = viewModel::onPasswordValueChanged
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
-        LoginScreenComponent.LoginButton(
+        LoginScreenComponents.LoginButton(
             state = state.buttonState,
             onLogin = viewModel::onLogin
         )
         Spacer(modifier = Modifier.weight(1f))
-        LoginScreenComponent.SignupText(viewModel::onSignup)
+        LoginScreenComponents.SignupText(viewModel::onSignup)
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_32))
     }
 }

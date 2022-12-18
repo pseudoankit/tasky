@@ -11,7 +11,7 @@ import pseudoankit.droid.coreui.components.text.UnifyTextType
 import pseudoankit.droid.coreui.components.text.UnifyTextView
 import pseudoankit.droid.coreui.components.textfield.UnifyTextField
 
-internal object LoginScreenComponent {
+internal object LoginScreenComponents {
     @Composable
     fun Email(email: String, onEmailChanged: (String) -> Unit) {
         UnifyTextField(
