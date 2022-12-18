@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.text.UnifyTextType
@@ -32,27 +33,7 @@ internal object HomeScreenComponents {
             modifier = Modifier.padding(UnifyDimens.ScreenPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Row(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
-                    .noRippleClickable(onClick = onMonthSelected)
-                    .padding(all = UnifyDimens.Dp_4),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                UnifyTextView(
-                    config = UnifyTextView.Config(
-                        textType = UnifyTextType.BodyMedium,
-                        text = headerDate,
-                        color = UnifyColors.White
-                    )
-                )
-                UnifyIcon(
-                    config = UnifyIcon.Config(
-                        icon = UnifyIcons.DropDown,
-                        tint = UnifyColors.White
-                    )
-                )
-            }
+            TopBarDateSection(headerDate, onMonthSelected)
         }
     }
 
@@ -69,6 +50,48 @@ internal object HomeScreenComponents {
                     onClick = onDaySelected
                 )
             }
+        }
+    }
+
+    @Composable
+    fun FloatingButton(
+        onClick: () -> Unit,
+        isSelected: Boolean
+    ) {
+        UnifyFloatingButton(
+            iconConfig = UnifyIcon.Config(
+                icon = if (isSelected) UnifyIcons.Cross else UnifyIcons.Add,
+                size = UnifyDimens.Dp_36
+            ),
+            onClick = onClick
+        )
+    }
+
+    @Composable
+    private fun TopBarDateSection(
+        headerDate: String,
+        onMonthSelected: () -> Unit
+    ) {
+        Row(
+            modifier = Modifier
+                .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
+                .noRippleClickable(onClick = onMonthSelected)
+                .padding(all = UnifyDimens.Dp_4),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            UnifyTextView(
+                config = UnifyTextView.Config(
+                    textType = UnifyTextType.BodyMedium,
+                    text = headerDate,
+                    color = UnifyColors.White
+                )
+            )
+            UnifyIcon(
+                config = UnifyIcon.Config(
+                    icon = UnifyIcons.DropDown,
+                    tint = UnifyColors.White
+                )
+            )
         }
     }
 

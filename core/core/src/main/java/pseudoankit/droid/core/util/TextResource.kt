@@ -6,7 +6,9 @@ import androidx.compose.ui.platform.LocalContext
 
 sealed interface TextResource {
     class WithResId(internal val stringId: Int, internal vararg val params: Any) : TextResource
-    data class WithText(internal val text: String) : TextResource
+
+    @JvmInline
+    value class WithText(internal val text: String) : TextResource
 
     fun asString(context: Context): String {
         return when (this) {

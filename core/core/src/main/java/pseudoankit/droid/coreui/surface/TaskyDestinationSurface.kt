@@ -46,6 +46,7 @@ fun TaskyDestinationSurface(
 @Composable
 fun TaskyDestinationSurface(
     topBar: @Composable BoxScope.() -> Unit,
+    floatingActionButton: @Composable () -> Unit = {},
     singleEvents: suspend CoroutineScope.() -> Unit = {},
     content: @Composable ColumnScope.() -> Unit,
 ) {
@@ -55,7 +56,8 @@ fun TaskyDestinationSurface(
             topBar = {
                 Box(modifier = Modifier.height(UnifyDimens.Dp_64), content = topBar)
             },
-            containerColor = UnifyColors.Black
+            containerColor = UnifyColors.Black,
+            floatingActionButton = floatingActionButton
         ) {
             Column(
                 modifier = Modifier

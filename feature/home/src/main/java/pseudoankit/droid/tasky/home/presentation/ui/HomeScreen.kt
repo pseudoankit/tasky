@@ -30,6 +30,12 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
                 headerDate = state.displayHeaderDate,
                 onMonthSelected = viewModel::onHeaderMonthSelected
             )
+        },
+        floatingActionButton = {
+            HomeScreenComponents.FloatingButton(
+                isSelected = state.isFabSelected,
+                onClick = viewModel::onFloatingButtonClicked
+            )
         }
     ) {
         HomeScreenComponents.SelectedMonthDatePicker(

@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextDecoration
 object UnifyTextView {
     data class Config(
         val text: String,
-        val textType: UnifyTextType,
+        val textType: UnifyTextType = UnifyTextType.LabelMedium,
         val color: Color = Color.Unspecified,
         val textDecoration: TextDecoration? = null,
         val textAlign: TextAlign? = null,

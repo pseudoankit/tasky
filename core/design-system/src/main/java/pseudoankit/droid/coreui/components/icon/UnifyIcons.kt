@@ -14,6 +14,9 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object EyeOff : UnifyIcons(IconType.FontAwesome(FaIcons.EyeSlash))
     object EyeOn : UnifyIcons(IconType.FontAwesome(FaIcons.Eye))
     object DropDown : UnifyIcons(IconType.Vector(Icons.Default.ArrowDropDown))
+    object Add : UnifyIcons(IconType.Vector(Icons.Default.Add))
+    object Cross : UnifyIcons(IconType.FontAwesome(FaIcons.Times))
+
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType
