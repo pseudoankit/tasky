@@ -1,4 +1,4 @@
-package pseudoankit.droid.core.viewmodel
+package pseudoankit.droid.coreui.viewmodel
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue

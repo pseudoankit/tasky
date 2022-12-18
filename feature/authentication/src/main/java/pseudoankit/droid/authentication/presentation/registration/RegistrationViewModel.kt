@@ -1,6 +1,6 @@
 package pseudoankit.droid.authentication.presentation.registration
 
-import pseudoankit.droid.core.viewmodel.BaseViewModel
+import pseudoankit.droid.coreui.viewmodel.BaseViewModel
 
 internal class RegistrationViewModel :
     BaseViewModel<RegistrationUiState.State, RegistrationUiState.SideEffect, Nothing>(

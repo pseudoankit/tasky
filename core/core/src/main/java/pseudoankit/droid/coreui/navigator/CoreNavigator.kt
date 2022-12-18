@@ -1,4 +1,4 @@
-package pseudoankit.droid.core.navigator
+package pseudoankit.droid.coreui.navigator
 
 interface CoreNavigator {
     fun navigateUp()

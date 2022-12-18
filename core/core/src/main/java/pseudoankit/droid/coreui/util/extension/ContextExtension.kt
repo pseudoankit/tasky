@@ -1,4 +1,4 @@
-package pseudoankit.droid.core.util.extension
+package pseudoankit.droid.coreui.util.extension
 
 import android.app.Activity
 import android.content.Context

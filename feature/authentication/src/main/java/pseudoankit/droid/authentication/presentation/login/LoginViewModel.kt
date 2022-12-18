@@ -3,7 +3,7 @@ package pseudoankit.droid.authentication.presentation.login
 import pseudoankit.droid.authentication.domain.LoginUseCase
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
-import pseudoankit.droid.core.viewmodel.BaseViewModel
+import pseudoankit.droid.coreui.viewmodel.BaseViewModel
 
 internal class LoginViewModel(
     private val loginUseCase: LoginUseCase
