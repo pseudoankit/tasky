@@ -1,5 +1,7 @@
 package pseudoankit.droid.tasky.home.presentation.ui
 
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.ramcosta.composedestinations.annotation.Destination
@@ -17,10 +19,11 @@ import pseudoankit.droid.tasky.home.presentation.HomeViewModel
 @Composable
 internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = HomeModule) {
     val viewModel = getViewModel<HomeViewModel>()
-    HandleHomeScreenSideEffect()
 
+    val dateRangeListState = rememberLazyListState()
     val state = viewModel.state
 
+    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState)
     TaskyDestinationSurface(
         topBar = HomeScreenComponents.TopBar(
             month = state.selectedDate.date.month.toString(),
@@ -30,13 +33,16 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,
             onDaySelected = viewModel::onDaySelected,
-            selectedDay = state.selectedDate
+            listState = dateRangeListState
         )
     }
 }
 
 @Composable
-private fun HandleHomeScreenSideEffect(viewModel: HomeViewModel = getViewModel()) {
+private fun HandleHomeScreenSideEffect(
+    viewModel: HomeViewModel = getViewModel(),
+    dateRangeListState: LazyListState
+) {
     val datePickerState = rememberUnifyDatePickerState()
     UnifyDatePicker(
         initialDate = viewModel.state.selectedDate.date,
@@ -45,9 +51,12 @@ private fun HandleHomeScreenSideEffect(viewModel: HomeViewModel = getViewModel()
     )
 
     LaunchedEffect(Unit) {
+        viewModel.onInit()
         viewModel.sideEffect.collect {
             when (it) {
                 HomeUiState.SideEffect.ShowDatePickerDialog -> datePickerState.show()
+                HomeUiState.SideEffect.HighlightCurrentSelectedDate ->
+                    dateRangeListState.animateScrollToItem(viewModel.state.selectedDate.date.dayOfMonth - 1)
             }
         }
     }

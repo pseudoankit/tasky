@@ -85,7 +85,7 @@ private fun UnifyDatePickerImpl(
             onDateChange = onDateSelected,
             colors = object : DatePickerColors {
                 override val calendarHeaderTextColor: Color
-                    get() = UnifyColors.White
+                    get() = UnifyColors.Black
                 override val headerBackgroundColor: Color
                     get() = UnifyColors.Black
                 override val headerTextColor: Color

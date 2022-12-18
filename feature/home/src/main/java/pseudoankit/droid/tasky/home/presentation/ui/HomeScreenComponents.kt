@@ -3,12 +3,11 @@ package pseudoankit.droid.tasky.home.presentation.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -59,12 +58,10 @@ internal object HomeScreenComponents {
 
     @Composable
     internal fun SelectedMonthDatePicker(
+        listState: LazyListState,
         dateRange: ImmutableList<TaskyDate>,
-        onDaySelected: (TaskyDate) -> Unit,
-        selectedDay: TaskyDate
+        onDaySelected: (TaskyDate) -> Unit
     ) {
-        val listState = rememberLazyListState()
-
         LazyRow(modifier = Modifier.fillMaxWidth(), state = listState) {
             items(dateRange, key = { it.date.dayOfMonth }) { date ->
                 SelectedMonthDatePickerItem(
@@ -72,10 +69,6 @@ internal object HomeScreenComponents {
                     onClick = onDaySelected
                 )
             }
-        }
-
-        LaunchedEffect(Unit) {
-            listState.scrollToItem(selectedDay.date.dayOfMonth - 1)
         }
     }
 
