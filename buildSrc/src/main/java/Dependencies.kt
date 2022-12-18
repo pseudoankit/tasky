@@ -18,6 +18,7 @@ object Dependencies {
             "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
         const val ConstraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.ConstraintLayout}"
+        const val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
     }
 
     object Koin {
