@@ -16,6 +16,10 @@
             <option value="$PROJECT_DIR$/core/core" />
             <option value="$PROJECT_DIR$/core/design-system" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/agenda" />
+            <option value="$PROJECT_DIR$/feature/agenda/event" />
+            <option value="$PROJECT_DIR$/feature/agenda/reminder" />
+            <option value="$PROJECT_DIR$/feature/agenda/task" />
             <option value="$PROJECT_DIR$/feature/authentication" />
             <option value="$PROJECT_DIR$/feature/home" />
           </set>

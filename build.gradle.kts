@@ -12,7 +12,7 @@ buildscript {
 }
 
 plugins {
-    id(Plugins.Ksp) version Versions.Compose.KspPlugin apply true
+    id(Plugins.Ksp) version Versions.Compose.KspPlugin apply false
 }
 
 allprojects {

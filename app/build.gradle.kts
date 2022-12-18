@@ -45,6 +45,9 @@ dependencies {
     with(Modules.Feature) {
         implementation(project(Authentication))
         implementation(project(Home))
+        implementation(project(Event))
+        implementation(project(Reminder))
+        implementation(project(Task))
     }
 
     with(Dependencies.Koin) {
