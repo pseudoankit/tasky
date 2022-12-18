@@ -24,5 +24,6 @@ object UnifyDimens {
         val Large = Dp_32
         val Medium = Dp_16
         val Small = Dp_12
+        val XSmall = Dp_4
     }
 }

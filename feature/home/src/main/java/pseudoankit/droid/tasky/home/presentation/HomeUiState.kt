@@ -1,5 +1,7 @@
 package pseudoankit.droid.tasky.home.presentation
 
+import java.time.LocalDate
+
 internal interface HomeUiState {
 
     sealed interface SideEffect {
@@ -10,7 +12,7 @@ internal interface HomeUiState {
         object OnNavigateUp : SideEffect
     }
 
-    class State(
-
+    data class State(
+        val selectedDate: LocalDate = LocalDate.now()
     )
 }

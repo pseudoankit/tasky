@@ -7,7 +7,7 @@ import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.destinations.RegistrationScreenDestination
 import pseudoankit.droid.core.util.extension.finish
 import pseudoankit.droid.tasky.home.navigator.HomeNavigator
-import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
+import pseudoankit.droid.tasky.home.presentation.ui.destinations.HomeScreenDestination
 
 class CoreFeatureNavigator(
     private val navController: NavController,

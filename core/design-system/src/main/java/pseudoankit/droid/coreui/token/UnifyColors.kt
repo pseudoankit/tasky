@@ -17,6 +17,7 @@ object UnifyColors {
     val Gray = Color.Gray
     val Green = Color.Green
     val Red = Color.Red
+    val LightBlue = Color(0xFFD0DDF1)
 
     val DarkGreen = Color(0xFF06572A)
     val Purple80 = Color(0xFFD0BCFF)
@@ -26,7 +27,6 @@ object UnifyColors {
     val PurpleGrey40 = Color(0xFF625b71)
     val Pink40 = Color(0xFF7D5260)
     val LightGreen = Color(0xFFCAEF45)
-    val LightBlue = Color(0xFFB7C6DE)
     val Light = Color(0xFFEEF6FF)
     val Light2 = Color(0xFFF2F3F7)
     val Brown = Color(0xFF40492D)

@@ -5,7 +5,7 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
 import pseudoankit.droid.authentication.presentation.authenticationDestinations
 import pseudoankit.droid.authentication.presentation.destinations.LoginScreenDestination
-import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
+import pseudoankit.droid.tasky.home.presentation.ui.destinations.HomeScreenDestination
 
 object MainNavGraph : NavGraphSpec {
 
