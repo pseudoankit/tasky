@@ -57,8 +57,8 @@ private fun HandleHomeScreenSideEffect(
         viewModel.sideEffect.collect {
             when (it) {
                 HomeUiState.SideEffect.ShowDatePickerDialog -> datePickerState.show()
-                HomeUiState.SideEffect.HighlightCurrentSelectedDate ->
-                    dateRangeListState.animateScrollToItem(viewModel.state.selectedDate.date.dayOfMonth - 1)
+                is HomeUiState.SideEffect.HighlightCurrentSelectedDate ->
+                    dateRangeListState.animateScrollToItem(it.position)
             }
         }
     }

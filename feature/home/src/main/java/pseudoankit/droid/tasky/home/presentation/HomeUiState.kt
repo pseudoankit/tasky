@@ -9,7 +9,7 @@ internal interface HomeUiState {
 
     sealed interface SideEffect {
         object ShowDatePickerDialog : SideEffect
-        object HighlightCurrentSelectedDate : SideEffect
+        data class HighlightCurrentSelectedDate(val position: Int) : SideEffect
     }
 
     @Immutable

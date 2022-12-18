@@ -15,15 +15,18 @@ internal class HomeViewModel :
         HomeUiState.SideEffect.ShowDatePickerDialog
     }
 
-    fun onDialogDateSelected(date: LocalDate) = postSideEffect {
+    fun onDialogDateSelected(date: LocalDate) {
         setState {
             copy(selectedDate = TaskyDate(date))
         }
-        HomeUiState.SideEffect.HighlightCurrentSelectedDate
+        highlightCurrentSelectedDate()
     }
 
-    fun onInit() = postSideEffect {
-        HomeUiState.SideEffect.HighlightCurrentSelectedDate
+    fun onInit() {
+        highlightCurrentSelectedDate()
     }
 
+    private fun highlightCurrentSelectedDate() = postSideEffect {
+        HomeUiState.SideEffect.HighlightCurrentSelectedDate(state.selectedDate.date.dayOfMonth - 1)
+    }
 }
