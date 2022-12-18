@@ -16,7 +16,10 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object DropDown : UnifyIcons(IconType.Vector(Icons.Default.ArrowDropDown))
     object Add : UnifyIcons(IconType.Vector(Icons.Default.Add))
     object Cross : UnifyIcons(IconType.FontAwesome(FaIcons.Times))
-
+    object Bell : UnifyIcons(IconType.FontAwesome(FaIcons.Bell))
+    object Calendar : UnifyIcons(IconType.FontAwesome(FaIcons.CalendarCheck))
+    object Tasks : UnifyIcons(IconType.FontAwesome(FaIcons.Tasks))
+    object CheckCircle : UnifyIcons(IconType.Vector(Icons.Default.CheckCircle))
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType
