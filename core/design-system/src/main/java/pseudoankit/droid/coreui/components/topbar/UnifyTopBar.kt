@@ -27,7 +27,9 @@ object UnifyTopBar {
 }
 
 @Composable
-fun UnifyTopBar(config: UnifyTopBar.Config) {
+fun UnifyTopBar(config: UnifyTopBar.Config?) {
+    if (config == null) return
+
     when (config.type) {
         UnifyTopBar.Type.Small -> config.SmallTopBar()
     }
