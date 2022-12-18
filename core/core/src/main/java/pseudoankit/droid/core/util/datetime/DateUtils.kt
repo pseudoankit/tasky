@@ -6,6 +6,8 @@ import java.time.Month
 object DateUtils {
     private val dayRangeOfMonth = mutableMapOf<Month, List<LocalDate>>()
 
+    val today get() = LocalDate.now()
+
     /**
      * @return[List<LocalDate>] list of days which falls in the same month passed in the param
      * @param[date] date for which range needed

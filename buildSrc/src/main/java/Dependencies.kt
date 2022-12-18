@@ -27,9 +27,12 @@ object Dependencies {
         const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.Compose}"
     }
 
-    object Coroutine {
-        const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
-        const val Android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
+    object Kotlin {
+        const val ImmutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
+        const val CoroutineCore =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
+        const val CoroutineAndroid =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
     }
 
     object Gradle {

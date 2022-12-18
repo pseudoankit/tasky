@@ -49,6 +49,9 @@ open class BasePlugin : Plugin<Project> {
                 this@dependencies.implementation(Core)
                 this@dependencies.implementation(Android)
             }
+            with(Dependencies.Kotlin) {
+                this@dependencies.implementation(ImmutableCollection)
+            }
         }
     }
 }
