@@ -14,7 +14,5 @@ android {
 }
 
 dependencies {
-    with(Dependencies.Compose) {
-        implementation(DatePicker)
-    }
+
 }

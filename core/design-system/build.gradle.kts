@@ -9,5 +9,8 @@ android {
 }
 
 dependencies {
-    implementation("com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0")
+    with(Dependencies.Compose) {
+        implementation(FontAwesome)
+        implementation(DatePicker)
+    }
 }

@@ -19,6 +19,7 @@ object Dependencies {
         const val ConstraintLayout =
             "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.ConstraintLayout}"
         const val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
+        const val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
     }
 
     object Koin {
