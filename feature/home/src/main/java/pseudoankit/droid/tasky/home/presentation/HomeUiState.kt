@@ -1,6 +1,9 @@
 package pseudoankit.droid.tasky.home.presentation
 
-import java.time.LocalDate
+import androidx.compose.runtime.Immutable
+import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.core.util.datetime.DateUtils
+import pseudoankit.droid.coreui.model.TaskyDate
 
 internal interface HomeUiState {
 
@@ -8,11 +11,11 @@ internal interface HomeUiState {
         object NavigateUp : SideEffect
     }
 
-    sealed interface Event {
-        object OnNavigateUp : SideEffect
-    }
-
+    @Immutable
     data class State(
-        val selectedDate: LocalDate = LocalDate.now()
-    )
+        val selectedDate: TaskyDate = DateUtils.today
+    ) {
+        val daysRangeOfSelectedDate: ImmutableList<TaskyDate> =
+            DateUtils.getDayRangeForDate(selectedDate)
+    }
 }

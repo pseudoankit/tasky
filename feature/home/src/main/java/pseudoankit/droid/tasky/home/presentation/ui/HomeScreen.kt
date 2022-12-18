@@ -16,7 +16,11 @@ internal fun HomeScreen(navigator: HomeNavigator) = CoreKoinComposable(module = 
 
     val state = viewModel.state
 
-    TaskyDestinationSurface {
-        HomeScreenComponents.SelectedMonthDatePicker(state.selectedDate)
+    TaskyDestinationSurface() {
+        HomeScreenComponents.SelectedMonthDatePicker(
+            dayRange = state.daysRangeOfSelectedDate,
+            onDaySelected = viewModel::onDaySelected,
+            selectedDay = state.selectedDate
+        )
     }
 }

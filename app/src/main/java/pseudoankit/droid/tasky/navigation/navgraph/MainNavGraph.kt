@@ -4,14 +4,14 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
 import pseudoankit.droid.authentication.presentation.authenticationDestinations
-import pseudoankit.droid.authentication.presentation.destinations.LoginScreenDestination
 import pseudoankit.droid.tasky.home.presentation.ui.destinations.HomeScreenDestination
 
 object MainNavGraph : NavGraphSpec {
 
     override val route: String = "Tasky"
 
-    override val startRoute: Route = LoginScreenDestination
+    // todo changed start for now
+    override val startRoute: Route = HomeScreenDestination
 
     override val destinationsByRoute: Map<String, DestinationSpec<*>>
         get() = destinations.associateBy { it.route }

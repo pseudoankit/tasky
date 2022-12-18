@@ -1,6 +1,7 @@
 package pseudoankit.droid.coreui.components.text
 
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 
 private val typography = androidx.compose.material3.Typography()
 
@@ -11,9 +12,9 @@ enum class UnifyTextType(val textStyle: TextStyle) {
     HeadlineLarge(typography.headlineLarge),
     HeadlineMedium(typography.headlineMedium),
     HeadlineSmall(typography.headlineSmall),
-    TitleLarge(typography.titleLarge),
-    TitleMedium(typography.titleMedium),
-    TitleSmall(typography.titleSmall),
+    TitleLarge(typography.titleLarge.copy(fontWeight = FontWeight.Bold)),
+    TitleMedium(typography.titleMedium.copy(fontWeight = FontWeight.Bold)),
+    TitleSmall(typography.titleSmall.copy(fontWeight = FontWeight.Bold)),
     BodyLarge(typography.bodyLarge),
     BodyMedium(typography.bodyMedium),
     BodySmall(typography.bodySmall),
