@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.Application)
+    id(Plugins.AndroidApplication)
     id(Plugins.Core)
     id(Plugins.Ksp)
 }

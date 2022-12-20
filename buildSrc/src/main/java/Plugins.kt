@@ -6,26 +6,30 @@ object Plugins {
      */
     const val Core = "base-plugin"
 
-    /**
-     * Plugin containing all common code for library gradle
-     * ###Applicable in library modules only
-     */
-    const val CoreLibrary = "base-library-plugin"
+    object Library {
+        /**
+         * Plugin containing all common code for library gradle
+         * ###Applicable in library modules only
+         */
+        const val Feature = "base-library-plugin"
 
-    /**
-     * Plugin containing setup for adding compose core deps
-     * ###Applicable only for library level module
-     */
-    const val ComposeLibraryCore = "compose-core-plugin"
+        object Compose {
+            /**
+             * Plugin containing setup for adding compose core deps
+             * ###Applicable only for library level module
+             */
+            const val Core = "compose-core-plugin"
 
-    /**
-     * Plugin containing setup for adding compose core deps with navigation lib setup
-     * Also includes coreUi and koin deps
-     * ###Applicable only for library level module
-     */
-    const val ComposeLibraryFeature = "compose-feature-plugin"
+            /**
+             * Plugin containing setup for adding compose core deps with navigation lib setup
+             * Also includes coreUi and koin deps
+             * ###Applicable only for library level module
+             */
+            const val Feature = "compose-feature-plugin"
+        }
+    }
 
-    const val Library = "com.android.library"
-    const val Application = "com.android.application"
+    const val AndroidLibrary = "com.android.library"
+    const val AndroidApplication = "com.android.application"
     const val Ksp = "com.google.devtools.ksp"
 }

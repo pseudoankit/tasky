@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.Library)
+    id(Plugins.AndroidLibrary)
     id(Plugins.Core)
 }
 

@@ -1,6 +1,6 @@
 plugins {
-    id(Plugins.CoreLibrary)
-    id(Plugins.ComposeLibraryFeature)
+    id(Plugins.Library.Feature)
+    id(Plugins.Library.Compose.Feature)
 }
 
 ksp {

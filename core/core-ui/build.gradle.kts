@@ -1,7 +1,6 @@
 plugins {
-    id(Plugins.Library)
-    id(Plugins.Core)
-    id(Plugins.ComposeLibraryCore)
+    id(Plugins.Library.Feature)
+    id(Plugins.Library.Compose.Core)
 }
 
 android {
@@ -11,6 +10,5 @@ android {
 dependencies {
     with(Modules.Core) {
         implementation(project(DesignSystem))
-        implementation(project(Core))
     }
 }

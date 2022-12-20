@@ -1,7 +1,7 @@
 plugins {
-    id(Plugins.Library)
+    id(Plugins.AndroidLibrary)
     id(Plugins.Core)
-    id(Plugins.ComposeLibraryCore)
+    id(Plugins.Library.Compose.Core)
 }
 
 android {

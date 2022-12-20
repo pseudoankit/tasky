@@ -4,5 +4,5 @@ plugins {
 }
 
 android {
-    namespace = "pseudoankit.droid.tasky.task"
+    namespace = "pseudoankit.droid.tasky.agendaui"
 }
