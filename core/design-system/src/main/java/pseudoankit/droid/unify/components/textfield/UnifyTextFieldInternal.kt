@@ -35,8 +35,12 @@ internal object UnifyTextFieldInternal {
                     keyboardType = keyboardType,
                     imeAction = ImeAction.Done
                 ),
-                label = placeholder.Label(),
-                leadingIcon = leadingIcon.LeadingIcon(),
+                label = {
+                    placeholder?.Label()
+                },
+                leadingIcon = {
+                    leadingIcon?.LeadingIcon()
+                },
                 trailingIcon = {
                     if (trailingIcon != null && showTrailingIcon) {
                         trailingIcon.TrailingIcon(
@@ -59,7 +63,7 @@ internal object UnifyTextFieldInternal {
     }
 
     @Composable
-    fun UnifyTextField.Icon.TrailingIcon(
+    private fun UnifyTextField.Icon.TrailingIcon(
         isTextHidden: Boolean,
         toggleIsTextHidden: () -> Unit
     ) = when (this) {
@@ -90,33 +94,25 @@ internal object UnifyTextFieldInternal {
 
 
     @Composable
-    fun UnifyIcons?.LeadingIcon(): @Composable (() -> Unit)? = this?.run {
-        {
-            UnifyIcon(
-                config = UnifyIcon.Config(
-                    tint = UnifyColors.Gray,
-                    size = UnifyDimens.Dp_24,
-                    icon = this
-                )
-            )
-        }
-    }
+    private fun UnifyIcons.LeadingIcon() = UnifyIcon(
+        config = UnifyIcon.Config(
+            tint = UnifyColors.Gray,
+            size = UnifyDimens.Dp_24,
+            icon = this
+        )
+    )
 
     @Composable
-    fun String?.Label(): @Composable (() -> Unit)? = this?.run {
-        {
-            UnifyTextView(
-                config = UnifyTextView.Config(
-                    text = this,
-                    textType = UnifyTextType.BodyLarge,
-                    color = UnifyColors.DarkGray
-                )
-            )
-        }
-    }
+    private fun String.Label() = UnifyTextView(
+        config = UnifyTextView.Config(
+            text = this,
+            textType = UnifyTextType.BodyLarge,
+            color = UnifyColors.DarkGray
+        )
+    )
 
     @Composable
-    fun ErrorMessage(errorMessage: String?) {
+    private fun ErrorMessage(errorMessage: String?) {
         if (errorMessage == null) return
 
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_2))
