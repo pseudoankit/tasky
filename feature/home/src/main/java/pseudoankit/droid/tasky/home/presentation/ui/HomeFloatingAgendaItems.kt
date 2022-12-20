@@ -7,8 +7,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.text.UnifyTextType
-import pseudoankit.droid.coreui.components.text.UnifyTextView
+import pseudoankit.droid.coreui.components.textview.UnifyTextType
+import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens
 import pseudoankit.droid.coreui.util.extension.noRippleClickable

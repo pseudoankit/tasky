@@ -18,8 +18,8 @@ import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
-import pseudoankit.droid.coreui.components.text.UnifyTextType
-import pseudoankit.droid.coreui.components.text.UnifyTextView
+import pseudoankit.droid.coreui.components.textview.UnifyTextType
+import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.model.TaskyDate
 import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens

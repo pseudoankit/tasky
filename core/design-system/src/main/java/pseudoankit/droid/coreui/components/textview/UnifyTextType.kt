@@ -1,9 +1,11 @@
-package pseudoankit.droid.coreui.components.text
+package pseudoankit.droid.coreui.components.textview
 
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 
-private val typography = androidx.compose.material3.Typography()
+private val typography by lazy {
+    androidx.compose.material3.Typography()
+}
 
 enum class UnifyTextType(val textStyle: TextStyle) {
     DisplayLarge(typography.displayLarge),

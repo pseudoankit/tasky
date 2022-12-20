@@ -9,6 +9,18 @@ import pseudoankit.droid.coreui.token.UnifyColors
 import pseudoankit.droid.coreui.token.UnifyDimens
 
 object UnifyProgressIndicator {
+
+    @Composable
+    operator fun invoke(config: Config = Config()) {
+        when (config.type) {
+            Type.Circular -> CircularProgressIndicator(
+                modifier = config.modifier,
+                color = config.color,
+                strokeWidth = config.strokeWidth
+            )
+        }
+    }
+
     data class Config(
         val type: Type = Type.Circular,
         val modifier: Modifier = Modifier,
@@ -17,15 +29,4 @@ object UnifyProgressIndicator {
     )
 
     enum class Type { Circular }
-}
-
-@Composable
-fun UnifyProgressIndicator(config: UnifyProgressIndicator.Config = UnifyProgressIndicator.Config()) {
-    when (config.type) {
-        UnifyProgressIndicator.Type.Circular -> CircularProgressIndicator(
-            modifier = config.modifier,
-            color = config.color,
-            strokeWidth = config.strokeWidth
-        )
-    }
 }

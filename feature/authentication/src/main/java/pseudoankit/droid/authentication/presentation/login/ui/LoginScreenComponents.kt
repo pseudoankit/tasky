@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import pseudoankit.droid.coreui.components.button.UnifyButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
-import pseudoankit.droid.coreui.components.text.UnifyTextType
-import pseudoankit.droid.coreui.components.text.UnifyTextView
 import pseudoankit.droid.coreui.components.textfield.UnifyTextField
+import pseudoankit.droid.coreui.components.textview.UnifyTextType
+import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 
 internal object LoginScreenComponents {

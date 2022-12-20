@@ -1,4 +1,4 @@
-package pseudoankit.droid.coreui.components.text
+package pseudoankit.droid.coreui.components.textview
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -9,6 +9,20 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 
 object UnifyTextView {
+    @Composable
+    operator fun invoke(config: Config?) = config?.apply {
+        Text(
+            text = text,
+            color = color,
+            textDecoration = textDecoration,
+            textAlign = textAlign,
+            maxLines = maxLines,
+            fontStyle = fontStyle,
+            style = textType.textStyle,
+            modifier = modifier
+        )
+    }
+
     data class Config(
         val text: String,
         val textType: UnifyTextType = UnifyTextType.LabelMedium,
@@ -18,19 +32,5 @@ object UnifyTextView {
         val maxLines: Int = Int.MAX_VALUE,
         val fontStyle: FontStyle? = null,
         val modifier: Modifier = Modifier
-    )
-}
-
-@Composable
-fun UnifyTextView(config: UnifyTextView.Config?) = config?.apply {
-    Text(
-        text = text,
-        color = color,
-        textDecoration = textDecoration,
-        textAlign = textAlign,
-        maxLines = maxLines,
-        fontStyle = fontStyle,
-        style = textType.textStyle,
-        modifier = modifier
     )
 }

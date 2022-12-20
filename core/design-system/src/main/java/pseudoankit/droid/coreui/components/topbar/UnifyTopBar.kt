@@ -4,11 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.text.UnifyTextView
-import pseudoankit.droid.coreui.components.topbar.UnifyTopBarInternal.SmallTopBar
+import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.token.UnifyColors
 
 object UnifyTopBar {
+
+    @Composable
+    operator fun invoke(config: Config?) {
+        if (config == null) return
+
+        when (config.type) {
+            Type.Small -> UnifySmallTopBar(config)
+        }
+    }
+
     data class Config(
         val leadingIcon: UnifyIcon.Config? = null,
         val title: String = "",
@@ -24,13 +33,4 @@ object UnifyTopBar {
     )
 
     enum class Type { Small }
-}
-
-@Composable
-fun UnifyTopBar(config: UnifyTopBar.Config?) {
-    if (config == null) return
-
-    when (config.type) {
-        UnifyTopBar.Type.Small -> config.SmallTopBar()
-    }
 }

@@ -4,7 +4,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.runtime.Composable
 import pseudoankit.droid.coreui.token.UnifyColors
 
-internal object UnifyButtonInternal {
+internal object UnifyButtonMapper {
 
     val UnifyButton.State.isDisabled get() = this == UnifyButton.State.Disabled
     val UnifyButton.State.isLoading get() = this == UnifyButton.State.Loading

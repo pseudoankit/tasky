@@ -1,7 +1,7 @@
 package pseudoankit.droid.authentication.presentation.login
 
 import pseudoankit.droid.core.util.validator.Validator
-import pseudoankit.droid.coreui.components.button.UnifyButton.toUnifyButtonState
+import pseudoankit.droid.coreui.components.button.UnifyButton
 
 object LoginUiState {
 
@@ -11,7 +11,8 @@ object LoginUiState {
         val password: String = "qwerty",
         val isButtonLoading: Boolean = false
     ) {
-        val buttonState = Validator.validate(email, password).toUnifyButtonState(isButtonLoading)
+        val buttonState =
+            UnifyButton.State.fromBoolean(Validator.validate(email, password), isButtonLoading)
     }
 
     internal sealed interface SideEffect {

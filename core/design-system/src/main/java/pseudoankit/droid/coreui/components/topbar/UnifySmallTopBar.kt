@@ -5,16 +5,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.text.UnifyTextType
-import pseudoankit.droid.coreui.components.text.UnifyTextView
+import pseudoankit.droid.coreui.components.textview.UnifyTextType
+import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.token.UnifyDimens
 
-internal object UnifyTopBarInternal {
+internal object UnifySmallTopBar {
 
     @Composable
-    fun UnifyTopBar.Config.SmallTopBar() {
-        val config = this
-
+    operator fun invoke(config: UnifyTopBar.Config) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
