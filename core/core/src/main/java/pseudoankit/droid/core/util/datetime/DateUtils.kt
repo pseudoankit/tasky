@@ -2,7 +2,6 @@ package pseudoankit.droid.core.util.datetime
 
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.core.util.extension.mapToImmutableList
-import pseudoankit.droid.coreui.model.TaskyDate
 import java.time.LocalDate
 import java.time.Month
 

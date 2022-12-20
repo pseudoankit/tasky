@@ -38,6 +38,7 @@ class ComposeFeaturePlugin : ComposeCorePlugin() {
             }
             with(Modules.Core) {
                 this@dependencies.implementationProject(DesignSystem)
+                this@dependencies.implementationProject(CoreUi)
             }
         }
 

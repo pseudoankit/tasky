@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "pseudoankit.droid.coreui"
+    namespace = "pseudoankit.droid.unify"
 }
 
 dependencies {

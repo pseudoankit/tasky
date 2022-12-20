@@ -40,6 +40,7 @@ dependencies {
     with(Modules.Core) {
         implementation(project(DesignSystem))
         implementation(project(Core))
+        implementation(project(CoreUi))
     }
 
     with(Modules.Feature) {

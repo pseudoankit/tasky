@@ -3,7 +3,7 @@ package pseudoankit.droid.tasky.home.presentation
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.core.util.datetime.DateUtils
-import pseudoankit.droid.coreui.model.TaskyDate
+import pseudoankit.droid.core.util.datetime.TaskyDate
 
 internal interface HomeUiState {
 

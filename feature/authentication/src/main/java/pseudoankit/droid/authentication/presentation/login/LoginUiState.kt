@@ -1,7 +1,7 @@
 package pseudoankit.droid.authentication.presentation.login
 
-import pseudoankit.droid.coreui.components.button.UnifyButton
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
+import pseudoankit.droid.unify.components.button.UnifyButton
 
 object LoginUiState {
 

@@ -10,10 +10,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.navigation.dependency
-import pseudoankit.droid.coreui.token.UnifyColors
-import pseudoankit.droid.coreui.token.UnifyTheme
 import pseudoankit.droid.tasky.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
+import pseudoankit.droid.unify.token.UnifyColors
+import pseudoankit.droid.unify.token.UnifyTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

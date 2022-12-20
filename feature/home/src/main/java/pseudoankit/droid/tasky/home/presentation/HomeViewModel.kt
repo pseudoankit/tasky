@@ -1,6 +1,6 @@
 package pseudoankit.droid.tasky.home.presentation
 
-import pseudoankit.droid.coreui.model.TaskyDate
+import pseudoankit.droid.core.util.datetime.TaskyDate
 import pseudoankit.droid.coreui.viewmodel.BaseViewModel
 import pseudoankit.droid.tasky.home.domain.model.AgendaType
 import java.time.LocalDate

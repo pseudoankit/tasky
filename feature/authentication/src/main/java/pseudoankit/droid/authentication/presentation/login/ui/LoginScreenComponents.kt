@@ -4,14 +4,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
-import pseudoankit.droid.core.util.TextResource.Companion.asString
-import pseudoankit.droid.coreui.components.button.UnifyButton
-import pseudoankit.droid.coreui.components.icon.UnifyIcons
-import pseudoankit.droid.coreui.components.textfield.UnifyTextField
-import pseudoankit.droid.coreui.components.textview.UnifyTextType
-import pseudoankit.droid.coreui.components.textview.UnifyTextView
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
+import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
+import pseudoankit.droid.unify.components.button.UnifyButton
+import pseudoankit.droid.unify.components.icon.UnifyIcons
+import pseudoankit.droid.unify.components.textfield.UnifyTextField
+import pseudoankit.droid.unify.components.textview.UnifyTextType
+import pseudoankit.droid.unify.components.textview.UnifyTextView
 
 internal object LoginScreenComponents {
     @Composable

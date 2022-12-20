@@ -5,15 +5,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
-import pseudoankit.droid.core.util.TextResource.Companion.asString
-import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
-import pseudoankit.droid.coreui.components.icon.UnifyIcon
-import pseudoankit.droid.coreui.components.textview.UnifyTextType
-import pseudoankit.droid.coreui.components.textview.UnifyTextView
-import pseudoankit.droid.coreui.token.UnifyColors
-import pseudoankit.droid.coreui.token.UnifyDimens
+import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.tasky.home.domain.model.AgendaType
+import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
+import pseudoankit.droid.unify.components.icon.UnifyIcon
+import pseudoankit.droid.unify.components.textview.UnifyTextType
+import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.token.UnifyColors
+import pseudoankit.droid.unify.token.UnifyDimens
 
 internal object HomeFloatingAgendaItems {
 

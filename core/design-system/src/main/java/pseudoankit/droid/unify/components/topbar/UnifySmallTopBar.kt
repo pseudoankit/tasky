@@ -1,0 +1,49 @@
+package pseudoankit.droid.unify.components.topbar
+
+import androidx.compose.foundation.layout.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import pseudoankit.droid.unify.components.icon.UnifyIcon
+import pseudoankit.droid.unify.components.textview.UnifyTextType
+import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.token.UnifyDimens
+
+internal object UnifySmallTopBar {
+
+    @Composable
+    operator fun invoke(config: UnifyTopBar.Config) {
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(UnifyDimens.Dp_64)
+                .padding(UnifyDimens.ScreenPadding)
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxSize()) {
+                UnifyIcon(config.leadingIcon?.copy(tint = config.tintColor))
+                Spacer(modifier = Modifier.weight(1f))
+                config.trailingSection?.apply {
+                    Row(
+                        modifier = modifier,
+                        horizontalArrangement = Arrangement.End,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        UnifyIcon(config = icon?.copy(tint = config.tintColor))
+                        Spacer(modifier = Modifier.width(UnifyDimens.Dp_4))
+                        UnifyTextView(config = text?.copy(color = config.tintColor))
+                    }
+                }
+            }
+
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
+                UnifyTextView(
+                    config = UnifyTextView.Config(
+                        text = config.title,
+                        textType = UnifyTextType.TitleLarge,
+                        color = config.tintColor
+                    )
+                )
+            }
+        }
+    }
+}
