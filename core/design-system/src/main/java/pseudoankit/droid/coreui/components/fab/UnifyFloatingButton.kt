@@ -1,13 +1,12 @@
 package pseudoankit.droid.coreui.components.fab
 
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.token.UnifyColors
-import pseudoankit.droid.coreui.token.UnifyDimens
 
 @Composable
 fun UnifyFloatingButton(
@@ -21,7 +20,7 @@ fun UnifyFloatingButton(
 
     FloatingActionButton(
         onClick = onClick,
-        shape = RoundedCornerShape(UnifyDimens.Radius.Small),
+        shape = CircleShape,
         containerColor = UnifyColors.Black,
         modifier = modifier
     ) {
