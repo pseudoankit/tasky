@@ -37,12 +37,16 @@ internal object UnifyTextFieldInternal {
                 ),
                 label = placeholder.Label(),
                 leadingIcon = leadingIcon.LeadingIcon(),
-                trailingIcon = trailingIcon.TrailingIcon(
-                    isTextHidden = isTextHidden,
-                    toggleIsTextHidden = {
-                        isTextHidden = isTextHidden.not()
+                trailingIcon = {
+                    if (trailingIcon != null && showTrailingIcon) {
+                        trailingIcon.TrailingIcon(
+                            isTextHidden = isTextHidden,
+                            toggleIsTextHidden = {
+                                isTextHidden = isTextHidden.not()
+                            }
+                        )
                     }
-                ),
+                },
                 isError = errorMessage != null,
                 singleLine = maxLines == 1,
                 maxLines = maxLines,
@@ -55,37 +59,33 @@ internal object UnifyTextFieldInternal {
     }
 
     @Composable
-    fun UnifyTextField.Icon?.TrailingIcon(
+    fun UnifyTextField.Icon.TrailingIcon(
         isTextHidden: Boolean,
         toggleIsTextHidden: () -> Unit
-    ): @Composable (() -> Unit)? = this?.run {
-        {
-            when (this) {
-                is UnifyTextField.Icon.Custom -> UnifyIcon(
-                    config = UnifyIcon.Config(
-                        tint = UnifyColors.Gray,
-                        size = UnifyDimens.Dp_24,
-                        icon = this.icon,
-                        onClick = this.onClick
-                    )
-                )
-                is UnifyTextField.Icon.Password -> UnifyIcon(
-                    config = UnifyIcon.Config(
-                        tint = UnifyColors.Gray,
-                        size = UnifyDimens.Dp_24,
-                        icon = if (isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
-                        onClick = toggleIsTextHidden
-                    )
-                )
-                is UnifyTextField.Icon.Valid -> UnifyIcon(
-                    config = UnifyIcon.Config(
-                        tint = UnifyColors.Green,
-                        size = UnifyDimens.Dp_24,
-                        icon = UnifyIcons.Check
-                    )
-                )
-            }
-        }
+    ) = when (this) {
+        is UnifyTextField.Icon.Custom -> UnifyIcon(
+            config = UnifyIcon.Config(
+                tint = UnifyColors.Gray,
+                size = UnifyDimens.Dp_24,
+                icon = this.icon,
+                onClick = this.onClick
+            )
+        )
+        is UnifyTextField.Icon.Password -> UnifyIcon(
+            config = UnifyIcon.Config(
+                tint = UnifyColors.Gray,
+                size = UnifyDimens.Dp_24,
+                icon = if (isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
+                onClick = toggleIsTextHidden
+            )
+        )
+        is UnifyTextField.Icon.Valid -> UnifyIcon(
+            config = UnifyIcon.Config(
+                tint = UnifyColors.Green,
+                size = UnifyDimens.Dp_24,
+                icon = UnifyIcons.Check
+            )
+        )
     }
 
 

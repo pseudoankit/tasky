@@ -20,6 +20,7 @@ object UnifyTextField {
         val placeholder: String? = null,
         val leadingIcon: UnifyIcons? = null,
         val trailingIcon: Icon? = null,
+        val showTrailingIcon: Boolean = true,
         val errorMessage: String? = null,
         val modifier: Modifier = Modifier.fillMaxWidth(),
         val maxLines: Int = Int.MAX_VALUE

@@ -22,7 +22,9 @@ internal object LoginScreenComponents {
                 onValueChange = onEmailChanged,
                 placeholder = "Email address",
                 leadingIcon = UnifyIcons.Mail,
-                errorMessage = email.errorMessage.asString()
+                errorMessage = email.errorMessage.asString(),
+                trailingIcon = UnifyTextField.Icon.Valid,
+                showTrailingIcon = email.errorMessage == null
             )
         )
     }
