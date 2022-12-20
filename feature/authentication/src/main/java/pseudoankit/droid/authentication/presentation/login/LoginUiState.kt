@@ -1,22 +1,30 @@
 package pseudoankit.droid.authentication.presentation.login
 
-import pseudoankit.droid.core.util.validator.Validator
 import pseudoankit.droid.coreui.components.button.UnifyButton
+import pseudoankit.droid.coreui.model.TextFieldUiConfig
 
 object LoginUiState {
 
     // todo remove def values later on
     internal data class State(
-        val email: String = "lostankit7@gmail.com",
-        val password: String = "qwerty",
+        val emailConfig: TextFieldUiConfig = TextFieldUiConfig(
+            value = "lostankit7@gmail.com",
+            errorMessage = null
+        ),
+        val passwordConfig: TextFieldUiConfig = TextFieldUiConfig(
+            value = "qwerty",
+            errorMessage = null
+        ),
         val isButtonLoading: Boolean = false
     ) {
-        val buttonState =
-            UnifyButton.State.fromBoolean(Validator.validate(email, password), isButtonLoading)
+        val buttonState
+            get() = UnifyButton.State.fromBoolean(
+                isValid = emailConfig.errorMessage == null && passwordConfig.errorMessage == null,
+                isLoading = isButtonLoading
+            )
     }
 
     internal sealed interface SideEffect {
-        object NavigateBack : SideEffect
         object NavigateToRegistrationScreen : SideEffect
         object NavigateToHomeScreen : SideEffect
     }

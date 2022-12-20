@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import android.widget.Toast
 import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.core.util.TextResource.Companion.asString
 
 fun Context.finish() {
     (this as? Activity)?.finish()

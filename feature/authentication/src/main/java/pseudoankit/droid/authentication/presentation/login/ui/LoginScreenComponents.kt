@@ -4,35 +4,39 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import pseudoankit.droid.core.util.TextResource.Companion.asString
 import pseudoankit.droid.coreui.components.button.UnifyButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcons
 import pseudoankit.droid.coreui.components.textfield.UnifyTextField
 import pseudoankit.droid.coreui.components.textview.UnifyTextType
 import pseudoankit.droid.coreui.components.textview.UnifyTextView
+import pseudoankit.droid.coreui.model.TextFieldUiConfig
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 
 internal object LoginScreenComponents {
     @Composable
-    fun Email(email: String, onEmailChanged: (String) -> Unit) {
+    fun Email(email: TextFieldUiConfig, onEmailChanged: (String) -> Unit) {
         UnifyTextField(
             config = UnifyTextField.Config(
-                value = email,
+                value = email.value,
                 onValueChange = onEmailChanged,
                 placeholder = "Email address",
-                leadingIcon = UnifyIcons.Mail
+                leadingIcon = UnifyIcons.Mail,
+                errorMessage = email.errorMessage.asString()
             )
         )
     }
 
     @Composable
-    fun Password(password: String, onPasswordChanged: (String) -> Unit) {
+    fun Password(password: TextFieldUiConfig, onPasswordChanged: (String) -> Unit) {
         UnifyTextField(
             config = UnifyTextField.Config(
-                value = password,
+                value = password.value,
                 onValueChange = onPasswordChanged,
                 placeholder = "Password",
                 leadingIcon = UnifyIcons.Lock,
-                trailingIcon = UnifyTextField.Icon.Password
+                trailingIcon = UnifyTextField.Icon.Password,
+                errorMessage = password.errorMessage.asString()
             )
         )
     }

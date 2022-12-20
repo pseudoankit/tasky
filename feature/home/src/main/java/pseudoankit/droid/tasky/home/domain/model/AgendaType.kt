@@ -8,9 +8,9 @@ enum class AgendaType {
 
     val label
         get() = when (this) {
-            Reminder -> TextResource.WithText(Reminder.name)
-            Task -> TextResource.WithText(Task.name)
-            Event -> TextResource.WithText(Event.name)
+            Reminder -> TextResource.NormalString(Reminder.name)
+            Task -> TextResource.NormalString(Task.name)
+            Event -> TextResource.NormalString(Event.name)
         }
 
     val icon

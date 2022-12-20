@@ -1,25 +1,30 @@
 package pseudoankit.droid.core.util.validator
 
+import pseudoankit.droid.core.util.TextResource
+
 object Validator {
 
-    fun validate(email: String?, password: String?): Boolean {
-        return isValidEmail(email) && isValidPassword(password)
-    }
-
-    fun isValidEmail(email: String?): Boolean {
-        if (email.isNullOrBlank()) return false
-
-        // todo match pattern
-
-        return true
-    }
-
-    fun isValidPassword(password: String?): Boolean {
-        if (password.isNullOrBlank()) return false
-        if (password.length < 6) return false
+    fun validateEmail(
+        email: String?,
+        emptyErrorMessage: TextResource = TextResource.NormalString("Email cannot be empty")
+    ): TextResource? {
+        if (email.isNullOrBlank()) return emptyErrorMessage
 
         // todo match pattern
 
-        return true
+        return null
+    }
+
+    fun validatePassword(
+        password: String?,
+        emptyErrorMessage: TextResource = TextResource.NormalString("Password cannot be empty"),
+        invalidLengthErrorMessage: TextResource = TextResource.NormalString("Password cannot be of less than 6 digits"),
+    ): TextResource? {
+        if (password.isNullOrBlank()) return emptyErrorMessage
+        if (password.length < 6) return invalidLengthErrorMessage
+
+        // todo match pattern
+
+        return null
     }
 }

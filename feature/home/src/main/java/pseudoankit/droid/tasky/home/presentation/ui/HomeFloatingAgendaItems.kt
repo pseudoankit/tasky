@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
+import pseudoankit.droid.core.util.TextResource.Companion.asString
 import pseudoankit.droid.coreui.components.fab.UnifyFloatingButton
 import pseudoankit.droid.coreui.components.icon.UnifyIcon
 import pseudoankit.droid.coreui.components.textview.UnifyTextType

@@ -33,7 +33,6 @@ private fun LoginScreenInternal(
                 when (it) {
                     LoginUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHome()
                     LoginUiState.SideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
-                    LoginUiState.SideEffect.NavigateBack -> navigator.navigateUp()
                 }
             }
         }
@@ -41,12 +40,12 @@ private fun LoginScreenInternal(
         val state = viewModel.state
 
         LoginScreenComponents.Email(
-            email = state.email,
+            email = state.emailConfig,
             onEmailChanged = viewModel::onEmailValueChanged
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
         LoginScreenComponents.Password(
-            password = state.password,
+            password = state.passwordConfig,
             onPasswordChanged = viewModel::onPasswordValueChanged
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
