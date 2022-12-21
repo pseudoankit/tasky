@@ -17,18 +17,19 @@ import pseudoankit.droid.unify.components.datepicker.rememberUnifyDatePickerStat
 
 @Destination
 @Composable
-internal fun HomeScreen(navigator: HomeScreenNavigator) =
-    HandleKoinModuleInit(module = HomeModule) {
-        val viewModel = getViewModel<HomeViewModel>()
+internal fun HomeScreen(
+    navigator: HomeScreenNavigator
+) = HandleKoinModuleInit(module = HomeModule) {
+    val viewModel = getViewModel<HomeViewModel>()
 
-        val dateRangeListState = rememberLazyListState()
-        HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
+    val dateRangeListState = rememberLazyListState()
+    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
 
-        val state = viewModel.state
+    val state = viewModel.state
 
-        TaskyDestinationSurface(
-            topBar = {
-                HomeScreenComponents.TopBar(
+    TaskyDestinationSurface(
+        topBar = {
+            HomeScreenComponents.TopBar(
                 headerDate = state.displayHeaderDate,
                 onMonthSelected = viewModel::onHeaderMonthSelected
             )
