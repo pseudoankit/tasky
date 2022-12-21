@@ -6,7 +6,9 @@ internal class ReminderViewModel :
     BaseViewModel<ReminderUiState.State, ReminderUiState.SideEffect, Nothing>(ReminderUiState.State()) {
 
 
-    fun onNavigateUp() {}
+    fun onNavigateUp() = postSideEffect {
+        ReminderUiState.SideEffect.OnNavigateUp
+    }
 
     fun onSave() {}
 }

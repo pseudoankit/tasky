@@ -4,5 +4,8 @@ internal interface ReminderUiState {
 
     class State
 
-    sealed interface SideEffect
+    sealed interface SideEffect {
+        object OnNavigateUp : SideEffect
+        object ShowDatePicker : SideEffect
+    }
 }
