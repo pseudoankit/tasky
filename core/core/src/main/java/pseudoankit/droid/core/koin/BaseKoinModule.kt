@@ -5,7 +5,7 @@ import org.koin.core.context.unloadKoinModules
 import org.koin.core.module.Module
 
 abstract class BaseKoinModule {
-    var isLoaded = false
+    private var isLoaded = false
 
     abstract val module: Module
 

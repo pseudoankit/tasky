@@ -5,7 +5,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
-import pseudoankit.droid.coreui.surface.CoreKoinComposable
+import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
@@ -14,7 +14,7 @@ import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 @Destination
 @Composable
 internal fun RegistrationScreen(navigator: AuthNavigator) =
-    CoreKoinComposable(module = RegistrationModule) {
+    HandleKoinModuleInit(module = RegistrationModule) {
         RegistrationScreenInternal(navigator = navigator)
     }
 

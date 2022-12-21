@@ -10,14 +10,14 @@ import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.login.LoginUiState
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
-import pseudoankit.droid.coreui.surface.CoreKoinComposable
+import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 import pseudoankit.droid.unify.token.UnifyDimens
 
 @Destination
 @Composable
-internal fun LoginScreen(navigator: AuthNavigator) = CoreKoinComposable(module = LoginModule) {
+internal fun LoginScreen(navigator: AuthNavigator) = HandleKoinModuleInit(module = LoginModule) {
     LoginScreenInternal(navigator)
 }
 
