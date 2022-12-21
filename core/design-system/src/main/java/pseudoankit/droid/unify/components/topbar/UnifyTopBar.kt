@@ -1,11 +1,14 @@
 package pseudoankit.droid.unify.components.topbar
 
+import androidx.compose.material.ripple.LocalRippleTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.textview.UnifyTextView
 import pseudoankit.droid.unify.token.UnifyColors
+import pseudoankit.droid.unify.utils.DarkThemeRipple
 
 object UnifyTopBar {
 
@@ -13,8 +16,11 @@ object UnifyTopBar {
     operator fun invoke(config: Config?) {
         if (config == null) return
 
-        when (config.type) {
-            Type.Small -> UnifySmallTopBar(config)
+        // changing ripple color for black background
+        CompositionLocalProvider(LocalRippleTheme provides DarkThemeRipple) {
+            when (config.type) {
+                Type.Small -> UnifySmallTopBar(config)
+            }
         }
     }
 
@@ -29,7 +35,8 @@ object UnifyTopBar {
     data class TrailingSection(
         val text: UnifyTextView.Config?,
         val icon: UnifyIcon.Config?,
-        val modifier: Modifier = Modifier
+        val modifier: Modifier = Modifier,
+        val onClick: (() -> Unit)? = null
     )
 
     enum class Type { Small }
