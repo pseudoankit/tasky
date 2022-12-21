@@ -1,7 +1,6 @@
 package pseudoankit.droid.unify.components.topbar
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -46,24 +45,38 @@ internal object UnifySmallTopBar {
 
     @Composable
     private fun UnifyTopBar.TrailingSection.TrailingSection(tintColor: Color) {
-        val shape = if (icon != null && text != null) {
-            RoundedCornerShape(UnifyDimens.Radius.XSmall)
-        } else {
-            CircleShape
-        }
-
-        Row(
-            modifier = modifier
-                .fillMaxHeight()
-                .clip(shape)
-                .clickable(onClick = onClick)
-                .padding(horizontal = UnifyDimens.Dp_8),
-            horizontalArrangement = Arrangement.End,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            UnifyIcon(config = icon?.copy(tint = tintColor))
-            Spacer(modifier = Modifier.width(UnifyDimens.Dp_4))
-            UnifyTextView(config = text?.copy(color = tintColor))
+        when {
+            icon != null && text != null -> {
+                Row(
+                    modifier = modifier
+                        .fillMaxHeight()
+                        .clip(RoundedCornerShape(UnifyDimens.Radius.XSmall))
+                        .clickable(onClick = onClick)
+                        .padding(horizontal = UnifyDimens.Dp_8),
+                    horizontalArrangement = Arrangement.End,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    UnifyIcon(config = icon.copy(tint = tintColor))
+                    Spacer(modifier = Modifier.width(UnifyDimens.Dp_4))
+                    UnifyTextView(config = text.copy(color = tintColor))
+                }
+            }
+            text != null -> {
+                UnifyTextView(
+                    config = text.copy(
+                        color = tintColor,
+                        modifier = modifier
+                            .clip(RoundedCornerShape(UnifyDimens.Radius.XSmall))
+                            .clickable(onClick = onClick)
+                            .padding(horizontal = UnifyDimens.Dp_8, vertical = UnifyDimens.Dp_4),
+                        textType = UnifyTextType.TitleMedium
+                    )
+                )
+            }
+            icon != null -> {
+                UnifyIcon(config = icon.copy(tint = tintColor, onClick = onClick))
+            }
+            else -> {}
         }
     }
 }

@@ -33,8 +33,8 @@ object UnifyTopBar {
     )
 
     data class TrailingSection(
-        val text: UnifyTextView.Config?,
-        val icon: UnifyIcon.Config?,
+        val text: UnifyTextView.Config? = null,
+        val icon: UnifyIcon.Config? = null,
         val modifier: Modifier = Modifier,
         val onClick: (() -> Unit)? = null
     )
