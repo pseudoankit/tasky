@@ -35,15 +35,19 @@ internal object UnifyTextFieldInternal {
                     keyboardType = keyboardType,
                     imeAction = ImeAction.Done
                 ),
-                label = {
-                    placeholder?.Label()
+                label = placeholder?.run {
+                    {
+                        Label()
+                    }
                 },
-                leadingIcon = {
-                    leadingIcon?.LeadingIcon()
+                leadingIcon = leadingIcon?.run {
+                    {
+                        LeadingIcon()
+                    }
                 },
-                trailingIcon = {
-                    if (trailingIcon != null && showTrailingIcon) {
-                        trailingIcon.TrailingIcon(
+                trailingIcon = takeIf { trailingIcon != null && showTrailingIcon }?.run {
+                    {
+                        trailingIcon?.TrailingIcon(
                             isTextHidden = isTextHidden,
                             toggleIsTextHidden = {
                                 isTextHidden = isTextHidden.not()
@@ -55,7 +59,8 @@ internal object UnifyTextFieldInternal {
                 singleLine = maxLines == 1,
                 maxLines = maxLines,
                 shape = RoundedCornerShape(UnifyDimens.Radius.Small),
-                visualTransformation = if (isTextHidden) PasswordVisualTransformation() else VisualTransformation.None
+                visualTransformation =
+                if (isTextHidden) PasswordVisualTransformation() else VisualTransformation.None
             )
 
             ErrorMessage(errorMessage = errorMessage)
