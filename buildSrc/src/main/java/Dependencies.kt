@@ -13,7 +13,7 @@ object Dependencies {
         const val Foundation = "androidx.compose.foundation:foundation:${Versions.Compose.Core}"
         const val Compiler = "androidx.compose.compiler:compiler:${Versions.Compose.Core}"
         const val ComposeDestinations =
-            "io.github.raamcosta.compose-destinations:core:${Versions.Compose.Destinations}"
+            "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}"
         const val ComposeDestinationsKsp =
             "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
         const val ConstraintLayout =

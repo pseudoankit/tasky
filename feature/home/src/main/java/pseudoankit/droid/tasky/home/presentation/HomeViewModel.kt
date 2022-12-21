@@ -8,8 +8,9 @@ import java.time.LocalDate
 internal class HomeViewModel :
     BaseViewModel<HomeUiState.State, HomeUiState.SideEffect, Nothing>(HomeUiState.State()) {
 
-    fun onAgendaSelected(agendaType: AgendaType) {
+    fun onAgendaSelected(agendaType: AgendaType) = postSideEffect {
         onAgendaItemsVisibilityToggled()
+        HomeUiState.SideEffect.NavigateToAgenda(agendaType)
     }
 
     fun onAgendaItemsVisibilityToggled() = setState {
@@ -21,10 +22,10 @@ internal class HomeViewModel :
     }
 
     fun onHeaderMonthSelected() = postSideEffect {
-        HomeUiState.SideEffect.ShowDatePickerDialog
+        HomeUiState.SideEffect.ShowDatePicker
     }
 
-    fun onDialogDateSelected(date: LocalDate) {
+    fun onDateChanged(date: LocalDate) {
         setState {
             copy(selectedDate = TaskyDate(date))
         }

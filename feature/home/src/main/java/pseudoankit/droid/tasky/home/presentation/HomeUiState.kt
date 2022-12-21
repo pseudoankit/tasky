@@ -4,12 +4,14 @@ import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.core.util.datetime.DateUtils
 import pseudoankit.droid.core.util.datetime.TaskyDate
+import pseudoankit.droid.tasky.home.domain.model.AgendaType
 
 internal interface HomeUiState {
 
     sealed interface SideEffect {
-        object ShowDatePickerDialog : SideEffect
+        object ShowDatePicker : SideEffect
         data class HighlightCurrentSelectedDate(val position: Int) : SideEffect
+        data class NavigateToAgenda(val type: AgendaType) : SideEffect
     }
 
     @Immutable

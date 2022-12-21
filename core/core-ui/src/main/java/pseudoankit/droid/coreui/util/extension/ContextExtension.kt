@@ -17,3 +17,7 @@ fun Context.showToast(message: String) {
 fun Context.showToast(message: TextResource) {
     showToast(message.asString(this))
 }
+
+fun Context.toastNotImplemented() {
+    showToast("This feature is not implemented yet!")
+}

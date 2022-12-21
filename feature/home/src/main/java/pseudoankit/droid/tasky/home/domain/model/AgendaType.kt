@@ -3,7 +3,7 @@ package pseudoankit.droid.tasky.home.domain.model
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 
-enum class AgendaType {
+internal enum class AgendaType {
     Reminder, Task, Event;
 
     val label

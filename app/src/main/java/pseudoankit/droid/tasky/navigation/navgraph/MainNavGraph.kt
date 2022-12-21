@@ -5,6 +5,7 @@ import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
 import pseudoankit.droid.authentication.presentation.authenticationDestinations
 import pseudoankit.droid.tasky.home.presentation.ui.destinations.HomeScreenDestination
+import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
 
 object MainNavGraph : NavGraphSpec {
 
@@ -14,7 +15,9 @@ object MainNavGraph : NavGraphSpec {
     override val startRoute: Route = HomeScreenDestination
 
     override val destinationsByRoute: Map<String, DestinationSpec<*>>
-        get() = destinations.associateBy { it.route }
+        get() = destinations.associateBy {
+            it.route
+        }
 
-    private val destinations get() = authenticationDestinations + HomeScreenDestination
+    private val destinations get() = authenticationDestinations + HomeScreenDestination + ReminderHomeScreenDestination
 }

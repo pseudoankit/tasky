@@ -9,6 +9,7 @@ import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.tasky.home.di.HomeModule
+import pseudoankit.droid.tasky.home.domain.model.AgendaType
 import pseudoankit.droid.tasky.home.navigator.HomeNavigator
 import pseudoankit.droid.tasky.home.presentation.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.HomeViewModel
@@ -21,7 +22,7 @@ internal fun HomeScreen(navigator: HomeNavigator) = HandleKoinModuleInit(module 
     val viewModel = getViewModel<HomeViewModel>()
 
     val dateRangeListState = rememberLazyListState()
-    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState)
+    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
 
     val state = viewModel.state
 
@@ -55,12 +56,13 @@ internal fun HomeScreen(navigator: HomeNavigator) = HandleKoinModuleInit(module 
 @Composable
 private fun HandleHomeScreenSideEffect(
     viewModel: HomeViewModel = getViewModel(),
-    dateRangeListState: LazyListState
+    dateRangeListState: LazyListState,
+    navigator: HomeNavigator
 ) {
     val datePickerState = rememberUnifyDatePickerState()
     UnifyDatePicker(
         initialDate = viewModel.state.selectedDate.date,
-        onDateSelected = viewModel::onDialogDateSelected,
+        onDateSelected = viewModel::onDateChanged,
         datePickerState = datePickerState
     )
 
@@ -68,9 +70,15 @@ private fun HandleHomeScreenSideEffect(
         viewModel.onInit()
         viewModel.sideEffect.collect {
             when (it) {
-                HomeUiState.SideEffect.ShowDatePickerDialog -> datePickerState.show()
-                is HomeUiState.SideEffect.HighlightCurrentSelectedDate ->
+                HomeUiState.SideEffect.ShowDatePicker -> datePickerState.show()
+                is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
+                }
+                is HomeUiState.SideEffect.NavigateToAgenda -> when (it.type) {
+                    AgendaType.Reminder -> navigator.navigateToReminder()
+                    AgendaType.Task -> navigator.navigateToTasks()
+                    AgendaType.Event -> navigator.navigateToEvents()
+                }
             }
         }
     }
