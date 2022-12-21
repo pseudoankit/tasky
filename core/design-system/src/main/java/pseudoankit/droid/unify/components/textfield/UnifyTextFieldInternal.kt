@@ -59,12 +59,16 @@ internal object UnifyTextFieldInternal {
                 singleLine = maxLines == 1,
                 maxLines = maxLines,
                 shape = RoundedCornerShape(UnifyDimens.Radius.Small),
-                visualTransformation =
-                if (isTextHidden) PasswordVisualTransformation() else VisualTransformation.None
+                visualTransformation = visualTransformation(isTextHidden),
+                textStyle = textType.textStyle,
             )
 
             ErrorMessage(errorMessage = errorMessage)
         }
+    }
+
+    private fun visualTransformation(isTextHidden: Boolean): VisualTransformation {
+        return if (isTextHidden) PasswordVisualTransformation() else VisualTransformation.None
     }
 
     @Composable

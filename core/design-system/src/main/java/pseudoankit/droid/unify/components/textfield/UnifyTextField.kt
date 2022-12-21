@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import pseudoankit.droid.unify.components.icon.UnifyIcons
+import pseudoankit.droid.unify.components.textview.UnifyTextType
 
 object UnifyTextField {
 
@@ -23,7 +24,8 @@ object UnifyTextField {
         val showTrailingIcon: Boolean = true,
         val errorMessage: String? = null,
         val modifier: Modifier = Modifier.fillMaxWidth(),
-        val maxLines: Int = Int.MAX_VALUE
+        val maxLines: Int = Int.MAX_VALUE,
+        val textType: UnifyTextType = UnifyTextType.BodyLarge
     )
 
     sealed interface Icon {
