@@ -35,12 +35,15 @@ open class BasePlugin : Plugin<Project> {
                 sourceCompatibility = BuildConfig.JavaVersion
                 targetCompatibility = BuildConfig.JavaVersion
             }
+        }
 
-            // todo compose compiler later
-            project.tasks.withType<KotlinCompile>(KotlinCompile::class.java).configureEach {
-                kotlinOptions {
-                    jvmTarget = BuildConfig.JvmTarget
-                }
+        // todo compose compiler later
+        project.tasks.withType<KotlinCompile>(KotlinCompile::class.java).configureEach {
+            kotlinOptions {
+                jvmTarget = BuildConfig.JvmTarget
+                freeCompilerArgs = freeCompilerArgs + listOf(
+                    "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+                )
             }
         }
 
