@@ -47,7 +47,7 @@ internal object UnifySmallTopBar {
     @Composable
     private fun UnifyTopBar.TrailingSection.TrailingSection(tintColor: Color) {
         val shape = if (icon != null && text != null) {
-            RoundedCornerShape(UnifyDimens.Radius.Medium)
+            RoundedCornerShape(UnifyDimens.Radius.XSmall)
         } else {
             CircleShape
         }
