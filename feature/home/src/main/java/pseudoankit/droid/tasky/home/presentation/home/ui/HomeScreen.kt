@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.home.presentation.ui
+package pseudoankit.droid.tasky.home.presentation.home.ui
 
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -9,39 +9,34 @@ import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.tasky.home.di.HomeModule
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
-import pseudoankit.droid.tasky.home.navigator.HomeNavigator
-import pseudoankit.droid.tasky.home.presentation.HomeUiState
-import pseudoankit.droid.tasky.home.presentation.HomeViewModel
+import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
+import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
+import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 import pseudoankit.droid.unify.components.datepicker.UnifyDatePicker
 import pseudoankit.droid.unify.components.datepicker.rememberUnifyDatePickerState
 
 @Destination
 @Composable
-internal fun HomeScreen(navigator: HomeNavigator) = HandleKoinModuleInit(module = HomeModule) {
-    val viewModel = getViewModel<HomeViewModel>()
+internal fun HomeScreen(navigator: HomeScreenNavigator) =
+    HandleKoinModuleInit(module = HomeModule) {
+        val viewModel = getViewModel<HomeViewModel>()
 
-    val dateRangeListState = rememberLazyListState()
-    HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
+        val dateRangeListState = rememberLazyListState()
+        HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
 
-    val state = viewModel.state
+        val state = viewModel.state
 
-    HomeScreenComponents.AgendaItems(
-        show = state.showAgendaItems,
-        onDismiss = viewModel::onAgendaItemsVisibilityToggled,
-        onAgendaSelected = viewModel::onAgendaSelected
-    )
-    TaskyDestinationSurface(
-        topBar = {
-            HomeScreenComponents.TopBar(
+        TaskyDestinationSurface(
+            topBar = {
+                HomeScreenComponents.TopBar(
                 headerDate = state.displayHeaderDate,
                 onMonthSelected = viewModel::onHeaderMonthSelected
             )
         },
         floatingActionButton = {
             HomeScreenComponents.FloatingButton(
-                isSelected = state.showAgendaItems,
-                onClick = viewModel::onAgendaItemsVisibilityToggled
+                isSelected = navigator.isAgendaItemsScreenVisible(),
+                onClick = viewModel::onShowAgendaItems
             )
         }
     ) {
@@ -57,7 +52,7 @@ internal fun HomeScreen(navigator: HomeNavigator) = HandleKoinModuleInit(module 
 private fun HandleHomeScreenSideEffect(
     viewModel: HomeViewModel = getViewModel(),
     dateRangeListState: LazyListState,
-    navigator: HomeNavigator
+    navigator: HomeScreenNavigator
 ) {
     val datePickerState = rememberUnifyDatePickerState()
     UnifyDatePicker(
@@ -74,11 +69,7 @@ private fun HandleHomeScreenSideEffect(
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
                 }
-                is HomeUiState.SideEffect.NavigateToAgenda -> when (it.type) {
-                    AgendaType.Reminder -> navigator.navigateToReminder()
-                    AgendaType.Task -> navigator.navigateToTasks()
-                    AgendaType.Event -> navigator.navigateToEvents()
-                }
+                HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsScreen()
             }
         }
     }

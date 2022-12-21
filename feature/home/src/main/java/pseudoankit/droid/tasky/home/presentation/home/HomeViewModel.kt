@@ -1,20 +1,14 @@
-package pseudoankit.droid.tasky.home.presentation
+package pseudoankit.droid.tasky.home.presentation.home
 
 import pseudoankit.droid.core.util.datetime.TaskyDate
 import pseudoankit.droid.coreui.viewmodel.BaseViewModel
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
 import java.time.LocalDate
 
 internal class HomeViewModel :
     BaseViewModel<HomeUiState.State, HomeUiState.SideEffect, Nothing>(HomeUiState.State()) {
 
-    fun onAgendaSelected(agendaType: AgendaType) = postSideEffect {
-        onAgendaItemsVisibilityToggled()
-        HomeUiState.SideEffect.NavigateToAgenda(agendaType)
-    }
-
-    fun onAgendaItemsVisibilityToggled() = setState {
-        copy(showAgendaItems = showAgendaItems.not())
+    fun onShowAgendaItems() = postSideEffect {
+        HomeUiState.SideEffect.ShowAgendaItems
     }
 
     fun onDaySelected(date: TaskyDate) = setState {

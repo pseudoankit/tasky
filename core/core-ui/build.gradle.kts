@@ -11,4 +11,7 @@ dependencies {
     with(Modules.Core) {
         implementation(project(DesignSystem))
     }
+    with(Dependencies.Compose) {
+        implementation(ComposeDestinations)
+    }
 }
