@@ -24,7 +24,7 @@ import pseudoankit.droid.unify.token.UnifyTheme
 @Composable
 fun TaskyDestinationSurface(
     topBarConfig: UnifyTopBar.Config? = null,
-    singleEvents: suspend CoroutineScope.() -> Unit = {},
+    singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
     TaskyDestinationSurface(
@@ -47,10 +47,13 @@ fun TaskyDestinationSurface(
 fun TaskyDestinationSurface(
     topBar: @Composable BoxScope.() -> Unit,
     floatingActionButton: @Composable () -> Unit = {},
-    singleEvents: suspend CoroutineScope.() -> Unit = {},
+    singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
 ) {
-    LaunchedEffect(key1 = Unit, block = singleEvents)
+    if (singleEvents != null) {
+        LaunchedEffect(key1 = Unit, block = singleEvents)
+    }
+
     UnifyTheme {
         Scaffold(
             topBar = {
