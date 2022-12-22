@@ -37,7 +37,8 @@ internal fun ReminderHomeScreen(
             config = UnifyTextField.Config(
                 placeholder = "Remind me to...",
                 value = state.reminderText,
-                onValueChange = viewModel::onReminderTextFieldValueChanged
+                onValueChange = viewModel::onReminderTextFieldValueChanged,
+                type = UnifyTextField.Type.Basic
             )
         )
     }

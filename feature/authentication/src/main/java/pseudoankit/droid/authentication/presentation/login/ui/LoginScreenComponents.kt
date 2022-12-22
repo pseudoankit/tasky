@@ -1,7 +1,7 @@
 package pseudoankit.droid.authentication.presentation.login.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
@@ -23,7 +23,7 @@ internal object LoginScreenComponents {
                 placeholder = "Email address",
                 leadingIcon = UnifyIcons.Mail,
                 errorMessage = email.errorMessage.asString(),
-                trailingIcon = UnifyTextField.Icon.Valid,
+                trailingIcon = UnifyTextField.TrailingIcon.Valid,
                 showTrailingIcon = email.errorMessage == null
             )
         )
@@ -31,13 +31,20 @@ internal object LoginScreenComponents {
 
     @Composable
     fun Password(password: TextFieldUiConfig, onPasswordChanged: (String) -> Unit) {
+        var isTextHidden by remember { mutableStateOf(false) }
+
         UnifyTextField(
             config = UnifyTextField.Config(
                 value = password.value,
                 onValueChange = onPasswordChanged,
                 placeholder = "Password",
                 leadingIcon = UnifyIcons.Lock,
-                trailingIcon = UnifyTextField.Icon.Password,
+                trailingIcon = UnifyTextField.TrailingIcon.Password(
+                    isTextHidden = isTextHidden,
+                    onVisibilityToggled = {
+                        isTextHidden = isTextHidden.not()
+                    }
+                ),
                 errorMessage = password.errorMessage.asString()
             )
         )
