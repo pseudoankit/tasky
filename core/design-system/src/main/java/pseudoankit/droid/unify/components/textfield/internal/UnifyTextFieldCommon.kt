@@ -1,9 +1,16 @@
 package pseudoankit.droid.unify.components.textfield.internal
 
+import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.selection.TextSelectionColors
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import pseudoankit.droid.unify.components.icon.UnifyIcon
@@ -73,13 +80,7 @@ internal object UnifyTextFieldCommon {
     @Composable
     fun UnifyTextField.Config.Label(): @Composable() (() -> Unit)? = placeholder?.run {
         {
-            UnifyTextView(
-                config = UnifyTextView.Config(
-                    text = this,
-                    textType = UnifyTextType.BodyLarge,
-                    color = UnifyColors.DarkGray
-                )
-            )
+            UnifyTextView(config = this)
         }
     }
 
@@ -95,5 +96,81 @@ internal object UnifyTextFieldCommon {
                 color = UnifyColors.Error
             )
         )
+    }
+
+    @Composable
+    fun textFieldColors() = object : TextFieldColors {
+        val defaultColors = TextFieldDefaults.textFieldColors()
+
+        override val selectionColors: TextSelectionColors
+            @Composable get() = defaultColors.selectionColors
+
+        @Composable
+        override fun containerColor(enabled: Boolean): State<Color> {
+            return mutableStateOf(UnifyColors.White)
+        }
+
+        @Composable
+        override fun cursorColor(isError: Boolean): State<Color> {
+            return defaultColors.cursorColor(isError = isError)
+        }
+
+        @Composable
+        override fun indicatorColor(
+            enabled: Boolean,
+            isError: Boolean,
+            interactionSource: InteractionSource
+        ): State<Color> {
+            return mutableStateOf(UnifyColors.White)
+        }
+
+        @Composable
+        override fun labelColor(
+            enabled: Boolean,
+            isError: Boolean,
+            interactionSource: InteractionSource
+        ): State<Color> {
+            return defaultColors.labelColor(
+                enabled = enabled,
+                isError = isError,
+                interactionSource = interactionSource
+            )
+        }
+
+        @Composable
+        override fun leadingIconColor(
+            enabled: Boolean,
+            isError: Boolean,
+            interactionSource: InteractionSource
+        ): State<Color> {
+            return defaultColors.leadingIconColor(
+                enabled = enabled,
+                isError = isError,
+                interactionSource = interactionSource
+            )
+        }
+
+        @Composable
+        override fun placeholderColor(enabled: Boolean): State<Color> {
+            return defaultColors.placeholderColor(enabled = enabled)
+        }
+
+        @Composable
+        override fun textColor(enabled: Boolean): State<Color> {
+            return defaultColors.textColor(enabled = enabled)
+        }
+
+        @Composable
+        override fun trailingIconColor(
+            enabled: Boolean,
+            isError: Boolean,
+            interactionSource: InteractionSource
+        ): State<Color> {
+            return defaultColors.trailingIconColor(
+                enabled = enabled,
+                isError = isError,
+                interactionSource = interactionSource
+            )
+        }
     }
 }

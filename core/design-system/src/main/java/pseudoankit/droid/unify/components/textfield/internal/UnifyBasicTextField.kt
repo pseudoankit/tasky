@@ -1,15 +1,10 @@
 package pseudoankit.droid.unify.components.textfield.internal
 
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldColors
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.ImeAction
 import pseudoankit.droid.unify.components.textfield.UnifyTextField
 import pseudoankit.droid.unify.components.textfield.internal.UnifyTextFieldCommon.Label
@@ -31,7 +26,7 @@ internal object UnifyBasicTextField {
                 keyboardType = keyboardType,
                 imeAction = ImeAction.Done
             ),
-            label = Label(),
+            placeholder = Label(),
             leadingIcon = LeadingIcon(),
             trailingIcon = TrailingIcon(),
             isError = errorMessage != null,
@@ -40,67 +35,7 @@ internal object UnifyBasicTextField {
             shape = RoundedCornerShape(UnifyDimens.Radius.Small),
             visualTransformation = visualTransformation(),
             textStyle = textType.textStyle,
-            colors = object : TextFieldColors {
-                override val selectionColors: TextSelectionColors
-                    @Composable get() = TODO("Not yet implemented")
-
-                @Composable
-                override fun containerColor(enabled: Boolean): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun cursorColor(isError: Boolean): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun indicatorColor(
-                    enabled: Boolean,
-                    isError: Boolean,
-                    interactionSource: InteractionSource
-                ): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun labelColor(
-                    enabled: Boolean,
-                    isError: Boolean,
-                    interactionSource: InteractionSource
-                ): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun leadingIconColor(
-                    enabled: Boolean,
-                    isError: Boolean,
-                    interactionSource: InteractionSource
-                ): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun placeholderColor(enabled: Boolean): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun textColor(enabled: Boolean): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-                @Composable
-                override fun trailingIconColor(
-                    enabled: Boolean,
-                    isError: Boolean,
-                    interactionSource: InteractionSource
-                ): State<Color> {
-                    TODO("Not yet implemented")
-                }
-
-            }
+            colors = UnifyTextFieldCommon.textFieldColors()
         )
     }
 }

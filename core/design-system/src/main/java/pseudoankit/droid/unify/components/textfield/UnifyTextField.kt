@@ -8,6 +8,7 @@ import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.textfield.internal.UnifyBasicTextField
 import pseudoankit.droid.unify.components.textfield.internal.UnifyOutlinedTextField
 import pseudoankit.droid.unify.components.textview.UnifyTextType
+import pseudoankit.droid.unify.components.textview.UnifyTextView
 
 object UnifyTextField {
 
@@ -29,7 +30,7 @@ object UnifyTextField {
         val value: String,
         val onValueChange: (String) -> Unit,
         val keyboardType: KeyboardType = KeyboardType.Text,
-        val placeholder: String? = null,
+        val placeholder: UnifyTextView.Config? = null,
         val leadingIcon: UnifyIcons? = null,
         val trailingIcon: TrailingIcon? = null,
         val showTrailingIcon: Boolean = true,

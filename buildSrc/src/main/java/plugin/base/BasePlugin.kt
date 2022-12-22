@@ -42,7 +42,8 @@ open class BasePlugin : Plugin<Project> {
             kotlinOptions {
                 jvmTarget = BuildConfig.JvmTarget
                 freeCompilerArgs = freeCompilerArgs + listOf(
-                    "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi"
+                    "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
+                    "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
                 )
             }
         }

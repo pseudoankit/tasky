@@ -10,6 +10,7 @@ import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.components.button.UnifyButton
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.textfield.UnifyTextField
+import pseudoankit.droid.unify.components.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.components.textview.UnifyTextType
 import pseudoankit.droid.unify.components.textview.UnifyTextView
 
@@ -20,7 +21,7 @@ internal object LoginScreenComponents {
             config = UnifyTextField.Config(
                 value = email.value,
                 onValueChange = onEmailChanged,
-                placeholder = "Email address",
+                placeholder = UnifyTextFieldDefaults.placeHolder("Email address"),
                 leadingIcon = UnifyIcons.Mail,
                 errorMessage = email.errorMessage.asString(),
                 trailingIcon = UnifyTextField.TrailingIcon.Valid,
@@ -37,7 +38,7 @@ internal object LoginScreenComponents {
             config = UnifyTextField.Config(
                 value = password.value,
                 onValueChange = onPasswordChanged,
-                placeholder = "Password",
+                placeholder = UnifyTextFieldDefaults.placeHolder("Password"),
                 leadingIcon = UnifyIcons.Lock,
                 trailingIcon = UnifyTextField.TrailingIcon.Password(
                     isTextHidden = isTextHidden,
