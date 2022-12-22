@@ -7,6 +7,7 @@ import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
+import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.topbar.UnifyTopBar
@@ -24,11 +25,13 @@ private fun RegistrationScreenInternal(
     viewModel: RegistrationViewModel = getViewModel(),
 ) {
     TaskyDestinationSurface(
-        topBarConfig = UnifyTopBar.Config(
-            title = "Create your account",
-            leadingIcon = UnifyIcon.Config(
-                icon = UnifyIcons.Back,
-                onClick = viewModel::navigateBack
+        config = TaskyDestinationSurfaceConfig(
+            topBar = UnifyTopBar.Config(
+                title = "Create your account",
+                leadingIcon = UnifyIcon.Config(
+                    icon = UnifyIcons.Back,
+                    onClick = viewModel::navigateBack
+                )
             )
         ),
         singleEvents = {

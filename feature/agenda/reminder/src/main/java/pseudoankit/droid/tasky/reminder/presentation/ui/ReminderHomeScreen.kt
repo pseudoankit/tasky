@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
+import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
@@ -28,10 +29,12 @@ internal fun ReminderHomeScreen(
     HandleSideEffect(viewModel, navigator = navigator)
 
     TaskyDestinationSurface(
-        topBarConfig = topBarConfig(
-            onNavigateUp = viewModel::onNavigateUp,
-            onSave = viewModel::onSave
-        ),
+        config = TaskyDestinationSurfaceConfig(
+            topBar = topBarConfig(
+                onNavigateUp = viewModel::onNavigateUp,
+                onSave = viewModel::onSave
+            ),
+        )
     ) {
         val state = viewModel.state
 

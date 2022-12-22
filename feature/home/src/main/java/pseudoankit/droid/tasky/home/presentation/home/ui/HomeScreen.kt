@@ -8,6 +8,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
+import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
@@ -28,18 +29,20 @@ internal fun HomeScreen(
     val state = viewModel.state
 
     TaskyDestinationSurface(
-        topBar = {
-            HomeScreenComponents.TopBar(
-                headerDate = state.displayHeaderDate,
-                onMonthSelected = viewModel::onHeaderMonthSelected
-            )
-        },
-        floatingActionButton = {
-            HomeScreenComponents.FloatingButton(
-                isSelected = navigator.isAgendaItemsScreenVisible(),
-                onClick = viewModel::onShowAgendaItems
-            )
-        }
+        config = TaskyDestinationSurfaceConfig(
+            topBar = {
+                HomeScreenComponents.TopBar(
+                    headerDate = state.displayHeaderDate,
+                    onMonthSelected = viewModel::onHeaderMonthSelected
+                )
+            },
+            floatingActionButton = {
+                HomeScreenComponents.FloatingButton(
+                    isSelected = navigator.isAgendaItemsScreenVisible(),
+                    onClick = viewModel::onShowAgendaItems
+                )
+            }
+        )
     ) {
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,

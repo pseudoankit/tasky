@@ -16,40 +16,38 @@ import pseudoankit.droid.unify.token.UnifyDimens
 import pseudoankit.droid.unify.token.UnifyTheme
 
 /**
- * Helper method to configure repeating logic for any destination
- * @param[topBarConfig] topBar or actionBar configs
- * @param[singleEvents] add any code that needs to just run once
- * @param[content] actual composable content of screen
+ * @param[topBar] for custom topBars
  */
-@Composable
-fun TaskyDestinationSurface(
-    topBarConfig: UnifyTopBar.Config? = null,
-    singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
-    content: @Composable ColumnScope.() -> Unit,
+data class TaskyDestinationSurfaceConfig(
+    val topBar: @Composable BoxScope.() -> Unit,
+    val floatingActionButton: @Composable () -> Unit = {}
 ) {
-    TaskyDestinationSurface(
+
+    /**
+     * @param[topBar] topBar or actionBar configs
+     */
+    constructor(
+        topBar: UnifyTopBar.Config? = null,
+        floatingActionButton: @Composable () -> Unit = {},
+    ) : this(
         topBar = {
-            UnifyTopBar(topBarConfig)
+            UnifyTopBar(topBar)
         },
-        singleEvents = singleEvents,
-        content = content
+        floatingActionButton = floatingActionButton,
     )
 }
 
 /**
  * Helper method to configure repeating logic for any destination
- * @param[topBar] for custom topBars
- * @param[singleEvents] add any code that needs to just run once
  * @param[content] actual composable content of screen
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TaskyDestinationSurface(
-    topBar: @Composable BoxScope.() -> Unit,
-    floatingActionButton: @Composable () -> Unit = {},
+    config: TaskyDestinationSurfaceConfig,
     singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
     content: @Composable ColumnScope.() -> Unit,
-) {
+) = with(config) {
     if (singleEvents != null) {
         LaunchedEffect(key1 = Unit, block = singleEvents)
     }
