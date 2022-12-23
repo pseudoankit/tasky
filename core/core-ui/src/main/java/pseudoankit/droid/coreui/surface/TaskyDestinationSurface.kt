@@ -46,6 +46,7 @@ data class TaskyDestinationSurfaceConfig(
 fun TaskyDestinationSurface(
     config: TaskyDestinationSurfaceConfig,
     singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
+    padding: PaddingValues = PaddingValues(all = UnifyDimens.ScreenPadding),
     content: @Composable ColumnScope.() -> Unit,
 ) = with(config) {
     if (singleEvents != null) {
@@ -71,7 +72,7 @@ fun TaskyDestinationSurface(
                         )
                     )
                     .background(color = UnifyColors.White)
-                    .padding(UnifyDimens.ScreenPadding),
+                    .padding(padding),
                 content = content
             )
         }

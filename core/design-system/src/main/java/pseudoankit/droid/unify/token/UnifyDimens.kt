@@ -3,6 +3,8 @@ package pseudoankit.droid.unify.token
 import androidx.compose.ui.unit.dp
 
 object UnifyDimens {
+    val Dp_0 = 0.dp
+    val Dp_1 = 1.dp
     val Dp_2 = 2.dp
     val Dp_4 = 4.dp
     val Dp_8 = 8.dp

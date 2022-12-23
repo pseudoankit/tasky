@@ -14,9 +14,9 @@ object UnifyDivider {
     operator fun invoke(
         modifier: Modifier = Modifier,
         color: Color = DividerDefaults.color,
-        thickness: Dp = DividerDefaults.Thickness,
+        height: Dp = DividerDefaults.Thickness,
         startIndent: Dp = 0.dp
     ) {
-        Divider(modifier, color, thickness, startIndent)
+        Divider(modifier, color, height, startIndent)
     }
 }

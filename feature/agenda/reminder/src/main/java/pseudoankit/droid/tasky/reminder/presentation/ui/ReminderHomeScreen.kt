@@ -1,5 +1,6 @@
 package pseudoankit.droid.tasky.reminder.presentation.ui
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.ramcosta.composedestinations.annotation.Destination
@@ -12,11 +13,9 @@ import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
+import pseudoankit.droid.unify.components.divider.UnifyDivider
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
-import pseudoankit.droid.unify.components.textfield.UnifyTextField
-import pseudoankit.droid.unify.components.textfield.UnifyTextFieldDefaults
-import pseudoankit.droid.unify.components.textview.UnifyTextType
 import pseudoankit.droid.unify.components.textview.UnifyTextView
 import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 
@@ -34,23 +33,17 @@ internal fun ReminderHomeScreen(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave
             ),
-        )
+        ),
+        padding = PaddingValues()
     ) {
         val state = viewModel.state
 
-        UnifyTextField(
-            config = UnifyTextField.Config(
-                placeholder = UnifyTextFieldDefaults.placeHolder(
-                    value = "Remind me to...",
-                    textType = UnifyTextType.HeadlineSmall
-                ),
-                value = state.reminderText,
-                onValueChange = viewModel::onReminderTextFieldValueChanged,
-                type = UnifyTextField.Type.Basic,
-                textType = UnifyTextType.HeadlineSmall,
-                focusState = UnifyTextField.FocusState.Request
-            )
+        ReminderHomeScreenComponents.TextField(
+            value = state.reminderText,
+            onReminderTextFieldValueChanged = viewModel::onReminderTextFieldValueChanged
         )
+        UnifyDivider()
+//        ReminderHomeScreenComponents
     }
 }
 
