@@ -9,10 +9,15 @@ internal class ReminderViewModel :
         copy(reminderText = value)
     }
 
+    fun onAllDayReminderUpdated(isChecked: Boolean) = setState {
+        copy(allDayReminderEnabled = isChecked)
+    }
+
+
     fun onNavigateUp() = postSideEffect {
         ReminderUiState.SideEffect.OnNavigateUp
     }
 
-    fun onSave() {}
 
+    fun onSave() {}
 }

@@ -43,7 +43,12 @@ internal fun ReminderHomeScreen(
             onReminderTextFieldValueChanged = viewModel::onReminderTextFieldValueChanged
         )
         UnifyDivider()
-//        ReminderHomeScreenComponents
+        ReminderHomeScreenComponents.ReminderConfigs(
+            allDayReminderEnabled = state.allDayReminderEnabled,
+            onAllDaySwitchClicked = viewModel::onAllDayReminderUpdated,
+            date = state.selectedDate
+        )
+        UnifyDivider()
     }
 }
 
