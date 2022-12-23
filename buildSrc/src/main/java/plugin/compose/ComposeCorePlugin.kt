@@ -34,6 +34,7 @@ open class ComposeCorePlugin : Plugin<Project> {
                 this@dependencies.implementation(UiToolingPreview)
                 this@dependencies.implementation(UiTooling)
                 this@dependencies.implementation(Material3)
+                this@dependencies.implementation(Activity)
             }
         }
     }

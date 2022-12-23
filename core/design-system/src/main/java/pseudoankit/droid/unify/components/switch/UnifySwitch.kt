@@ -10,16 +10,17 @@ object UnifySwitch {
     operator fun invoke(config: Config) = with(config) {
         Switch(
             checked = checked,
-            onCheckedChange = onCheckedChange,
-            enabled = config.enabled,
+            onCheckedChange = {
+                onCheckedChange?.invoke()
+            },
+            enabled = onCheckedChange != null,
             colors = UnifySwitchInternal.switchColors
         )
     }
 
     data class Config(
         val checked: Boolean,
-        val onCheckedChange: ((Boolean) -> Unit)?,
+        val onCheckedChange: (() -> Unit)?,
         val modifier: Modifier = Modifier,
-        val enabled: Boolean = true
     )
 }
