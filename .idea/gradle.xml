@@ -18,7 +18,6 @@
             <option value="$PROJECT_DIR$/core/design-system" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/agenda" />
-            <option value="$PROJECT_DIR$/feature/agenda/agenda-shared-ui" />
             <option value="$PROJECT_DIR$/feature/agenda/event" />
             <option value="$PROJECT_DIR$/feature/agenda/reminder" />
             <option value="$PROJECT_DIR$/feature/agenda/task" />
