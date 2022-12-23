@@ -20,7 +20,7 @@ internal interface HomeUiState {
         val selectedMonthDateRange: ImmutableList<TaskyDate> =
             DateUtils.getDateRangeForMonth(selectedDate)
 
-        /** returns month appended with year's last 2 digit */
-        val displayHeaderDate get() = "${selectedDate.date.month} ${selectedDate.date.year % 100}"
+        /** returns month appended with year */
+        val displayHeaderDate get() = "${selectedDate.date.month} ${selectedDate.date.year}"
     }
 }

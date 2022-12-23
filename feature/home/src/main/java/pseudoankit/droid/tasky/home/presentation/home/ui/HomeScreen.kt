@@ -14,7 +14,6 @@ import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 import pseudoankit.droid.unify.components.datepicker.UnifyDatePicker
-import pseudoankit.droid.unify.components.datepicker.rememberUnifyDatePickerState
 
 @Destination
 @Composable
@@ -58,18 +57,16 @@ private fun HandleHomeScreenSideEffect(
     dateRangeListState: LazyListState,
     navigator: HomeScreenNavigator
 ) {
-    val datePickerState = rememberUnifyDatePickerState()
-    UnifyDatePicker(
+    val datePicker = UnifyDatePicker(
         initialDate = viewModel.state.selectedDate.date,
-        onDateSelected = viewModel::onDateChanged,
-        datePickerState = datePickerState
+        onDateSelected = viewModel::onDateChanged
     )
 
     LaunchedEffect(Unit) {
         viewModel.onInit()
         viewModel.sideEffect.collect {
             when (it) {
-                HomeUiState.SideEffect.ShowDatePicker -> datePickerState.show()
+                HomeUiState.SideEffect.ShowDatePicker -> datePicker.show()
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
                 }

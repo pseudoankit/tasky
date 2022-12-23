@@ -56,6 +56,8 @@ private fun HandleSideEffect(
     viewModel: ReminderViewModel = getViewModel(),
     navigator: ReminderNavigator
 ) {
+//    val datePicker = UnifyDatePicker()
+
     LaunchedEffect(Unit) {
         viewModel.sideEffect.collectLatest {
             when (it) {

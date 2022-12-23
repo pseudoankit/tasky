@@ -13,10 +13,11 @@ import java.time.LocalDate
 object UnifyDatePicker {
     @Composable
     operator fun invoke(
-        datePickerState: UnifyDatePickerState,
         initialDate: LocalDate = LocalDate.now(),
         onDateSelected: (LocalDate) -> Unit
-    ) {
+    ): UnifyDatePickerState {
+        val datePickerState = rememberUnifyDatePickerState()
+
         val materialPickerState = rememberMaterialDialogState()
         when (datePickerState.showing) {
             true -> materialPickerState.show()
@@ -31,5 +32,7 @@ object UnifyDatePicker {
                 datePickerState.hide()
             }
         )
+
+        return datePickerState
     }
 }
