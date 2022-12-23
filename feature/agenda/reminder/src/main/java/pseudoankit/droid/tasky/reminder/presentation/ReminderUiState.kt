@@ -17,5 +17,6 @@ internal interface ReminderUiState {
     sealed interface SideEffect {
         object OnNavigateUp : SideEffect
         object ShowDatePicker : SideEffect
+        object ShowTimePicker : SideEffect
     }
 }

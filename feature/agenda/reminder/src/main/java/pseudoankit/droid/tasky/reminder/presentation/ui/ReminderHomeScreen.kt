@@ -14,10 +14,6 @@ import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
 import pseudoankit.droid.unify.components.divider.UnifyDivider
-import pseudoankit.droid.unify.components.icon.UnifyIcon
-import pseudoankit.droid.unify.components.icon.UnifyIcons
-import pseudoankit.droid.unify.components.textview.UnifyTextView
-import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 
 @Destination
 @Composable
@@ -29,7 +25,7 @@ internal fun ReminderHomeScreen(
 
     TaskyDestinationSurface(
         config = TaskyDestinationSurfaceConfig(
-            topBar = topBarConfig(
+            topBar = ReminderHomeScreenComponents.topBarConfig(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave
             ),
@@ -47,7 +43,9 @@ internal fun ReminderHomeScreen(
             remindAllDay = state.remindAllDay,
             onRemindAllDayToggled = viewModel::onRemindAllDayToggled,
             date = state.selectedDate,
-            time = state.selectedTime
+            time = state.selectedTime,
+            onDateSelected = viewModel::onDateSelected,
+            onTimeSelected = viewModel::onTimeSelected
         )
         UnifyDivider()
     }
@@ -63,24 +61,8 @@ private fun HandleSideEffect(
             when (it) {
                 ReminderUiState.SideEffect.OnNavigateUp -> navigator.navigateUp()
                 ReminderUiState.SideEffect.ShowDatePicker -> TODO()
+                ReminderUiState.SideEffect.ShowTimePicker -> TODO()
             }
         }
     }
 }
-
-private fun topBarConfig(
-    onNavigateUp: () -> Unit,
-    onSave: () -> Unit,
-) = UnifyTopBar.Config(
-    leadingIcon = UnifyIcon.Config(
-        icon = UnifyIcons.Cross,
-        onClick = onNavigateUp
-    ),
-    trailingSection = UnifyTopBar.TrailingSection(
-        text = UnifyTextView.Config(
-            text = "Save"
-        ),
-        icon = UnifyIcon.Config(icon = UnifyIcons.CheckCircle),
-        onClick = onSave
-    )
-)

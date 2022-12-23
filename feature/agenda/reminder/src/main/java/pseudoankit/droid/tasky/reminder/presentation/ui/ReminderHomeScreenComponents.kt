@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.list.UnifyList
 import pseudoankit.droid.unify.components.switch.UnifySwitch
@@ -13,6 +14,7 @@ import pseudoankit.droid.unify.components.textfield.UnifyTextField
 import pseudoankit.droid.unify.components.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.components.textview.UnifyTextType
 import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
@@ -25,18 +27,20 @@ internal object ReminderHomeScreenComponents {
         date: String,
         time: String?,
         onRemindAllDayToggled: () -> Unit,
+        onDateSelected: () -> Unit,
+        onTimeSelected: () -> Unit,
     ) = Column(
         modifier = Modifier.fillMaxWidth()
     ) {
-        RemindAllDayListItem(remindAllDay, onRemindAllDayToggled)
+        RemindAllDayListItem(remindAllDay = remindAllDay, onClick = onRemindAllDayToggled)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = UnifyDimens.Dp_44, end = UnifyDimens.Dp_8),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Date(date = date)
-            Time(time = time)
+            Date(date = date, onClick = onDateSelected)
+            Time(time = time, onClick = onTimeSelected)
         }
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
     }
@@ -64,8 +68,25 @@ internal object ReminderHomeScreenComponents {
         )
     }
 
+    fun topBarConfig(
+        onNavigateUp: () -> Unit,
+        onSave: () -> Unit,
+    ) = UnifyTopBar.Config(
+        leadingIcon = UnifyIcon.Config(
+            icon = UnifyIcons.Cross,
+            onClick = onNavigateUp
+        ),
+        trailingSection = UnifyTopBar.TrailingSection(
+            text = UnifyTextView.Config(
+                text = "Save"
+            ),
+            icon = UnifyIcon.Config(icon = UnifyIcons.CheckCircle),
+            onClick = onSave
+        )
+    )
+
     @Composable
-    private fun RemindAllDayListItem(remindAllDay: Boolean, onRemindAllDayToggled: () -> Unit) {
+    private fun RemindAllDayListItem(remindAllDay: Boolean, onClick: () -> Unit) {
         UnifyList(
             config = UnifyList.Config(
                 label = "All-day",
@@ -73,19 +94,19 @@ internal object ReminderHomeScreenComponents {
                 trailingIcon = UnifyList.TrailingIcon.Switch(
                     value = UnifySwitch.Config(
                         checked = remindAllDay,
-                        onCheckedChange = onRemindAllDayToggled
+                        onCheckedChange = onClick
                     )
                 ),
                 color = UnifyColors.Black,
                 modifier = Modifier
-                    .clickable(onClick = onRemindAllDayToggled)
+                    .clickable(onClick = onClick)
                     .padding(horizontal = UnifyDimens.Dp_16)
             )
         )
     }
 
     @Composable
-    private fun Time(time: String?) {
+    private fun Time(time: String?, onClick: () -> Unit) {
         if (time == null) return
 
         UnifyTextView(
@@ -95,14 +116,14 @@ internal object ReminderHomeScreenComponents {
                 color = UnifyColors.Black,
                 modifier = Modifier
                     .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
-                    .clickable { }
+                    .clickable(onClick = onClick)
                     .padding(UnifyDimens.Dp_4)
             )
         )
     }
 
     @Composable
-    private fun Date(date: String) {
+    private fun Date(date: String, onClick: () -> Unit) {
         UnifyTextView(
             config = UnifyTextView.Config(
                 textType = UnifyTextType.BodyLarge,
@@ -110,7 +131,7 @@ internal object ReminderHomeScreenComponents {
                 color = UnifyColors.Black,
                 modifier = Modifier
                     .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
-                    .clickable { }
+                    .clickable(onClick = onClick)
                     .padding(vertical = UnifyDimens.Dp_4, horizontal = UnifyDimens.Dp_8)
             )
         )
