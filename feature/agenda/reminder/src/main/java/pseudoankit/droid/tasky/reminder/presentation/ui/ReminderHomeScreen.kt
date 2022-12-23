@@ -47,7 +47,8 @@ internal fun ReminderHomeScreen(
                 value = state.reminderText,
                 onValueChange = viewModel::onReminderTextFieldValueChanged,
                 type = UnifyTextField.Type.Basic,
-                textType = UnifyTextType.HeadlineSmall
+                textType = UnifyTextType.HeadlineSmall,
+                focusState = UnifyTextField.FocusState.Request
             )
         )
     }
