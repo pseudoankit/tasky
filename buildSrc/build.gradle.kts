@@ -15,8 +15,8 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        val base = "base-plugin" to "plugin.base.BasePlugin"
-        val baseLib = "base-library-plugin" to "plugin.base.BaseLibraryPlugin"
+        val base = "core-plugin" to "plugin.base.CorePlugin"
+        val baseLib = "core-library-feature-plugin" to "plugin.base.CoreLibraryFeaturePlugin"
         val composeCoreLib = "compose-core-plugin" to "plugin.compose.ComposeCorePlugin"
         val composeFeatureLib = "compose-feature-plugin" to "plugin.compose.ComposeFeaturePlugin"
 

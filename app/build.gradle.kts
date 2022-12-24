@@ -2,6 +2,7 @@ plugins {
     id(Plugins.AndroidApplication)
     id(Plugins.Core)
     id(Plugins.Ksp)
+    id(Plugins.ComposeCore)
 }
 
 android {
@@ -16,13 +17,6 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
-    }
-
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = Versions.Compose.Compiler
     }
 
     buildTypes {
@@ -56,13 +50,6 @@ dependencies {
     }
 
     with(Dependencies.Compose) {
-        implementation(Ui)
-        implementation(Runtime)
-        implementation(FoundationLayout)
-        implementation(UiToolingPreview)
-        implementation(UiTooling)
-        implementation(Material3)
-        implementation(Activity)
         implementation(ComposeDestinations)
         ksp(ComposeDestinationsKsp)
     }

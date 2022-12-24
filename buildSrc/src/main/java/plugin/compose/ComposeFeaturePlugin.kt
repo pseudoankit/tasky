@@ -18,11 +18,9 @@ class ComposeFeaturePlugin : ComposeCorePlugin() {
             apply("com.google.devtools.ksp")
         }
 
-        val kotlinExtension = project.kotlinExtension
-        val libraryExtension = project.libraryExtension
-        libraryExtension.apply {
+        project.libraryExtension?.apply {
             libraryVariants.all {
-                kotlinExtension.sourceSets.getByName(name) {
+                project.kotlinExtension.sourceSets.getByName(name) {
                     kotlin.srcDir("build/generated/ksp/$name/kotlin")
                 }
             }

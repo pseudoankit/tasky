@@ -9,7 +9,7 @@ import plugin.util.implementationProject
  * Plugin containing all common code for library gradle
  * ###Applicable in library modules only
  */
-class BaseLibraryPlugin : BasePlugin() {
+class CoreLibraryFeaturePlugin : CorePlugin() {
     override fun apply(project: Project) {
         project.plugins.apply {
             apply("com.android.library")

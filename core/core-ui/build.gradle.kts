@@ -1,6 +1,6 @@
 plugins {
     id(Plugins.Library.Feature)
-    id(Plugins.Library.Compose.Core)
+    id(Plugins.ComposeCore)
 }
 
 android {

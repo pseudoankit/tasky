@@ -2,6 +2,7 @@ package plugin.base
 
 import BuildConfig
 import Dependencies
+import Versions
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -13,9 +14,8 @@ import plugin.util.implementation
 /**
  * Plugin containing all common code for any gradle
  * It includes defaultConfigs, compileOptions, kotlinOptions and koin deps
- * Generate compose compiler report : ./gradlew assembleRelease -PenableComposeReports=true
  */
-open class BasePlugin : Plugin<Project> {
+open class CorePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
         project.plugins.apply {
@@ -36,21 +36,27 @@ open class BasePlugin : Plugin<Project> {
                 sourceCompatibility = BuildConfig.JavaVersion
                 targetCompatibility = BuildConfig.JavaVersion
             }
+
+            composeOptions {
+                kotlinCompilerExtensionVersion = Versions.Compose.Compiler
+            }
+
+            buildFeatures.apply {
+                compose = true
+            }
         }
 
-//        project.libraryExtension.apply {
-//            composeOptions {
-//                kotlinCompilerExtensionVersion = Versions.Compose.Compiler
-//            }
-//        }
-
-        project.tasks.withType<KotlinCompile>(KotlinCompile::class.java).configureEach {
+        project.tasks.withType(KotlinCompile::class.java).configureEach {
             kotlinOptions {
                 jvmTarget = BuildConfig.JvmTarget
+
+                // to avoid unncessary annotations
                 freeCompilerArgs = freeCompilerArgs + listOf(
                     "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
                 )
+
+                // generate compose compiler reports : ./gradlew assembleRelease -PenableComposeReports=true --rerun-tasks
                 if (project.findProperty("enableComposeReports") == "true") {
                     freeCompilerArgs = freeCompilerArgs + listOf(
                         "-P",

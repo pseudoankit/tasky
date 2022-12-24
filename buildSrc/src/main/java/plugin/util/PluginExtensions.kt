@@ -11,10 +11,10 @@ internal val Project.kotlinExtension
     get() = (this as ExtensionAware).extensions.getByName(PluginConstants.KOTLIN) as KotlinAndroidProjectExtension
 
 internal val Project.libraryExtension
-    get() = project.extensions.getByName(PluginConstants.ANDROID) as LibraryExtension
+    get() = project.extensions.getByName(PluginConstants.ANDROID) as? LibraryExtension
 
 internal val Project.appExtension
-    get() = project.extensions.getByName(PluginConstants.ANDROID) as AppExtension
+    get() = project.extensions.getByName(PluginConstants.ANDROID) as? AppExtension
 
 internal fun DependencyHandlerScope.implementation(dependency: String) {
     add(PluginConstants.IMPLEMENTATION, dependency)
