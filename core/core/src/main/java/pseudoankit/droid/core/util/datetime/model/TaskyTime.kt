@@ -1,10 +1,9 @@
 package pseudoankit.droid.core.util.datetime.model
 
+import androidx.compose.runtime.Stable
 import java.time.LocalTime
 
-// TODO: immutable
-
-
+@Stable
 data class TaskyTime(val value: LocalTime) {
 
     companion object {

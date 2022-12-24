@@ -13,6 +13,7 @@ import plugin.util.implementation
 /**
  * Plugin containing all common code for any gradle
  * It includes defaultConfigs, compileOptions, kotlinOptions and koin deps
+ * Generate compose compiler report : ./gradlew assembleRelease -PenableComposeReports=true
  */
 open class BasePlugin : Plugin<Project> {
 
@@ -37,7 +38,12 @@ open class BasePlugin : Plugin<Project> {
             }
         }
 
-        // todo compose compiler later
+//        project.libraryExtension.apply {
+//            composeOptions {
+//                kotlinCompilerExtensionVersion = Versions.Compose.Compiler
+//            }
+//        }
+
         project.tasks.withType<KotlinCompile>(KotlinCompile::class.java).configureEach {
             kotlinOptions {
                 jvmTarget = BuildConfig.JvmTarget
@@ -45,6 +51,15 @@ open class BasePlugin : Plugin<Project> {
                     "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
                 )
+                if (project.findProperty("enableComposeReports") == "true") {
+                    freeCompilerArgs = freeCompilerArgs + listOf(
+                        "-P",
+                        "plugin:androidx.compose.compiler.plugins.kotlin:reportsDestination=${project.buildDir.absolutePath}/compose_metrics"
+                    ) + listOf(
+                        "-P",
+                        "plugin:androidx.compose.compiler.plugins.kotlin:metricsDestination=${project.buildDir.absolutePath}/compose_metrics"
+                    )
+                }
             }
         }
 
@@ -55,6 +70,9 @@ open class BasePlugin : Plugin<Project> {
             }
             with(Dependencies.Kotlin) {
                 this@dependencies.implementation(ImmutableCollection)
+            }
+            with(Dependencies.Compose) {
+                this@dependencies.implementation(Runtime)
             }
         }
     }
