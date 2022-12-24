@@ -36,16 +36,16 @@ internal fun ReminderHomeScreen(
 
         ReminderHomeScreenComponents.TextField(
             value = state.reminderText,
-            onReminderTextFieldValueChanged = viewModel::onReminderTextFieldValueChanged
+            onReminderTextFieldValueChanged = viewModel::onTextFieldValueChanged
         )
         UnifyDivider()
         ReminderHomeScreenComponents.ReminderConfigurations(
             remindAllDay = state.remindAllDay,
             onRemindAllDayToggled = viewModel::onRemindAllDayToggled,
-            date = state.selectedDate,
-            time = state.selectedTime,
-            onDateSelected = viewModel::onDateSelected,
-            onTimeSelected = viewModel::onTimeSelected
+            date = state.displayDate,
+            time = state.displayTime,
+            onDateClicked = viewModel::onDateClicked,
+            onTimeClicked = viewModel::onTimeClicked
         )
         UnifyDivider()
     }
@@ -56,7 +56,10 @@ private fun HandleSideEffect(
     viewModel: ReminderViewModel = getViewModel(),
     navigator: ReminderNavigator
 ) {
-//    val datePicker = UnifyDatePicker()
+//    val datePicker = UnifyDatePicker(
+//        initialDate = viewModel.state.selectedDate.value,
+//        onDateSelected = viewModel::onDateValueChanged
+//    )
 
     LaunchedEffect(Unit) {
         viewModel.sideEffect.collectLatest {

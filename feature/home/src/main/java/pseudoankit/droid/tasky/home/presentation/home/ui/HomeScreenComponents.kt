@@ -12,7 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
-import pseudoankit.droid.core.util.datetime.TaskyDate
+import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
@@ -44,7 +44,7 @@ internal object HomeScreenComponents {
         onDaySelected: (TaskyDate) -> Unit
     ) {
         LazyRow(modifier = Modifier.fillMaxWidth(), state = listState) {
-            items(dateRange, key = { it.date.dayOfMonth }) { date ->
+            items(dateRange, key = { it.value.dayOfMonth }) { date ->
                 SelectedMonthDatePickerItem(
                     date = date,
                     onClick = onDaySelected
@@ -98,7 +98,7 @@ internal object HomeScreenComponents {
     @Composable
     private fun SelectedMonthDatePickerItem(
         date: TaskyDate, onClick: (TaskyDate) -> Unit
-    ) = date.date.run {
+    ) = date.value.run {
         Column(
             modifier = Modifier
                 .width(UnifyDimens.Dp_36)

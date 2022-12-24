@@ -1,6 +1,6 @@
 package pseudoankit.droid.tasky.home.presentation.home
 
-import pseudoankit.droid.core.util.datetime.TaskyDate
+import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.viewmodel.BaseViewModel
 import java.time.LocalDate
 
@@ -31,6 +31,6 @@ internal class HomeViewModel :
     }
 
     private fun highlightCurrentSelectedDate() = postSideEffect {
-        HomeUiState.SideEffect.HighlightCurrentSelectedDate(state.selectedDate.date.dayOfMonth - 1)
+        HomeUiState.SideEffect.HighlightCurrentSelectedDate(state.selectedDate.value.dayOfMonth - 1)
     }
 }

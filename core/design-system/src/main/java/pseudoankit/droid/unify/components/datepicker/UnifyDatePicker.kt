@@ -11,6 +11,8 @@ import java.time.LocalDate
  * @param[onDateSelected] callback when positive button is clicked
  */
 object UnifyDatePicker {
+
+    // TODO: stability
     @Composable
     operator fun invoke(
         initialDate: LocalDate = LocalDate.now(),

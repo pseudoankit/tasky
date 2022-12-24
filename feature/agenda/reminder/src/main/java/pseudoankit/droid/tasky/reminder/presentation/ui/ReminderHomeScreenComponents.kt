@@ -27,8 +27,8 @@ internal object ReminderHomeScreenComponents {
         date: String,
         time: String?,
         onRemindAllDayToggled: () -> Unit,
-        onDateSelected: () -> Unit,
-        onTimeSelected: () -> Unit,
+        onDateClicked: () -> Unit,
+        onTimeClicked: () -> Unit,
     ) = Column(
         modifier = Modifier.fillMaxWidth()
     ) {
@@ -39,8 +39,8 @@ internal object ReminderHomeScreenComponents {
                 .padding(start = UnifyDimens.Dp_44, end = UnifyDimens.Dp_8),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Date(date = date, onClick = onDateSelected)
-            Time(time = time, onClick = onTimeSelected)
+            Date(date = date, onClick = onDateClicked)
+            Time(time = time, onClick = onTimeClicked)
         }
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
     }
