@@ -1,10 +1,15 @@
 package pseudoankit.droid.core.util
 
 import android.content.Context
+import androidx.compose.runtime.Stable
 
+@Stable
 sealed interface TextResource {
+
+    @Stable
     class ResourceString(internal val stringId: Int, internal vararg val params: Any) : TextResource
 
+    @Stable
     @JvmInline
     value class NormalString(internal val text: String) : TextResource
 
