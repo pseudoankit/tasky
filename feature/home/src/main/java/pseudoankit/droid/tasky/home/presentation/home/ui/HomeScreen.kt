@@ -13,7 +13,7 @@ import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
-import pseudoankit.droid.unify.components.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.components.datetimepicker.datepicker.UnifyDatePicker
 
 @Destination
 @Composable
@@ -58,8 +58,10 @@ private fun HandleHomeScreenSideEffect(
     navigator: HomeScreenNavigator
 ) {
     val datePicker = UnifyDatePicker(
-        initialDate = viewModel.state.selectedDate.value,
-        onDateSelected = viewModel::onDateChanged
+        UnifyDatePicker.Config(
+            initialDate = viewModel.state.selectedDate.value,
+            onDateSelected = viewModel::onDateChanged
+        )
     )
 
     LaunchedEffect(Unit) {

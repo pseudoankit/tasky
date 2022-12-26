@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.datepicker
+package pseudoankit.droid.unify.components.datetimepicker.datepicker
 
 import androidx.compose.runtime.*
 

@@ -5,12 +5,13 @@ import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.core.util.extension.mapToImmutableList
 import java.time.LocalDate
 import java.time.Month
+import java.time.format.DateTimeFormatter
 
 object DateUtils {
     private val dateRangeOfMonthCache = mutableMapOf<Month, List<LocalDate>>()
 
-    fun TaskyDate?.displayDate(): String? = this?.run {
-        "Mon, 22 Nov 2022"
+    fun TaskyDate?.toString(pattern: String): String? = this?.run {
+        value.format(DateTimeFormatter.ofPattern(pattern))
     }
 
     /**

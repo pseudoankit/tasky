@@ -13,6 +13,7 @@ import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
+import pseudoankit.droid.unify.components.datetimepicker.datepicker.UnifyDatePicker
 import pseudoankit.droid.unify.components.divider.UnifyDivider
 
 @Destination
@@ -56,16 +57,18 @@ private fun HandleSideEffect(
     viewModel: ReminderViewModel = getViewModel(),
     navigator: ReminderNavigator
 ) {
-//    val datePicker = UnifyDatePicker(
-//        initialDate = viewModel.state.selectedDate.value,
-//        onDateSelected = viewModel::onDateValueChanged
-//    )
+    val datePicker = UnifyDatePicker(
+        config = UnifyDatePicker.Config(
+            initialDate = viewModel.state.selectedDate.value,
+            onDateSelected = viewModel::onDateValueChanged
+        )
+    )
 
     LaunchedEffect(Unit) {
         viewModel.sideEffect.collectLatest {
             when (it) {
                 ReminderUiState.SideEffect.OnNavigateUp -> navigator.navigateUp()
-                ReminderUiState.SideEffect.ShowDatePicker -> TODO()
+                ReminderUiState.SideEffect.ShowDatePicker -> datePicker.show()
                 ReminderUiState.SideEffect.ShowTimePicker -> TODO()
             }
         }

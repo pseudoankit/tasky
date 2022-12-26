@@ -3,6 +3,7 @@ package pseudoankit.droid.tasky.home.presentation.home
 import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.core.util.datetime.DateUtils
+import pseudoankit.droid.core.util.datetime.DateUtils.toString
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 
 internal interface HomeUiState {
@@ -20,7 +21,6 @@ internal interface HomeUiState {
         val selectedMonthDateRange: ImmutableList<TaskyDate> =
             DateUtils.getDateRangeForMonth(selectedDate)
 
-        /** returns month appended with year */
-        val displayHeaderDate get() = "${selectedDate.value.month} ${selectedDate.value.year}"
+        val displayHeaderDate get() = selectedDate.toString("MMM yyyy").orEmpty()
     }
 }

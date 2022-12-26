@@ -1,6 +1,7 @@
-package pseudoankit.droid.unify.components.datepicker
+package pseudoankit.droid.unify.components.datetimepicker.datepicker
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import java.time.LocalDate
 
@@ -12,12 +13,8 @@ import java.time.LocalDate
  */
 object UnifyDatePicker {
 
-    // TODO: stability
     @Composable
-    operator fun invoke(
-        initialDate: LocalDate = LocalDate.now(),
-        onDateSelected: (LocalDate) -> Unit
-    ): UnifyDatePickerState {
+    operator fun invoke(config: Config): UnifyDatePickerState = with(config) {
         val datePickerState = rememberUnifyDatePickerState()
 
         val materialPickerState = rememberMaterialDialogState()
@@ -26,7 +23,7 @@ object UnifyDatePicker {
             false -> materialPickerState.hide()
         }
 
-        UnifyDatePickerInternal(
+        UnifyDatePickerImpl(
             datePickerState = materialPickerState,
             initialDate = initialDate,
             onDateSelected = onDateSelected,
@@ -37,4 +34,10 @@ object UnifyDatePicker {
 
         return datePickerState
     }
+
+    @Stable
+    data class Config(
+        val initialDate: LocalDate = LocalDate.now(),
+        val onDateSelected: (LocalDate) -> Unit
+    )
 }

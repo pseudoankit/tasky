@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.datepicker
+package pseudoankit.droid.unify.components.datetimepicker.datepicker
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -15,7 +15,7 @@ import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 import java.time.LocalDate
 
-internal object UnifyDatePickerInternal {
+internal object UnifyDatePickerImpl {
     @Composable
     operator fun invoke(
         datePickerState: MaterialDialogState,
