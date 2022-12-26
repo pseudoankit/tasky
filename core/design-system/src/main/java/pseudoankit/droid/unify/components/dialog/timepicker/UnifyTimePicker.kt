@@ -1,10 +1,10 @@
-package pseudoankit.droid.unify.components.datetimepicker.timepicker
+package pseudoankit.droid.unify.components.dialog.timepicker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import com.vanpra.composematerialdialogs.rememberMaterialDialogState
-import pseudoankit.droid.unify.components.dialog.UnifyDialogState
-import pseudoankit.droid.unify.components.dialog.rememberUnifyDialogState
+import pseudoankit.droid.unify.components.dialog.core.UnifyDialogState
+import pseudoankit.droid.unify.components.dialog.core.rememberUnifyDialogState
 import java.time.LocalTime
 
 /**

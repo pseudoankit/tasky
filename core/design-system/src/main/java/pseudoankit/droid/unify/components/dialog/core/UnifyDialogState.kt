@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.dialog
+package pseudoankit.droid.unify.components.dialog.core
 
 import androidx.compose.runtime.*
 

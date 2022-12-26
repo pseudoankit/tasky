@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.datetimepicker.timepicker
+package pseudoankit.droid.unify.components.dialog.timepicker
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.runtime.Composable
@@ -10,7 +10,7 @@ import com.vanpra.composematerialdialogs.MaterialDialogState
 import com.vanpra.composematerialdialogs.datetime.time.TimePickerColors
 import com.vanpra.composematerialdialogs.datetime.time.TimePickerDefaults
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
-import pseudoankit.droid.unify.components.dialog.UnifyMaterialDialog
+import pseudoankit.droid.unify.components.dialog.core.UnifyMaterialDialog
 import pseudoankit.droid.unify.token.UnifyColors
 import java.time.LocalTime
 

@@ -13,8 +13,8 @@ import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
-import pseudoankit.droid.unify.components.datetimepicker.datepicker.UnifyDatePicker
-import pseudoankit.droid.unify.components.datetimepicker.timepicker.UnifyTimePicker
+import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.components.dialog.timepicker.UnifyTimePicker
 import pseudoankit.droid.unify.components.divider.UnifyDivider
 import java.time.LocalTime
 

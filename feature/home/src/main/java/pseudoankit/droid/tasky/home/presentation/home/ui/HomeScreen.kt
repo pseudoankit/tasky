@@ -13,7 +13,7 @@ import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
-import pseudoankit.droid.unify.components.datetimepicker.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
 
 @Destination
 @Composable

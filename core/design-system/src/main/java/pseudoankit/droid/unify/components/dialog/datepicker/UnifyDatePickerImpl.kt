@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.datetimepicker.datepicker
+package pseudoankit.droid.unify.components.dialog.datepicker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
@@ -7,7 +7,7 @@ import androidx.compose.ui.graphics.Color
 import com.vanpra.composematerialdialogs.MaterialDialogState
 import com.vanpra.composematerialdialogs.datetime.date.DatePickerColors
 import com.vanpra.composematerialdialogs.datetime.date.datepicker
-import pseudoankit.droid.unify.components.dialog.UnifyMaterialDialog
+import pseudoankit.droid.unify.components.dialog.core.UnifyMaterialDialog
 import pseudoankit.droid.unify.token.UnifyColors
 import java.time.LocalDate
 
