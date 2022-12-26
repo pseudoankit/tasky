@@ -60,7 +60,7 @@ private fun HandleHomeScreenSideEffect(
     val datePicker = UnifyDatePicker(
         UnifyDatePicker.Config(
             initialDate = viewModel.state.selectedDate.value,
-            onDateSelected = viewModel::onDateChanged
+            onDateChanged = viewModel::onDateChanged
         )
     )
 
