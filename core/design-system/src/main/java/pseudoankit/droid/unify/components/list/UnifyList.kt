@@ -31,7 +31,7 @@ object UnifyList {
         val label: String,
         val trailingIcon: TrailingIcon? = null,
         val modifier: Modifier = Modifier,
-        val color: Color = UnifyColors.Gray
+        val color: Color = UnifyColors.Gray300
     )
 
     sealed interface TrailingIcon {

@@ -105,7 +105,7 @@ internal object HomeScreenComponents {
                 .height(UnifyDimens.Dp_50)
                 .clip(RoundedCornerShape(UnifyDimens.Radius.Medium))
                 .clickable { onClick(date) }
-                .background(color = if (date.isSelected) UnifyColors.Orange else UnifyColors.White),
+                .background(color = if (date.isSelected) UnifyColors.Orange100 else UnifyColors.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

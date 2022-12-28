@@ -37,24 +37,24 @@ internal object UnifyTextFieldCommon {
                 when (trailingIcon) {
                     is UnifyTextField.TrailingIcon.Custom -> UnifyIcon(
                         config = UnifyIcon.Config(
-                            tint = UnifyColors.Gray,
-                            size = UnifyDimens.Dp_24,
+                            tint = TextFieldTokens.TintColor,
+                            size = TextFieldTokens.IconSize,
                             icon = trailingIcon.icon,
                             onClick = trailingIcon.onClick
                         )
                     )
                     is UnifyTextField.TrailingIcon.Password -> UnifyIcon(
                         config = UnifyIcon.Config(
-                            tint = UnifyColors.Gray,
-                            size = UnifyDimens.Dp_24,
+                            tint = TextFieldTokens.TintColor,
+                            size = TextFieldTokens.IconSize,
                             icon = if (trailingIcon.isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
                             onClick = trailingIcon.onVisibilityToggled
                         )
                     )
                     is UnifyTextField.TrailingIcon.Valid -> UnifyIcon(
                         config = UnifyIcon.Config(
-                            tint = UnifyColors.Green,
-                            size = UnifyDimens.Dp_24,
+                            tint = UnifyColors.Green800,
+                            size = TextFieldTokens.IconSize,
                             icon = UnifyIcons.Check
                         )
                     )
@@ -69,8 +69,8 @@ internal object UnifyTextFieldCommon {
             {
                 UnifyIcon(
                     config = UnifyIcon.Config(
-                        tint = UnifyColors.Gray,
-                        size = UnifyDimens.Dp_24,
+                        tint = TextFieldTokens.TintColor,
+                        size = TextFieldTokens.IconSize,
                         icon = this
                     )
                 )

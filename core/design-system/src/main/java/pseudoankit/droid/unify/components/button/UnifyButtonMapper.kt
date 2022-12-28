@@ -21,8 +21,8 @@ internal object UnifyButtonMapper {
             contentColor = UnifyColors.White
         )
         UnifyButton.State.Disabled -> ButtonDefaults.buttonColors(
-            containerColor = UnifyColors.Gray,
-            contentColor = UnifyColors.DarkGray
+            containerColor = UnifyColors.Gray400,
+            contentColor = UnifyColors.Gray800
         )
     }
 }

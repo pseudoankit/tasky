@@ -22,7 +22,6 @@ internal object UnifyTimePickerImpl {
         onTimeChanged: (LocalTime) -> Unit,
         onCloseRequest: (MaterialDialogState) -> Unit
     ) {
-        val def = TimePickerDefaults.colors()
         UnifyMaterialDialog(
             state = timePickerState,
             onCloseRequest = onCloseRequest
@@ -30,38 +29,46 @@ internal object UnifyTimePickerImpl {
             timepicker(
                 initialTime = initialTime,
                 onTimeChange = onTimeChanged,
-                colors = object : TimePickerColors {
-                    override val border: BorderStroke
-                        get() = BorderStroke(1.dp, UnifyColors.Black)
-
-                    @Composable
-                    override fun backgroundColor(active: Boolean): State<Color> {
-                        return mutableStateOf(if (active) UnifyColors.LightBlue else UnifyColors.Black)
-                    }
-
-                    override fun headerTextColor(): Color {
-                        return def.headerTextColor()
-                    }
-
-                    @Composable
-                    override fun periodBackgroundColor(active: Boolean): State<Color> {
-                        return mutableStateOf(if (active) UnifyColors.LightBlue else UnifyColors.Black)
-                    }
-
-                    override fun selectorColor(): Color {
-                        return UnifyColors.LightBlue
-                    }
-
-                    override fun selectorTextColor(): Color {
-                        return UnifyColors.LightBlue
-                    }
-
-                    @Composable
-                    override fun textColor(active: Boolean): State<Color> {
-                        return mutableStateOf(UnifyColors.White)
-                    }
-                }
+                colors = TimePickerColors()
             )
+        }
+    }
+
+    @Composable
+    private fun TimePickerColors(): TimePickerColors {
+        val def = TimePickerDefaults.colors()
+        val activeColor = UnifyColors.Blue700
+
+        return object : TimePickerColors {
+            override val border: BorderStroke
+                get() = BorderStroke(1.dp, UnifyColors.Black)
+
+            @Composable
+            override fun backgroundColor(active: Boolean): State<Color> {
+                return mutableStateOf(if (active) activeColor else UnifyColors.Black)
+            }
+
+            override fun headerTextColor(): Color {
+                return def.headerTextColor()
+            }
+
+            @Composable
+            override fun periodBackgroundColor(active: Boolean): State<Color> {
+                return mutableStateOf(if (active) activeColor else UnifyColors.Black)
+            }
+
+            override fun selectorColor(): Color {
+                return activeColor
+            }
+
+            override fun selectorTextColor(): Color {
+                return activeColor
+            }
+
+            @Composable
+            override fun textColor(active: Boolean): State<Color> {
+                return mutableStateOf(UnifyColors.White)
+            }
         }
     }
 }

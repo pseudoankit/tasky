@@ -12,15 +12,9 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.ViewCompat
 
 private val DarkColorScheme = darkColorScheme(
-    primary = UnifyColors.Purple80,
-    secondary = UnifyColors.PurpleGrey80,
-    tertiary = UnifyColors.Pink80
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = UnifyColors.Purple40,
-    secondary = UnifyColors.PurpleGrey40,
-    tertiary = UnifyColors.Pink40
 )
 
 @Composable

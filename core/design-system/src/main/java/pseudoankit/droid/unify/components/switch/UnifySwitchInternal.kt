@@ -29,7 +29,7 @@ internal object UnifySwitchInternal {
                 return mutableStateOf(
                     when (enabled) {
                         true -> UnifyColors.Black
-                        false -> UnifyColors.Gray
+                        false -> UnifyColors.Gray100
                     }
                 )
             }
@@ -39,7 +39,7 @@ internal object UnifySwitchInternal {
                 return mutableStateOf(
                     when (enabled) {
                         true -> UnifyColors.Black.copy(alpha = .1f)
-                        false -> UnifyColors.Gray.copy(alpha = .42f)
+                        false -> UnifyColors.Gray100.copy(alpha = .42f)
                     }
                 )
             }

@@ -12,6 +12,6 @@ object UnifyTextFieldDefaults {
     ) = UnifyTextView.Config(
         text = value,
         textType = textType,
-        color = UnifyColors.DarkGray
+        color = UnifyColors.Gray800
     )
 }
