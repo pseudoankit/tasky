@@ -2,6 +2,7 @@ package pseudoankit.droid.authentication.presentation.registration
 
 import androidx.compose.runtime.Composable
 import com.ramcosta.composedestinations.annotation.Destination
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
@@ -35,7 +36,7 @@ private fun RegistrationScreenInternal(
             )
         ),
         singleEvents = {
-            viewModel.sideEffect.collect {
+            viewModel.container.sideEffectFlow.collectLatest {
                 when (it) {
                     RegistrationUiState.SideEffect.NavigateBack -> navigator.navigateUp()
                 }

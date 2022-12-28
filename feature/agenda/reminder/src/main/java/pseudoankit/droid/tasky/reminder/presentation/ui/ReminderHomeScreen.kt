@@ -6,9 +6,11 @@ import androidx.compose.runtime.LaunchedEffect
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
+import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
@@ -35,7 +37,7 @@ internal fun ReminderHomeScreen(
         ),
         padding = PaddingValues()
     ) {
-        val state = viewModel.state
+        val state = viewModel.collectAsState().value
 
         ReminderHomeScreenComponents.TextField(
             value = state.reminderText,
@@ -74,7 +76,7 @@ private fun HandleSideEffect(
     )
 
     LaunchedEffect(Unit) {
-        viewModel.sideEffect.collectLatest {
+        viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 ReminderUiState.SideEffect.OnNavigateUp -> navigator.navigateUp()
                 ReminderUiState.SideEffect.ShowDatePicker -> datePicker.show()

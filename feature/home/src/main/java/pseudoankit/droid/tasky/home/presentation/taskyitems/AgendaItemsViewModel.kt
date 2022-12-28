@@ -1,12 +1,18 @@
 package pseudoankit.droid.tasky.home.presentation.taskyitems
 
-import pseudoankit.droid.coreui.viewmodel.BaseViewModel
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import org.orbitmvi.orbit.Container
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.container
+import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.tasky.home.domain.model.AgendaType
 
-internal class AgendaItemsViewModel :
-    BaseViewModel<AgendaItemsUiState.State, AgendaItemsUiState.SideEffect, Nothing>(
-        AgendaItemsUiState.State()
-    ) {
+internal class AgendaItemsViewModel : ViewModel(),
+    ContainerHost<AgendaItemsUiState.State, AgendaItemsUiState.SideEffect> {
+
+    override val container: Container<AgendaItemsUiState.State, AgendaItemsUiState.SideEffect> =
+        viewModelScope.container(AgendaItemsUiState.State())
 
     fun onNavigateUp() = postSideEffect {
         AgendaItemsUiState.SideEffect.NavigateUp

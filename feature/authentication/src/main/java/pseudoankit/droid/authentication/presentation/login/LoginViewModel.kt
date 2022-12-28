@@ -1,13 +1,24 @@
 package pseudoankit.droid.authentication.presentation.login
 
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import org.orbitmvi.orbit.Container
+import org.orbitmvi.orbit.ContainerHost
+import org.orbitmvi.orbit.container
+import org.orbitmvi.orbit.syntax.simple.intent
 import pseudoankit.droid.authentication.domain.LoginUseCase
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.validator.Validator
-import pseudoankit.droid.coreui.viewmodel.BaseViewModel
+import pseudoankit.droid.coreui.util.extension.postSideEffect
+import pseudoankit.droid.coreui.util.extension.setState
 
 internal class LoginViewModel(
     private val loginUseCase: LoginUseCase
-) : BaseViewModel<LoginUiState.State, LoginUiState.SideEffect, Nothing>(LoginUiState.State()) {
+) : ViewModel(),
+    ContainerHost<LoginUiState.State, LoginUiState.SideEffect> {
+
+    override val container: Container<LoginUiState.State, LoginUiState.SideEffect> =
+        viewModelScope.container(LoginUiState.State())
 
     fun onEmailValueChanged(value: String) = setState {
         copy(

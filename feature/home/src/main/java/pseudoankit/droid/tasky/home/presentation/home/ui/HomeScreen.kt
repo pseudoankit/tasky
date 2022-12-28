@@ -5,10 +5,13 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import com.ramcosta.composedestinations.annotation.Destination
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
+import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
@@ -25,7 +28,7 @@ internal fun HomeScreen(
     val dateRangeListState = rememberLazyListState()
     HandleHomeScreenSideEffect(dateRangeListState = dateRangeListState, navigator = navigator)
 
-    val state = viewModel.state
+    val state = viewModel.collectAsState().value
 
     TaskyDestinationSurface(
         config = TaskyDestinationSurfaceConfig(
@@ -66,7 +69,7 @@ private fun HandleHomeScreenSideEffect(
 
     LaunchedEffect(Unit) {
         viewModel.onInit()
-        viewModel.sideEffect.collect {
+        viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 HomeUiState.SideEffect.ShowDatePicker -> datePicker.show()
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {

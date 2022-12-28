@@ -5,7 +5,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.login.LoginUiState
@@ -32,7 +34,7 @@ private fun LoginScreenInternal(
             topBar = UnifyTopBar.Config(title = "Welcome Back")
         ),
         singleEvents = {
-            viewModel.sideEffect.collect {
+            viewModel.container.sideEffectFlow.collectLatest {
                 when (it) {
                     LoginUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHome()
                     LoginUiState.SideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
@@ -40,7 +42,7 @@ private fun LoginScreenInternal(
             }
         }
     ) {
-        val state = viewModel.state
+        val state = viewModel.collectAsState().value
 
         LoginScreenComponents.Email(
             email = state.emailConfig,
