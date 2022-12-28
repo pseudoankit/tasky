@@ -20,6 +20,7 @@ import pseudoankit.droid.unify.components.textview.UnifyTextType
 import pseudoankit.droid.unify.components.textview.UnifyTextView
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.token.UnifyTokens
 
 internal object UnifyTextFieldCommon {
 
@@ -37,16 +38,16 @@ internal object UnifyTextFieldCommon {
                 when (trailingIcon) {
                     is UnifyTextField.TrailingIcon.Custom -> UnifyIcon(
                         config = UnifyIcon.Config(
-                            tint = TextFieldTokens.TintColor,
-                            size = TextFieldTokens.IconSize,
+                            tint = UnifyTokens.TextField.Icon.Color,
+                            size = UnifyTokens.TextField.Icon.Size,
                             icon = trailingIcon.icon,
                             onClick = trailingIcon.onClick
                         )
                     )
                     is UnifyTextField.TrailingIcon.Password -> UnifyIcon(
                         config = UnifyIcon.Config(
-                            tint = TextFieldTokens.TintColor,
-                            size = TextFieldTokens.IconSize,
+                            tint = UnifyTokens.TextField.Icon.Color,
+                            size = UnifyTokens.TextField.Icon.Size,
                             icon = if (trailingIcon.isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
                             onClick = trailingIcon.onVisibilityToggled
                         )
@@ -54,7 +55,7 @@ internal object UnifyTextFieldCommon {
                     is UnifyTextField.TrailingIcon.Valid -> UnifyIcon(
                         config = UnifyIcon.Config(
                             tint = UnifyColors.Green800,
-                            size = TextFieldTokens.IconSize,
+                            size = UnifyTokens.TextField.Icon.Size,
                             icon = UnifyIcons.Check
                         )
                     )
@@ -69,8 +70,8 @@ internal object UnifyTextFieldCommon {
             {
                 UnifyIcon(
                     config = UnifyIcon.Config(
-                        tint = TextFieldTokens.TintColor,
-                        size = TextFieldTokens.IconSize,
+                        tint = UnifyTokens.TextField.Icon.Color,
+                        size = UnifyTokens.TextField.Icon.Size,
                         icon = this
                     )
                 )

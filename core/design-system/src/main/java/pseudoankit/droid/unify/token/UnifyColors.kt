@@ -48,17 +48,6 @@ object UnifyColors {
     val PurpleA400 = Color(0xFFD500F9)
     val PurpleA700 = Color(0xFFAA00FF)
 
-    val DeepPurple50 = Color(0xFFEDE7F6)
-    val DeepPurple100 = Color(0xFFD1C4E9)
-    val DeepPurple200 = Color(0xFFB39DDB)
-    val DeepPurple300 = Color(0xFF9575CD)
-    val DeepPurple400 = Color(0xFF7E57C2)
-    val DeepPurple500 = Color(0xFF673AB7)
-    val DeepPurple600 = Color(0xFF5E35B1)
-    val DeepPurple700 = Color(0xFF512DA8)
-    val DeepPurple800 = Color(0xFF4527A0)
-    val DeepPurple900 = Color(0xFF311B92)
-
     val Indigo50 = Color(0xFFE8EAF6)
     val Indigo100 = Color(0xFFC5CAE9)
     val Indigo200 = Color(0xFF9FA8DA)

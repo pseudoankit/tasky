@@ -12,6 +12,7 @@ import com.vanpra.composematerialdialogs.datetime.time.TimePickerDefaults
 import com.vanpra.composematerialdialogs.datetime.time.timepicker
 import pseudoankit.droid.unify.components.dialog.core.UnifyMaterialDialog
 import pseudoankit.droid.unify.token.UnifyColors
+import pseudoankit.droid.unify.token.UnifyTokens
 import java.time.LocalTime
 
 internal object UnifyTimePickerImpl {
@@ -37,7 +38,6 @@ internal object UnifyTimePickerImpl {
     @Composable
     private fun TimePickerColors(): TimePickerColors {
         val def = TimePickerDefaults.colors()
-        val activeColor = UnifyColors.Blue700
 
         return object : TimePickerColors {
             override val border: BorderStroke
@@ -45,7 +45,7 @@ internal object UnifyTimePickerImpl {
 
             @Composable
             override fun backgroundColor(active: Boolean): State<Color> {
-                return mutableStateOf(if (active) activeColor else UnifyColors.Black)
+                return mutableStateOf(if (active) UnifyTokens.TimePicker.SelectedColor else UnifyColors.Black)
             }
 
             override fun headerTextColor(): Color {
@@ -54,15 +54,15 @@ internal object UnifyTimePickerImpl {
 
             @Composable
             override fun periodBackgroundColor(active: Boolean): State<Color> {
-                return mutableStateOf(if (active) activeColor else UnifyColors.Black)
+                return mutableStateOf(if (active) UnifyTokens.TimePicker.SelectedColor else UnifyColors.Black)
             }
 
             override fun selectorColor(): Color {
-                return activeColor
+                return UnifyTokens.TimePicker.SelectedColor
             }
 
             override fun selectorTextColor(): Color {
-                return activeColor
+                return UnifyTokens.TimePicker.SelectedColor
             }
 
             @Composable
