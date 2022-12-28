@@ -1,9 +1,11 @@
 package plugin.compose
 
 import Dependencies
+import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
+import plugin.util.PluginConstants
 import plugin.util.implementation
 
 /**
@@ -12,6 +14,16 @@ import plugin.util.implementation
 open class ComposeCorePlugin : Plugin<Project> {
 
     override fun apply(project: Project) {
+
+        val androidExtension =
+            project.extensions.getByName(PluginConstants.ANDROID) as BaseExtension
+
+        androidExtension.apply {
+            buildFeatures.apply {
+                compose = true
+            }
+        }
+
         project.dependencies {
             with(Dependencies.Compose) {
                 this@dependencies.implementation(Ui)

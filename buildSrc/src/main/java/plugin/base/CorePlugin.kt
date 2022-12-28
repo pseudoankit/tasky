@@ -40,10 +40,6 @@ open class CorePlugin : Plugin<Project> {
             composeOptions {
                 kotlinCompilerExtensionVersion = Versions.Compose.Compiler
             }
-
-            buildFeatures.apply {
-                compose = true
-            }
         }
 
         project.tasks.withType(KotlinCompile::class.java).configureEach {
