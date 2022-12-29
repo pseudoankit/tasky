@@ -11,6 +11,7 @@ import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
+import pseudoankit.droid.coreui.util.extension.showToast
 import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.tasky.reminder.di.ReminderModule
@@ -100,6 +101,7 @@ private fun HandleSideEffect(
                 ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView -> repeatsOnDialog.toggle()
                 ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector -> context.toastNotImplemented()
                 ReminderUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHomeScreen()
+                is ReminderUiState.SideEffect.ShowError -> context.showToast(it.message)
             }
         }
     }

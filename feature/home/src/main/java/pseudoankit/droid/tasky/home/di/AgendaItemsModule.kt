@@ -8,8 +8,10 @@ import pseudoankit.droid.tasky.home.presentation.taskyitems.AgendaItemsViewModel
 
 internal object AgendaItemsModule : BaseKoinModule() {
 
-    override val module: Module
-        get() = module {
-            viewModel { AgendaItemsViewModel() }
-        }
+    override val modules: List<Module>
+        get() = listOf(
+            module {
+                viewModel { AgendaItemsViewModel() }
+            }
+        )
 }

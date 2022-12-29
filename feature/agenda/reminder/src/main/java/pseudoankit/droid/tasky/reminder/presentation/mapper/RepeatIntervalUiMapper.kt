@@ -2,8 +2,8 @@ package pseudoankit.droid.tasky.reminder.presentation.mapper
 
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
+import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
 import pseudoankit.droid.core.util.TextResource
-import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 
 internal object RepeatIntervalUiMapper {

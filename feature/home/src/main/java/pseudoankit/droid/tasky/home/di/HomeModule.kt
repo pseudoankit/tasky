@@ -8,8 +8,10 @@ import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 
 internal object HomeModule : BaseKoinModule() {
 
-    override val module: Module
-        get() = module {
-            viewModel { HomeViewModel() }
-        }
+    override val modules: List<Module>
+        get() = listOf(
+            module {
+                viewModel { HomeViewModel() }
+            }
+        )
 }

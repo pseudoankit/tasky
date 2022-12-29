@@ -4,6 +4,7 @@ include(":app")
 include(":core:core")
 include(":core:core-ui")
 include(":core:design-system")
+include(":core:agenda-manger")
 
 include(":feature:authentication")
 include(":feature:home")

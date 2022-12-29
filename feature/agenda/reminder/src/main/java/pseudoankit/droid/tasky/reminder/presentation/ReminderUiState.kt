@@ -2,11 +2,12 @@ package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
+import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.datetime.DateUtils.toString
 import pseudoankit.droid.core.util.datetime.TimeUtils.toString
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.core.util.datetime.model.TaskyTime
-import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.selectedLabel
@@ -41,5 +42,6 @@ internal interface ReminderUiState {
         object ToggleRepeatIntervalSelectionView : SideEffect
         object ShowCustomRepeatIntervalSelector : SideEffect
         object NavigateToHomeScreen : SideEffect
+        data class ShowError(val message: TextResource) : SideEffect
     }
 }

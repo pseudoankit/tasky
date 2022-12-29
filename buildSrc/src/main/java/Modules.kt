@@ -12,5 +12,6 @@ object Modules {
         const val Core = ":core:core"
         const val CoreUi = ":core:core-ui"
         const val DesignSystem = ":core:design-system"
+        const val AgendaManager = ":core:agenda-manger"
     }
 }

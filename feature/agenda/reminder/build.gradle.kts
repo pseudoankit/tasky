@@ -11,3 +11,9 @@ ksp {
 android {
     namespace = "pseudoankit.droid.tasky.reminder"
 }
+
+dependencies {
+    with(Modules.Core) {
+        implementation(project(AgendaManager))
+    }
+}

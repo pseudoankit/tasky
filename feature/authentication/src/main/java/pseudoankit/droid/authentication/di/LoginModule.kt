@@ -8,10 +8,13 @@ import pseudoankit.droid.authentication.presentation.login.LoginViewModel
 import pseudoankit.droid.core.koin.BaseKoinModule
 
 internal object LoginModule : BaseKoinModule() {
-    override val module: Module
-        get() = module {
-            factory { LoginUseCase() }
 
-            viewModel { LoginViewModel(get()) }
-        }
+    override val modules: List<Module>
+        get() = listOf(
+            module {
+                factory { LoginUseCase() }
+
+                viewModel { LoginViewModel(get()) }
+            }
+        )
 }

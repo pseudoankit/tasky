@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
-import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons

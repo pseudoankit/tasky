@@ -7,8 +7,11 @@ import pseudoankit.droid.authentication.presentation.registration.RegistrationVi
 import pseudoankit.droid.core.koin.BaseKoinModule
 
 internal object RegistrationModule : BaseKoinModule() {
-    override val module: Module
-        get() = module {
-            viewModel { RegistrationViewModel() }
-        }
+
+    override val modules: List<Module>
+        get() = listOf(
+            module {
+                viewModel { RegistrationViewModel() }
+            }
+        )
 }
