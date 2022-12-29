@@ -10,9 +10,8 @@ import pseudoankit.droid.unify.components.button.UnifyButtonMapper.buttonColors
 import pseudoankit.droid.unify.components.button.UnifyButtonMapper.isEnabled
 import pseudoankit.droid.unify.components.button.UnifyButtonMapper.isLoading
 import pseudoankit.droid.unify.components.progressbar.UnifyProgressIndicator
-import pseudoankit.droid.unify.components.textview.UnifyTextType
 import pseudoankit.droid.unify.components.textview.UnifyTextView
-import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.token.UnifyTokens
 
 object UnifyButton {
 
@@ -21,10 +20,10 @@ object UnifyButton {
         Button(
             onClick = config.onClick,
             enabled = config.state.isEnabled,
-            shape = RoundedCornerShape(UnifyDimens.Radius.Large),
+            shape = RoundedCornerShape(UnifyTokens.Button.Radius),
             modifier = config.modifier
                 .fillMaxWidth()
-                .height(UnifyDimens.Dp_58),
+                .height(UnifyTokens.Button.Height),
             colors = config.state.buttonColors()
         ) {
             if (config.state.isLoading) {
@@ -34,7 +33,7 @@ object UnifyButton {
             UnifyTextView(
                 config = UnifyTextView.Config(
                     text = config.text,
-                    textType = UnifyTextType.TitleMedium
+                    textType = UnifyTokens.Button.TextType
                 )
             )
         }

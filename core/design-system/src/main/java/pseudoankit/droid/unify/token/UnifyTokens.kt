@@ -1,9 +1,16 @@
 package pseudoankit.droid.unify.token
 
-object UnifyTokens {
+import pseudoankit.droid.unify.components.textview.UnifyTextType
+
+internal object UnifyTokens {
+    object Button {
+        val Radius = UnifyDimens.Radius.Large
+        val Height = UnifyDimens.Dp_58
+        val TextType = UnifyTextType.TitleMedium
+    }
 
     object TimePicker {
-        val SelectedColor = UnifyColors.Indigo400
+        val SelectedColor = UnifyColors.Blue200
     }
 
     object TextField {
