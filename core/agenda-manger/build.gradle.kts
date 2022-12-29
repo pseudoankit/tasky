@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.Library.Feature)
+    id(Plugins.Ksp)
 }
 
 android {
@@ -7,5 +8,9 @@ android {
 }
 
 dependencies {
-
+    with(Dependencies.Room) {
+        implementation(Ktx)
+        implementation(Runtime)
+        ksp(Compiler)
+    }
 }

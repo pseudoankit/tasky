@@ -14,6 +14,7 @@ import pseudoankit.droid.tasky.navigation.navigator.feature.AuthNavigatorImpl
 import pseudoankit.droid.tasky.navigation.navigator.feature.HomeScreenNavigatorImpl
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 
+// TODO in separate module
 internal class CoreFeatureNavigator(
     private val navController: NavController,
     private val context: Context

@@ -6,12 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
+import org.koin.core.context.unloadKoinModules
+import pseudoankit.droid.tasky.di.AppModule
 import pseudoankit.droid.tasky.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.unify.token.UnifyColors
@@ -22,29 +25,41 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         setContent {
             UnifyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = UnifyColors.White
                 ) {
-                    val context = LocalContext.current
-
-                    val engine = rememberAnimatedNavHostEngine()
-                    val navController = engine.rememberNavController()
-
-                    // TODO : screen transitions
-
-                    DestinationsNavHost(
-                        navGraph = MainNavGraph,
-                        navController = navController,
-                        engine = engine,
-                        dependenciesContainerBuilder = {
-                            dependency(CoreFeatureNavigator(navController, context))
-                        }
-                    )
+                    InitializeNavigation()
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        unloadKoinModules(AppModule.modules)
+        super.onDestroy()
+    }
+
+    @Composable
+    private fun InitializeNavigation() {
+        val context = LocalContext.current
+
+        val engine = rememberAnimatedNavHostEngine()
+        val navController = engine.rememberNavController()
+
+        // TODO : screen transitions
+
+        DestinationsNavHost(
+            navGraph = MainNavGraph,
+            navController = navController,
+            engine = engine,
+            dependenciesContainerBuilder = {
+                dependency(CoreFeatureNavigator(navController, context))
+            }
+        )
     }
 }

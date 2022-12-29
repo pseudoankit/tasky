@@ -8,6 +8,7 @@ object AgendaManagerModule {
 
     val reminderModules
         get() = module {
-            single<ReminderRepository> { ReminderRepositoryImpl() }
+
+            single<ReminderRepository> { ReminderRepositoryImpl(get()) }
         }
 }

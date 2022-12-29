@@ -3,7 +3,9 @@ package pseudoankit.droid.tasky
 import android.app.Application
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
+import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import pseudoankit.droid.tasky.di.AppModule
 
 class TaskyApplication : Application() {
 
@@ -13,5 +15,10 @@ class TaskyApplication : Application() {
             androidLogger()
             androidContext(this@TaskyApplication)
         }
+        loadKoinModules()
+    }
+
+    private fun loadKoinModules() {
+        loadKoinModules(AppModule.modules)
     }
 }

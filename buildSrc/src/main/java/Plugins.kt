@@ -26,6 +26,7 @@ object Plugins {
         const val ComposeFeature = "compose-feature-plugin"
     }
 
+    const val KotlinKapt = "kotlin-kapt"
     const val AndroidLibrary = "com.android.library"
     const val AndroidApplication = "com.android.application"
     const val Ksp = "com.google.devtools.ksp"

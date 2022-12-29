@@ -43,4 +43,10 @@ object Dependencies {
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:1.1.2"
         const val PluginsRepo = "https://plugins.gradle.org/m2/"
     }
+
+    object Room {
+        const val Runtime = "androidx.room:room-runtime:${Versions.Room}"
+        const val Compiler = "androidx.room:room-compiler:${Versions.Room}"
+        const val Ktx = "androidx.room:room-ktx:${Versions.Room}"
+    }
 }
