@@ -11,8 +11,6 @@ android {
 dependencies {
     with(Dependencies.Room) {
         implementation(Ktx)
-        implementation(Runtime)
-        ksp(Compiler)
     }
 
     with(Modules.Core) {

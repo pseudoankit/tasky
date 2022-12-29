@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.navigation.navigator.feature
+package pseudoankit.droid.navigation.navigator.feature
 
 import android.content.Context
 import androidx.navigation.NavController
@@ -6,7 +6,6 @@ import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.destinations.RegistrationScreenDestination
 import pseudoankit.droid.coreui.navigator.CoreNavigator
-import pseudoankit.droid.tasky.navigation.navigator.CoreNavigatorImpl
 
 internal class AuthNavigatorImpl(
     private val navController: NavController,

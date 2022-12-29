@@ -18,6 +18,7 @@
             <option value="$PROJECT_DIR$/core/core-ui" />
             <option value="$PROJECT_DIR$/core/database-manager" />
             <option value="$PROJECT_DIR$/core/design-system" />
+            <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/agenda" />
             <option value="$PROJECT_DIR$/feature/agenda/event" />

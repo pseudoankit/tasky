@@ -4,7 +4,7 @@ import androidx.room.TypeConverter
 import java.time.LocalDate
 import java.time.LocalTime
 
-// TODO
+// TODO json serializer
 class DateTimeTypeConvertor {
 
     @TypeConverter

@@ -36,14 +36,7 @@ dependencies {
         implementation(project(Core))
         implementation(project(CoreUi))
         implementation(project(DataBaseManager))
-    }
-
-    with(Modules.Feature) {
-        implementation(project(Authentication))
-        implementation(project(Home))
-        implementation(project(Event))
-        implementation(project(Reminder))
-        implementation(project(Task))
+        implementation(project(Navigation))
     }
 
     with(Dependencies.Koin) {
@@ -52,6 +45,5 @@ dependencies {
 
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
-        ksp(ComposeDestinationsKsp)
     }
 }

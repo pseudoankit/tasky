@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.navigation.navigator.feature
+package pseudoankit.droid.navigation.navigator.feature
 
 import android.content.Context
 import androidx.navigation.NavController
@@ -6,7 +6,6 @@ import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.coreui.navigator.CoreNavigator
 import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.tasky.home.navigator.AgendaItemsScreenNavigator
-import pseudoankit.droid.tasky.navigation.navigator.CoreNavigatorImpl
 import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
 
 internal class AgendaItemsScreenNavigatorImpl(

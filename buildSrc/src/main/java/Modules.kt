@@ -14,5 +14,6 @@ object Modules {
         const val DesignSystem = ":core:design-system"
         const val AgendaManager = ":core:agenda-manger"
         const val DataBaseManager = ":core:database-manager"
+        const val Navigation = ":core:navigation"
     }
 }
