@@ -35,6 +35,7 @@ object Dependencies {
             "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
         const val CoroutineAndroid =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
+        const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
     }
 
     object Gradle {

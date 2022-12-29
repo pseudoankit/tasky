@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         classpath(Dependencies.Gradle.AndroidTools)
         classpath(Dependencies.Gradle.KotlinGradle)
+        classpath(kotlin("serialization", version = Versions.Kotlin))
     }
 }
 

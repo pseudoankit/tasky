@@ -20,6 +20,7 @@ open class CorePlugin : Plugin<Project> {
     override fun apply(project: Project) {
         project.plugins.apply {
             apply("org.jetbrains.kotlin.android")
+            apply("kotlinx-serialization")
         }
 
         val androidExtension =
@@ -72,6 +73,7 @@ open class CorePlugin : Plugin<Project> {
             }
             with(Dependencies.Kotlin) {
                 this@dependencies.implementation(ImmutableCollection)
+                this@dependencies.implementation(Serialization)
             }
             with(Dependencies.Compose) {
                 this@dependencies.implementation(Runtime)
