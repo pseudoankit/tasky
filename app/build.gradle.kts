@@ -31,17 +31,11 @@ android {
 }
 
 dependencies {
-    with(Dependencies.Room) {
-        implementation(Ktx)
-        implementation(Runtime)
-        ksp(Compiler)
-    }
-
     with(Modules.Core) {
         implementation(project(DesignSystem))
         implementation(project(Core))
         implementation(project(CoreUi))
-        implementation(project(AgendaManager))
+        implementation(project(DataBaseManager))
     }
 
     with(Modules.Feature) {

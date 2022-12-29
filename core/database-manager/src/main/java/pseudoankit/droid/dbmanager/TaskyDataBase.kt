@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.database
+package pseudoankit.droid.dbmanager
 
 import android.content.Context
 import androidx.room.Database
@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import pseudoankit.droid.agendamanger.data.local.dao.ReminderDao
 import pseudoankit.droid.agendamanger.data.local.entity.ReminderEntity
+import pseudoankit.droid.dbmanager.typeconvertor.DateTimeTypeConvertor
 
 @Database(
     entities = [ReminderEntity::class],
@@ -15,10 +16,9 @@ import pseudoankit.droid.agendamanger.data.local.entity.ReminderEntity
 @TypeConverters(
     DateTimeTypeConvertor::class
 )
-// TODO in separate module
 abstract class TaskyDataBase : RoomDatabase() {
 
-    abstract fun getNotesDao(): ReminderDao
+    abstract val getNotesDao: ReminderDao
 
     companion object {
 

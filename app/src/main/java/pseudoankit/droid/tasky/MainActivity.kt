@@ -13,8 +13,6 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
-import org.koin.core.context.unloadKoinModules
-import pseudoankit.droid.tasky.di.AppModule
 import pseudoankit.droid.tasky.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.unify.token.UnifyColors
@@ -37,11 +35,6 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onDestroy() {
-        unloadKoinModules(AppModule.modules)
-        super.onDestroy()
     }
 
     @Composable

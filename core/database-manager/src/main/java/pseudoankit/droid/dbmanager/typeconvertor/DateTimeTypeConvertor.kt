@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.database
+package pseudoankit.droid.dbmanager.typeconvertor
 
 import androidx.room.TypeConverter
 import java.time.LocalDate
