@@ -2,9 +2,8 @@ package pseudoankit.droid.unify.components.dialog.timepicker
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import com.vanpra.composematerialdialogs.rememberMaterialDialogState
-import pseudoankit.droid.unify.components.dialog.core.UnifyDialogState
-import pseudoankit.droid.unify.components.dialog.core.rememberUnifyDialogState
+import pseudoankit.droid.unify.components.dialog.UnifyDialogState
+import pseudoankit.droid.unify.components.dialog.rememberUnifyDialogState
 import java.time.LocalTime
 
 /**
@@ -19,19 +18,10 @@ object UnifyTimePicker {
     operator fun invoke(config: Config): UnifyDialogState = with(config) {
         val timePickerState = rememberUnifyDialogState()
 
-        val materialPickerState = rememberMaterialDialogState()
-        when (timePickerState.showing) {
-            true -> materialPickerState.show()
-            false -> materialPickerState.hide()
-        }
-
         UnifyTimePickerImpl(
             initialTime = initialTime,
-            timePickerState = materialPickerState,
-            onTimeChanged = onTimeChanged,
-            onCloseRequest = {
-                timePickerState.hide()
-            }
+            timePickerState = timePickerState,
+            onTimeChanged = onTimeChanged
         )
 
         return timePickerState

@@ -6,6 +6,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.list.UnifyList
@@ -19,6 +21,20 @@ import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
 internal object ReminderHomeScreenComponents {
+
+    @Composable
+    fun RepeatsReminderAtText(label: TextResource, onClick: () -> Unit) {
+        UnifyList(
+            config = UnifyList.Config(
+                leadingIcon = UnifyIcons.Redo,
+                label = label.asString(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable(onClick = onClick)
+                    .padding(UnifyDimens.Dp_16)
+            )
+        )
+    }
 
     // TODO : clear focus from text field
     @Composable

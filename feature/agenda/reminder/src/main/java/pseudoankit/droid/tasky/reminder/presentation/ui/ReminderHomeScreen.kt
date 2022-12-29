@@ -53,6 +53,10 @@ internal fun ReminderHomeScreen(
             onTimeClicked = viewModel::onTimeClicked
         )
         UnifyDivider()
+        ReminderHomeScreenComponents.RepeatsReminderAtText(
+            label = state.repeatsOnLabel,
+            onClick = viewModel::onRepeatsOnLabelClicked
+        )
     }
 }
 

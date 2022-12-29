@@ -26,6 +26,7 @@ internal class ReminderViewModel : ViewModel(),
     fun onTimeValueChanged(time: LocalTime) = setState { copy(_selectedTime = TaskyTime(time)) }
 
 
+    fun onRepeatsOnLabelClicked() {}
     fun onNavigateUp() = postSideEffect { ReminderUiState.SideEffect.OnNavigateUp }
     fun onTimeClicked() = postSideEffect { ReminderUiState.SideEffect.ShowTimePicker }
     fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }

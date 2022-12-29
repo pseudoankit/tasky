@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.components.dialog.core
+package pseudoankit.droid.unify.components.dialog
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
@@ -6,22 +6,35 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.text.TextStyle
 import com.vanpra.composematerialdialogs.MaterialDialog
 import com.vanpra.composematerialdialogs.MaterialDialogScope
-import com.vanpra.composematerialdialogs.MaterialDialogState
+import com.vanpra.composematerialdialogs.rememberMaterialDialogState
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
-object UnifyMaterialDialog {
+object UnifyDialog {
 
     @Composable
     operator fun invoke(
-        state: MaterialDialogState,
-        onCloseRequest: (MaterialDialogState) -> Unit,
+        content: @Composable MaterialDialogScope.() -> Unit
+    ): UnifyDialogState {
+        return rememberUnifyDialogState().also {
+            invoke(state = it, content = content)
+        }
+    }
+
+    @Composable
+    operator fun invoke(
+        state: UnifyDialogState,
         content: @Composable MaterialDialogScope.() -> Unit
     ) {
+        val materialPickerState = rememberMaterialDialogState()
+        when (state.showing) {
+            true -> materialPickerState.show()
+            false -> materialPickerState.hide()
+        }
+
         val onActionButtonClick = remember {
             {
                 state.hide()
-                onCloseRequest(state)
             }
         }
         val actionButtonTextStyle = remember {
@@ -29,7 +42,7 @@ object UnifyMaterialDialog {
         }
 
         MaterialDialog(
-            dialogState = state,
+            dialogState = materialPickerState,
             buttons = {
                 positiveButton(
                     "OK",
@@ -44,7 +57,9 @@ object UnifyMaterialDialog {
             },
             shape = RoundedCornerShape(UnifyDimens.Radius.Large),
             autoDismiss = true,
-            onCloseRequest = onCloseRequest,
+            onCloseRequest = {
+                state.hide()
+            },
             content = content
         )
     }
