@@ -9,6 +9,6 @@ object DataBaseModule {
     operator fun invoke() = module {
         single { TaskyDataBase(androidApplication()) }
 
-        factory { get<TaskyDataBase>().getNotesDao }
+        factory { get<TaskyDataBase>().reminderDao }
     }
 }

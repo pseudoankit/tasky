@@ -18,7 +18,7 @@ import pseudoankit.droid.dbmanager.typeconvertor.DateTimeTypeConvertor
 )
 abstract class TaskyDataBase : RoomDatabase() {
 
-    abstract val getNotesDao: ReminderDao
+    abstract val reminderDao: ReminderDao
 
     companion object {
 
