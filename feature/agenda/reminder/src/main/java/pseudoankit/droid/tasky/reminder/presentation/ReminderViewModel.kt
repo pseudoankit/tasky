@@ -2,12 +2,14 @@ package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.toImmutableList
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import pseudoankit.droid.core.util.datetime.model.TaskyTime
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
+import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -24,10 +26,26 @@ internal class ReminderViewModel : ViewModel(),
     }
 
     fun onTimeValueChanged(time: LocalTime) = setState { copy(_selectedTime = TaskyTime(time)) }
+    fun onRepeatIntervalChanged(selectedInterval: RepeatInterval) {
+        if (selectedInterval == RepeatInterval.Custom) {
+            postSideEffect { ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector }
+            toggleRepeatIntervalSelectionViewVisibility()
+            return
+        }
+
+        setState {
+            copy(repeatIntervalItems = repeatIntervalItems.map { item ->
+                item.copy(isSelected = item.item == selectedInterval)
+            }.toImmutableList())
+        }
+        toggleRepeatIntervalSelectionViewVisibility()
+    }
 
 
-    fun onRepeatsOnLabelClicked() {}
-    fun onNavigateUp() = postSideEffect { ReminderUiState.SideEffect.OnNavigateUp }
+    fun toggleRepeatIntervalSelectionViewVisibility() =
+        postSideEffect { ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView }
+
+    fun onNavigateUp() = postSideEffect { ReminderUiState.SideEffect.NavigateUp }
     fun onTimeClicked() = postSideEffect { ReminderUiState.SideEffect.ShowTimePicker }
     fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
 

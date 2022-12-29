@@ -14,16 +14,18 @@ object UnifyDialog {
 
     @Composable
     operator fun invoke(
-        content: @Composable MaterialDialogScope.() -> Unit
+        showActionButton: Boolean = true,
+        content: @Composable () -> Unit
     ): UnifyDialogState {
         return rememberUnifyDialogState().also {
-            invoke(state = it, content = content)
+            invoke(state = it, showActionButton = showActionButton, content = { content() })
         }
     }
 
     @Composable
-    operator fun invoke(
+    internal operator fun invoke(
         state: UnifyDialogState,
+        showActionButton: Boolean = true,
         content: @Composable MaterialDialogScope.() -> Unit
     ) {
         val materialPickerState = rememberMaterialDialogState()
@@ -44,6 +46,7 @@ object UnifyDialog {
         MaterialDialog(
             dialogState = materialPickerState,
             buttons = {
+                if (showActionButton.not()) return@MaterialDialog
                 positiveButton(
                     "OK",
                     onClick = onActionButtonClick,

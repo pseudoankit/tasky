@@ -8,15 +8,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
-object UnifyDivider {
-
-    @Composable
-    operator fun invoke(
-        modifier: Modifier = Modifier,
-        color: Color = DividerDefaults.color,
-        height: Dp = DividerDefaults.Thickness,
-        startIndent: Dp = 0.dp
-    ) {
-        Divider(modifier, color, height, startIndent)
-    }
+@Composable
+fun UnifyDivider(
+    modifier: Modifier = Modifier,
+    color: Color = DividerDefaults.color,
+    height: Dp = DividerDefaults.Thickness,
+    startIndent: Dp = 0.dp
+) {
+    Divider(modifier, color, height, startIndent)
 }

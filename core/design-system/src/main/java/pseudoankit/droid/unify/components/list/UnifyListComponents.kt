@@ -30,10 +30,16 @@ internal object UnifyListComponents {
     }
 
     @Composable
-    fun TrailingIcon(trailingIcon: UnifyList.TrailingIcon?) = when (trailingIcon) {
+    fun TrailingIcon(trailingIcon: UnifyList.TrailingIcon?, color: Color) = when (trailingIcon) {
         is UnifyList.TrailingIcon.Switch -> {
             UnifySwitch(config = trailingIcon.value)
         }
+        is UnifyList.TrailingIcon.NoAction -> UnifyIcon(
+            config = UnifyIcon.Config(
+                tint = color,
+                icon = trailingIcon.value
+            )
+        )
         null -> {}
     }
 }

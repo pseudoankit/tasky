@@ -3,6 +3,7 @@ package pseudoankit.droid.tasky.reminder.presentation.ui
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -11,10 +12,12 @@ import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.coreui.util.extension.state
+import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
+import pseudoankit.droid.unify.components.dialog.UnifyDialog
 import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
 import pseudoankit.droid.unify.components.dialog.timepicker.UnifyTimePicker
 import pseudoankit.droid.unify.components.divider.UnifyDivider
@@ -54,9 +57,10 @@ internal fun ReminderHomeScreen(
         )
         UnifyDivider()
         ReminderHomeScreenComponents.RepeatsReminderAtText(
-            label = state.repeatsOnLabel,
-            onClick = viewModel::onRepeatsOnLabelClicked
+            repeatIntervalLabel = state.selectedRepeatIntervalLabel,
+            onClick = viewModel::toggleRepeatIntervalSelectionViewVisibility
         )
+        UnifyDivider()
     }
 }
 
@@ -79,12 +83,22 @@ private fun HandleSideEffect(
         )
     )
 
+    val repeatsOnDialog = UnifyDialog(showActionButton = false) {
+        ReminderHomeScreenComponents.RepeatIntervalDialogItems(
+            items = viewModel.state.repeatIntervalItems,
+            onClick = viewModel::onRepeatIntervalChanged
+        )
+    }
+
+    val context = LocalContext.current
     LaunchedEffect(Unit) {
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
-                ReminderUiState.SideEffect.OnNavigateUp -> navigator.navigateUp()
+                ReminderUiState.SideEffect.NavigateUp -> navigator.navigateUp()
                 ReminderUiState.SideEffect.ShowDatePicker -> datePicker.show()
                 ReminderUiState.SideEffect.ShowTimePicker -> timePicker.show()
+                ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView -> repeatsOnDialog.toggle()
+                ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector -> context.toastNotImplemented()
             }
         }
     }

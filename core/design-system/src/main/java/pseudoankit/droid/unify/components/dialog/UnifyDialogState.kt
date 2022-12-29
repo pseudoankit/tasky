@@ -19,4 +19,8 @@ class UnifyDialogState internal constructor(initialValue: Boolean = false) {
     fun hide() {
         showing = false
     }
+
+    fun toggle() {
+        showing = showing.not()
+    }
 }

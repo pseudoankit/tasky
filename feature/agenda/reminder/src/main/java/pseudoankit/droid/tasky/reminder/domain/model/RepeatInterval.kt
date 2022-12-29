@@ -1,6 +1,6 @@
 package pseudoankit.droid.tasky.reminder.domain.model
 
-enum class RepeatsOn {
+internal enum class RepeatInterval {
     DoNotRepeat,
     Daily,
     Weekly,

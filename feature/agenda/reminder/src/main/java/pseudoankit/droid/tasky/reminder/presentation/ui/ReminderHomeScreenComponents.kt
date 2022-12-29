@@ -6,8 +6,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
+import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
+import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.list.UnifyList
@@ -23,11 +26,34 @@ import pseudoankit.droid.unify.token.UnifyDimens
 internal object ReminderHomeScreenComponents {
 
     @Composable
-    fun RepeatsReminderAtText(label: TextResource, onClick: () -> Unit) {
+    fun RepeatIntervalDialogItems(
+        items: ImmutableList<ReminderUiState.State.RepeatIntervalConfig>,
+        onClick: (RepeatInterval) -> Unit
+    ) {
+        Column(modifier = Modifier.padding(vertical = UnifyDimens.Dp_16)) {
+            items.forEach { item ->
+                UnifyList(
+                    config = UnifyList.Config(
+                        label = item.label.asString(),
+                        trailingIcon = if (item.isSelected) UnifyList.TrailingIcon.NoAction(
+                            UnifyIcons.Check
+                        ) else null,
+                        color = if (item.isSelected) UnifyColors.Purple800 else UnifyColors.Black,
+                        modifier = Modifier
+                            .clickable { onClick(item.item) }
+                            .padding(vertical = UnifyDimens.Dp_12, horizontal = UnifyDimens.Dp_16)
+                    )
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun RepeatsReminderAtText(repeatIntervalLabel: TextResource, onClick: () -> Unit) {
         UnifyList(
             config = UnifyList.Config(
-                leadingIcon = UnifyIcons.Redo,
-                label = label.asString(),
+                leadingIcon = UnifyIcons.Refresh,
+                label = repeatIntervalLabel.asString(),
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable(onClick = onClick)

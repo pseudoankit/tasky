@@ -20,10 +20,12 @@ object UnifyList {
         verticalAlignment = Alignment.CenterVertically
     ) {
         UnifyListComponents.LeadingIcon(config.leadingIcon, config.color)
-        Spacer(modifier = Modifier.width(UnifyDimens.Dp_16))
+        if (config.leadingIcon != null) {
+            Spacer(modifier = Modifier.width(UnifyDimens.Dp_16))
+        }
         UnifyListComponents.Label(config.label, config.color)
         Spacer(modifier = Modifier.weight(1f))
-        UnifyListComponents.TrailingIcon(config.trailingIcon)
+        UnifyListComponents.TrailingIcon(config.trailingIcon, config.color)
     }
 
     data class Config(
@@ -37,5 +39,8 @@ object UnifyList {
     sealed interface TrailingIcon {
         @JvmInline
         value class Switch(val value: UnifySwitch.Config) : TrailingIcon
+
+        @JvmInline
+        value class NoAction(val value: UnifyIcons) : TrailingIcon
     }
 }

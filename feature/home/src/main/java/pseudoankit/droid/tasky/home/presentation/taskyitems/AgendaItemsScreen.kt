@@ -8,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
@@ -78,7 +79,7 @@ private fun HandleSideEffect(
     navigator: AgendaItemsScreenNavigator
 ) {
     LaunchedEffect(Unit) {
-        viewModel.container.sideEffectFlow.collect {
+        viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 is AgendaItemsUiState.SideEffect.NavigateToAgenda -> when (it.type) {
                     AgendaType.Reminder -> navigator.navigateToReminder()
