@@ -2,11 +2,13 @@ package pseudoankit.droid.tasky.navigation.navigator
 
 import android.content.Context
 import androidx.navigation.NavController
+import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.coreui.navigator.CoreNavigator
 import pseudoankit.droid.coreui.util.extension.finish
 import pseudoankit.droid.tasky.home.navigator.AgendaItemsScreenNavigator
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
+import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
 import pseudoankit.droid.tasky.navigation.navigator.feature.AgendaItemsScreenNavigatorImpl
 import pseudoankit.droid.tasky.navigation.navigator.feature.AuthNavigatorImpl
 import pseudoankit.droid.tasky.navigation.navigator.feature.HomeScreenNavigatorImpl
@@ -16,10 +18,15 @@ internal class CoreFeatureNavigator(
     private val navController: NavController,
     private val context: Context
 ) : CoreNavigator,
-    ReminderNavigator,
     AuthNavigator by AuthNavigatorImpl(navController, context),
     HomeScreenNavigator by HomeScreenNavigatorImpl(navController, context),
+    ReminderNavigator,
     AgendaItemsScreenNavigator by AgendaItemsScreenNavigatorImpl(navController, context) {
+
+    override fun navigateToHomeScreen() {
+        navController.backQueue.clear()
+        navController.navigate(HomeScreenDestination)
+    }
 
     override fun navigateUp() {
         if (navController.popBackStack().not()) {

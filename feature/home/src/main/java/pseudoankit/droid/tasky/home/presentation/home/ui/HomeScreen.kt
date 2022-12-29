@@ -40,7 +40,6 @@ internal fun HomeScreen(
             },
             floatingActionButton = {
                 HomeScreenComponents.FloatingButton(
-                    isSelected = navigator.isAgendaItemsScreenVisible(),
                     onClick = viewModel::onShowAgendaItems
                 )
             }

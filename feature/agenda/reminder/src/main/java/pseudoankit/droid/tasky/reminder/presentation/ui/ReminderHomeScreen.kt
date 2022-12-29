@@ -99,6 +99,7 @@ private fun HandleSideEffect(
                 ReminderUiState.SideEffect.ShowTimePicker -> timePicker.show()
                 ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView -> repeatsOnDialog.toggle()
                 ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector -> context.toastNotImplemented()
+                ReminderUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHomeScreen()
             }
         }
     }

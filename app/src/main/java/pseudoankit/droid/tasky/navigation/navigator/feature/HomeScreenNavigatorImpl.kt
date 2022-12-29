@@ -12,10 +12,6 @@ internal class HomeScreenNavigatorImpl(
     private val navController: NavController,
     private val context: Context
 ) : HomeScreenNavigator, CoreNavigator by CoreNavigatorImpl(navController, context) {
-    override fun isAgendaItemsScreenVisible(): Boolean {
-        // TODO
-        return false
-    }
 
     override fun navigateToAgendaItemsScreen() {
         navController.navigate(AgendaItemsScreenDestination)

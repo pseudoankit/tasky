@@ -54,13 +54,10 @@ internal object HomeScreenComponents {
     }
 
     @Composable
-    fun FloatingButton(
-        onClick: () -> Unit,
-        isSelected: Boolean
-    ) {
+    fun FloatingButton(onClick: () -> Unit) {
         UnifyFloatingButton(
             iconConfig = UnifyIcon.Config(
-                icon = if (isSelected) UnifyIcons.Cross else UnifyIcons.Add,
+                icon = UnifyIcons.Add,
                 size = UnifyDimens.Dp_36
             ),
             onClick = onClick

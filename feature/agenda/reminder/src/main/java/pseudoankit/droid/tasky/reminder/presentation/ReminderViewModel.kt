@@ -6,14 +6,19 @@ import kotlinx.collections.immutable.toImmutableList
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
+import org.orbitmvi.orbit.syntax.simple.intent
+import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.core.util.datetime.model.TaskyTime
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.model.RepeatInterval
+import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
 import java.time.LocalDate
 import java.time.LocalTime
 
-internal class ReminderViewModel : ViewModel(),
+internal class ReminderViewModel(
+    private val saveReminderUseCase: SaveReminderUseCase
+) : ViewModel(),
     ContainerHost<ReminderUiState.State, ReminderUiState.SideEffect> {
 
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
@@ -26,6 +31,21 @@ internal class ReminderViewModel : ViewModel(),
     }
 
     fun onTimeValueChanged(time: LocalTime) = setState { copy(_selectedTime = TaskyTime(time)) }
+    fun toggleRepeatIntervalSelectionViewVisibility() =
+        postSideEffect { ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView }
+
+
+    fun onNavigateUp() = postSideEffect { ReminderUiState.SideEffect.NavigateUp }
+
+    fun onTimeClicked() = postSideEffect { ReminderUiState.SideEffect.ShowTimePicker }
+    fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
+
+
+    fun onSave() = intent {
+        saveReminderUseCase.invoke(state)
+        postSideEffect(ReminderUiState.SideEffect.NavigateToHomeScreen)
+    }
+
     fun onRepeatIntervalChanged(selectedInterval: RepeatInterval) {
         if (selectedInterval == RepeatInterval.Custom) {
             postSideEffect { ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector }
@@ -40,15 +60,4 @@ internal class ReminderViewModel : ViewModel(),
         }
         toggleRepeatIntervalSelectionViewVisibility()
     }
-
-
-    fun toggleRepeatIntervalSelectionViewVisibility() =
-        postSideEffect { ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView }
-
-    fun onNavigateUp() = postSideEffect { ReminderUiState.SideEffect.NavigateUp }
-    fun onTimeClicked() = postSideEffect { ReminderUiState.SideEffect.ShowTimePicker }
-    fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
-
-
-    fun onSave() {}
 }

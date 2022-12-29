@@ -40,5 +40,6 @@ internal interface ReminderUiState {
         object ShowTimePicker : SideEffect
         object ToggleRepeatIntervalSelectionView : SideEffect
         object ShowCustomRepeatIntervalSelector : SideEffect
+        object NavigateToHomeScreen : SideEffect
     }
 }

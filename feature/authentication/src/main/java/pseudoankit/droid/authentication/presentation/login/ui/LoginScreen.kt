@@ -36,7 +36,7 @@ private fun LoginScreenInternal(
         singleEvents = {
             viewModel.container.sideEffectFlow.collectLatest {
                 when (it) {
-                    LoginUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHome()
+                    LoginUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHomeScreen()
                     LoginUiState.SideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
                 }
             }
