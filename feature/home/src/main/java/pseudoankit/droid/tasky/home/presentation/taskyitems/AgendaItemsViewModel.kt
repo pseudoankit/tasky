@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
+import pseudoankit.droid.agendamanger.domain.model.AgendaType
 import pseudoankit.droid.coreui.util.extension.postSideEffect
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
 
 internal class AgendaItemsViewModel : ViewModel(),
     ContainerHost<AgendaItemsUiState.State, AgendaItemsUiState.SideEffect> {

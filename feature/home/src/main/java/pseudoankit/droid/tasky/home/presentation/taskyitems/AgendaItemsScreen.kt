@@ -11,13 +11,15 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
+import pseudoankit.droid.agendamanger.domain.model.AgendaType
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
 import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.tasky.home.di.AgendaItemsModule
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
 import pseudoankit.droid.tasky.home.navigator.AgendaItemsScreenNavigator
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypeMapper.icon
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypeMapper.label
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.textview.UnifyTextType
@@ -54,23 +56,28 @@ private fun AgendaItems(
     items.forEach {
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_8))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            UnifyTextView(
-                config = UnifyTextView.Config(
-                    text = it.label.asString(),
-                    textType = UnifyTextType.TitleMedium,
-                    color = UnifyColors.White,
-                    fontStyle = FontStyle.Italic
-                )
-            )
-            Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
-            UnifyFloatingButton(
-                iconConfig = UnifyIcon.Config(icon = it.icon),
-                onClick = {
-                    onAgendaSelected(it)
-                }
-            )
+            AgendaItem(it, onAgendaSelected)
         }
     }
+}
+
+@Composable
+private fun AgendaItem(agenda: AgendaType, onAgendaSelected: (AgendaType) -> Unit) {
+    UnifyTextView(
+        config = UnifyTextView.Config(
+            text = agenda.label.asString(),
+            textType = UnifyTextType.TitleMedium,
+            color = UnifyColors.White,
+            fontStyle = FontStyle.Italic
+        )
+    )
+    Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
+    UnifyFloatingButton(
+        iconConfig = UnifyIcon.Config(icon = agenda.icon),
+        onClick = {
+            onAgendaSelected(agenda)
+        }
+    )
 }
 
 @Composable

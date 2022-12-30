@@ -2,7 +2,7 @@ package pseudoankit.droid.tasky.home.presentation.taskyitems
 
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
+import pseudoankit.droid.agendamanger.domain.model.AgendaType
 
 internal interface AgendaItemsUiState {
 
