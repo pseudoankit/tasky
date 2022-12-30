@@ -14,7 +14,7 @@ internal object HomeModule : BaseKoinModule() {
         get() = listOf(
             module {
                 viewModel { AgendaItemsViewModel() }
-                factory { GetSavedAgendaItemsUseCase() }
+                factory { GetSavedAgendaItemsUseCase(get()) }
                 viewModel { HomeViewModel(get()) }
             }
         )

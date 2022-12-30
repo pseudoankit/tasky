@@ -2,11 +2,14 @@ package pseudoankit.droid.tasky.home.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.collections.immutable.toImmutableList
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import org.orbitmvi.orbit.syntax.simple.intent
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
@@ -19,21 +22,32 @@ internal class HomeViewModel(
 ) : ViewModel(),
     ContainerHost<HomeUiState.State, HomeUiState.SideEffect> {
 
+    private var agendaItemsJob: CoroutineScope? = null
+
     override val container: Container<HomeUiState.State, HomeUiState.SideEffect> =
         viewModelScope.container(HomeUiState.State())
+
+    init {
+        loadAgendaItemsForSelectedDate()
+    }
 
     fun onShowAgendaItems() = postSideEffect {
         HomeUiState.SideEffect.ShowAgendaItems
     }
 
-    fun onDaySelected(date: TaskyDate) = intent {
-        val items = getSavedAgendaItemsUseCase.invoke(state.selectedDate)
-        setState {
-            copy(
-                selectedDate = date,
-                savedAgendaItems = items.toImmutableList()
-            )
-        }
+    fun onDaySelected(date: TaskyDate) {
+        setState { copy(selectedDate = date) }
+        loadAgendaItemsForSelectedDate()
+    }
+
+    private fun loadAgendaItemsForSelectedDate() {
+        agendaItemsJob?.cancel()
+        agendaItemsJob = CoroutineScope(Dispatchers.IO)
+        getSavedAgendaItemsUseCase.invoke(state.selectedDate)
+            .onEach {
+                setState { copy(savedAgendaItems = it) }
+            }
+            .launchIn(agendaItemsJob!!)
     }
 
     fun onHeaderMonthSelected() = postSideEffect {

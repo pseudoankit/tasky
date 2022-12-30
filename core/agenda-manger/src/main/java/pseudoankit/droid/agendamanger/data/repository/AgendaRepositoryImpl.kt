@@ -1,13 +1,22 @@
 package pseudoankit.droid.agendamanger.data.repository
 
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.combine
+import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToDomain
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
+import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
+import java.time.LocalDate
 
-internal class AgendaRepositoryImpl : AgendaRepository {
+internal class AgendaRepositoryImpl(
+    private val reminderRepository: ReminderRepository
+) : AgendaRepository {
 
-    override fun getAllSavedItem(): Flow<List<AgendaItem>> {
-        TODO("Not yet implemented")
+    override fun getAllSavedItem(selectedDate: LocalDate): Flow<List<AgendaItem>> {
+        return combine(
+            reminderRepository.getReminders(selectedDate)
+        ) { items ->
+            items[0].map { it.mapToDomain }
+        }
     }
-
 }
