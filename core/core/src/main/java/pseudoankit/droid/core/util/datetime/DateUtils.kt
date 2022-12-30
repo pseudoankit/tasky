@@ -10,8 +10,10 @@ import java.time.format.DateTimeFormatter
 object DateUtils {
     private val dateRangeOfMonthCache = mutableMapOf<Month, List<LocalDate>>()
 
-    fun TaskyDate?.toString(pattern: String): String? = this?.run {
-        value.format(DateTimeFormatter.ofPattern(pattern))
+    fun TaskyDate?.toString(pattern: String): String? = this?.value.toString(pattern)
+
+    fun LocalDate?.toString(pattern: String): String? = this?.run {
+        format(DateTimeFormatter.ofPattern(pattern))
     }
 
     /**

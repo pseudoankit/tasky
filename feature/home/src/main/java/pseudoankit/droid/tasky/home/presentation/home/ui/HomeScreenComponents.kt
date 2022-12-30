@@ -16,6 +16,10 @@ import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.backgroundColor
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.tint
+import pseudoankit.droid.unify.components.card.UnifyCard
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
@@ -30,7 +34,8 @@ internal object HomeScreenComponents {
     fun SavedAgendaItems(items: ImmutableList<AgendaItem>) {
         LazyColumn {
             items(items) {
-                SavedAgendaItem()
+                SavedAgendaItem(it)
+                Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
             }
         }
     }
@@ -133,7 +138,39 @@ internal object HomeScreenComponents {
     }
 
     @Composable
-    private fun SavedAgendaItem() {
+    private fun SavedAgendaItem(agendaItem: AgendaItem) = UnifyCard {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .background(color = agendaItem.backgroundColor)
+                .padding(UnifyDimens.ScreenPadding)
+        ) {
 
+            Column {
+                UnifyTextView(
+                    UnifyTextView.Config(
+                        text = agendaItem.title.orEmpty(),
+                        textType = UnifyTextType.TitleMedium,
+                        color = agendaItem.tint
+                    )
+                )
+                UnifyTextView(
+                    UnifyTextView.Config(
+                        text = "Description.....",
+                        textType = UnifyTextType.BodyLarge,
+                        color = agendaItem.tint
+                    )
+                )
+
+                UnifyTextView(
+                    UnifyTextView.Config(
+                        text = agendaItem.displayDateTime,
+                        textType = UnifyTextType.BodySmall,
+                        color = agendaItem.tint,
+                        modifier = Modifier.align(Alignment.End)
+                    )
+                )
+            }
+        }
     }
 }

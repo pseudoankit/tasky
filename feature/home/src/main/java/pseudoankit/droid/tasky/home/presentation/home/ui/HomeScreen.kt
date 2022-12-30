@@ -1,9 +1,12 @@
 package pseudoankit.droid.tasky.home.presentation.home.ui
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -17,6 +20,7 @@ import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.token.UnifyDimens
 
 @Destination
 @Composable
@@ -50,6 +54,7 @@ internal fun HomeScreen(
             onDaySelected = viewModel::onDaySelected,
             listState = dateRangeListState
         )
+        Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
         HomeScreenComponents.SavedAgendaItems(items = state.savedAgendaItems)
     }
 }
