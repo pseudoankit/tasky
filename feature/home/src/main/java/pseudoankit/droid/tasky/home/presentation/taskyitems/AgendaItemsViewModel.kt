@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import pseudoankit.droid.agendamanger.domain.model.AgendaType
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 
 internal class AgendaItemsViewModel : ViewModel(),
@@ -18,7 +18,7 @@ internal class AgendaItemsViewModel : ViewModel(),
         AgendaItemsUiState.SideEffect.NavigateUp
     }
 
-    fun onAgendaSelected(type: AgendaType) = postSideEffect {
+    fun onAgendaSelected(type: AgendaItem) = postSideEffect {
         AgendaItemsUiState.SideEffect.NavigateToAgenda(type)
     }
 }

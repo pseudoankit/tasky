@@ -4,14 +4,18 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import pseudoankit.droid.core.koin.BaseKoinModule
+import pseudoankit.droid.tasky.home.domain.usecase.GetSavedAgendaItemsUseCase
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
+import pseudoankit.droid.tasky.home.presentation.taskyitems.AgendaItemsViewModel
 
 internal object HomeModule : BaseKoinModule() {
 
     override val modules: List<Module>
         get() = listOf(
             module {
-                viewModel { HomeViewModel() }
+                viewModel { AgendaItemsViewModel() }
+                factory { GetSavedAgendaItemsUseCase() }
+                viewModel { HomeViewModel(get()) }
             }
         )
 }

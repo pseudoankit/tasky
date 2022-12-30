@@ -6,9 +6,7 @@ import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 
 object AgendaManagerModule {
 
-    val reminderModules
-        get() = module {
-
-            single<ReminderRepository> { ReminderRepositoryImpl(get()) }
-        }
+    operator fun invoke() = module {
+        factory<ReminderRepository> { ReminderRepositoryImpl(get()) }
+    }
 }

@@ -50,6 +50,7 @@ internal fun HomeScreen(
             onDaySelected = viewModel::onDaySelected,
             listState = dateRangeListState
         )
+        HomeScreenComponents.SavedAgendaItems(items = state.savedAgendaItems)
     }
 }
 

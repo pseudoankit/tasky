@@ -3,6 +3,7 @@ package pseudoankit.droid.tasky.home.presentation.home.ui
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -12,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
@@ -23,6 +25,15 @@ import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
 internal object HomeScreenComponents {
+
+    @Composable
+    fun SavedAgendaItems(items: ImmutableList<AgendaItem>) {
+        LazyColumn {
+            items(items) {
+                SavedAgendaItem()
+            }
+        }
+    }
 
     @Composable
     internal fun TopBar(
@@ -119,5 +130,10 @@ internal object HomeScreenComponents {
                 )
             )
         }
+    }
+
+    @Composable
+    private fun SavedAgendaItem() {
+
     }
 }
