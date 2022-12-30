@@ -2,32 +2,32 @@ package pseudoankit.droid.tasky.reminder.presentation.mapper
 
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 
 internal object RepeatIntervalUiMapper {
 
-    val RepeatInterval.label
+    val AgendaItem.Reminder.RepeatInterval.label
         get() = when (this) {
-            RepeatInterval.DoNotRepeat -> TextResource.NormalString("Do not repeat")
-            RepeatInterval.Daily -> TextResource.NormalString("Repeats daily")
-            RepeatInterval.Weekly -> TextResource.NormalString("Repeats weekly")
-            RepeatInterval.Monthly -> TextResource.NormalString("Repeats monthly")
-            RepeatInterval.Yearly -> TextResource.NormalString("Repeats yearly")
-            RepeatInterval.Custom -> TextResource.NormalString("Custom")
+            AgendaItem.Reminder.RepeatInterval.DoNotRepeat -> TextResource.NormalString("Do not repeat")
+            AgendaItem.Reminder.RepeatInterval.Daily -> TextResource.NormalString("Repeats daily")
+            AgendaItem.Reminder.RepeatInterval.Weekly -> TextResource.NormalString("Repeats weekly")
+            AgendaItem.Reminder.RepeatInterval.Monthly -> TextResource.NormalString("Repeats monthly")
+            AgendaItem.Reminder.RepeatInterval.Yearly -> TextResource.NormalString("Repeats yearly")
+            AgendaItem.Reminder.RepeatInterval.Custom -> TextResource.NormalString("Custom")
         }
 
     val initialDialogItems: ImmutableList<ReminderUiState.State.RepeatIntervalConfig> =
-        RepeatInterval.values().map {
+        AgendaItem.Reminder.RepeatInterval.values().map {
             ReminderUiState.State.RepeatIntervalConfig(
                 item = it,
-                isSelected = it == RepeatInterval.DoNotRepeat
+                isSelected = it == AgendaItem.Reminder.RepeatInterval.DoNotRepeat
             )
         }.toImmutableList()
 
     val ImmutableList<ReminderUiState.State.RepeatIntervalConfig>.selectedLabel
         get() = firstOrNull {
             it.isSelected
-        }?.label ?: RepeatInterval.DoNotRepeat.label
+        }?.label ?: AgendaItem.Reminder.RepeatInterval.DoNotRepeat.label
 }

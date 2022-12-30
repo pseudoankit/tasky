@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
-import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
@@ -28,7 +28,7 @@ internal object ReminderHomeScreenComponents {
     @Composable
     fun RepeatIntervalDialogItems(
         items: ImmutableList<ReminderUiState.State.RepeatIntervalConfig>,
-        onClick: (RepeatInterval) -> Unit
+        onClick: (AgendaItem.Reminder.RepeatInterval) -> Unit
     ) {
         Column(modifier = Modifier.padding(vertical = UnifyDimens.Dp_16)) {
             items.forEach { item ->

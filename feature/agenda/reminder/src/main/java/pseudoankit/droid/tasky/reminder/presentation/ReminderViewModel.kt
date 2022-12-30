@@ -8,7 +8,7 @@ import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
-import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.datetime.model.TaskyTime
@@ -56,8 +56,8 @@ internal class ReminderViewModel(
         }
     }
 
-    fun onRepeatIntervalChanged(selectedInterval: RepeatInterval) {
-        if (selectedInterval == RepeatInterval.Custom) {
+    fun onRepeatIntervalChanged(selectedInterval: AgendaItem.Reminder.RepeatInterval) {
+        if (selectedInterval == AgendaItem.Reminder.RepeatInterval.Custom) {
             postSideEffect { ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector }
             toggleRepeatIntervalSelectionViewVisibility()
             return

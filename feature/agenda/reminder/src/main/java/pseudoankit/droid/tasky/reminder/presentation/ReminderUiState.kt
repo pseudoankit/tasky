@@ -2,7 +2,7 @@ package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.ImmutableList
-import pseudoankit.droid.agendamanger.domain.model.RepeatInterval
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.datetime.DateUtils.toString
 import pseudoankit.droid.core.util.datetime.TimeUtils.toString
@@ -28,7 +28,7 @@ internal interface ReminderUiState {
         val selectedRepeatIntervalLabel get() = repeatIntervalItems.selectedLabel
 
         data class RepeatIntervalConfig(
-            val item: RepeatInterval,
+            val item: AgendaItem.Reminder.RepeatInterval,
             val isSelected: Boolean = false
         ) {
             val label = item.label

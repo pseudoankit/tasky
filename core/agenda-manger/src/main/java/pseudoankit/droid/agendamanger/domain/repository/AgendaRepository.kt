@@ -1,7 +1,9 @@
 package pseudoankit.droid.agendamanger.domain.repository
 
+import kotlinx.coroutines.flow.Flow
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 
-interface ReminderRepository {
-    fun save(payload: AgendaItem.Reminder)
+interface AgendaRepository {
+
+    fun getAllSavedItem(): Flow<List<AgendaItem>>
 }

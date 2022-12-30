@@ -11,13 +11,13 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
-import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
-import pseudoankit.droid.tasky.home.di.AgendaItemsModule
-import pseudoankit.droid.tasky.home.domain.model.AgendaType
-import pseudoankit.droid.tasky.home.navigator.AgendaItemsScreenNavigator
+import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.icon
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.label
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.textview.UnifyTextType
@@ -28,8 +28,8 @@ import pseudoankit.droid.unify.token.UnifyDimens
 @Destination(style = TaskyDestinationStyle.Dialog::class)
 @Composable
 internal fun AgendaItemsScreen(
-    navigator: AgendaItemsScreenNavigator
-) = HandleKoinModuleInit(module = AgendaItemsModule) {
+    navigator: HomeScreenNavigator
+) {
     val viewModel = getViewModel<AgendaItemsViewModel>()
     HandleSideEffect(navigator = navigator)
 
@@ -48,43 +48,48 @@ internal fun AgendaItemsScreen(
 
 @Composable
 private fun AgendaItems(
-    onAgendaSelected: (AgendaType) -> Unit,
-    items: ImmutableList<AgendaType>
+    onAgendaSelected: (AgendaItem) -> Unit,
+    items: ImmutableList<AgendaItem>
 ) {
     items.forEach {
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_8))
         Row(verticalAlignment = Alignment.CenterVertically) {
-            UnifyTextView(
-                config = UnifyTextView.Config(
-                    text = it.label.asString(),
-                    textType = UnifyTextType.TitleMedium,
-                    color = UnifyColors.White,
-                    fontStyle = FontStyle.Italic
-                )
-            )
-            Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
-            UnifyFloatingButton(
-                iconConfig = UnifyIcon.Config(icon = it.icon),
-                onClick = {
-                    onAgendaSelected(it)
-                }
-            )
+            AgendaItem(it, onAgendaSelected)
         }
     }
 }
 
 @Composable
+private fun AgendaItem(agenda: AgendaItem, onAgendaSelected: (AgendaItem) -> Unit) {
+    UnifyTextView(
+        config = UnifyTextView.Config(
+            text = agenda.label.asString(),
+            textType = UnifyTextType.TitleMedium,
+            color = UnifyColors.White,
+            fontStyle = FontStyle.Italic
+        )
+    )
+    Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
+    UnifyFloatingButton(
+        iconConfig = UnifyIcon.Config(icon = agenda.icon),
+        onClick = {
+            onAgendaSelected(agenda)
+        }
+    )
+}
+
+@Composable
 private fun HandleSideEffect(
     viewModel: AgendaItemsViewModel = getViewModel(),
-    navigator: AgendaItemsScreenNavigator
+    navigator: HomeScreenNavigator
 ) {
     LaunchedEffect(Unit) {
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 is AgendaItemsUiState.SideEffect.NavigateToAgenda -> when (it.type) {
-                    AgendaType.Reminder -> navigator.navigateToReminder()
-                    AgendaType.Task -> navigator.navigateToTasks()
-                    AgendaType.Event -> navigator.navigateToEvents()
+                    is AgendaItem.Reminder -> navigator.navigateToReminder()
+                    is AgendaItem.Task -> navigator.navigateToTasks()
+                    is AgendaItem.Event -> navigator.navigateToEvents()
                 }
                 AgendaItemsUiState.SideEffect.NavigateUp -> navigator.navigateUp()
             }

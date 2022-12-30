@@ -1,7 +1,8 @@
 package pseudoankit.droid.tasky.home.presentation.home
 
-import androidx.compose.runtime.Immutable
 import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.DateUtils
 import pseudoankit.droid.core.util.datetime.DateUtils.toString
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
@@ -14,9 +15,9 @@ internal interface HomeUiState {
         object ShowAgendaItems : SideEffect
     }
 
-    @Immutable
     data class State(
-        val selectedDate: TaskyDate = TaskyDate.Today
+        val selectedDate: TaskyDate = TaskyDate.Today,
+        val savedAgendaItems: ImmutableList<AgendaItem> = persistentListOf()
     ) {
         val selectedMonthDateRange: ImmutableList<TaskyDate> =
             DateUtils.getDateRangeForMonth(selectedDate)
