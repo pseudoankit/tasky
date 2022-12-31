@@ -19,4 +19,9 @@ internal object UnifyTokens {
             val Size = UnifyDimens.Dp_24
         }
     }
+
+    object CheckBox {
+        val BackgroundColor = UnifyColors.Gray100
+        val CheckMarkColor = UnifyColors.Black
+    }
 }
