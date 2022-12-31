@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextDecoration
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
@@ -20,6 +21,7 @@ import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.back
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.tint
 import pseudoankit.droid.unify.components.card.UnifyCard
+import pseudoankit.droid.unify.components.checkbox.UnifyCheckBox
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
@@ -31,10 +33,13 @@ import pseudoankit.droid.unify.token.UnifyDimens
 internal object HomeScreenComponents {
 
     @Composable
-    fun SavedAgendaItems(items: ImmutableList<AgendaItem>) {
+    fun SavedAgendaItems(
+        items: ImmutableList<AgendaItem>,
+        onAgendaItemCompletionToggled: (AgendaItem) -> Unit
+    ) {
         LazyColumn {
             items(items) {
-                SavedAgendaItem(it)
+                SavedAgendaItem(it, onAgendaItemCompletionToggled)
                 Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
             }
         }
@@ -138,20 +143,35 @@ internal object HomeScreenComponents {
     }
 
     @Composable
-    private fun SavedAgendaItem(agendaItem: AgendaItem) = UnifyCard {
+    private fun SavedAgendaItem(
+        agendaItem: AgendaItem,
+        onAgendaItemCompletionToggled: (AgendaItem) -> Unit
+    ) = UnifyCard {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = agendaItem.backgroundColor)
-                .padding(UnifyDimens.ScreenPadding)
+                .padding(UnifyDimens.Dp_12)
         ) {
-
-            Column {
+            UnifyCheckBox(
+                UnifyCheckBox.Config(
+                    checked = agendaItem.completed,
+                    onCheckedChange = {
+                        onAgendaItemCompletionToggled(agendaItem)
+                    }
+                )
+            )
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .offset(x = UnifyDimens.Dp_8)
+            ) {
                 UnifyTextView(
                     UnifyTextView.Config(
-                        text = agendaItem.title.orEmpty(),
+                        text = agendaItem.title,
                         textType = UnifyTextType.TitleMedium,
-                        color = agendaItem.tint
+                        color = agendaItem.tint,
+                        textDecoration = if (agendaItem.completed) TextDecoration.LineThrough else TextDecoration.None
                     )
                 )
                 UnifyTextView(

@@ -55,7 +55,10 @@ internal fun HomeScreen(
             listState = dateRangeListState
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
-        HomeScreenComponents.SavedAgendaItems(items = state.savedAgendaItems)
+        HomeScreenComponents.SavedAgendaItems(
+            items = state.savedAgendaItems,
+            onAgendaItemCompletionToggled = viewModel::onAgendaItemCompletionToggle
+        )
     }
 }
 

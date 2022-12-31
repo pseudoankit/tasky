@@ -3,16 +3,15 @@ package pseudoankit.droid.tasky.reminder.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.collections.immutable.toImmutableList
-import kotlinx.coroutines.Dispatchers
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
+import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.datetime.model.TaskyTime
-import pseudoankit.droid.coreui.util.extension.intent
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
@@ -44,8 +43,7 @@ internal class ReminderViewModel(
     fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
 
 
-    // todo inject dispatcher
-    fun onSave() = intent(Dispatchers.IO) {
+    fun onSave() = intent {
         when (val result = saveReminderUseCase.invoke(state)) {
             is TaskyResult.Error -> postSideEffect(
                 ReminderUiState.SideEffect.ShowError(

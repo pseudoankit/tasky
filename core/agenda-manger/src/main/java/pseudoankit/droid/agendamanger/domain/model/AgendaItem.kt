@@ -6,24 +6,26 @@ import java.time.LocalTime
 
 @Stable
 sealed class AgendaItem(
-    open val date: LocalDate? = null,
-    open val time: LocalTime? = null,
-    open val title: String? = null,
+    open val date: LocalDate,
+    open val time: LocalTime,
+    open val title: String,
+    open val completed: Boolean,
 ) {
 
     @Stable
     data class Reminder(
-        override val title: String? = null,
-        val remindAllDay: Boolean? = null,
-        override val date: LocalDate? = null,
-        override val time: LocalTime? = null,
-        val repeatInterval: RepeatInterval? = null,
+        override val title: String = "",
+        val remindAllDay: Boolean = true,
+        override val date: LocalDate = LocalDate.now(),
+        override val time: LocalTime = LocalTime.now(),
+        val repeatInterval: RepeatInterval = RepeatInterval.DoNotRepeat,
+        override val completed: Boolean = false,
         val id: Int = 0
-    ) : AgendaItem(date, time, title) {
+    ) : AgendaItem(date, time, title, completed) {
         enum class RepeatInterval { DoNotRepeat, Daily, Weekly, Monthly, Yearly, Custom }
     }
 
-    class Task : AgendaItem()
+    class Task : AgendaItem(LocalDate.now(), LocalTime.now(), "", false)
 
-    class Event : AgendaItem()
+    class Event : AgendaItem(LocalDate.now(), LocalTime.now(), "", false)
 }

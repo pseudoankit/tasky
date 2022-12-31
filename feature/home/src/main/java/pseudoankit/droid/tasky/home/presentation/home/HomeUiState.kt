@@ -4,8 +4,8 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.DateUtils
-import pseudoankit.droid.core.util.datetime.DateUtils.toString
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
+import pseudoankit.droid.core.util.extension.parseToString
 
 internal interface HomeUiState {
 
@@ -22,6 +22,6 @@ internal interface HomeUiState {
         val selectedMonthDateRange: ImmutableList<TaskyDate> =
             DateUtils.getDateRangeForMonth(selectedDate)
 
-        val displayHeaderDate get() = selectedDate.toString("MMM yyyy").orEmpty()
+        val displayHeaderDate get() = selectedDate.parseToString("MMM yyyy").orEmpty()
     }
 }

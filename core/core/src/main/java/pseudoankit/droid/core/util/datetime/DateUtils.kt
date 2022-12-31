@@ -5,16 +5,9 @@ import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.core.util.extension.mapToImmutableList
 import java.time.LocalDate
 import java.time.Month
-import java.time.format.DateTimeFormatter
 
 object DateUtils {
     private val dateRangeOfMonthCache = mutableMapOf<Month, List<LocalDate>>()
-
-    fun TaskyDate?.toString(pattern: String): String? = this?.value.toString(pattern)
-
-    fun LocalDate?.toString(pattern: String): String? = this?.run {
-        format(DateTimeFormatter.ofPattern(pattern))
-    }
 
     /**
      * @return[List<LocalDate>] list of days which falls in the same month passed in the param

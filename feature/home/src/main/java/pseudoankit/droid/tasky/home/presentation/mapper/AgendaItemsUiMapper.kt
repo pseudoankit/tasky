@@ -2,8 +2,7 @@ package pseudoankit.droid.tasky.home.presentation.mapper
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
-import pseudoankit.droid.core.util.datetime.DateUtils.toString
-import pseudoankit.droid.core.util.datetime.TimeUtils.parseToString
+import pseudoankit.droid.core.util.extension.parseToString
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.token.UnifyColors
 
@@ -11,7 +10,7 @@ internal object AgendaItemsUiMapper {
 
     val AgendaItem.displayDateTime
         get() = buildString {
-            append(date.toString("dd MMM"))
+            append(date.parseToString("dd MMM"))
             append(", ")
             append(time.parseToString())
         }

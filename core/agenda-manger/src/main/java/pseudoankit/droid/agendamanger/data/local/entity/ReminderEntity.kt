@@ -13,7 +13,7 @@ data class ReminderEntity(
     val date: LocalDate?,
     val time: LocalTime?,
     val repeatInterval: AgendaItem.Reminder.RepeatInterval?,
-
+    val completed: Boolean?,
     @PrimaryKey(autoGenerate = true)
     var id: Int = 0
 )

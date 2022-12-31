@@ -16,7 +16,11 @@ internal class ReminderRepositoryImpl(
         return dao.getReminders(date)
     }
 
-    override fun save(payload: AgendaItem.Reminder) {
+    override suspend fun save(payload: AgendaItem.Reminder) {
         dao.insert(payload.mapToEntity)
+    }
+
+    override suspend fun update(payload: AgendaItem.Reminder) {
+        dao.update(payload.mapToEntity)
     }
 }

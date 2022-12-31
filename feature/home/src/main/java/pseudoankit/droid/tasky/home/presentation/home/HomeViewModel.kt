@@ -10,15 +10,19 @@ import kotlinx.coroutines.flow.onEach
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
+import org.orbitmvi.orbit.syntax.simple.intent
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.tasky.home.domain.usecase.GetSavedAgendaItemsUseCase
+import pseudoankit.droid.tasky.home.domain.usecase.ToggleAgendaItemCompletionUseCase
 import java.time.LocalDate
 
 internal class HomeViewModel(
-    private val getSavedAgendaItemsUseCase: GetSavedAgendaItemsUseCase
+    private val getSavedAgendaItemsUseCase: GetSavedAgendaItemsUseCase,
+    private val toggleAgendaItemCompletionUseCase: ToggleAgendaItemCompletionUseCase
 ) : ViewModel(),
     ContainerHost<HomeUiState.State, HomeUiState.SideEffect> {
 
@@ -48,6 +52,10 @@ internal class HomeViewModel(
                 setState { copy(savedAgendaItems = it) }
             }
             .launchIn(agendaItemsJob!!)
+    }
+
+    fun onAgendaItemCompletionToggle(agenda: AgendaItem) = intent {
+        toggleAgendaItemCompletionUseCase.invoke(agenda)
     }
 
     fun onHeaderMonthSelected() = postSideEffect {
