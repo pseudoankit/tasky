@@ -8,7 +8,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import pseudoankit.droid.unify.token.UnifyColors
+import pseudoankit.droid.unify.token.UnifyTokens
 
 object UnifySwitch {
 
@@ -36,7 +36,7 @@ object UnifySwitch {
 
             @Composable
             override fun borderColor(enabled: Boolean, checked: Boolean): State<Color> {
-                return mutableStateOf(UnifyColors.Transparent)
+                return mutableStateOf(UnifyTokens.Switch.BorderColor)
             }
 
             @Composable
@@ -48,8 +48,8 @@ object UnifySwitch {
             override fun thumbColor(enabled: Boolean, checked: Boolean): State<Color> {
                 return mutableStateOf(
                     when (enabled) {
-                        true -> UnifyColors.Black
-                        false -> UnifyColors.Gray100
+                        true -> UnifyTokens.Switch.ThumbColor.enabled
+                        false -> UnifyTokens.Switch.ThumbColor.disabled
                     }
                 )
             }
@@ -58,8 +58,8 @@ object UnifySwitch {
             override fun trackColor(enabled: Boolean, checked: Boolean): State<Color> {
                 return mutableStateOf(
                     when (enabled) {
-                        true -> UnifyColors.Black.copy(alpha = .1f)
-                        false -> UnifyColors.Gray100.copy(alpha = .42f)
+                        true -> UnifyTokens.Switch.TrackColor.enabled
+                        false -> UnifyTokens.Switch.TrackColor.disabled
                     }
                 )
             }
