@@ -38,10 +38,9 @@ internal object HomeScreenComponents {
         onItemCompletionToggled: (AgendaItem) -> Unit,
         onOptionClicked: (AgendaItem) -> Unit
     ) {
-        LazyColumn {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_16)) {
             items(items) {
                 SavedAgendaItem(it, onItemCompletionToggled, onOptionClicked)
-                Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
             }
         }
     }
