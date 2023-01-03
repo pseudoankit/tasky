@@ -7,6 +7,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.style.TextOverflow
 
 object UnifyTextView {
     @Composable
@@ -19,7 +20,8 @@ object UnifyTextView {
             maxLines = maxLines,
             fontStyle = fontStyle,
             style = textType.textStyle,
-            modifier = modifier
+            modifier = modifier,
+            overflow = TextOverflow.Ellipsis
         )
     }
 

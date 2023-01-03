@@ -57,7 +57,8 @@ internal fun HomeScreen(
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
         HomeScreenComponents.SavedAgendaItems(
             items = state.savedAgendaItems,
-            onAgendaItemCompletionToggled = viewModel::onAgendaItemCompletionToggle
+            onItemCompletionToggled = viewModel::onAgendaItemCompletionToggle,
+            onOptionClicked = viewModel::onAgendaOptionClicked
         )
     }
 }

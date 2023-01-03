@@ -35,11 +35,12 @@ internal object HomeScreenComponents {
     @Composable
     fun SavedAgendaItems(
         items: ImmutableList<AgendaItem>,
-        onAgendaItemCompletionToggled: (AgendaItem) -> Unit
+        onItemCompletionToggled: (AgendaItem) -> Unit,
+        onOptionClicked: (AgendaItem) -> Unit
     ) {
         LazyColumn {
             items(items) {
-                SavedAgendaItem(it, onAgendaItemCompletionToggled)
+                SavedAgendaItem(it, onItemCompletionToggled, onOptionClicked)
                 Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
             }
         }
@@ -145,52 +146,70 @@ internal object HomeScreenComponents {
     @Composable
     private fun SavedAgendaItem(
         agendaItem: AgendaItem,
-        onAgendaItemCompletionToggled: (AgendaItem) -> Unit
+        onAgendaItemCompletionToggled: (AgendaItem) -> Unit,
+        onOptionClicked: (AgendaItem) -> Unit
     ) = UnifyCard {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(color = agendaItem.backgroundColor)
-                .padding(UnifyDimens.Dp_12)
+                .padding(
+                    bottom = UnifyDimens.Dp_12,
+                    start = UnifyDimens.Dp_16,
+                    end = UnifyDimens.Dp_16,
+                    top = UnifyDimens.Dp_16
+                )
         ) {
-            UnifyCheckBox(
-                UnifyCheckBox.Config(
-                    checked = agendaItem.completed,
-                    onCheckedChange = {
-                        onAgendaItemCompletionToggled(agendaItem)
-                    }
-                )
-            )
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .offset(x = UnifyDimens.Dp_8)
+            Row(
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.Bottom,
+                modifier = Modifier.fillMaxWidth()
             ) {
-                UnifyTextView(
-                    UnifyTextView.Config(
-                        text = agendaItem.title,
-                        textType = UnifyTextType.TitleMedium,
-                        color = agendaItem.tint,
-                        textDecoration = if (agendaItem.completed) TextDecoration.LineThrough else TextDecoration.None
+                Row(modifier = Modifier.weight(.93f), verticalAlignment = Alignment.Bottom) {
+                    UnifyCheckBox(
+                        UnifyCheckBox.Config(
+                            checked = agendaItem.completed,
+                            onCheckedChange = {
+                                onAgendaItemCompletionToggled(agendaItem)
+                            }
+                        )
                     )
-                )
-                UnifyTextView(
-                    UnifyTextView.Config(
-                        text = "Description.....",
-                        textType = UnifyTextType.BodyLarge,
-                        color = agendaItem.tint
+                    UnifyTextView(
+                        UnifyTextView.Config(
+                            text = agendaItem.title,
+                            textType = UnifyTextType.TitleMedium,
+                            color = agendaItem.tint,
+                            textDecoration = if (agendaItem.completed) TextDecoration.LineThrough else TextDecoration.None,
+                            maxLines = 1,
+                            modifier = Modifier.offset(x = UnifyDimens.Dp_8)
+                        )
                     )
-                )
+                }
+                Spacer(modifier = Modifier.weight(.07f))
+                UnifyIcon(
+                    config = UnifyIcon.Config(
+                        icon = UnifyIcons.EllipsisV,
+                        tint = UnifyColors.White,
 
-                UnifyTextView(
-                    UnifyTextView.Config(
-                        text = agendaItem.displayDateTime,
-                        textType = UnifyTextType.BodySmall,
-                        color = agendaItem.tint,
-                        modifier = Modifier.align(Alignment.End)
-                    )
+                        )
                 )
             }
+            UnifyTextView(
+                UnifyTextView.Config(
+                    text = "Description.....",
+                    textType = UnifyTextType.BodyLarge,
+                    color = agendaItem.tint,
+                    modifier = Modifier.offset(x = UnifyDimens.Dp_32)
+                )
+            )
+            UnifyTextView(
+                UnifyTextView.Config(
+                    text = agendaItem.displayDateTime,
+                    textType = UnifyTextType.BodySmall,
+                    color = agendaItem.tint,
+                    modifier = Modifier.align(Alignment.End)
+                )
+            )
         }
     }
 }

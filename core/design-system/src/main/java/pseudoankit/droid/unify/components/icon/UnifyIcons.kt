@@ -23,6 +23,7 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object Calendar : UnifyIcons(IconType.FontAwesome(FaIcons.CalendarCheck))
     object Tasks : UnifyIcons(IconType.FontAwesome(FaIcons.Tasks))
     object Clock : UnifyIcons(IconType.FontAwesome(FaIcons.ClockRegular))
+    object EllipsisV : UnifyIcons(IconType.FontAwesome(FaIcons.EllipsisV))
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType
