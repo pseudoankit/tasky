@@ -7,6 +7,7 @@ include(":core:design-system")
 include(":core:agenda-manger")
 include(":core:database-manager")
 include(":core:navigation")
+include(":core:preferences-manager")
 
 include(":feature:authentication")
 include(":feature:home")

@@ -1,4 +1,6 @@
 object Dependencies {
+    const val DataStore = "androidx.datastore:datastore-preferences:1.1.0-alpha01"
+
     object Compose {
         const val Activity = "androidx.activity:activity-compose:${Versions.Compose.Activity}"
         const val Material = "androidx.compose.material:material:${Versions.Compose.Core}"
@@ -31,11 +33,13 @@ object Dependencies {
 
     object Kotlin {
         const val ImmutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
-        const val CoroutineCore =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
-        const val CoroutineAndroid =
-            "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
         const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
+
+        object Coroutine {
+            const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
+            const val Android =
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
+        }
     }
 
     object Gradle {

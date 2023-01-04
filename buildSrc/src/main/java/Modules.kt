@@ -12,8 +12,9 @@ object Modules {
         const val Core = ":core:core"
         const val CoreUi = ":core:core-ui"
         const val DesignSystem = ":core:design-system"
+        const val Navigation = ":core:navigation"
         const val AgendaManager = ":core:agenda-manger"
         const val DataBaseManager = ":core:database-manager"
-        const val Navigation = ":core:navigation"
+        const val PreferencesManager = ":core:preferences-manager"
     }
 }
