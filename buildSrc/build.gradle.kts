@@ -15,26 +15,19 @@ dependencies {
 
 gradlePlugin {
     plugins {
-        val base = "core-plugin" to "plugin.base.CorePlugin"
-        val baseLib = "core-library-feature-plugin" to "plugin.base.CoreLibraryFeaturePlugin"
-        val composeCoreLib = "compose-core-plugin" to "plugin.compose.ComposeCorePlugin"
-        val composeFeatureLib = "compose-feature-plugin" to "plugin.compose.ComposeFeaturePlugin"
+        val plugins = listOf(
+            "core-plugin" to "plugin.base.CorePlugin",
+            "core-library-feature-plugin" to "plugin.base.CoreLibraryFeaturePlugin",
+            "compose-core-plugin" to "plugin.compose.ComposeCorePlugin",
+            "compose-feature-plugin" to "plugin.compose.ComposeFeaturePlugin",
+            "room-db-plugin" to "plugin.RoomPlugin"
+        )
 
-        register(base.first) {
-            id = base.first
-            implementationClass = base.second
-        }
-        register(baseLib.first) {
-            id = baseLib.first
-            implementationClass = baseLib.second
-        }
-        register(composeCoreLib.first) {
-            id = composeCoreLib.first
-            implementationClass = composeCoreLib.second
-        }
-        register(composeFeatureLib.first) {
-            id = composeFeatureLib.first
-            implementationClass = composeFeatureLib.second
+        plugins.forEach {
+            register(it.first) {
+                id = it.first
+                implementationClass = it.second
+            }
         }
     }
 }
