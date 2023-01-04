@@ -11,6 +11,11 @@ object Plugins {
      */
     const val ComposeCore = "compose-core-plugin"
 
+    /**
+     * Plugin containing setup to enable room db
+     */
+    const val RoomDatabase = "room-db-plugin"
+
     object Library {
         /**
          * Plugin containing all common code for library gradle
@@ -26,7 +31,6 @@ object Plugins {
         const val ComposeFeature = "compose-feature-plugin"
     }
 
-    const val KotlinKapt = "kotlin-kapt"
     const val AndroidLibrary = "com.android.library"
     const val AndroidApplication = "com.android.application"
     const val Ksp = "com.google.devtools.ksp"

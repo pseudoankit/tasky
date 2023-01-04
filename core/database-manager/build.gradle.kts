@@ -1,7 +1,7 @@
 plugins {
     id(Plugins.AndroidLibrary)
     id(Plugins.Core)
-    id(Plugins.Ksp)
+    id(Plugins.RoomDatabase)
 }
 
 android {
@@ -9,12 +9,6 @@ android {
 }
 
 dependencies {
-    with(Dependencies.Room) {
-        implementation(Ktx)
-        implementation(Runtime)
-        ksp(Compiler)
-    }
-
     with(Modules.Core) {
         implementation(project(AgendaManager))
     }

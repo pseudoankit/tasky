@@ -1,16 +1,8 @@
 plugins {
     id(Plugins.Library.Feature)
-    id(Plugins.Ksp)
+    id(Plugins.RoomDatabase)
 }
 
 android {
     namespace = "pseudoankit.droid.agendamanger"
-}
-
-dependencies {
-    with(Dependencies.Room) {
-        implementation(Ktx)
-        implementation(Runtime)
-        ksp(Compiler)
-    }
 }
