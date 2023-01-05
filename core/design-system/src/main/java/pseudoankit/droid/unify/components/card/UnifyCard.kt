@@ -15,7 +15,7 @@ object UnifyCard {
     @Composable
     operator fun invoke(config: Config = Config(), content: @Composable () -> Unit) {
         Surface(
-            modifier = Modifier.padding(UnifyDimens.Dp_1),
+            modifier = config.modifier.then(Modifier.padding(UnifyDimens.Dp_1)),
             shape = RoundedCornerShape(config.radius),
             color = config.color,
             content = content,
@@ -30,6 +30,7 @@ object UnifyCard {
         val radius: Dp = UnifyDimens.Radius.Medium,
         val color: Color = UnifyColors.White,
         val onClick: () -> Unit = {},
-        val enabled: Boolean = true
+        val enabled: Boolean = true,
+        val modifier: Modifier = Modifier
     )
 }
