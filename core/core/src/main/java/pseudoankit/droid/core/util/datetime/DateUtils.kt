@@ -21,8 +21,7 @@ object DateUtils {
         }.mapToImmutableList {
             // wrapping with TaskyDate and mapping the year same passed by client
             TaskyDate(
-                value = LocalDate.of(date.value.year, it.month, it.dayOfMonth),
-                isSelected = date.value.dayOfMonth == it.dayOfMonth
+                value = LocalDate.of(date.value.year, it.month, it.dayOfMonth)
             )
         }
     }

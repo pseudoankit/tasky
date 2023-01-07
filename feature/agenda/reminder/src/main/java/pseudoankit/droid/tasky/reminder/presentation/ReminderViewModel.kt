@@ -9,6 +9,7 @@ import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
@@ -29,7 +30,7 @@ internal class ReminderViewModel(
     fun onTextFieldValueChanged(value: String) = setState { copy(reminderText = value) }
     fun onRemindAllDayToggled() = setState { copy(remindAllDay = remindAllDay.not()) }
     fun onDateValueChanged(date: LocalDate) = setState {
-        copy(selectedDate = selectedDate.copy(date))
+        copy(selectedDate = TaskyDate(date))
     }
 
     fun onTimeValueChanged(time: LocalTime) = setState { copy(_selectedTime = TaskyTime(time)) }

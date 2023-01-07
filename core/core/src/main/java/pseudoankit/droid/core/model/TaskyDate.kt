@@ -3,9 +3,10 @@ package pseudoankit.droid.core.model
 import androidx.compose.runtime.Stable
 import java.time.LocalDate
 
-// TODO
+// TODO delegates check
 @Stable
-data class TaskyDate(val value: LocalDate, val isSelected: Boolean = false) {
+@JvmInline
+value class TaskyDate(val value: LocalDate) {
 
     companion object {
         val Today: TaskyDate get() = TaskyDate(LocalDate.now())

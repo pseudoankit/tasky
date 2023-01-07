@@ -56,13 +56,15 @@ internal object HomeScreenComponents {
     internal fun SelectedMonthDatePicker(
         listState: LazyListState,
         dateRange: ImmutableList<TaskyDate>,
-        onDaySelected: (TaskyDate) -> Unit
+        onDaySelected: (TaskyDate) -> Unit,
+        selectedDate: TaskyDate
     ) {
         LazyRow(modifier = Modifier.fillMaxWidth(), state = listState) {
             items(dateRange, key = { it.value.dayOfMonth }) { date ->
                 SelectedMonthDatePickerItem(
                     date = date,
-                    onClick = onDaySelected
+                    onClick = onDaySelected,
+                    isSelected = date.value.dayOfMonth == selectedDate.value.dayOfMonth
                 )
             }
         }
@@ -109,7 +111,9 @@ internal object HomeScreenComponents {
 
     @Composable
     private fun SelectedMonthDatePickerItem(
-        date: TaskyDate, onClick: (TaskyDate) -> Unit
+        date: TaskyDate,
+        onClick: (TaskyDate) -> Unit,
+        isSelected: Boolean
     ) = date.value.run {
         Column(
             modifier = Modifier
@@ -117,7 +121,7 @@ internal object HomeScreenComponents {
                 .height(UnifyDimens.Dp_50)
                 .clip(RoundedCornerShape(UnifyDimens.Radius.Medium))
                 .clickable { onClick(date) }
-                .background(color = if (date.isSelected) UnifyColors.Orange100 else UnifyColors.White),
+                .background(color = if (isSelected) UnifyColors.Orange100 else UnifyColors.White),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {

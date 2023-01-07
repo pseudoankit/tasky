@@ -53,7 +53,8 @@ internal fun HomeScreen(
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,
             onDaySelected = viewModel::onDaySelected,
-            listState = dateRangeListState
+            listState = dateRangeListState,
+            selectedDate = state.selectedDate
         )
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_16))
         HomeScreenComponents.SavedAgendaItems(
