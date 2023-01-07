@@ -2,7 +2,6 @@ package pseudoankit.droid.tasky.home.presentation.home.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -11,7 +10,7 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.backgroundColor
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.tint
-import pseudoankit.droid.unify.components.card.UnifyCard
+import pseudoankit.droid.unify.components.card.DraggableCard
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.textview.UnifyTextType
@@ -20,46 +19,44 @@ import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
 internal object SavedAgendaItem {
-
-    @OptIn(ExperimentalMaterialApi::class)
     @Composable
     operator fun invoke(
         agendaItem: AgendaItem,
-        onItemCompletionToggled: (AgendaItem) -> Unit,
-        onOptionClicked: (AgendaItem) -> Unit
+        onCompletionToggled: () -> Unit,
+        onDelete: () -> Unit,
+        onEdit: () -> Unit
     ) {
-
-        val dismissState = rememberDismissState(
-            confirmStateChange = {
-                if (it == DismissValue.DismissedToEnd) {
-
-                }
-                true
-            }
-        )
-
-        SwipeToDismiss(
-            state = dismissState,
-            directions = setOf(DismissDirection.EndToStart),
-            background = {
-
-            },
-            dismissThresholds = { FractionalThreshold(.2f) }
-        ) {
-            Content(
-                agendaItem,
-                onItemCompletionToggled,
-                onOptionClicked
+        Box(Modifier.fillMaxWidth()) {
+            ActionsItems(
+                onDelete = onDelete,
+                onEdit = onEdit
             )
+
+            DraggableCard {
+                AgendaItemCard(
+                    agendaItem = agendaItem,
+                    onCompletionToggled = onCompletionToggled,
+                )
+            }
         }
     }
 
     @Composable
-    private fun Content(
+    private fun ActionsItems(
+        onDelete: () -> Unit,
+        onEdit: () -> Unit
+    ) {
+        Row {
+            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.DropDown))
+            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.DropDown))
+        }
+    }
+
+    @Composable
+    private fun AgendaItemCard(
         agendaItem: AgendaItem,
-        onItemCompletionToggled: (AgendaItem) -> Unit,
-        onOptionClicked: (AgendaItem) -> Unit
-    ) = UnifyCard {
+        onCompletionToggled: () -> Unit
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
@@ -72,42 +69,24 @@ internal object SavedAgendaItem {
                 )
         ) {
             Row(
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Row(
-                    modifier = Modifier.weight(.93f),
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    UnifyIcon(
-                        UnifyIcon.Config(
-                            icon = if (agendaItem.completed) UnifyIcons.Circle else UnifyIcons.CheckCircle,
-                            onClick = {
-                                onItemCompletionToggled(agendaItem)
-                            },
-                            tint = UnifyColors.White
-                        )
-                    )
-                    UnifyTextView(
-                        UnifyTextView.Config(
-                            text = agendaItem.title,
-                            textType = UnifyTextType.TitleMedium,
-                            color = agendaItem.tint,
-                            textDecoration = if (agendaItem.completed) TextDecoration.LineThrough else TextDecoration.None,
-                            maxLines = 1,
-                            modifier = Modifier.offset(x = UnifyDimens.Dp_8)
-                        )
-                    )
-                }
-                Spacer(modifier = Modifier.weight(.07f))
                 UnifyIcon(
-                    config = UnifyIcon.Config(
-                        icon = UnifyIcons.EllipsisV,
-                        tint = UnifyColors.White,
-                        onClick = {
-                            onOptionClicked(agendaItem)
-                        }
+                    UnifyIcon.Config(
+                        icon = if (agendaItem.completed) UnifyIcons.CheckCircle else UnifyIcons.Circle,
+                        onClick = onCompletionToggled,
+                        tint = UnifyColors.White
+                    )
+                )
+                UnifyTextView(
+                    UnifyTextView.Config(
+                        text = agendaItem.title,
+                        textType = UnifyTextType.TitleMedium,
+                        color = agendaItem.tint,
+                        textDecoration = if (agendaItem.completed) TextDecoration.LineThrough else TextDecoration.None,
+                        maxLines = 1,
+                        modifier = Modifier.offset(x = UnifyDimens.Dp_8)
                     )
                 )
             }

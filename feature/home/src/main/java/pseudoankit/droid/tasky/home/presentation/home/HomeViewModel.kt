@@ -54,7 +54,8 @@ internal class HomeViewModel(
             .launchIn(agendaItemsJob!!)
     }
 
-    fun onAgendaOptionClicked(agenda: AgendaItem) {}
+    fun onDelete(agenda: AgendaItem) {}
+    fun onEdit(agenda: AgendaItem) {}
 
     fun onAgendaItemCompletionToggle(agenda: AgendaItem) = intent {
         toggleAgendaItemCompletionUseCase.invoke(agenda)

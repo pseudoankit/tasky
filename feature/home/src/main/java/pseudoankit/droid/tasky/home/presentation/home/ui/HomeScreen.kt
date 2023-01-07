@@ -60,7 +60,8 @@ internal fun HomeScreen(
         HomeScreenComponents.SavedAgendaItems(
             items = state.savedAgendaItems,
             onItemCompletionToggled = viewModel::onAgendaItemCompletionToggle,
-            onOptionClicked = viewModel::onAgendaOptionClicked
+            onEdit = viewModel::onEdit,
+            onDelete = viewModel::onDelete
         )
     }
 }
