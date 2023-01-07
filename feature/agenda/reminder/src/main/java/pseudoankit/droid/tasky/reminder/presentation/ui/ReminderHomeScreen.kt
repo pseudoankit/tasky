@@ -8,7 +8,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
-import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
+
+import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.coreui.util.extension.showToast
@@ -28,7 +29,7 @@ import java.time.LocalTime
 @Composable
 internal fun ReminderHomeScreen(
     navigator: ReminderNavigator
-) = HandleKoinModuleInit(module = ReminderModule) {
+) = ReminderModule.load {
     val viewModel = getViewModel<ReminderViewModel>()
     HandleSideEffect(viewModel, navigator = navigator)
 

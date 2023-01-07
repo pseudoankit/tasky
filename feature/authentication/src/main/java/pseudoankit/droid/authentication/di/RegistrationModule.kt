@@ -8,7 +8,7 @@ import pseudoankit.droid.core.koin.BaseKoinModule
 
 internal object RegistrationModule : BaseKoinModule() {
 
-    override val modules: List<Module>
+    override val provideModules: List<Module>
         get() = listOf(
             module {
                 viewModel { RegistrationViewModel() }

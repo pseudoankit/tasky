@@ -11,7 +11,7 @@ import pseudoankit.droid.tasky.home.presentation.taskyitems.AgendaItemsViewModel
 
 internal object HomeModule : BaseKoinModule() {
 
-    override val modules: List<Module>
+    override val provideModules: List<Module>
         get() = listOf(
             module {
                 factory { GetSavedAgendaItemsUseCase(get()) }

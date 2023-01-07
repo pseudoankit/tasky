@@ -9,7 +9,7 @@ import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
 
 internal object ReminderModule : BaseKoinModule() {
 
-    override val modules: List<Module>
+    override val provideModules: List<Module>
         get() = listOf(
             module {
                 factory { SaveReminderUseCase(get()) }

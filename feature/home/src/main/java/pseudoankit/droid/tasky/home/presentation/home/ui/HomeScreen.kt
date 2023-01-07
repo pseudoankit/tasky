@@ -11,7 +11,8 @@ import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
-import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
+
+import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.coreui.util.extension.state
@@ -26,7 +27,7 @@ import pseudoankit.droid.unify.token.UnifyDimens
 @Composable
 internal fun HomeScreen(
     navigator: HomeScreenNavigator
-) = HandleKoinModuleInit(module = HomeModule) {
+) = HomeModule.load {
     val viewModel = getViewModel<HomeViewModel>()
 
     val dateRangeListState = rememberLazyListState()

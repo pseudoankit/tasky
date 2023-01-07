@@ -6,7 +6,8 @@ import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
-import pseudoankit.droid.coreui.surface.HandleKoinModuleInit
+
+import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.unify.components.icon.UnifyIcon
@@ -15,16 +16,9 @@ import pseudoankit.droid.unify.components.topbar.UnifyTopBar
 
 @Destination
 @Composable
-internal fun RegistrationScreen(navigator: AuthNavigator) =
-    HandleKoinModuleInit(module = RegistrationModule) {
-        RegistrationScreenInternal(navigator = navigator)
-    }
+internal fun RegistrationScreen(navigator: AuthNavigator) = RegistrationModule.load {
+    val viewModel: RegistrationViewModel = getViewModel()
 
-@Composable
-private fun RegistrationScreenInternal(
-    navigator: AuthNavigator,
-    viewModel: RegistrationViewModel = getViewModel(),
-) {
     TaskyDestinationSurface(
         config = TaskyDestinationSurfaceConfig(
             topBar = UnifyTopBar.Config(

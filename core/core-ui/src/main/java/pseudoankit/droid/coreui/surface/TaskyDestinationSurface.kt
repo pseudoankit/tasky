@@ -56,7 +56,7 @@ fun TaskyDestinationSurface(
     UnifyTheme {
         Scaffold(
             topBar = {
-                Box(modifier = Modifier.height(UnifyDimens.Dp_64), content = topBar)
+                Box(content = topBar)
             },
             containerColor = UnifyColors.Black,
             floatingActionButton = floatingActionButton
