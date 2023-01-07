@@ -3,7 +3,6 @@ package pseudoankit.droid.navigation.navigator.feature
 import android.content.Context
 import androidx.navigation.NavController
 import com.ramcosta.composedestinations.navigation.navigate
-import pseudoankit.droid.coreui.navigator.CoreNavigator
 import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.destinations.AgendaItemsScreenDestination
@@ -12,7 +11,7 @@ import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHom
 internal class HomeScreenNavigatorImpl(
     private val navController: NavController,
     private val context: Context
-) : HomeScreenNavigator, CoreNavigator by CoreNavigatorImpl(navController, context) {
+) : HomeScreenNavigator {
 
     override fun navigateToAgendaItemsScreen() {
         navController.navigate(AgendaItemsScreenDestination)
@@ -28,5 +27,9 @@ internal class HomeScreenNavigatorImpl(
 
     override fun navigateToEvents() {
         context.toastNotImplemented()
+    }
+
+    override fun navigateUp() {
+        // overridden in CoreNavigatorImpl
     }
 }

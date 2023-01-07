@@ -1,8 +1,7 @@
 package pseudoankit.droid.tasky.home.navigator
 
-import pseudoankit.droid.coreui.navigator.CoreNavigator
-
-interface HomeScreenNavigator : CoreNavigator {
+interface HomeScreenNavigator {
+    fun navigateUp()
     fun navigateToAgendaItemsScreen()
     fun navigateToReminder()
     fun navigateToTasks()

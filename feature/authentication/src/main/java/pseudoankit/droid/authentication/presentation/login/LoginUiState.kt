@@ -5,7 +5,7 @@ import pseudoankit.droid.unify.components.button.UnifyButton
 
 object LoginUiState {
 
-    // todo remove def values later on
+    // TEST remove def values later on
     internal data class State(
         val emailConfig: TextFieldUiConfig = TextFieldUiConfig(
             value = "lostankit7@gmail.com",
