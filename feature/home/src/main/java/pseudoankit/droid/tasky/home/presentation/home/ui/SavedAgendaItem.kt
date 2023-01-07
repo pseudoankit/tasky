@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.dp
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.backgroundColor
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
@@ -26,13 +27,16 @@ internal object SavedAgendaItem {
         onDelete: () -> Unit,
         onEdit: () -> Unit
     ) {
-        Box(Modifier.fillMaxWidth()) {
+        Box(Modifier.wrapContentSize()) {
             ActionsItems(
                 onDelete = onDelete,
                 onEdit = onEdit
             )
 
-            DraggableCard {
+            DraggableCard(
+                cardOffset = 150f,
+                revealThreshold = 30f
+            ) {
                 AgendaItemCard(
                     agendaItem = agendaItem,
                     onCompletionToggled = onCompletionToggled,
@@ -42,13 +46,18 @@ internal object SavedAgendaItem {
     }
 
     @Composable
-    private fun ActionsItems(
+    private fun BoxScope.ActionsItems(
         onDelete: () -> Unit,
         onEdit: () -> Unit
     ) {
-        Row {
-            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.DropDown))
-            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.DropDown))
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+            modifier = Modifier.matchParentSize(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            // Spacer(modifier = Modifier.weight(1f))
+            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.Edit, onClick = onEdit))
+            UnifyIcon(UnifyIcon.Config(icon = UnifyIcons.Delete, onClick = onDelete))
         }
     }
 
