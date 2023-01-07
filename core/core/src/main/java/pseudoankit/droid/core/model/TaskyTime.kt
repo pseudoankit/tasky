@@ -1,4 +1,4 @@
-package pseudoankit.droid.core.util.datetime.model
+package pseudoankit.droid.core.model
 
 import androidx.compose.runtime.Stable
 import java.time.LocalTime

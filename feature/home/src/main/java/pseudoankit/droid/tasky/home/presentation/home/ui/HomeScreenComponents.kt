@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon

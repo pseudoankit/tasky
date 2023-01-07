@@ -12,7 +12,7 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.intent
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.coreui.util.extension.state

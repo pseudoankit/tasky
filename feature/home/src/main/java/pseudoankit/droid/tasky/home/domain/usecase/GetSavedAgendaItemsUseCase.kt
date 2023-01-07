@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyDate
 
 internal class GetSavedAgendaItemsUseCase(
     private val agendaRepository: AgendaRepository

@@ -3,9 +3,9 @@ package pseudoankit.droid.tasky.reminder.presentation
 import androidx.compose.runtime.Stable
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.core.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TextResource
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
-import pseudoankit.droid.core.util.datetime.model.TaskyTime
 import pseudoankit.droid.core.util.extension.parseToString
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label

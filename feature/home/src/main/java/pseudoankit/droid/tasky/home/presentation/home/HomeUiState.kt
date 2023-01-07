@@ -3,8 +3,8 @@ package pseudoankit.droid.tasky.home.presentation.home
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.util.datetime.DateUtils
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
 import pseudoankit.droid.core.util.extension.parseToString
 
 internal interface HomeUiState {

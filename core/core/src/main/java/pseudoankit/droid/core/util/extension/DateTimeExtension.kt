@@ -1,7 +1,7 @@
 package pseudoankit.droid.core.util.extension
 
-import pseudoankit.droid.core.util.datetime.model.TaskyDate
-import pseudoankit.droid.core.util.datetime.model.TaskyTime
+import pseudoankit.droid.core.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyTime
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
