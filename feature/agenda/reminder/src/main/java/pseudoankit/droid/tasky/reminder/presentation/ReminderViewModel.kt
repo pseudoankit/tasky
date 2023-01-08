@@ -2,7 +2,6 @@ package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.collections.immutable.toImmutableList
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
@@ -16,6 +15,7 @@ import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
+import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -27,8 +27,15 @@ internal class ReminderViewModel(
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
+    fun onInit(reminder: AgendaItem.Reminder) = setState {
+        reminder.mapToUiState
+    }
+
     fun onTextFieldValueChanged(value: String) = setState { copy(reminderText = value) }
-    fun onRemindAllDayToggled() = setState { copy(remindAllDay = remindAllDay.not()) }
+    fun onRemindAllDayToggled() = setState {
+        copy(remindAllDay = remindAllDay.not())
+    }
+
     fun onDateValueChanged(date: LocalDate) = setState {
         copy(selectedDate = TaskyDate(date))
     }
@@ -63,9 +70,7 @@ internal class ReminderViewModel(
         }
 
         setState {
-            copy(repeatIntervalItems = repeatIntervalItems.map { item ->
-                item.copy(isSelected = item.item == selectedInterval)
-            }.toImmutableList())
+            copy(selectedRepeatInterval = selectedInterval)
         }
         toggleRepeatIntervalSelectionViewVisibility()
     }

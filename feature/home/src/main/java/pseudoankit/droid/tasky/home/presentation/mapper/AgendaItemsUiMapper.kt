@@ -7,12 +7,15 @@ import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.token.UnifyColors
 
 internal object AgendaItemsUiMapper {
-
-    val AgendaItem.displayDateTime
+    val AgendaItem.Reminder.displayDateTime
         get() = buildString {
             append(date.parseToString("dd MMM"))
             append(", ")
-            append(time.parseToString())
+            val time = when (time) {
+                AgendaItem.Reminder.Time.AllDay -> "all day"
+                is AgendaItem.Reminder.Time.Time -> (time as? AgendaItem.Reminder.Time.Time)?.value.parseToString()
+            }
+            append(time)
         }
 
     val AgendaItem.label

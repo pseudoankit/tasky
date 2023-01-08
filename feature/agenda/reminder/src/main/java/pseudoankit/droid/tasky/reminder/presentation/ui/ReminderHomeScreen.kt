@@ -8,6 +8,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
@@ -19,6 +20,7 @@ import pseudoankit.droid.tasky.reminder.di.ReminderModule
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
+import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
 import pseudoankit.droid.unify.components.dialog.UnifyDialog
 import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
 import pseudoankit.droid.unify.components.dialog.timepicker.UnifyTimePicker
@@ -28,7 +30,8 @@ import java.time.LocalTime
 @Destination
 @Composable
 internal fun ReminderHomeScreen(
-    navigator: ReminderNavigator
+    navigator: ReminderNavigator,
+    payload: AgendaItem.Reminder
 ) = ReminderModule.load {
     val viewModel = getViewModel<ReminderViewModel>()
     HandleSideEffect(viewModel, navigator = navigator)
@@ -40,7 +43,10 @@ internal fun ReminderHomeScreen(
                 onSave = viewModel::onSave
             ),
         ),
-        padding = PaddingValues()
+        padding = PaddingValues(),
+        singleEvents = {
+            viewModel.onInit(payload)
+        }
     ) {
         val state = viewModel.collectAsState().value
 
@@ -59,7 +65,7 @@ internal fun ReminderHomeScreen(
         )
         UnifyDivider()
         ReminderHomeScreenComponents.RepeatsReminderAtText(
-            repeatIntervalLabel = state.selectedRepeatIntervalLabel,
+            repeatIntervalLabel = state.selectedRepeatInterval.label,
             onClick = viewModel::toggleRepeatIntervalSelectionViewVisibility
         )
         UnifyDivider()
@@ -88,7 +94,8 @@ private fun HandleSideEffect(
     val repeatsOnDialog = UnifyDialog(showActionButton = false) {
         ReminderHomeScreenComponents.RepeatIntervalDialogItems(
             items = viewModel.state.repeatIntervalItems,
-            onClick = viewModel::onRepeatIntervalChanged
+            onClick = viewModel::onRepeatIntervalChanged,
+            selectedItem = viewModel.state.selectedRepeatInterval
         )
     }
 

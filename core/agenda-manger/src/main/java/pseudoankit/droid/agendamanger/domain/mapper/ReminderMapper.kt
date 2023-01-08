@@ -2,6 +2,8 @@ package pseudoankit.droid.agendamanger.domain.mapper
 
 import pseudoankit.droid.agendamanger.data.local.entity.ReminderEntity
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.core.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.extension.orFalse
 import pseudoankit.droid.core.util.extension.orNow
 import pseudoankit.droid.core.util.extension.orToday
@@ -11,9 +13,12 @@ internal object ReminderMapper {
     val AgendaItem.Reminder.mapToEntity
         get() = ReminderEntity(
             title = title,
-            remindAllDay = remindAllDay,
-            date = date,
-            time = time,
+            remindAllDay = time == AgendaItem.Reminder.Time.AllDay,
+            date = date.value,
+            time = when (time) {
+                AgendaItem.Reminder.Time.AllDay -> null
+                is AgendaItem.Reminder.Time.Time -> time.value.value
+            },
             repeatInterval = repeatInterval,
             id = id,
             completed = completed
@@ -22,9 +27,12 @@ internal object ReminderMapper {
     val ReminderEntity.mapToDomain
         get() = AgendaItem.Reminder(
             title = title.orEmpty(),
-            remindAllDay = remindAllDay.orFalse,
-            date = date.orToday,
-            time = time.orNow,
+            date = TaskyDate(date.orToday),
+            time = if (time == null) {
+                AgendaItem.Reminder.Time.AllDay
+            } else {
+                AgendaItem.Reminder.Time.Time(TaskyTime(time.orNow))
+            },
             repeatInterval = repeatInterval ?: AgendaItem.Reminder.RepeatInterval.DoNotRepeat,
             id = id,
             completed = completed.orFalse

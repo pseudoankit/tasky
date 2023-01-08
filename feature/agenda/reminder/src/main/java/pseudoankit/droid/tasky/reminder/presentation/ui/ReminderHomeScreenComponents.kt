@@ -10,7 +10,7 @@ import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
-import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
+import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.list.UnifyList
@@ -27,20 +27,21 @@ internal object ReminderHomeScreenComponents {
 
     @Composable
     fun RepeatIntervalDialogItems(
-        items: ImmutableList<ReminderUiState.State.RepeatIntervalConfig>,
-        onClick: (AgendaItem.Reminder.RepeatInterval) -> Unit
+        items: ImmutableList<AgendaItem.Reminder.RepeatInterval>,
+        onClick: (AgendaItem.Reminder.RepeatInterval) -> Unit,
+        selectedItem: AgendaItem.Reminder.RepeatInterval
     ) {
         Column(modifier = Modifier.padding(vertical = UnifyDimens.Dp_16)) {
             items.forEach { item ->
                 UnifyList(
                     config = UnifyList.Config(
                         label = item.label.asString(),
-                        trailingIcon = if (item.isSelected) UnifyList.TrailingIcon.NoAction(
+                        trailingIcon = if (item == selectedItem) UnifyList.TrailingIcon.NoAction(
                             UnifyIcons.Check
                         ) else null,
-                        color = if (item.isSelected) UnifyColors.Purple800 else UnifyColors.Black,
+                        color = if (item == selectedItem) UnifyColors.Purple800 else UnifyColors.Black,
                         modifier = Modifier
-                            .clickable { onClick(item.item) }
+                            .clickable { onClick(item) }
                             .padding(vertical = UnifyDimens.Dp_12, horizontal = UnifyDimens.Dp_16)
                     )
                 )

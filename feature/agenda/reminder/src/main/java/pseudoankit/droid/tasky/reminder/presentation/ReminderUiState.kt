@@ -1,15 +1,12 @@
 package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.compose.runtime.Stable
-import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.toImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.extension.parseToString
-import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper
-import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
-import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.selectedLabel
 
 internal interface ReminderUiState {
 
@@ -18,20 +15,14 @@ internal interface ReminderUiState {
         val reminderText: String = "",
         val remindAllDay: Boolean = false,
         val selectedDate: TaskyDate = TaskyDate.Today,
-        val repeatIntervalItems: ImmutableList<RepeatIntervalConfig> = RepeatIntervalUiMapper.initialDialogItems,
+        val selectedRepeatInterval: AgendaItem.Reminder.RepeatInterval = AgendaItem.Reminder.RepeatInterval.DoNotRepeat,
         private val _selectedTime: TaskyTime = TaskyTime.Now,
     ) {
         val selectedTime get() = if (remindAllDay) null else _selectedTime
         val displayTime get() = selectedTime.parseToString()
         val displayDate get() = selectedDate.parseToString("eee, dd MMM yyyy").orEmpty()
-        val selectedRepeatIntervalLabel get() = repeatIntervalItems.selectedLabel
-
-        data class RepeatIntervalConfig(
-            val item: AgendaItem.Reminder.RepeatInterval,
-            val isSelected: Boolean = false
-        ) {
-            val label = item.label
-        }
+        val repeatIntervalItems =
+            AgendaItem.Reminder.RepeatInterval.values().toList().toImmutableList()
     }
 
     sealed interface SideEffect {

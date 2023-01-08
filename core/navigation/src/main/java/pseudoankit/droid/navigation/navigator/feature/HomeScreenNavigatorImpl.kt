@@ -20,7 +20,11 @@ internal class HomeScreenNavigatorImpl(
 
     override fun navigateToAgendaScreen(agendaItem: AgendaItem) {
         when (agendaItem) {
-            is AgendaItem.Reminder -> navController.navigate(ReminderHomeScreenDestination)
+            is AgendaItem.Reminder -> navController.navigate(
+                ReminderHomeScreenDestination(
+                    agendaItem
+                )
+            )
             is AgendaItem.Event -> context.toastNotImplemented()
             is AgendaItem.Task -> context.toastNotImplemented()
         }

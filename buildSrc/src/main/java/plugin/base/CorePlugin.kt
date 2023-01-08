@@ -21,6 +21,7 @@ open class CorePlugin : Plugin<Project> {
         project.plugins.apply {
             apply("org.jetbrains.kotlin.android")
             apply("kotlinx-serialization")
+            apply("kotlin-parcelize")
         }
 
         val androidExtension =

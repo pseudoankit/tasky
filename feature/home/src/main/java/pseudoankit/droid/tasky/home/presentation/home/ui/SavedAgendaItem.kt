@@ -37,10 +37,14 @@ internal object SavedAgendaItem {
                 cardOffset = 150f,
                 revealThreshold = 30f
             ) {
-                AgendaItemCard(
-                    agendaItem = agendaItem,
-                    onCompletionToggled = onCompletionToggled,
-                )
+                when (agendaItem) {
+                    is AgendaItem.Event -> TODO()
+                    is AgendaItem.Reminder -> AgendaItemCard(
+                        agendaItem = agendaItem,
+                        onCompletionToggled = onCompletionToggled,
+                    )
+                    is AgendaItem.Task -> TODO()
+                }
             }
         }
     }
@@ -63,7 +67,7 @@ internal object SavedAgendaItem {
 
     @Composable
     private fun AgendaItemCard(
-        agendaItem: AgendaItem,
+        agendaItem: AgendaItem.Reminder,
         onCompletionToggled: () -> Unit
     ) {
         Column(
