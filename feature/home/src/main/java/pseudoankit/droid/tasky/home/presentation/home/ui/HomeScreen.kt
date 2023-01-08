@@ -89,7 +89,7 @@ private fun HandleHomeScreenSideEffect(
                 }
                 HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsSelectorScreen()
                 is HomeUiState.SideEffect.NavigateToAgendaScreen ->
-                    navigator.navigateToAgendaScreen(it.agendaItem)
+                    navigator.navigateToAgendaScreen(it.agendaTypes)
             }
         }
     }

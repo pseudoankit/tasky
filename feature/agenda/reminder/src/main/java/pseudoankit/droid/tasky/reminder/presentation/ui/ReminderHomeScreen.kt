@@ -8,7 +8,7 @@ import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
-import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
@@ -31,7 +31,7 @@ import java.time.LocalTime
 @Composable
 internal fun ReminderHomeScreen(
     navigator: ReminderNavigator,
-    payload: AgendaItem.Reminder
+    action: AgendaTypes.Action
 ) = ReminderModule.load {
     val viewModel = getViewModel<ReminderViewModel>()
     HandleSideEffect(viewModel, navigator = navigator)
@@ -45,7 +45,7 @@ internal fun ReminderHomeScreen(
         ),
         padding = PaddingValues(),
         singleEvents = {
-            viewModel.onInit(payload)
+            viewModel.onInit(action)
         }
     ) {
         val state = viewModel.collectAsState().value

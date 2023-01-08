@@ -7,6 +7,7 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
@@ -15,7 +16,6 @@ import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
-import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
 import java.time.LocalDate
 import java.time.LocalTime
 
@@ -27,8 +27,13 @@ internal class ReminderViewModel(
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
-    fun onInit(reminder: AgendaItem.Reminder) = setState {
-        reminder.mapToUiState
+    private fun loadDataForId(id: Int) {
+
+    }
+
+    fun onInit(action: AgendaTypes.Action) = when (action) {
+        AgendaTypes.Action.Create -> {}
+        is AgendaTypes.Action.Edit -> loadDataForId(action.id)
     }
 
     fun onTextFieldValueChanged(value: String) = setState { copy(reminderText = value) }

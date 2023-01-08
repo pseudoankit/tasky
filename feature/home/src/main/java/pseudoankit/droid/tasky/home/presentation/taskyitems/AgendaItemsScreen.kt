@@ -11,13 +11,13 @@ import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
-import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
-import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.icon
-import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.label
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.icon
+import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.label
 import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.textview.UnifyTextType
@@ -48,8 +48,8 @@ internal fun AgendaItemsScreen(
 
 @Composable
 private fun AgendaItems(
-    onAgendaSelected: (AgendaItem) -> Unit,
-    items: ImmutableList<AgendaItem>
+    onAgendaSelected: (AgendaTypes) -> Unit,
+    items: ImmutableList<AgendaTypes>
 ) {
     items.forEach {
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_8))
@@ -60,7 +60,7 @@ private fun AgendaItems(
 }
 
 @Composable
-private fun AgendaItem(agenda: AgendaItem, onAgendaSelected: (AgendaItem) -> Unit) {
+private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> Unit) {
     UnifyTextView(
         config = UnifyTextView.Config(
             text = agenda.label.asString(),
@@ -86,8 +86,9 @@ private fun HandleSideEffect(
     LaunchedEffect(Unit) {
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
-                is AgendaItemsUiState.SideEffect.NavigateToAgenda ->
+                is AgendaItemsUiState.SideEffect.NavigateToAgenda -> {
                     navigator.navigateToAgendaScreen(it.type)
+                }
                 AgendaItemsUiState.SideEffect.NavigateUp -> navigator.navigateUp()
             }
         }

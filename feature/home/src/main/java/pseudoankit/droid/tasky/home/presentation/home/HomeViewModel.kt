@@ -16,6 +16,7 @@ import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.coreui.util.extension.state
+import pseudoankit.droid.tasky.home.domain.mapper.AgendaTypesMapper.mapToAgendaTypes
 import pseudoankit.droid.tasky.home.domain.usecase.DeleteAgendaUseCase
 import pseudoankit.droid.tasky.home.domain.usecase.GetSavedAgendaItemsUseCase
 import pseudoankit.droid.tasky.home.domain.usecase.ToggleAgendaItemCompletionUseCase
@@ -61,7 +62,7 @@ internal class HomeViewModel(
     }
 
     fun onEdit(agenda: AgendaItem) = postSideEffect {
-        HomeUiState.SideEffect.NavigateToAgendaScreen(agenda)
+        HomeUiState.SideEffect.NavigateToAgendaScreen(agenda.mapToAgendaTypes)
     }
 
     fun onAgendaItemCompletionToggle(agenda: AgendaItem) = launch {

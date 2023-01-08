@@ -28,7 +28,11 @@ sealed interface AgendaItem {
         }
     }
 
-    class Task : AgendaItem
+    data class Task(
+        val id: Int = 0
+    ) : AgendaItem
 
-    class Event : AgendaItem
+    data class Event(
+        val id: Int = 0
+    ) : AgendaItem
 }
