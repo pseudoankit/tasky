@@ -10,6 +10,12 @@ import org.orbitmvi.orbit.syntax.simple.reduce
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.extension.safeCall
 
+/**
+ * provides a coroutine scoped method and handle exception
+ * @param[dispatcher] dispatcher on which block needs to run
+ * @param[block] block to execute code
+ * @param[onError] provides the error message in case of error
+ */
 fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.safeLaunch(
     dispatcher: CoroutineDispatcher? = null,
     onError: (TextResource) -> Unit = {},
@@ -20,6 +26,11 @@ fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.safeLaunc
     })
 }
 
+/**
+ * provides a coroutine scoped method and handle exception
+ * @param[dispatcher] dispatcher on which block needs to run
+ * @param[transformer] block to execute code
+ */
 fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.launch(
     dispatcher: CoroutineDispatcher? = null,
     transformer: suspend SimpleSyntax<STATE, SIDE_EFFECT>.() -> Unit
