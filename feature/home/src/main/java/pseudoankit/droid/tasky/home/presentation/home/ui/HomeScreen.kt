@@ -87,7 +87,9 @@ private fun HandleHomeScreenSideEffect(
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
                 }
-                HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsScreen()
+                HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsSelectorScreen()
+                is HomeUiState.SideEffect.NavigateToAgendaScreen ->
+                    navigator.navigateToAgendaScreen(it.agendaItem)
             }
         }
     }

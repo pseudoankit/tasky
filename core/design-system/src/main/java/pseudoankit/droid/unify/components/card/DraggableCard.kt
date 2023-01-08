@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import pseudoankit.droid.unify.utils.logs
 import kotlin.math.roundToInt
 
+// TODO right to left
 object DraggableCard {
     private const val ANIMATION_DURATION = 500
 

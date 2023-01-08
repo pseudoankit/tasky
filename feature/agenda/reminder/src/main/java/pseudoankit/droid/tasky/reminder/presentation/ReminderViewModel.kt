@@ -6,13 +6,13 @@ import kotlinx.collections.immutable.toImmutableList
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
@@ -44,8 +44,8 @@ internal class ReminderViewModel(
     fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
 
 
-    fun onSave() = intent {
-        when (val result = saveReminderUseCase.invoke(state)) {
+    fun onSave() = launch {
+        when (saveReminderUseCase.invoke(state)) {
             is TaskyResult.Error -> postSideEffect(
                 ReminderUiState.SideEffect.ShowError(
                     TextResource.NormalString("Failed to save reminder! Please try again")

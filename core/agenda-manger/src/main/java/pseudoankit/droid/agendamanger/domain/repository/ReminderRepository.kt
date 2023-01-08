@@ -9,4 +9,5 @@ interface ReminderRepository {
     fun getReminders(date: LocalDate): Flow<List<ReminderEntity>>
     suspend fun save(payload: AgendaItem.Reminder)
     suspend fun update(payload: AgendaItem.Reminder)
+    suspend fun delete(payload: AgendaItem.Reminder)
 }

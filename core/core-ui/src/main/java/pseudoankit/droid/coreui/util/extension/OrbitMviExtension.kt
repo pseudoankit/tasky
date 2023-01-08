@@ -8,10 +8,13 @@ import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
 
-fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.intent(
-    dispatcher: CoroutineDispatcher,
+fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.launch(
+    dispatcher: CoroutineDispatcher? = null,
     transformer: suspend SimpleSyntax<STATE, SIDE_EFFECT>.() -> Unit
 ) = intent {
+    if (dispatcher == null) {
+        return@intent transformer()
+    }
     withContext(dispatcher) {
         transformer()
     }

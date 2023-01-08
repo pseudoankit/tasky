@@ -8,6 +8,7 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import java.time.LocalDate
 
+// TODO thread switching in repo
 internal class ReminderRepositoryImpl(
     private val dao: ReminderDao
 ) : ReminderRepository {
@@ -22,5 +23,9 @@ internal class ReminderRepositoryImpl(
 
     override suspend fun update(payload: AgendaItem.Reminder) {
         dao.update(payload.mapToEntity)
+    }
+
+    override suspend fun delete(payload: AgendaItem.Reminder) {
+        dao.delete(payload.mapToEntity)
     }
 }
