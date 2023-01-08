@@ -3,6 +3,7 @@ package pseudoankit.droid.navigation.navigator.feature
 import android.content.Context
 import androidx.navigation.NavController
 import com.ramcosta.composedestinations.navigation.navigate
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.destinations.AgendaItemsScreenDestination
@@ -17,16 +18,12 @@ internal class HomeScreenNavigatorImpl(
         navController.navigate(AgendaItemsScreenDestination)
     }
 
-    override fun navigateToReminder() {
-        navController.navigate(ReminderHomeScreenDestination)
-    }
-
-    override fun navigateToTasks() {
-        context.toastNotImplemented()
-    }
-
-    override fun navigateToEvents() {
-        context.toastNotImplemented()
+    override fun navigateToAgendaScreen(agendaItem: AgendaItem) {
+        when (agendaItem) {
+            is AgendaItem.Reminder -> navController.navigate(ReminderHomeScreenDestination)
+            is AgendaItem.Event -> context.toastNotImplemented()
+            is AgendaItem.Task -> context.toastNotImplemented()
+        }
     }
 
     override fun navigateUp() {

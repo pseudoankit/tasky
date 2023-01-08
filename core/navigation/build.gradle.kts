@@ -10,6 +10,7 @@ android {
 dependencies {
     with(Modules.Core) {
         implementation(project(CoreUi))
+        implementation(project(AgendaManager))
     }
 
     with(Dependencies.Compose) {

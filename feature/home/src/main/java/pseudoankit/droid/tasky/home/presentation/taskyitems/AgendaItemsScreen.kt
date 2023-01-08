@@ -86,7 +86,8 @@ private fun HandleSideEffect(
     LaunchedEffect(Unit) {
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
-                is AgendaItemsUiState.SideEffect.NavigateToAgenda -> navigator.navigateToAgendaScreen()
+                is AgendaItemsUiState.SideEffect.NavigateToAgenda ->
+                    navigator.navigateToAgendaScreen(it.type)
                 AgendaItemsUiState.SideEffect.NavigateUp -> navigator.navigateUp()
             }
         }
