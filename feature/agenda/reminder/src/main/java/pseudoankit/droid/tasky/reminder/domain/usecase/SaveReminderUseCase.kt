@@ -13,7 +13,11 @@ internal class SaveReminderUseCase(
     suspend operator fun invoke(state: ReminderUiState.State): TaskyResult<Unit> = safeCall(
         block = {
             val payload = state.mapToReminderObj
-            repository.save(payload)
+            if (state.editId == null) {
+                repository.save(payload)
+            } else {
+                repository.update(payload)
+            }
             TaskyResult.Success(Unit)
         },
         onError = {

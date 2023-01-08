@@ -17,6 +17,7 @@ internal interface ReminderUiState {
         val selectedDate: TaskyDate = TaskyDate.Today,
         val selectedRepeatInterval: AgendaItem.Reminder.RepeatInterval = AgendaItem.Reminder.RepeatInterval.DoNotRepeat,
         private val _selectedTime: TaskyTime = TaskyTime.Now,
+        val editId: Int? = null
     ) {
         val selectedTime get() = if (remindAllDay) null else _selectedTime
         val displayTime get() = selectedTime.parseToString()

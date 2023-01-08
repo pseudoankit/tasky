@@ -7,6 +7,18 @@ import org.orbitmvi.orbit.syntax.simple.SimpleSyntax
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
+import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.core.util.extension.safeCall
+
+fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.safeLaunch(
+    dispatcher: CoroutineDispatcher? = null,
+    onError: (TextResource) -> Unit = {},
+    block: suspend SimpleSyntax<STATE, SIDE_EFFECT>.() -> Unit,
+) = launch {
+    safeCall(onError = onError, block = {
+        block()
+    })
+}
 
 fun <STATE : Any, SIDE_EFFECT : Any> ContainerHost<STATE, SIDE_EFFECT>.launch(
     dispatcher: CoroutineDispatcher? = null,

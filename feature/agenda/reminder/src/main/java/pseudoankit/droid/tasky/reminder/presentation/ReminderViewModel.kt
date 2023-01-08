@@ -8,27 +8,32 @@ import org.orbitmvi.orbit.container
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
+import pseudoankit.droid.coreui.util.extension.safeLaunch
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
+import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
 import java.time.LocalDate
 import java.time.LocalTime
 
 internal class ReminderViewModel(
-    private val saveReminderUseCase: SaveReminderUseCase
+    private val saveReminderUseCase: SaveReminderUseCase,
+    private val reminderRepository: ReminderRepository
 ) : ViewModel(),
     ContainerHost<ReminderUiState.State, ReminderUiState.SideEffect> {
 
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
-    private fun loadDataForId(id: Int) {
-
+    private fun loadDataForId(id: Int) = safeLaunch {
+        val reminder = reminderRepository.getReminder(id)
+        setState { reminder.mapToUiState }
     }
 
     fun onInit(action: AgendaTypes.Action) = when (action) {
