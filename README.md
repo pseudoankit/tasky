@@ -8,4 +8,5 @@ Used :-
 - Navigation : [compose destinations](https://github.com/raamcosta/compose-destinations)
 - DI : Koin
 - Architecture :- MVI + Clean Architecture 
+- Single Activity Arch
 
