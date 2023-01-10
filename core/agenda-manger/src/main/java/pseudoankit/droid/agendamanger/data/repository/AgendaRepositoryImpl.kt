@@ -2,7 +2,6 @@ package pseudoankit.droid.agendamanger.data.repository
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
-import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToDomain
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
@@ -16,7 +15,7 @@ internal class AgendaRepositoryImpl(
         return combine(
             reminderRepository.getReminders(selectedDate)
         ) { items ->
-            items[0].map { it.mapToDomain }
+            items[0]
         }
     }
 }

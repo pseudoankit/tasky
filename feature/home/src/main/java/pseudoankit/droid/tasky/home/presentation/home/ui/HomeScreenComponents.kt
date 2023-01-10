@@ -30,11 +30,23 @@ internal object HomeScreenComponents {
     fun SavedAgendaItems(
         items: ImmutableList<AgendaItem>,
         onItemCompletionToggled: (AgendaItem) -> Unit,
-        onOptionClicked: (AgendaItem) -> Unit
+        onEdit: (AgendaItem) -> Unit,
+        onDelete: (AgendaItem) -> Unit,
     ) {
         LazyColumn(verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_16)) {
             items(items) {
-                SavedAgendaItem(it, onItemCompletionToggled, onOptionClicked)
+                SavedAgendaItem(
+                    agendaItem = it,
+                    onCompletionToggled = {
+                        onItemCompletionToggled(it)
+                    },
+                    onEdit = {
+                        onEdit(it)
+                    },
+                    onDelete = {
+                        onDelete(it)
+                    }
+                )
             }
         }
     }

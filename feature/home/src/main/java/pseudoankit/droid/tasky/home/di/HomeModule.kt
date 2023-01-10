@@ -4,6 +4,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 import pseudoankit.droid.core.koin.BaseKoinModule
+import pseudoankit.droid.tasky.home.domain.usecase.DeleteAgendaUseCase
 import pseudoankit.droid.tasky.home.domain.usecase.GetSavedAgendaItemsUseCase
 import pseudoankit.droid.tasky.home.domain.usecase.ToggleAgendaItemCompletionUseCase
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
@@ -16,9 +17,10 @@ internal object HomeModule : BaseKoinModule() {
             module {
                 factory { GetSavedAgendaItemsUseCase(get()) }
                 factory { ToggleAgendaItemCompletionUseCase(get()) }
+                factory { DeleteAgendaUseCase(get()) }
 
                 viewModel { AgendaItemsViewModel() }
-                viewModel { HomeViewModel(get(), get()) }
+                viewModel { HomeViewModel(get(), get(), get()) }
             }
         )
 }

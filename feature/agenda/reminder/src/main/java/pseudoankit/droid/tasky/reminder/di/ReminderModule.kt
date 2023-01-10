@@ -14,7 +14,7 @@ internal object ReminderModule : BaseKoinModule() {
             module {
                 factory { SaveReminderUseCase(get()) }
 
-                viewModel { ReminderViewModel(get()) }
+                viewModel { ReminderViewModel(get(), get()) }
             }
         )
 }

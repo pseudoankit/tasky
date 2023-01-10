@@ -1,9 +1,6 @@
 package pseudoankit.droid.agendamanger.data.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import pseudoankit.droid.agendamanger.data.local.entity.ReminderEntity
 import java.time.LocalDate
@@ -14,9 +11,15 @@ interface ReminderDao {
     @Query("Select * from reminderentity where date= :date")
     fun getReminders(date: LocalDate): Flow<List<ReminderEntity>>
 
-    @Insert
+    @Query("Select * from reminderentity where id=:id")
+    fun getReminder(id: Int): ReminderEntity
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(item: ReminderEntity)
 
     @Update
     suspend fun update(item: ReminderEntity)
+
+    @Delete
+    suspend fun delete(item: ReminderEntity)
 }

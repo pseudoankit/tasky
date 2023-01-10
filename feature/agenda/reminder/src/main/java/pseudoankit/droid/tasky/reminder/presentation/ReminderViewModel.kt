@@ -2,33 +2,50 @@ package pseudoankit.droid.tasky.reminder.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.collections.immutable.toImmutableList
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
+import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
+import pseudoankit.droid.coreui.util.extension.safeLaunch
 import pseudoankit.droid.coreui.util.extension.setState
 import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
+import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
 import java.time.LocalDate
 import java.time.LocalTime
 
 internal class ReminderViewModel(
-    private val saveReminderUseCase: SaveReminderUseCase
+    private val saveReminderUseCase: SaveReminderUseCase,
+    private val reminderRepository: ReminderRepository
 ) : ViewModel(),
     ContainerHost<ReminderUiState.State, ReminderUiState.SideEffect> {
 
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
+    private fun loadDataForId(id: Int) = safeLaunch {
+        val reminder = reminderRepository.getReminder(id)
+        setState { reminder.mapToUiState }
+    }
+
+    fun onInit(action: AgendaTypes.Action) = when (action) {
+        AgendaTypes.Action.Create -> {}
+        is AgendaTypes.Action.Edit -> loadDataForId(action.id)
+    }
+
     fun onTextFieldValueChanged(value: String) = setState { copy(reminderText = value) }
-    fun onRemindAllDayToggled() = setState { copy(remindAllDay = remindAllDay.not()) }
+    fun onRemindAllDayToggled() = setState {
+        copy(remindAllDay = remindAllDay.not())
+    }
+
     fun onDateValueChanged(date: LocalDate) = setState {
         copy(selectedDate = TaskyDate(date))
     }
@@ -44,8 +61,8 @@ internal class ReminderViewModel(
     fun onDateClicked() = postSideEffect { ReminderUiState.SideEffect.ShowDatePicker }
 
 
-    fun onSave() = intent {
-        when (val result = saveReminderUseCase.invoke(state)) {
+    fun onSave() = launch {
+        when (saveReminderUseCase.invoke(state)) {
             is TaskyResult.Error -> postSideEffect(
                 ReminderUiState.SideEffect.ShowError(
                     TextResource.NormalString("Failed to save reminder! Please try again")
@@ -63,9 +80,7 @@ internal class ReminderViewModel(
         }
 
         setState {
-            copy(repeatIntervalItems = repeatIntervalItems.map { item ->
-                item.copy(isSelected = item.item == selectedInterval)
-            }.toImmutableList())
+            copy(selectedRepeatInterval = selectedInterval)
         }
         toggleRepeatIntervalSelectionViewVisibility()
     }

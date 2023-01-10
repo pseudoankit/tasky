@@ -1,31 +1,38 @@
 package pseudoankit.droid.agendamanger.domain.model
 
+import android.os.Parcelable
 import androidx.compose.runtime.Stable
-import java.time.LocalDate
-import java.time.LocalTime
+import kotlinx.parcelize.Parcelize
+import pseudoankit.droid.core.model.TaskyDate
+import pseudoankit.droid.core.model.TaskyTime
 
 @Stable
-sealed class AgendaItem(
-    open val date: LocalDate,
-    open val time: LocalTime,
-    open val title: String,
-    open val completed: Boolean,
-) {
+sealed interface AgendaItem {
 
+    @Parcelize
     @Stable
     data class Reminder(
-        override val title: String = "",
-        val remindAllDay: Boolean = true,
-        override val date: LocalDate = LocalDate.now(),
-        override val time: LocalTime = LocalTime.now(),
+        val title: String = "",
+        val date: TaskyDate = TaskyDate.Today,
+        val time: Time = Time.AllDay,
         val repeatInterval: RepeatInterval = RepeatInterval.DoNotRepeat,
-        override val completed: Boolean = false,
+        val completed: Boolean = false,
         val id: Int = 0
-    ) : AgendaItem(date, time, title, completed) {
+    ) : AgendaItem, Parcelable {
         enum class RepeatInterval { DoNotRepeat, Daily, Weekly, Monthly, Yearly, Custom }
+
+        @Parcelize
+        sealed class Time : Parcelable {
+            data class Time(val value: TaskyTime = TaskyTime.Now) : Reminder.Time()
+            object AllDay : Reminder.Time()
+        }
     }
 
-    class Task : AgendaItem(LocalDate.now(), LocalTime.now(), "", false)
+    data class Task(
+        val id: Int = 0
+    ) : AgendaItem
 
-    class Event : AgendaItem(LocalDate.now(), LocalTime.now(), "", false)
+    data class Event(
+        val id: Int = 0
+    ) : AgendaItem
 }

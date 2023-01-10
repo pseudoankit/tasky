@@ -1,9 +1,9 @@
 package pseudoankit.droid.tasky.home.navigator
 
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+
 interface HomeScreenNavigator {
     fun navigateUp()
-    fun navigateToAgendaItemsScreen()
-    fun navigateToReminder()
-    fun navigateToTasks()
-    fun navigateToEvents()
+    fun navigateToAgendaItemsSelectorScreen()
+    fun navigateToAgendaScreen(agendaTypes: AgendaTypes)
 }
