@@ -5,5 +5,6 @@ import pseudoankit.droid.dbmanager.di.DataBaseModule
 
 internal val AppModule = listOf(
     DataBaseModule(),
+    AgendaManagerModule(),
     AgendaManagerModule()
 )
