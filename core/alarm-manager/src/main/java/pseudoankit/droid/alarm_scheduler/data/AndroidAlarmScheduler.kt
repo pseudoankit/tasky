@@ -7,7 +7,7 @@ import android.content.Intent
 import pseudoankit.droid.alarm_scheduler.domain.AlarmScheduler
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
 import pseudoankit.droid.alarm_scheduler.util.Constant
-import java.time.ZoneId
+import pseudoankit.droid.core.logger.TaskyLogger
 
 internal class AndroidAlarmScheduler(
     private val context: Context
@@ -19,27 +19,32 @@ internal class AndroidAlarmScheduler(
         val intent = Intent(context, AlarmReceiver::class.java).apply {
             putExtra(Constant.Arguments.ALARM, alarm)
         }
+        TaskyLogger.log("scheduling alarm", alarm.toString())
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,
-            alarm.time.atZone(ZoneId.systemDefault()).toEpochSecond().times(1000),
-            PendingIntent.getBroadcast(
-                context,
-                alarm.uniqueId,
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            alarm.timeInMillis,
+            createPendingIntent(alarm, intent = {
+                intent
+            })
         )
     }
 
     override fun cancel(alarm: Alarm) {
         alarmManager.cancel(
-            PendingIntent.getBroadcast(
-                context,
-                alarm.uniqueId,
-                Intent(),
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
+            createPendingIntent(alarm, intent = {
+                Intent()
+            })
+        )
+    }
+
+    // TODO: unique request code
+    private fun createPendingIntent(alarm: Alarm, intent: () -> Intent): PendingIntent? {
+        return PendingIntent.getBroadcast(
+            context,
+            alarm.timeInMillis.toInt(),
+            intent(),
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
     }
 }
