@@ -16,5 +16,6 @@ object Modules {
         const val AgendaManager = ":core:agenda-manger"
         const val DataBaseManager = ":core:database-manager"
         const val PreferencesManager = ":core:preferences-manager"
+        const val AlarmManager = ":core:alarm-manager"
     }
 }

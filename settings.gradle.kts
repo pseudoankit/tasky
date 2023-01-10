@@ -8,6 +8,7 @@ include(":core:agenda-manger")
 include(":core:database-manager")
 include(":core:navigation")
 include(":core:preferences-manager")
+include(":core:alarm-manager")
 
 include(":feature:authentication")
 include(":feature:home")
