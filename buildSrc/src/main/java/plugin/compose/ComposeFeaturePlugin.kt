@@ -30,6 +30,7 @@ class ComposeFeaturePlugin : ComposeCorePlugin() {
             with(Dependencies.Compose) {
                 this@dependencies.implementation(ComposeDestinations)
                 this@dependencies.ksp(ComposeDestinationsKsp)
+                this@dependencies.implementation(OrbitMvi)
             }
             with(Dependencies.Koin) {
                 this@dependencies.implementation(Compose)
