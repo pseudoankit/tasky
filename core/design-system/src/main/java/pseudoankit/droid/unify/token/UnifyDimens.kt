@@ -13,6 +13,7 @@ object UnifyDimens {
     val Dp_12 = 12.dp
     val Dp_14 = 14.dp
     val Dp_16 = 16.dp
+    val Dp_20 = 20.dp
     val Dp_24 = 24.dp
     val Dp_30 = 30.dp
     val Dp_32 = 32.dp

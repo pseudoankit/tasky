@@ -5,15 +5,12 @@ import pseudoankit.droid.core.util.extension.parseToString
 import pseudoankit.droid.unify.token.UnifyColors
 
 internal object AgendaItemsUiMapper {
-    val AgendaItem.Reminder.displayDateTime
-        get() = buildString {
-            append(date.parseToString("dd MMM"))
-            append(", ")
-            val time = when (time) {
-                AgendaItem.Reminder.Time.AllDay -> "all day"
-                is AgendaItem.Reminder.Time.Time -> (time as? AgendaItem.Reminder.Time.Time)?.value.parseToString()
+    val AgendaItem.Reminder.displayDateTime: String?
+        get() = when (time) {
+            AgendaItem.Reminder.Time.AllDay -> null
+            is AgendaItem.Reminder.Time.Time -> {
+                (time as? AgendaItem.Reminder.Time.Time)?.value.parseToString()
             }
-            append(time)
         }
 
     val AgendaItem.backgroundColor

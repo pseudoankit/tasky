@@ -33,7 +33,7 @@ internal object HomeScreenComponents {
         onEdit: (AgendaItem) -> Unit,
         onDelete: (AgendaItem) -> Unit,
     ) {
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_16)) {
+        LazyColumn(verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_12)) {
             items(items) {
                 SavedAgendaItem(
                     agendaItem = it,
