@@ -1,18 +1,16 @@
-package pseudoankit.droid.tasky.reminder.domain.usecase
+package pseudoankit.droid.agendamanger.domain.usecase.reminder
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.alarm_scheduler.domain.AlarmScheduler
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
-import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-internal class TriggerAlarmUseCase(
+class TriggerAlarmUseCase(
     private val alarmScheduler: AlarmScheduler
 ) {
 
-    operator fun invoke(payload: AgendaItem.Reminder) {
+    operator fun invoke(payload: AgendaItem.Reminder, alarmDeepLink: String) {
         val time = when (payload.time) {
             AgendaItem.Reminder.Time.AllDay -> LocalTime.NOON
             is AgendaItem.Reminder.Time.Time -> (payload.time as AgendaItem.Reminder.Time.Time).value.value
@@ -28,7 +26,7 @@ internal class TriggerAlarmUseCase(
                 time.second
             ),
             title = payload.title,
-            navigationUrl = ReminderHomeScreenDestination(AgendaTypes.Action.Edit(payload.id)).route,
+            navigationUrl = alarmDeepLink,
             id = payload.id
         )
 

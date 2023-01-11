@@ -1,25 +1,29 @@
-package pseudoankit.droid.tasky.reminder.domain.usecase
+package pseudoankit.droid.agendamanger.domain.usecase.reminder
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
+import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.extension.safeCall
-import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
-import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToReminderObj
 
-internal class SaveReminderUseCase(
+class SaveReminderUseCase(
     private val repository: ReminderRepository,
     private val triggerAlarmUseCase: TriggerAlarmUseCase
 ) {
 
     // TODO: wait for entry to save in db then schedule alarm
-    suspend operator fun invoke(state: ReminderUiState.State): TaskyResult<Unit> = safeCall(
+    suspend operator fun invoke(
+        payload: AgendaItem.Reminder,
+        alarmDeepLink: String
+    ): TaskyResult<Unit> = safeCall(
         block = {
-            val payload = state.mapToReminderObj
             coroutineScope {
                 launch {
-                    triggerAlarmUseCase(payload)
+                    triggerAlarmUseCase(
+                        payload,
+                        alarmDeepLink
+                    )
                 }
                 launch {
                     repository.save(payload)

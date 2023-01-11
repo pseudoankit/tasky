@@ -5,11 +5,16 @@ import pseudoankit.droid.agendamanger.data.repository.AgendaRepositoryImpl
 import pseudoankit.droid.agendamanger.data.repository.ReminderRepositoryImpl
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
+import pseudoankit.droid.agendamanger.domain.usecase.reminder.SaveReminderUseCase
+import pseudoankit.droid.agendamanger.domain.usecase.reminder.TriggerAlarmUseCase
 
 object AgendaManagerModule {
 
     operator fun invoke() = module {
-        factory<ReminderRepository> { ReminderRepositoryImpl(get()) }
-        factory<AgendaRepository> { AgendaRepositoryImpl(get()) }
+        single { SaveReminderUseCase(get(), get()) }
+        single { TriggerAlarmUseCase(get()) }
+
+        single<ReminderRepository> { ReminderRepositoryImpl(get()) }
+        single<AgendaRepository> { AgendaRepositoryImpl(get()) }
     }
 }
