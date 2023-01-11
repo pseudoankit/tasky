@@ -16,7 +16,7 @@ internal object HomeModule : BaseKoinModule() {
         get() = listOf(
             module {
                 factory { GetSavedAgendaItemsUseCase(get()) }
-                factory { ToggleAgendaItemCompletionUseCase(get()) }
+                factory { ToggleAgendaItemCompletionUseCase(get(), get(), get()) }
                 factory { DeleteAgendaUseCase(get()) }
 
                 viewModel { AgendaItemsViewModel() }

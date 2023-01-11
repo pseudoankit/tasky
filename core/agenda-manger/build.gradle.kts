@@ -6,3 +6,9 @@ plugins {
 android {
     namespace = "pseudoankit.droid.agendamanger"
 }
+
+dependencies {
+    with(Modules.Core) {
+        implementation(project(AlarmManager))
+    }
+}

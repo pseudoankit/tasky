@@ -7,14 +7,15 @@ import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToDomain
 import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToEntity
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
+import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryInternal
 import java.time.LocalDate
 
 // TODO thread switching in repo
 internal class ReminderRepositoryImpl(
     private val dao: ReminderDao
-) : ReminderRepository {
+) : ReminderRepository, ReminderRepositoryInternal {
 
-    override fun getReminder(id: Int): AgendaItem.Reminder {
+    override fun getReminder(id: Long): AgendaItem.Reminder {
         return dao.getReminder(id).mapToDomain
     }
 

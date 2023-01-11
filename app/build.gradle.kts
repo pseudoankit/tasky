@@ -38,6 +38,7 @@ dependencies {
         implementation(project(DataBaseManager))
         implementation(project(Navigation))
         implementation(project(AgendaManager))
+        implementation(project(AlarmManager))
     }
 
     with(Dependencies.Koin) {

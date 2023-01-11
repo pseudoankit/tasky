@@ -9,6 +9,7 @@ import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
+import pseudoankit.droid.agendamanger.domain.usecase.reminder.SaveReminderUseCase
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.TaskyResult
@@ -17,21 +18,23 @@ import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.safeLaunch
 import pseudoankit.droid.coreui.util.extension.setState
-import pseudoankit.droid.tasky.reminder.domain.usecase.SaveReminderUseCase
+import pseudoankit.droid.tasky.reminder.navigator.ReminderDeepLinkProvider
+import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToReminderObj
 import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
 import java.time.LocalDate
 import java.time.LocalTime
 
 internal class ReminderViewModel(
     private val saveReminderUseCase: SaveReminderUseCase,
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    private val deepLinkProvider: ReminderDeepLinkProvider
 ) : ViewModel(),
     ContainerHost<ReminderUiState.State, ReminderUiState.SideEffect> {
 
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
-    private fun loadDataForId(id: Int) = safeLaunch {
+    private fun loadDataForId(id: Long) = safeLaunch {
         val reminder = reminderRepository.getReminder(id)
         setState { reminder.mapToUiState }
     }
@@ -62,7 +65,10 @@ internal class ReminderViewModel(
 
 
     fun onSave() = launch {
-        when (saveReminderUseCase.invoke(state)) {
+        val payload = state.mapToReminderObj
+        val alarmDeepLink = deepLinkProvider.buildHomeRoute(AgendaTypes.Action.Edit(payload.id))
+
+        when (saveReminderUseCase.invoke(payload = payload, alarmDeepLink = alarmDeepLink)) {
             is TaskyResult.Error -> postSideEffect(
                 ReminderUiState.SideEffect.ShowError(
                     TextResource.NormalString("Failed to save reminder! Please try again")

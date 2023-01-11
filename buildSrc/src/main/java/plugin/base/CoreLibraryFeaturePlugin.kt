@@ -1,10 +1,8 @@
 package plugin.base
 
-import Dependencies
 import Modules
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import plugin.util.implementation
 import plugin.util.implementationProject
 
 /**
@@ -21,7 +19,6 @@ class CoreLibraryFeaturePlugin : CorePlugin() {
             with(Modules.Core) {
                 this@dependencies.implementationProject(Core)
             }
-            this@dependencies.implementation(Dependencies.Compose.OrbitMvi)
         }
 
         super.apply(project)

@@ -1,6 +1,7 @@
 package pseudoankit.droid.core.util.extension
 
 import pseudoankit.droid.core.R
+import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.TextResource
 import java.net.SocketTimeoutException
@@ -14,7 +15,7 @@ import java.net.SocketTimeoutException
 inline fun <T> safeCall(block: () -> T, onError: (TextResource) -> T): T = try {
     block()
 } catch (exception: Exception) {
-    println("SafeCall exception ${exception.message}")
+    TaskyLogger.log("SafeCall exception", exception.message.orEmpty())
     val errorMessage = when (exception) {
         is SocketTimeoutException -> TextResource.ResourceString(R.string.error_no_internet)
         else -> {

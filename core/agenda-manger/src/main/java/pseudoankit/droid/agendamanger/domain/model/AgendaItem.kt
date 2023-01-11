@@ -17,7 +17,7 @@ sealed interface AgendaItem {
         val time: Time = Time.AllDay,
         val repeatInterval: RepeatInterval = RepeatInterval.DoNotRepeat,
         val completed: Boolean = false,
-        val id: Int = 0
+        val id: Long = 0
     ) : AgendaItem, Parcelable {
         enum class RepeatInterval { DoNotRepeat, Daily, Weekly, Monthly, Yearly, Custom }
 
@@ -29,10 +29,10 @@ sealed interface AgendaItem {
     }
 
     data class Task(
-        val id: Int = 0
+        val id: Long = 0
     ) : AgendaItem
 
     data class Event(
-        val id: Int = 0
+        val id: Long = 0
     ) : AgendaItem
 }

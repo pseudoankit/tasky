@@ -12,6 +12,7 @@ import androidx.compose.ui.text.style.TextOverflow
 object UnifyTextView {
     @Composable
     operator fun invoke(config: Config?) = config?.apply {
+        text ?: return@apply
         Text(
             text = text,
             color = color,
@@ -26,7 +27,7 @@ object UnifyTextView {
     }
 
     data class Config(
-        val text: String,
+        val text: String?,
         val textType: UnifyTextType = UnifyTextType.LabelMedium,
         val color: Color = Color.Unspecified,
         val textDecoration: TextDecoration? = null,
