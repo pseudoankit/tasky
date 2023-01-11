@@ -14,7 +14,7 @@ internal class ReminderRepositoryImpl(
     private val dao: ReminderDao
 ) : ReminderRepository {
 
-    override fun getReminder(id: Int): AgendaItem.Reminder {
+    override fun getReminder(id: Long): AgendaItem.Reminder {
         return dao.getReminder(id).mapToDomain
     }
 

@@ -14,6 +14,5 @@ data class ReminderEntity(
     val time: LocalTime?,
     val repeatInterval: AgendaItem.Reminder.RepeatInterval?,
     val completed: Boolean?,
-    @PrimaryKey(autoGenerate = true)
-    var id: Int = 0
+    @PrimaryKey val id: Long
 )

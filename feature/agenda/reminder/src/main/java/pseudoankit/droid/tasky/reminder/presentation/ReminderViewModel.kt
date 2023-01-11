@@ -31,7 +31,7 @@ internal class ReminderViewModel(
     override val container: Container<ReminderUiState.State, ReminderUiState.SideEffect> =
         viewModelScope.container(ReminderUiState.State())
 
-    private fun loadDataForId(id: Int) = safeLaunch {
+    private fun loadDataForId(id: Long) = safeLaunch {
         val reminder = reminderRepository.getReminder(id)
         setState { reminder.mapToUiState }
     }

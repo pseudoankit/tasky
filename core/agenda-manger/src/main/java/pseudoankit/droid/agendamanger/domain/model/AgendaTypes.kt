@@ -10,7 +10,7 @@ sealed interface AgendaTypes {
 
     @Parcelize
     sealed class Action : Parcelable {
-        data class Edit(val id: Int) : Action()
+        data class Edit(val id: Long) : Action()
         object Create : Action()
     }
 }
