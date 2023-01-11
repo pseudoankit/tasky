@@ -18,15 +18,16 @@ import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.safeLaunch
 import pseudoankit.droid.coreui.util.extension.setState
+import pseudoankit.droid.tasky.reminder.navigator.ReminderDeepLinkProvider
 import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToReminderObj
 import pseudoankit.droid.tasky.reminder.presentation.mapper.ReminderMapper.mapToUiState
-import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
 import java.time.LocalDate
 import java.time.LocalTime
 
 internal class ReminderViewModel(
     private val saveReminderUseCase: SaveReminderUseCase,
-    private val reminderRepository: ReminderRepository
+    private val reminderRepository: ReminderRepository,
+    private val deepLinkProvider: ReminderDeepLinkProvider
 ) : ViewModel(),
     ContainerHost<ReminderUiState.State, ReminderUiState.SideEffect> {
 
@@ -65,7 +66,7 @@ internal class ReminderViewModel(
 
     fun onSave() = launch {
         val payload = state.mapToReminderObj
-        val alarmDeepLink = ReminderHomeScreenDestination(AgendaTypes.Action.Edit(payload.id)).route
+        val alarmDeepLink = deepLinkProvider.buildHomeRoute(AgendaTypes.Action.Edit(payload.id))
 
         when (saveReminderUseCase.invoke(payload = payload, alarmDeepLink = alarmDeepLink)) {
             is TaskyResult.Error -> postSideEffect(

@@ -6,7 +6,7 @@ import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-class TriggerAlarmUseCase(
+internal class TriggerAlarmUseCase(
     private val alarmScheduler: AlarmScheduler
 ) {
 

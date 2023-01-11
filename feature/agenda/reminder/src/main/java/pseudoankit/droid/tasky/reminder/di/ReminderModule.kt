@@ -11,7 +11,7 @@ internal object ReminderModule : BaseKoinModule() {
     override val provideModules: List<Module>
         get() = listOf(
             module {
-                viewModel { ReminderViewModel(get(), get()) }
+                viewModel { ReminderViewModel(get(), get(), get()) }
             }
         )
 }
