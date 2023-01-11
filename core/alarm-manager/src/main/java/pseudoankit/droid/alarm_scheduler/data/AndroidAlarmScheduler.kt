@@ -38,11 +38,10 @@ internal class AndroidAlarmScheduler(
         )
     }
 
-    // TODO: unique request code
     private fun createPendingIntent(alarm: Alarm, intent: () -> Intent): PendingIntent? {
         return PendingIntent.getBroadcast(
             context,
-            alarm.timeInMillis.toInt(),
+            alarm.id.toInt(),
             intent(),
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )

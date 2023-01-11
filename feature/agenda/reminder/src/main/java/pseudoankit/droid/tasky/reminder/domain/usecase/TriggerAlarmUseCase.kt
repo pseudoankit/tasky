@@ -25,10 +25,11 @@ internal class TriggerAlarmUseCase(
                 payload.date.value.dayOfMonth,
                 time.hour,
                 time.minute,
-                time.second,
+                time.second
             ),
             title = payload.title,
-            navigationUrl = ReminderHomeScreenDestination(AgendaTypes.Action.Edit(payload.id)).route
+            navigationUrl = ReminderHomeScreenDestination(AgendaTypes.Action.Edit(payload.id)).route,
+            id = payload.id
         )
 
         alarmScheduler.schedule(alarm)
