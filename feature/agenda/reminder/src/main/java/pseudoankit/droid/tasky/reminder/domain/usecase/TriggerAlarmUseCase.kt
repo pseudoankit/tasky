@@ -1,8 +1,10 @@
 package pseudoankit.droid.tasky.reminder.domain.usecase
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.alarm_scheduler.domain.AlarmScheduler
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
+import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
 import java.time.LocalDateTime
 import java.time.LocalTime
 
@@ -16,7 +18,6 @@ internal class TriggerAlarmUseCase(
             is AgendaItem.Reminder.Time.Time -> (payload.time as AgendaItem.Reminder.Time.Time).value.value
         }
 
-        // TODO: build route and pass
         val alarm = Alarm(
             time = LocalDateTime.of(
                 payload.date.value.year,
@@ -24,10 +25,10 @@ internal class TriggerAlarmUseCase(
                 payload.date.value.dayOfMonth,
                 time.hour,
                 time.minute,
-                time.second
+                time.second,
             ),
             title = payload.title,
-            navigationUrl = ""
+            navigationUrl = ReminderHomeScreenDestination(AgendaTypes.Action.Edit(payload.id)).route
         )
 
         alarmScheduler.schedule(alarm)
