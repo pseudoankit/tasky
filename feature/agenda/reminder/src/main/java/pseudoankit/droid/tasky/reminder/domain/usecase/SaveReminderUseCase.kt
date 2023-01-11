@@ -13,6 +13,7 @@ internal class SaveReminderUseCase(
     private val triggerAlarmUseCase: TriggerAlarmUseCase
 ) {
 
+    // TODO: wait for entry to save in db then schedule alarm
     suspend operator fun invoke(state: ReminderUiState.State): TaskyResult<Unit> = safeCall(
         block = {
             val payload = state.mapToReminderObj
@@ -21,11 +22,7 @@ internal class SaveReminderUseCase(
                     triggerAlarmUseCase(payload)
                 }
                 launch {
-                    if (state.editId == null) {
-                        repository.save(payload)
-                    } else {
-                        repository.update(payload)
-                    }
+                    repository.save(payload)
                 }
             }
             TaskyResult.Success(Unit)
