@@ -52,6 +52,7 @@ open class CorePlugin : Plugin<Project> {
                 freeCompilerArgs = freeCompilerArgs + listOf(
                     "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
                     "-opt-in=androidx.compose.material3.ExperimentalMaterial3Api",
+                    "-opt-in=com.google.accompanist.pager.ExperimentalPagerApi",
                 )
 
                 // generate compose compiler reports : ./gradlew assembleRelease -PenableComposeReports=true --rerun-tasks

@@ -12,5 +12,7 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(FontAwesome)
         implementation(DatePicker)
+        implementation(Pager)
+        implementation(PagerIndicator)
     }
 }
