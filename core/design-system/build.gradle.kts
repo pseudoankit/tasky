@@ -14,5 +14,6 @@ dependencies {
         implementation(DatePicker)
         implementation(Pager)
         implementation(PagerIndicator)
+        implementation(PlaceHolder)
     }
 }

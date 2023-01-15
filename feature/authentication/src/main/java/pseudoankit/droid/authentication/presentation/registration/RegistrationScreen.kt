@@ -6,13 +6,12 @@ import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
-
 import pseudoankit.droid.coreui.koin.load
-import pseudoankit.droid.coreui.surface.TaskyDestinationSurface
-import pseudoankit.droid.coreui.surface.TaskyDestinationSurfaceConfig
 import pseudoankit.droid.unify.components.icon.UnifyIcon
 import pseudoankit.droid.unify.components.icon.UnifyIcons
 import pseudoankit.droid.unify.components.topbar.UnifyTopBar
+import pseudoankit.droid.unify.surface.TaskyDestinationSurface
+import pseudoankit.droid.unify.surface.TaskyDestinationSurfaceConfig
 
 @Destination
 @Composable
