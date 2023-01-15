@@ -13,6 +13,7 @@ import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import pseudoankit.droid.unify.components.image.UnifyImageInternal.getImageModel
+import pseudoankit.droid.unify.utils.UnifyDrawable
 import pseudoankit.droid.unify.utils.isLoading
 
 object UnifyImage {
@@ -70,7 +71,7 @@ object UnifyImage {
      */
     data class Config(
         val imageType: ImageType,
-        @DrawableRes val failurePlaceHolder: Int,
+        @DrawableRes val failurePlaceHolder: Int = UnifyDrawable.img_placeholder,
         val modifier: Modifier = Modifier,
         val alignment: Alignment = Alignment.Center,
         val contentScale: ContentScale = ContentScale.Fit,

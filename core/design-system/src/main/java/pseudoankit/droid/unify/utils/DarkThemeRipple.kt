@@ -5,7 +5,7 @@ import androidx.compose.material.ripple.RippleTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
-object DarkThemeRipple : RippleTheme {
+internal object DarkThemeRipple : RippleTheme {
 
     @Composable
     override fun defaultColor() =
