@@ -12,5 +12,8 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(FontAwesome)
         implementation(DatePicker)
+        implementation(CoilCompose)
+        implementation(CoilSvg)
+        implementation(PlaceHolder)
     }
 }

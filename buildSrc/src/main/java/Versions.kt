@@ -11,6 +11,7 @@ object Versions {
         const val Destinations = "1.7.17-beta"
         const val KspPlugin = "1.7.0-1.0.6"
         const val ConstraintLayout = "1.0.1"
+        const val Coil = "2.2.2"
     }
 
     object Koin {
