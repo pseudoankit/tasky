@@ -7,12 +7,12 @@ import androidx.compose.ui.text.style.TextAlign
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
-import pseudoankit.droid.unify.components.button.UnifyButton
-import pseudoankit.droid.unify.components.icon.UnifyIcons
-import pseudoankit.droid.unify.components.textfield.UnifyTextField
-import pseudoankit.droid.unify.components.textfield.UnifyTextFieldDefaults
-import pseudoankit.droid.unify.components.textview.UnifyTextType
-import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.component.button.UnifyButton
+import pseudoankit.droid.unify.component.icon.UnifyIcons
+import pseudoankit.droid.unify.component.textfield.UnifyTextField
+import pseudoankit.droid.unify.component.textfield.UnifyTextFieldDefaults
+import pseudoankit.droid.unify.component.textview.UnifyTextType
+import pseudoankit.droid.unify.component.textview.UnifyTextView
 
 internal object LoginScreenComponents {
     @Composable

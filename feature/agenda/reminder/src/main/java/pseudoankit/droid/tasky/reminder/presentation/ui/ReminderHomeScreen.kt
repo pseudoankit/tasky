@@ -18,12 +18,12 @@ import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
 import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
-import pseudoankit.droid.unify.components.dialog.UnifyDialog
-import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
-import pseudoankit.droid.unify.components.dialog.timepicker.UnifyTimePicker
-import pseudoankit.droid.unify.components.divider.UnifyDivider
-import pseudoankit.droid.unify.surface.TaskyDestinationSurface
-import pseudoankit.droid.unify.surface.TaskyDestinationSurfaceConfig
+import pseudoankit.droid.unify.component.dialog.UnifyDialog
+import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.component.dialog.timepicker.UnifyTimePicker
+import pseudoankit.droid.unify.component.divider.UnifyDivider
+import pseudoankit.droid.unify.screen.UnifyScreen
+import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import java.time.LocalTime
 
 @Destination
@@ -35,8 +35,8 @@ internal fun ReminderHomeScreen(
     val viewModel = getViewModel<ReminderViewModel>()
     HandleSideEffect(viewModel, navigator = navigator)
 
-    TaskyDestinationSurface(
-        config = TaskyDestinationSurfaceConfig(
+    UnifyScreen(
+        config = UnifyScreenConfig(
             topBar = ReminderHomeScreenComponents.topBarConfig(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave

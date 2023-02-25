@@ -2,7 +2,7 @@ package pseudoankit.droid.tasky.home.presentation.mapper
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.core.util.TextResource
-import pseudoankit.droid.unify.components.icon.UnifyIcons
+import pseudoankit.droid.unify.component.icon.UnifyIcons
 
 internal object AgendaTypesUiMapper {
 

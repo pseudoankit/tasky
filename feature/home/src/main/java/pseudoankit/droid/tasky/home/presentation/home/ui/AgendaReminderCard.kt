@@ -10,10 +10,10 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.backgroundColor
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.tint
-import pseudoankit.droid.unify.components.icon.UnifyIcon
-import pseudoankit.droid.unify.components.icon.UnifyIcons
-import pseudoankit.droid.unify.components.textview.UnifyTextType
-import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIcons
+import pseudoankit.droid.unify.component.textview.UnifyTextType
+import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 

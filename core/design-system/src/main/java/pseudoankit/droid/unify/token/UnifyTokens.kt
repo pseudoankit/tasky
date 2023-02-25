@@ -1,6 +1,6 @@
 package pseudoankit.droid.unify.token
 
-import pseudoankit.droid.unify.components.textview.UnifyTextType
+import pseudoankit.droid.unify.component.textview.UnifyTextType
 
 internal object UnifyTokens {
     object Button {

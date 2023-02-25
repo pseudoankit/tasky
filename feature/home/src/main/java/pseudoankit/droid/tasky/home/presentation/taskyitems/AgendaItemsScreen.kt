@@ -18,10 +18,10 @@ import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.icon
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.label
-import pseudoankit.droid.unify.components.fab.UnifyFloatingButton
-import pseudoankit.droid.unify.components.icon.UnifyIcon
-import pseudoankit.droid.unify.components.textview.UnifyTextType
-import pseudoankit.droid.unify.components.textview.UnifyTextView
+import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
+import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.textview.UnifyTextType
+import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 

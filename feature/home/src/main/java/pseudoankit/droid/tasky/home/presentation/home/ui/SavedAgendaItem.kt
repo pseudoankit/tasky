@@ -6,9 +6,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.unify.components.card.DraggableCard
-import pseudoankit.droid.unify.components.icon.UnifyIcon
-import pseudoankit.droid.unify.components.icon.UnifyIcons
+import pseudoankit.droid.unify.component.card.DraggableCard
+import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIcons
 
 internal object SavedAgendaItem {
     @Composable

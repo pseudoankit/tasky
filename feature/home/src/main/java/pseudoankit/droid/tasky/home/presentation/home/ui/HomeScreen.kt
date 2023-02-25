@@ -17,9 +17,9 @@ import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
-import pseudoankit.droid.unify.components.dialog.datepicker.UnifyDatePicker
-import pseudoankit.droid.unify.surface.TaskyDestinationSurface
-import pseudoankit.droid.unify.surface.TaskyDestinationSurfaceConfig
+import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.screen.UnifyScreen
+import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
 
 @Destination
@@ -34,8 +34,8 @@ internal fun HomeScreen(
 
     val state = viewModel.collectAsState().value
 
-    TaskyDestinationSurface(
-        config = TaskyDestinationSurfaceConfig(
+    UnifyScreen(
+        config = UnifyScreenConfig(
             topBar = {
                 HomeScreenComponents.TopBar(
                     headerDate = state.displayHeaderDate,
