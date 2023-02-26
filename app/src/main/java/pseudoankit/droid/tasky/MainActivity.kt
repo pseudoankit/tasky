@@ -19,7 +19,7 @@ import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
-class MainActivity : ComponentActivity() {
+internal class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
