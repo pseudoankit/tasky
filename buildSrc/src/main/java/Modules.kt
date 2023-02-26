@@ -17,5 +17,6 @@ object Modules {
         const val DataBaseManager = ":core:database-manager"
         const val PreferencesManager = ":core:preferences-manager"
         const val AlarmManager = ":core:alarm-manager"
+        const val NotificationManager = ":core:notification-manager"
     }
 }
