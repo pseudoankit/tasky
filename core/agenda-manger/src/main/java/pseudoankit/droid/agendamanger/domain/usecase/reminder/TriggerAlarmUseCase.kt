@@ -17,7 +17,7 @@ internal class TriggerAlarmUseCase(
         }
 
         val alarm = Alarm(
-            time = LocalDateTime.of(
+            localDateTime = LocalDateTime.of(
                 payload.date.value.year,
                 payload.date.value.month,
                 payload.date.value.dayOfMonth,

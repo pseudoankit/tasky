@@ -6,7 +6,6 @@ import android.content.Context
 import android.content.Intent
 import pseudoankit.droid.alarm_scheduler.domain.AlarmScheduler
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
-import pseudoankit.droid.alarm_scheduler.util.Constant
 import pseudoankit.droid.core.logger.TaskyLogger
 
 internal class AndroidAlarmScheduler(
@@ -16,9 +15,7 @@ internal class AndroidAlarmScheduler(
     private val alarmManager = context.getSystemService(AlarmManager::class.java)
 
     override fun schedule(alarm: Alarm) {
-        val intent = Intent(context, AlarmReceiver::class.java).apply {
-            putExtra(Constant.Arguments.ALARM, alarm)
-        }
+        val intent = AlarmReceiver.instance(context, alarm)
         TaskyLogger.log("scheduling alarm", alarm.toString())
 
         alarmManager.setExactAndAllowWhileIdle(
