@@ -7,5 +7,7 @@ android {
 }
 
 dependencies {
-
+    with(Modules.Core) {
+        implementation(project(NotificationManager))
+    }
 }

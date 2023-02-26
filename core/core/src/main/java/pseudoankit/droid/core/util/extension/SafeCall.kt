@@ -15,7 +15,7 @@ import java.net.SocketTimeoutException
 inline fun <T> safeCall(block: () -> T, onError: (TextResource) -> T): T = try {
     block()
 } catch (exception: Exception) {
-    TaskyLogger.log("SafeCall exception", exception.message.orEmpty())
+    TaskyLogger.info("SafeCall exception", exception.message.orEmpty())
     val errorMessage = when (exception) {
         is SocketTimeoutException -> TextResource.ResourceString(R.string.error_no_internet)
         else -> {

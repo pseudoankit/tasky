@@ -16,7 +16,7 @@ internal class AndroidAlarmScheduler(
 
     override fun schedule(alarm: Alarm) {
         val intent = AlarmReceiver.instance(context, alarm)
-        TaskyLogger.log("scheduling alarm", alarm.toString())
+        TaskyLogger.info("scheduling alarm", alarm.toString())
 
         alarmManager.setExactAndAllowWhileIdle(
             AlarmManager.RTC_WAKEUP,

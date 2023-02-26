@@ -3,6 +3,7 @@ package pseudoankit.droid.agendamanger.domain.usecase.reminder
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.alarm_scheduler.domain.AlarmScheduler
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
+import pseudoankit.droid.notification_manager.TaskyNotifierConfig
 import java.time.LocalDateTime
 import java.time.LocalTime
 
@@ -27,7 +28,8 @@ internal class TriggerAlarmUseCase(
             ),
             title = payload.title,
             navigationUrl = alarmDeepLink,
-            id = payload.id
+            id = payload.id,
+            source = TaskyNotifierConfig.Source.Reminder
         )
 
         alarmScheduler.schedule(alarm)

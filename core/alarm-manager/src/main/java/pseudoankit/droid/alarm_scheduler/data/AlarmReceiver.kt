@@ -6,8 +6,9 @@ import android.content.Intent
 import org.koin.java.KoinJavaComponent.inject
 import pseudoankit.droid.alarm_scheduler.domain.model.Alarm
 import pseudoankit.droid.core.logger.TaskyLogger
-import pseudoankit.droid.core.notification.TaskyNotifier
 import pseudoankit.droid.core.util.extension.getParcelableData
+import pseudoankit.droid.notification_manager.TaskyNotifier
+import pseudoankit.droid.notification_manager.TaskyNotifierConfig
 
 internal class AlarmReceiver : BroadcastReceiver() {
 
@@ -23,10 +24,15 @@ internal class AlarmReceiver : BroadcastReceiver() {
     }
 
     override fun onReceive(context: Context?, intent: Intent?) {
-        val data =
-            intent?.extras?.getParcelableData<Alarm>(ALARM_ARG) ?: return
+        val alarm = intent?.extras?.getParcelableData<Alarm>(ALARM_ARG) ?: return
 
-        TaskyLogger.log("triggering alarm", data.toString())
-        taskyNotifier.notificationManager.notify(1, taskyNotifier.notificationBuilder.build())
+        TaskyLogger.info("triggering alarm", alarm.toString())
+        taskyNotifier.displayNotification(
+            TaskyNotifierConfig(
+                description = alarm.title,
+                priority = TaskyNotifierConfig.Priority.High,
+                source = alarm.source
+            )
+        )
     }
 }
