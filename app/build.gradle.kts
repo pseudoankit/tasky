@@ -21,7 +21,7 @@ android {
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile(BuildConfig.App.DefaultProguardOptimizeFile),
                 BuildConfig.App.ProGuardRules
