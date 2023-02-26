@@ -2,7 +2,6 @@ package pseudoankit.droid.notification_manager
 
 import android.app.Notification
 import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
@@ -12,7 +11,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
-import pseudoankit.droid.notification_manager.util.TaskyNotifierUtils.smallIcon
+import pseudoankit.droid.unify.utils.UnifyDrawable
 
 class TaskyNotifier(
     private val appContext: Context
@@ -43,7 +42,7 @@ class TaskyNotifier(
 
     private fun TaskyNotifierConfig.createNotification(): Notification = run {
         val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(TaskyDeeplink.Home)
+            data = Uri.parse(navigationUrl)
         }
         val pendingIntent = PendingIntent.getActivity(
             appContext,
@@ -57,7 +56,8 @@ class TaskyNotifier(
                 setContentTitle(title)
                 setContentText(description)
                 priority = this@createNotification.priority.priority
-                setSmallIcon(source.smallIcon)
+                // TODO change to app icon
+                setSmallIcon(UnifyDrawable.ic_notification)
                 setContentIntent(pendingIntent)
             }.build()
     }

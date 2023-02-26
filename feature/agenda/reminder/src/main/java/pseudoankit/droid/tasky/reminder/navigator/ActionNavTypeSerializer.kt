@@ -5,10 +5,8 @@ import com.ramcosta.composedestinations.navargs.NavTypeSerializer
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 
 @NavTypeSerializer
-class ActionNavTypeSerializer : DestinationsNavTypeSerializer<AgendaTypes.Action> {
-    private companion object {
-        const val CREATE = 0L
-    }
+object ActionNavTypeSerializer : DestinationsNavTypeSerializer<AgendaTypes.Action> {
+    private const val CREATE = 0L
 
     override fun toRouteString(value: AgendaTypes.Action): String {
         return when (value) {
