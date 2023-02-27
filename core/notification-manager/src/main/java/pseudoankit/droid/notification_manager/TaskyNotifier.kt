@@ -2,13 +2,16 @@ package pseudoankit.droid.notification_manager
 
 import android.app.Notification
 import android.app.NotificationChannel
-import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.graphics.drawable.IconCompat
-import pseudoankit.droid.notification_manager.util.TaskyNotifierUtils.smallIcon
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.unify.utils.UnifyDrawable
 
 class TaskyNotifier(
     private val appContext: Context
@@ -37,12 +40,25 @@ class TaskyNotifier(
             }
         }
 
-    private fun TaskyNotifierConfig.createNotification(): Notification = NotificationCompat
-        .Builder(appContext, CHANNEL_ID)
-        .apply {
-            setContentTitle(title)
-            setContentText(description)
-            priority = this@createNotification.priority.priority
-            setSmallIcon(source.smallIcon)
-        }.build()
+    private fun TaskyNotifierConfig.createNotification(): Notification = run {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = Uri.parse(navigationUrl)
+        }
+        val pendingIntent = PendingIntent.getActivity(
+            appContext,
+            1,
+            intent,
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT else 0
+        )
+        NotificationCompat
+            .Builder(appContext, CHANNEL_ID)
+            .apply {
+                setContentTitle(title)
+                setContentText(description)
+                priority = this@createNotification.priority.priority
+                // TODO change to app icon
+                setSmallIcon(UnifyDrawable.ic_notification)
+                setContentIntent(pendingIntent)
+            }.build()
+    }
 }

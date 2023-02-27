@@ -13,16 +13,19 @@ import com.google.accompanist.navigation.material.ExperimentalMaterialNavigation
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
+import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
-class MainActivity : ComponentActivity() {
+internal class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        TaskyLogger.info(intent.data.toString())
 
         setContent {
             UnifyTheme {

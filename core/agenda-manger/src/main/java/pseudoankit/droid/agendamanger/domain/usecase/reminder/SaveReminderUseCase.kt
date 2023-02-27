@@ -14,7 +14,6 @@ class SaveReminderUseCase : KoinComponent {
     private val repository: ReminderRepositoryInternal by inject()
     private val triggerAlarmUseCase: TriggerAlarmUseCase by inject()
 
-    // TODO: wait for entry to save in db then schedule alarm
     suspend operator fun invoke(
         payload: AgendaItem.Reminder,
         alarmDeepLink: String

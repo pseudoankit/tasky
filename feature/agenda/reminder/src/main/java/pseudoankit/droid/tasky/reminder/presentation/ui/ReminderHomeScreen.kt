@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
+import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.showToast
 import pseudoankit.droid.coreui.util.extension.state
@@ -26,7 +28,11 @@ import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import java.time.LocalTime
 
-@Destination
+@Destination(
+    deepLinks = [
+        DeepLink(uriPattern = TaskyDeeplink.Reminder.route)
+    ]
+)
 @Composable
 internal fun ReminderHomeScreen(
     navigator: ReminderNavigator,

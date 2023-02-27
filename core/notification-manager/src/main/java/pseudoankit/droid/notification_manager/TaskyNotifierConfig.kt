@@ -8,6 +8,7 @@ data class TaskyNotifierConfig(
     val title: String = source.name,
     val description: String,
     val priority: Priority = Priority.Default,
+    val navigationUrl: String,
 ) {
 
     enum class Priority(

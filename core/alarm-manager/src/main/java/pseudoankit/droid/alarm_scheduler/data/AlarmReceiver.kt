@@ -31,7 +31,8 @@ internal class AlarmReceiver : BroadcastReceiver() {
             TaskyNotifierConfig(
                 description = alarm.title,
                 priority = TaskyNotifierConfig.Priority.High,
-                source = alarm.source
+                source = alarm.source,
+                navigationUrl = alarm.navigationUrl
             )
         )
     }
