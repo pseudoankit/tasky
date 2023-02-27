@@ -66,7 +66,7 @@ internal class ReminderViewModel(
 
     fun onSave() = launch {
         val payload = state.mapToReminderObj
-        val alarmDeepLink = deepLinkProvider.buildHomeRoute(AgendaTypes.Action.Edit(payload.id))
+        val alarmDeepLink = deepLinkProvider.agendaRoute(AgendaTypes.Action.Edit(payload.id))
 
         when (saveReminderUseCase.invoke(payload = payload, alarmDeepLink = alarmDeepLink)) {
             is TaskyResult.Error -> postSideEffect(

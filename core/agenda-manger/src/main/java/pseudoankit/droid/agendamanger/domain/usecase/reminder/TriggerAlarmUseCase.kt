@@ -11,10 +11,11 @@ internal class TriggerAlarmUseCase(
     private val alarmScheduler: AlarmScheduler
 ) {
 
+    // TODO cancel alarm when completed
     operator fun invoke(payload: AgendaItem.Reminder, alarmDeepLink: String) {
         val time = when (payload.time) {
             AgendaItem.Reminder.Time.AllDay -> LocalTime.NOON
-            is AgendaItem.Reminder.Time.Time -> (payload.time as AgendaItem.Reminder.Time.Time).value.value
+            is AgendaItem.Reminder.Time.Time -> payload.time.value.value
         }
 
         val alarm = Alarm(

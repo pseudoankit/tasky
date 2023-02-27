@@ -14,6 +14,7 @@ class SaveReminderUseCase : KoinComponent {
     private val repository: ReminderRepositoryInternal by inject()
     private val triggerAlarmUseCase: TriggerAlarmUseCase by inject()
 
+    // TODO: cancel notification if item completed
     suspend operator fun invoke(
         payload: AgendaItem.Reminder,
         alarmDeepLink: String

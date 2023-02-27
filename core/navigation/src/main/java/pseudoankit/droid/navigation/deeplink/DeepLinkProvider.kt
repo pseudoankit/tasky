@@ -8,7 +8,11 @@ import pseudoankit.droid.tasky.reminder.navigator.ReminderDeepLinkProvider
 
 internal class DeepLinkProvider : ReminderDeepLinkProvider, HomeDeepLinkProvider {
 
-    override fun buildHomeRoute(action: AgendaTypes.Action): String {
+    override fun homeRoute(): String {
+        return TaskyDeeplink.home
+    }
+
+    override fun agendaRoute(action: AgendaTypes.Action): String {
         return TaskyDeeplink.Reminder.route.replace(
             TaskyDeeplink.Reminder.ARG_ACTION,
             ActionNavTypeSerializer.toRouteString(action)
