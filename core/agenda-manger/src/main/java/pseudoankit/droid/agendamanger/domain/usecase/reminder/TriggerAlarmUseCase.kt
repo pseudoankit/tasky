@@ -11,7 +11,6 @@ internal class TriggerAlarmUseCase(
     private val alarmScheduler: AlarmScheduler
 ) {
 
-    // TODO cancel alarm when completed
     operator fun invoke(payload: AgendaItem.Reminder, alarmDeepLink: String) {
         val time = when (payload.time) {
             AgendaItem.Reminder.Time.AllDay -> LocalTime.NOON
@@ -33,6 +32,10 @@ internal class TriggerAlarmUseCase(
             source = TaskyNotifierConfig.Source.Reminder
         )
 
-        alarmScheduler.schedule(alarm)
+        if (payload.completed) {
+            alarmScheduler.cancel(alarm)
+        } else {
+            alarmScheduler.schedule(alarm)
+        }
     }
 }
