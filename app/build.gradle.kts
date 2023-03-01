@@ -40,6 +40,7 @@ dependencies {
         implementation(project(AgendaManager))
         implementation(project(AlarmManager))
         implementation(project(NotificationManager))
+        implementation(project(PermissionManager))
     }
 
     with(Dependencies.Koin) {

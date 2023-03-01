@@ -1,5 +1,7 @@
 package pseudoankit.droid.tasky
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -7,9 +9,11 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
+import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
@@ -28,6 +32,7 @@ internal class MainActivity : ComponentActivity() {
         TaskyLogger.info(intent.data.toString())
 
         setContent {
+            HandlePermissions()
             UnifyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -56,5 +61,16 @@ internal class MainActivity : ComponentActivity() {
                 dependency(CoreFeatureNavigator(navController, context))
             }
         )
+    }
+
+    @Composable
+    private fun HandlePermissions() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+
+        LaunchedEffect(key1 = Unit) {
+            launcher.launchPermissionRequest()
+        }
     }
 }
