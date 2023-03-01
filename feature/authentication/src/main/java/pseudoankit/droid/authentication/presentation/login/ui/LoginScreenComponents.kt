@@ -53,7 +53,10 @@ internal object LoginScreenComponents {
 
     @Composable
     fun LoginButton(onLogin: () -> Unit, state: UnifyButton.State) {
-        UnifyButton(config = UnifyButton.Config(text = "LOGIN", onClick = onLogin, state = state))
+        UnifyButton(
+            config = UnifyButton.Config(text = "LOGIN", state = state),
+            onClick = onLogin
+        )
     }
 
     // todo change to annotated text

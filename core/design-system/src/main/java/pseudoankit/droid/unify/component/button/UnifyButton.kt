@@ -16,9 +16,12 @@ import pseudoankit.droid.unify.token.UnifyTokens
 object UnifyButton {
 
     @Composable
-    operator fun invoke(config: Config) {
+    operator fun invoke(
+        config: Config,
+        onClick: () -> Unit
+    ) {
         Button(
-            onClick = config.onClick,
+            onClick = onClick,
             enabled = config.state.isEnabled,
             shape = RoundedCornerShape(UnifyTokens.Button.Radius),
             modifier = config.modifier
@@ -42,7 +45,6 @@ object UnifyButton {
     data class Config(
         val text: String,
         val modifier: Modifier = Modifier,
-        val onClick: () -> Unit,
         val state: State = State.Enabled
     )
 
