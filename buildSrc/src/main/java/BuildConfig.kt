@@ -1,5 +1,5 @@
 object BuildConfig {
-    const val CompileSdkVersion = 33
+    const val CompileSdkVersion = 21
     const val JvmTarget = "11"
     const val MinSdkVersion = 23
     const val TargetSdkVersion = CompileSdkVersion
