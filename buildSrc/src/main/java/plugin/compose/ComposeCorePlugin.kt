@@ -7,6 +7,7 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
 import plugin.util.PluginConstants
 import plugin.util.implementation
+import plugin.util.lintCheck
 
 /**
  * Plugin containing setup for adding compose core deps
@@ -34,6 +35,7 @@ open class ComposeCorePlugin : Plugin<Project> {
                 this@dependencies.implementation(Material3)
                 this@dependencies.implementation(Activity)
             }
+            lintCheck("com.slack.lint.compose:compose-lint-checks:1.0.1")
         }
     }
 }

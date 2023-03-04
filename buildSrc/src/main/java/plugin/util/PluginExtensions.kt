@@ -20,6 +20,10 @@ internal fun DependencyHandlerScope.implementation(dependency: String) {
     add(PluginConstants.IMPLEMENTATION, dependency)
 }
 
+internal fun DependencyHandlerScope.lintCheck(dependency: String) {
+    add("lintChecks", dependency)
+}
+
 internal fun DependencyHandlerScope.implementationProject(dependency: String) {
     add(
         PluginConstants.IMPLEMENTATION,
