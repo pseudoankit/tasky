@@ -7,8 +7,10 @@ object TaskyLogger {
     private const val TAG = "TASKY LOGS"
 
     fun info(vararg value: String) {
-        Log.i(TAG, value.joinToString(", "))
+        Log.i("$TAG Info", value.joinToString(", "))
     }
 
-
+    fun error(vararg value: String) {
+        Log.e("$TAG Error", value.joinToString(", "))
+    }
 }

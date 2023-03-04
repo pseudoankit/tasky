@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import com.example.permission_manager.taskyStatus
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
@@ -68,6 +69,8 @@ internal class MainActivity : ComponentActivity() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
 
         val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+
+        TaskyLogger.info("Notification Permission Status", launcher.taskyStatus.name)
 
         LaunchedEffect(key1 = Unit) {
             launcher.launchPermissionRequest()
