@@ -9,6 +9,7 @@ buildscript {
         classpath(Dependencies.Gradle.AndroidTools)
         classpath(Dependencies.Gradle.KotlinGradle)
         classpath(kotlin("serialization", version = Versions.Kotlin))
+        classpath("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7.1")
     }
 }
 

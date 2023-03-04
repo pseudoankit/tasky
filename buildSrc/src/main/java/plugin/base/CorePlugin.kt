@@ -22,6 +22,7 @@ open class CorePlugin : Plugin<Project> {
             apply("org.jetbrains.kotlin.android")
             apply("kotlinx-serialization")
             apply("kotlin-parcelize")
+            apply("org.sonarqube")
         }
 
         val androidExtension =
