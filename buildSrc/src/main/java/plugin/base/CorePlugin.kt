@@ -37,6 +37,7 @@ open class CorePlugin : Plugin<Project> {
             compileOptions {
                 sourceCompatibility = BuildConfig.JavaVersion
                 targetCompatibility = BuildConfig.JavaVersion
+                isCoreLibraryDesugaringEnabled = true
             }
 
             composeOptions {
@@ -81,6 +82,7 @@ open class CorePlugin : Plugin<Project> {
             with(Dependencies.Compose) {
                 this@dependencies.implementation(Runtime)
             }
+            add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
         }
     }
 }
