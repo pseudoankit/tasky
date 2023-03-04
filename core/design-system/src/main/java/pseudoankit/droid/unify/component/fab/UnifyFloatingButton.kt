@@ -6,27 +6,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.token.UnifyColors
 
-object UnifyFloatingButton {
+@Composable
+fun UnifyFloatingButton(
+    iconConfig: UnifyIconConfig,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+) {
+    val updatedIconConfig = remember(iconConfig) {
+        iconConfig.copy(tint = UnifyColors.White)
+    }
 
-    @Composable
-    operator fun invoke(
-        modifier: Modifier = Modifier,
-        iconConfig: UnifyIcon.Config,
-        onClick: () -> Unit,
+    FloatingActionButton(
+        onClick = onClick,
+        shape = CircleShape,
+        containerColor = UnifyColors.Black,
+        modifier = modifier
     ) {
-        val updatedIconConfig = remember(iconConfig) {
-            iconConfig.copy(tint = UnifyColors.White)
-        }
-
-        FloatingActionButton(
-            onClick = onClick,
-            shape = CircleShape,
-            containerColor = UnifyColors.Black,
-            modifier = modifier
-        ) {
-            UnifyIcon(config = updatedIconConfig)
-        }
+        UnifyIcon(config = updatedIconConfig)
     }
 }

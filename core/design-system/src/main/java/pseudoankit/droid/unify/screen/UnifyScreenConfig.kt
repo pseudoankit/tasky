@@ -3,6 +3,7 @@ package pseudoankit.droid.unify.screen
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.runtime.Composable
 import pseudoankit.droid.unify.component.topbar.UnifyTopBar
+import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 
 /**
  * @param[topBar] for custom topBars
@@ -16,7 +17,7 @@ data class UnifyScreenConfig(
      * @param[topBar] topBar or actionBar configs
      */
     constructor(
-        topBar: UnifyTopBar.Config? = null,
+        topBar: UnifyTopBarConfig? = null,
         floatingActionButton: @Composable () -> Unit = {},
     ) : this(
         topBar = {

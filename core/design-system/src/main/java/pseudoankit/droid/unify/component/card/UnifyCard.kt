@@ -11,24 +11,21 @@ import androidx.compose.ui.unit.dp
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
-object UnifyCard {
+data class UnifyCardConfig(
+    val radius: Dp = UnifyDimens.Radius.Medium,
+    val color: Color = UnifyColors.White,
+    val modifier: Modifier = Modifier,
+    val elevation: Dp = 2.dp
+)
 
-    @Composable
-    operator fun invoke(config: Config = Config(), content: @Composable () -> Unit) {
-        Surface(
-            modifier = config.modifier.then(Modifier.padding(UnifyDimens.Dp_1)),
-            shape = RoundedCornerShape(config.radius),
-            color = config.color,
-            content = content,
-            shadowElevation = config.elevation,
-            tonalElevation = config.elevation,
-        )
-    }
-
-    data class Config(
-        val radius: Dp = UnifyDimens.Radius.Medium,
-        val color: Color = UnifyColors.White,
-        val modifier: Modifier = Modifier,
-        val elevation: Dp = 2.dp
+@Composable
+fun UnifyCard(config: UnifyCardConfig = UnifyCardConfig(), content: @Composable () -> Unit) {
+    Surface(
+        modifier = config.modifier.then(Modifier.padding(UnifyDimens.Dp_1)),
+        shape = RoundedCornerShape(config.radius),
+        color = config.color,
+        content = content,
+        shadowElevation = config.elevation,
+        tonalElevation = config.elevation,
     )
 }

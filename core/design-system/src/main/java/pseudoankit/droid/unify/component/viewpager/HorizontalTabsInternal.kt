@@ -13,12 +13,13 @@ import com.google.accompanist.pager.pagerTabIndicatorOffset
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.launch
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 
 internal object HorizontalTabsInternal {
 
     @Composable
-    fun HorizontalTabs(pagerState: PagerState, items: ImmutableList<HorizontalViewPager.Item>) {
+    fun HorizontalTabs(pagerState: PagerState, items: ImmutableList<HorizontalViewPagerConfig.Item>) {
         val coroutineScope = rememberCoroutineScope()
         TabRow(
             selectedTabIndex = pagerState.currentPage,
@@ -42,7 +43,7 @@ internal object HorizontalTabsInternal {
                     modifier = Modifier.height(40.dp)
                 ) {
                     UnifyTextView(
-                        config = UnifyTextView.Config(
+                        config = UnifyTextViewConfig(
                             text = item.label,
                         )
                     )

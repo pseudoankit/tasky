@@ -20,8 +20,10 @@ import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.icon
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.label
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
@@ -62,7 +64,7 @@ private fun AgendaItems(
 @Composable
 private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> Unit) {
     UnifyTextView(
-        config = UnifyTextView.Config(
+        config = UnifyTextViewConfig(
             text = agenda.label.asString(),
             textType = UnifyTextType.TitleMedium,
             color = UnifyColors.White,
@@ -71,7 +73,7 @@ private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> U
     )
     Spacer(modifier = Modifier.width(UnifyDimens.Dp_8))
     UnifyFloatingButton(
-        iconConfig = UnifyIcon.Config(icon = agenda.icon),
+        iconConfig = UnifyIconConfig(icon = agenda.icon),
         onClick = {
             onAgendaSelected(agenda)
         }
@@ -80,8 +82,8 @@ private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> U
 
 @Composable
 private fun HandleSideEffect(
+    navigator: HomeScreenNavigator,
     viewModel: AgendaItemsViewModel = getViewModel(),
-    navigator: HomeScreenNavigator
 ) {
     LaunchedEffect(Unit) {
         viewModel.container.sideEffectFlow.collectLatest {

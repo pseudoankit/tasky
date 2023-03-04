@@ -11,9 +11,11 @@ import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.back
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.displayDateTime
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaItemsUiMapper.tint
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
@@ -35,7 +37,7 @@ internal fun AgendaReminderCard(
             modifier = Modifier.fillMaxWidth()
         ) {
             UnifyIcon(
-                UnifyIcon.Config(
+                UnifyIconConfig(
                     icon = if (agendaItem.completed) UnifyIcons.CheckCircle else UnifyIcons.Circle,
                     onClick = onCompletionToggled,
                     tint = UnifyColors.White,
@@ -43,7 +45,7 @@ internal fun AgendaReminderCard(
                 )
             )
             UnifyTextView(
-                UnifyTextView.Config(
+                UnifyTextViewConfig(
                     text = agendaItem.title,
                     textType = UnifyTextType.TitleMedium,
                     color = agendaItem.tint,
@@ -54,7 +56,7 @@ internal fun AgendaReminderCard(
             )
         }
         UnifyTextView(
-            UnifyTextView.Config(
+            UnifyTextViewConfig(
                 text = agendaItem.displayDateTime,
                 textType = UnifyTextType.BodySmall,
                 color = agendaItem.tint,

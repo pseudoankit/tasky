@@ -8,8 +8,10 @@ import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.topbar.UnifyTopBar
+import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 
@@ -20,9 +22,9 @@ internal fun RegistrationScreen(navigator: AuthNavigator) = RegistrationModule.l
 
     UnifyScreen(
         config = UnifyScreenConfig(
-            topBar = UnifyTopBar.Config(
+            topBar = UnifyTopBarConfig(
                 title = "Create your account",
-                leadingIcon = UnifyIcon.Config(
+                leadingIcon = UnifyIconConfig(
                     icon = UnifyIcons.Back,
                     onClick = viewModel::navigateBack
                 )

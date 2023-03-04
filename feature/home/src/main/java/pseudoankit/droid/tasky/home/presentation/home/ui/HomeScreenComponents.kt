@@ -18,9 +18,11 @@ import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
@@ -85,7 +87,7 @@ internal object HomeScreenComponents {
     @Composable
     fun FloatingButton(onClick: () -> Unit) {
         UnifyFloatingButton(
-            iconConfig = UnifyIcon.Config(
+            iconConfig = UnifyIconConfig(
                 icon = UnifyIcons.Add,
                 size = UnifyDimens.Dp_36
             ),
@@ -106,14 +108,14 @@ internal object HomeScreenComponents {
             verticalAlignment = Alignment.CenterVertically
         ) {
             UnifyTextView(
-                config = UnifyTextView.Config(
+                config = UnifyTextViewConfig(
                     textType = UnifyTextType.BodyMedium,
                     text = headerDate,
                     color = UnifyColors.White
                 )
             )
             UnifyIcon(
-                config = UnifyIcon.Config(
+                config = UnifyIconConfig(
                     icon = UnifyIcons.DropDown,
                     tint = UnifyColors.White
                 )
@@ -138,13 +140,13 @@ internal object HomeScreenComponents {
             verticalArrangement = Arrangement.Center
         ) {
             UnifyTextView(
-                config = UnifyTextView.Config(
+                config = UnifyTextViewConfig(
                     text = "${dayOfWeek.name[0]}",
                     textType = UnifyTextType.LabelMedium
                 )
             )
             UnifyTextView(
-                config = UnifyTextView.Config(
+                config = UnifyTextViewConfig(
                     text = "$dayOfMonth",
                     textType = UnifyTextType.TitleMedium
                 )

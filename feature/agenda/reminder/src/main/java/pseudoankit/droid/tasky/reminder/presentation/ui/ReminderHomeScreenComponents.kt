@@ -11,15 +11,18 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
-import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.component.list.UnifyList
-import pseudoankit.droid.unify.component.switch.UnifySwitch
+import pseudoankit.droid.unify.component.list.UnifyListItemConfig
+import pseudoankit.droid.unify.component.list.UnifyListItem
+import pseudoankit.droid.unify.component.switch.UnifySwitchConfig
 import pseudoankit.droid.unify.component.textfield.UnifyTextField
+import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
 import pseudoankit.droid.unify.component.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
-import pseudoankit.droid.unify.component.topbar.UnifyTopBar
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
+import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
@@ -33,10 +36,10 @@ internal object ReminderHomeScreenComponents {
     ) {
         Column(modifier = Modifier.padding(vertical = UnifyDimens.Dp_16)) {
             items.forEach { item ->
-                UnifyList(
-                    config = UnifyList.Config(
+                UnifyListItem(
+                    config = UnifyListItemConfig(
                         label = item.label.asString(),
-                        trailingIcon = if (item == selectedItem) UnifyList.TrailingIcon.NoAction(
+                        trailingSection = if (item == selectedItem) UnifyListItemConfig.TrailingSection.NoAction(
                             UnifyIcons.Check
                         ) else null,
                         color = if (item == selectedItem) UnifyColors.Purple800 else UnifyColors.Black,
@@ -51,8 +54,8 @@ internal object ReminderHomeScreenComponents {
 
     @Composable
     fun RepeatsReminderAtText(repeatIntervalLabel: TextResource, onClick: () -> Unit) {
-        UnifyList(
-            config = UnifyList.Config(
+        UnifyListItem(
+            config = UnifyListItemConfig(
                 leadingIcon = UnifyIcons.Refresh,
                 label = repeatIntervalLabel.asString(),
                 modifier = Modifier
@@ -94,16 +97,16 @@ internal object ReminderHomeScreenComponents {
         onReminderTextFieldValueChanged: (String) -> Unit
     ) {
         UnifyTextField(
-            config = UnifyTextField.Config(
+            config = UnifyTextFieldConfig(
                 placeholder = UnifyTextFieldDefaults.placeHolder(
                     value = "Remind me to...",
                     textType = UnifyTextType.HeadlineSmall
                 ),
                 value = value,
                 onValueChange = onReminderTextFieldValueChanged,
-                type = UnifyTextField.Type.Basic,
+                type = UnifyTextFieldConfig.Type.Basic,
                 textType = UnifyTextType.HeadlineSmall,
-                focusState = UnifyTextField.FocusState.Request,
+                focusState = UnifyTextFieldConfig.FocusState.Request,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(end = UnifyDimens.Dp_8, start = UnifyDimens.Dp_32)
@@ -114,28 +117,28 @@ internal object ReminderHomeScreenComponents {
     fun topBarConfig(
         onNavigateUp: () -> Unit,
         onSave: () -> Unit,
-    ) = UnifyTopBar.Config(
-        leadingIcon = UnifyIcon.Config(
+    ) = UnifyTopBarConfig(
+        leadingIcon = UnifyIconConfig(
             icon = UnifyIcons.Cross,
             onClick = onNavigateUp
         ),
-        trailingSection = UnifyTopBar.TrailingSection(
-            text = UnifyTextView.Config(
+        trailingSection = UnifyTopBarConfig.TrailingSection(
+            text = UnifyTextViewConfig(
                 text = "Save"
             ),
-            icon = UnifyIcon.Config(icon = UnifyIcons.CheckCircle),
+            icon = UnifyIconConfig(icon = UnifyIcons.CheckCircle),
             onClick = onSave
         )
     )
 
     @Composable
     private fun RemindAllDayListItem(remindAllDay: Boolean, onClick: () -> Unit) {
-        UnifyList(
-            config = UnifyList.Config(
+        UnifyListItem(
+            config = UnifyListItemConfig(
                 label = "All-day",
                 leadingIcon = UnifyIcons.Clock,
-                trailingIcon = UnifyList.TrailingIcon.Switch(
-                    value = UnifySwitch.Config(
+                trailingSection = UnifyListItemConfig.TrailingSection.Switch(
+                    value = UnifySwitchConfig(
                         checked = remindAllDay,
                         onCheckedChange = onClick
                     )
@@ -153,7 +156,7 @@ internal object ReminderHomeScreenComponents {
         if (time == null) return
 
         UnifyTextView(
-            config = UnifyTextView.Config(
+            config = UnifyTextViewConfig(
                 textType = UnifyTextType.BodyLarge,
                 text = time,
                 color = UnifyColors.Black,
@@ -168,7 +171,7 @@ internal object ReminderHomeScreenComponents {
     @Composable
     private fun Date(date: String, onClick: () -> Unit) {
         UnifyTextView(
-            config = UnifyTextView.Config(
+            config = UnifyTextViewConfig(
                 textType = UnifyTextType.BodyLarge,
                 text = date,
                 color = UnifyColors.Black,

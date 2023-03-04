@@ -18,6 +18,8 @@ import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePickerConfig
+import pseudoankit.droid.unify.component.dialog.rememberUnifyDialogState
 import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
@@ -67,15 +69,17 @@ internal fun HomeScreen(
 
 @Composable
 private fun HandleHomeScreenSideEffect(
-    viewModel: HomeViewModel = getViewModel(),
     dateRangeListState: LazyListState,
-    navigator: HomeScreenNavigator
+    navigator: HomeScreenNavigator,
+    viewModel: HomeViewModel = getViewModel(),
 ) {
-    val datePicker = UnifyDatePicker(
-        UnifyDatePicker.Config(
+    val datePicker = rememberUnifyDialogState()
+    UnifyDatePicker(
+        config = UnifyDatePickerConfig(
             initialDate = viewModel.state.selectedDate.value,
-            onDateChanged = viewModel::onDateChanged
-        )
+        ),
+        datePickerState = datePicker,
+        onDateChanged = viewModel::onDateChanged,
     )
 
     LaunchedEffect(Unit) {

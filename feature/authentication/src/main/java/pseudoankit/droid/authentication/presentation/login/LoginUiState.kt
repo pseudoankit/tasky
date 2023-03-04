@@ -2,6 +2,7 @@ package pseudoankit.droid.authentication.presentation.login
 
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
 import pseudoankit.droid.unify.component.button.UnifyButton
+import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 
 object LoginUiState {
 
@@ -18,7 +19,7 @@ object LoginUiState {
         val isButtonLoading: Boolean = false
     ) {
         val buttonState
-            get() = UnifyButton.State.fromBoolean(
+            get() = UnifyButtonConfig.State.fromBoolean(
                 isValid = emailConfig.errorMessage == null && passwordConfig.errorMessage == null,
                 isLoading = isButtonLoading
             )

@@ -22,7 +22,10 @@ import pseudoankit.droid.tasky.reminder.presentation.ReminderViewModel
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
 import pseudoankit.droid.unify.component.dialog.UnifyDialog
 import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePicker
+import pseudoankit.droid.unify.component.dialog.datepicker.UnifyDatePickerConfig
+import pseudoankit.droid.unify.component.dialog.rememberUnifyDialogState
 import pseudoankit.droid.unify.component.dialog.timepicker.UnifyTimePicker
+import pseudoankit.droid.unify.component.dialog.timepicker.UnifyTimePickerConfig
 import pseudoankit.droid.unify.component.divider.UnifyDivider
 import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
@@ -39,7 +42,7 @@ internal fun ReminderHomeScreen(
     action: AgendaTypes.Action
 ) = ReminderModule.load {
     val viewModel = getViewModel<ReminderViewModel>()
-    HandleSideEffect(viewModel, navigator = navigator)
+    HandleSideEffect(navigator = navigator)
 
     UnifyScreen(
         config = UnifyScreenConfig(
@@ -47,6 +50,7 @@ internal fun ReminderHomeScreen(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave
             ),
+            floatingActionButton = {}
         ),
         padding = PaddingValues(),
         singleEvents = {
@@ -79,24 +83,29 @@ internal fun ReminderHomeScreen(
 
 @Composable
 private fun HandleSideEffect(
+    navigator: ReminderNavigator,
     viewModel: ReminderViewModel = getViewModel(),
-    navigator: ReminderNavigator
 ) {
-    val datePicker = UnifyDatePicker(
-        config = UnifyDatePicker.Config(
+    val datePickerState = rememberUnifyDialogState()
+    UnifyDatePicker(
+        config = UnifyDatePickerConfig(
             initialDate = viewModel.state.selectedDate.value,
-            onDateChanged = viewModel::onDateValueChanged
-        )
+        ),
+        onDateChanged = viewModel::onDateValueChanged,
+        datePickerState = datePickerState
     )
 
-    val timePicker = UnifyTimePicker(
-        config = UnifyTimePicker.Config(
+    val timePickerState = rememberUnifyDialogState()
+    UnifyTimePicker(
+        config = UnifyTimePickerConfig(
             initialTime = viewModel.state.selectedTime?.value ?: LocalTime.now(),
-            onTimeChanged = viewModel::onTimeValueChanged
-        )
+        ),
+        onTimeChanged = viewModel::onTimeValueChanged,
+        timePickerState = timePickerState
     )
 
-    val repeatsOnDialog = UnifyDialog(showActionButton = false) {
+    val repeatsOnDialogState = rememberUnifyDialogState()
+    UnifyDialog(showActionButton = false, state = repeatsOnDialogState) {
         ReminderHomeScreenComponents.RepeatIntervalDialogItems(
             items = viewModel.state.repeatIntervalItems,
             onClick = viewModel::onRepeatIntervalChanged,
@@ -109,9 +118,9 @@ private fun HandleSideEffect(
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 ReminderUiState.SideEffect.NavigateUp -> navigator.navigateUp()
-                ReminderUiState.SideEffect.ShowDatePicker -> datePicker.show()
-                ReminderUiState.SideEffect.ShowTimePicker -> timePicker.show()
-                ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView -> repeatsOnDialog.toggle()
+                ReminderUiState.SideEffect.ShowDatePicker -> datePickerState.show()
+                ReminderUiState.SideEffect.ShowTimePicker -> timePickerState.show()
+                ReminderUiState.SideEffect.ToggleRepeatIntervalSelectionView -> repeatsOnDialogState.toggle()
                 ReminderUiState.SideEffect.ShowCustomRepeatIntervalSelector -> context.toastNotImplemented()
                 ReminderUiState.SideEffect.NavigateToHomeScreen -> navigator.navigateToHomeScreen()
                 is ReminderUiState.SideEffect.ShowError -> context.showToast(it.message)

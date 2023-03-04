@@ -4,6 +4,7 @@ import android.os.Build
 import androidx.compose.runtime.Composable
 import com.google.accompanist.permissions.*
 import pseudoankit.droid.unify.component.button.UnifyButton
+import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 
 @OptIn(ExperimentalPermissionsApi::class)
 val PermissionState.taskyStatus get() = when(this.status) {
@@ -30,7 +31,7 @@ internal fun DemoPermission() {
         TaskyPermissionStatus.DeclinedPermanently -> TODO()
     }
 
-    UnifyButton(UnifyButton.Config(text = "Btn")) {
+    UnifyButton(UnifyButtonConfig(text = "Btn")) {
         launcher.launchPermissionRequest()
     }
 

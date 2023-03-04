@@ -1,35 +1,39 @@
 package pseudoankit.droid.unify.component.dialog.datepicker
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Stable
+import androidx.compose.runtime.Immutable
+import com.vanpra.composematerialdialogs.datetime.date.datepicker
+import pseudoankit.droid.unify.component.dialog.UnifyDialog
 import pseudoankit.droid.unify.component.dialog.UnifyDialogState
 import pseudoankit.droid.unify.component.dialog.rememberUnifyDialogState
 import java.time.LocalDate
 
 /**
  * create date picker dialog
- * @param[datePickerState] pass the state of date picker, create state instance by [rememberUnifyDialogState()]
  * @param[initialDate] date to be selected when picker is opened initially
- * @param[onDateSelected] callback when positive button is clicked
  */
-object UnifyDatePicker {
+@Immutable
+data class UnifyDatePickerConfig(
+    val initialDate: LocalDate = LocalDate.now()
+)
 
-    @Composable
-    operator fun invoke(config: Config): UnifyDialogState = with(config) {
-        val datePickerState = rememberUnifyDialogState()
-
-        UnifyDatePickerImpl(
-            datePickerState = datePickerState,
+/**
+ * create date picker dialog
+ * @param[datePickerState] pass the state of date picker, create state instance by [rememberUnifyDialogState()]
+ * @param[onDateChanged] callback when positive button is clicked
+ * @param config configs for date picker
+ */
+@Composable
+fun UnifyDatePicker(
+    config: UnifyDatePickerConfig,
+    datePickerState: UnifyDialogState,
+    onDateChanged: (LocalDate) -> Unit,
+) = with(config) {
+    UnifyDialog(state = datePickerState) {
+        datepicker(
             initialDate = initialDate,
-            onDateSelected = onDateChanged
+            onDateChange = onDateChanged,
+            colors = UnifyDatePickerToken.colors
         )
-
-        return datePickerState
     }
-
-    @Stable
-    data class Config(
-        val initialDate: LocalDate = LocalDate.now(),
-        val onDateChanged: (LocalDate) -> Unit
-    )
 }

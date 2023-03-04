@@ -10,13 +10,14 @@ import androidx.compose.ui.graphics.Color
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyDimens
 import pseudoankit.droid.unify.utils.clickable
 
 internal object UnifySmallTopBar {
 
     @Composable
-    operator fun invoke(config: UnifyTopBar.Config) {
+    operator fun invoke(config: UnifyTopBarConfig) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -33,7 +34,7 @@ internal object UnifySmallTopBar {
 
             Box(contentAlignment = Alignment.Center, modifier = Modifier.fillMaxSize()) {
                 UnifyTextView(
-                    config = UnifyTextView.Config(
+                    config = UnifyTextViewConfig(
                         text = config.title,
                         textType = UnifyTextType.TitleLarge,
                         color = config.tintColor
@@ -44,7 +45,7 @@ internal object UnifySmallTopBar {
     }
 
     @Composable
-    private fun UnifyTopBar.TrailingSection.TrailingSection(tintColor: Color) {
+    private fun UnifyTopBarConfig.TrailingSection.TrailingSection(tintColor: Color) {
         when {
             icon != null && text != null -> {
                 Row(

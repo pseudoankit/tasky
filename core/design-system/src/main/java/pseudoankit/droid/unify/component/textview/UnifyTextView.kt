@@ -9,10 +9,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 
-object UnifyTextView {
-    @Composable
-    operator fun invoke(config: Config?) = config?.apply {
-        text ?: return@apply
+@Composable
+fun UnifyTextView(config: UnifyTextViewConfig?) {
+
+    config?.apply {
+        if (text == null) return
+
         Text(
             text = text,
             color = color,
@@ -25,15 +27,15 @@ object UnifyTextView {
             overflow = TextOverflow.Ellipsis
         )
     }
-
-    data class Config(
-        val text: String?,
-        val textType: UnifyTextType = UnifyTextType.LabelMedium,
-        val color: Color = Color.Unspecified,
-        val textDecoration: TextDecoration? = null,
-        val textAlign: TextAlign? = null,
-        val maxLines: Int = Int.MAX_VALUE,
-        val fontStyle: FontStyle? = null,
-        val modifier: Modifier = Modifier
-    )
 }
+
+data class UnifyTextViewConfig(
+    val text: String?,
+    val textType: UnifyTextType = UnifyTextType.LabelMedium,
+    val color: Color = Color.Unspecified,
+    val textDecoration: TextDecoration? = null,
+    val textAlign: TextAlign? = null,
+    val maxLines: Int = Int.MAX_VALUE,
+    val fontStyle: FontStyle? = null,
+    val modifier: Modifier = Modifier
+)

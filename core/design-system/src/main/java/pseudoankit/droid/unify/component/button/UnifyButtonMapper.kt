@@ -6,21 +6,21 @@ import pseudoankit.droid.unify.token.UnifyColors
 
 internal object UnifyButtonMapper {
 
-    val UnifyButton.State.isDisabled get() = this == UnifyButton.State.Disabled
-    val UnifyButton.State.isLoading get() = this == UnifyButton.State.Loading
-    val UnifyButton.State.isEnabled get() = this == UnifyButton.State.Enabled
+    val UnifyButtonConfig.State.isDisabled get() = this == UnifyButtonConfig.State.Disabled
+    val UnifyButtonConfig.State.isLoading get() = this == UnifyButtonConfig.State.Loading
+    val UnifyButtonConfig.State.isEnabled get() = this == UnifyButtonConfig.State.Enabled
 
     @Composable
-    fun UnifyButton.State.buttonColors() = when (this) {
-        UnifyButton.State.Loading -> ButtonDefaults.buttonColors(
+    fun UnifyButtonConfig.State.buttonColors() = when (this) {
+        UnifyButtonConfig.State.Loading -> ButtonDefaults.buttonColors(
             containerColor = UnifyColors.Black,
             contentColor = UnifyColors.White
         )
-        UnifyButton.State.Enabled -> ButtonDefaults.buttonColors(
+        UnifyButtonConfig.State.Enabled -> ButtonDefaults.buttonColors(
             containerColor = UnifyColors.Black,
             contentColor = UnifyColors.White
         )
-        UnifyButton.State.Disabled -> ButtonDefaults.buttonColors(
+        UnifyButtonConfig.State.Disabled -> ButtonDefaults.buttonColors(
             containerColor = UnifyColors.Gray400,
             contentColor = UnifyColors.Gray800
         )

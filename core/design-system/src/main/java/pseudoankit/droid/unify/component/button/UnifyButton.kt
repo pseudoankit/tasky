@@ -11,42 +11,14 @@ import pseudoankit.droid.unify.component.button.UnifyButtonMapper.isEnabled
 import pseudoankit.droid.unify.component.button.UnifyButtonMapper.isLoading
 import pseudoankit.droid.unify.component.progressbar.UnifyProgressIndicator
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyTokens
 
-object UnifyButton {
-
-    @Composable
-    operator fun invoke(
-        config: Config,
-        onClick: () -> Unit
-    ) {
-        Button(
-            onClick = onClick,
-            enabled = config.state.isEnabled,
-            shape = RoundedCornerShape(UnifyTokens.Button.Radius),
-            modifier = config.modifier
-                .fillMaxWidth()
-                .height(UnifyTokens.Button.Height),
-            colors = config.state.buttonColors()
-        ) {
-            if (config.state.isLoading) {
-                UnifyProgressIndicator()
-                return@Button
-            }
-            UnifyTextView(
-                config = UnifyTextView.Config(
-                    text = config.text,
-                    textType = UnifyTokens.Button.TextType
-                )
-            )
-        }
-    }
-
-    data class Config(
-        val text: String,
-        val modifier: Modifier = Modifier,
-        val state: State = State.Enabled
-    )
+data class UnifyButtonConfig(
+    val text: String,
+    val modifier: Modifier = Modifier,
+    val state: State = State.Enabled
+) {
 
     enum class State {
         Loading, Enabled, Disabled;
@@ -60,5 +32,32 @@ object UnifyButton {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun UnifyButton(
+    config: UnifyButtonConfig,
+    onClick: () -> Unit
+) {
+    Button(
+        onClick = onClick,
+        enabled = config.state.isEnabled,
+        shape = RoundedCornerShape(UnifyTokens.Button.Radius),
+        modifier = config.modifier
+            .fillMaxWidth()
+            .height(UnifyTokens.Button.Height),
+        colors = config.state.buttonColors()
+    ) {
+        if (config.state.isLoading) {
+            UnifyProgressIndicator()
+            return@Button
+        }
+        UnifyTextView(
+            config = UnifyTextViewConfig(
+                text = config.text,
+                textType = UnifyTokens.Button.TextType
+            )
+        )
     }
 }

@@ -14,46 +14,49 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import pseudoankit.droid.unify.component.icon.UnifyIcon
+import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.textfield.UnifyTextField
+import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
+import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 import pseudoankit.droid.unify.token.UnifyTokens
 
 internal object UnifyTextFieldCommon {
 
-    fun UnifyTextField.Config.visualTransformation(): VisualTransformation = when (trailingIcon) {
-        is UnifyTextField.TrailingIcon.Password -> {
+    fun UnifyTextFieldConfig.visualTransformation(): VisualTransformation = when (trailingIcon) {
+        is UnifyTextFieldConfig.TrailingIcon.Password -> {
             if (trailingIcon.isTextHidden) PasswordVisualTransformation() else VisualTransformation.None
         }
         else -> VisualTransformation.None
     }
 
     @Composable
-    fun UnifyTextField.Config.TrailingIcon(): @Composable() (() -> Unit)? =
+    fun UnifyTextFieldConfig.TrailingIcon(): @Composable() (() -> Unit)? =
         takeIf { trailingIcon != null && showTrailingIcon }?.run {
             {
                 when (trailingIcon) {
-                    is UnifyTextField.TrailingIcon.Custom -> UnifyIcon(
-                        config = UnifyIcon.Config(
+                    is UnifyTextFieldConfig.TrailingIcon.Custom -> UnifyIcon(
+                        config = UnifyIconConfig(
                             tint = UnifyTokens.TextField.Icon.Color,
                             size = UnifyTokens.TextField.Icon.Size,
                             icon = trailingIcon.icon,
                             onClick = trailingIcon.onClick
                         )
                     )
-                    is UnifyTextField.TrailingIcon.Password -> UnifyIcon(
-                        config = UnifyIcon.Config(
+                    is UnifyTextFieldConfig.TrailingIcon.Password -> UnifyIcon(
+                        config = UnifyIconConfig(
                             tint = UnifyTokens.TextField.Icon.Color,
                             size = UnifyTokens.TextField.Icon.Size,
                             icon = if (trailingIcon.isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
                             onClick = trailingIcon.onVisibilityToggled
                         )
                     )
-                    is UnifyTextField.TrailingIcon.Valid -> UnifyIcon(
-                        config = UnifyIcon.Config(
+                    is UnifyTextFieldConfig.TrailingIcon.Valid -> UnifyIcon(
+                        config = UnifyIconConfig(
                             tint = UnifyColors.Green800,
                             size = UnifyTokens.TextField.Icon.Size,
                             icon = UnifyIcons.Check
@@ -65,11 +68,11 @@ internal object UnifyTextFieldCommon {
         }
 
     @Composable
-    fun UnifyTextField.Config.LeadingIcon(): @Composable() (() -> Unit)? =
+    fun UnifyTextFieldConfig.LeadingIcon(): @Composable() (() -> Unit)? =
         leadingIcon?.run {
             {
                 UnifyIcon(
-                    config = UnifyIcon.Config(
+                    config = UnifyIconConfig(
                         tint = UnifyTokens.TextField.Icon.Color,
                         size = UnifyTokens.TextField.Icon.Size,
                         icon = this
@@ -79,7 +82,7 @@ internal object UnifyTextFieldCommon {
         }
 
     @Composable
-    fun UnifyTextField.Config.Label(): @Composable() (() -> Unit)? = placeholder?.run {
+    fun UnifyTextFieldConfig.Label(): @Composable() (() -> Unit)? = placeholder?.run {
         {
             UnifyTextView(config = this)
         }
@@ -91,7 +94,7 @@ internal object UnifyTextFieldCommon {
 
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_2))
         UnifyTextView(
-            config = UnifyTextView.Config(
+            config = UnifyTextViewConfig(
                 text = errorMessage,
                 textType = UnifyTextType.BodySmall,
                 color = UnifyColors.Error
@@ -99,79 +102,4 @@ internal object UnifyTextFieldCommon {
         )
     }
 
-    @Composable
-    fun textFieldColors() = object : TextFieldColors {
-        val defaultColors = TextFieldDefaults.textFieldColors()
-
-        override val selectionColors: TextSelectionColors
-            @Composable get() = defaultColors.selectionColors
-
-        @Composable
-        override fun containerColor(enabled: Boolean): State<Color> {
-            return mutableStateOf(UnifyColors.White)
-        }
-
-        @Composable
-        override fun cursorColor(isError: Boolean): State<Color> {
-            return defaultColors.cursorColor(isError = isError)
-        }
-
-        @Composable
-        override fun indicatorColor(
-            enabled: Boolean,
-            isError: Boolean,
-            interactionSource: InteractionSource
-        ): State<Color> {
-            return mutableStateOf(UnifyColors.White)
-        }
-
-        @Composable
-        override fun labelColor(
-            enabled: Boolean,
-            isError: Boolean,
-            interactionSource: InteractionSource
-        ): State<Color> {
-            return defaultColors.labelColor(
-                enabled = enabled,
-                isError = isError,
-                interactionSource = interactionSource
-            )
-        }
-
-        @Composable
-        override fun leadingIconColor(
-            enabled: Boolean,
-            isError: Boolean,
-            interactionSource: InteractionSource
-        ): State<Color> {
-            return defaultColors.leadingIconColor(
-                enabled = enabled,
-                isError = isError,
-                interactionSource = interactionSource
-            )
-        }
-
-        @Composable
-        override fun placeholderColor(enabled: Boolean): State<Color> {
-            return defaultColors.placeholderColor(enabled = enabled)
-        }
-
-        @Composable
-        override fun textColor(enabled: Boolean): State<Color> {
-            return defaultColors.textColor(enabled = enabled)
-        }
-
-        @Composable
-        override fun trailingIconColor(
-            enabled: Boolean,
-            isError: Boolean,
-            interactionSource: InteractionSource
-        ): State<Color> {
-            return defaultColors.trailingIconColor(
-                enabled = enabled,
-                isError = isError,
-                interactionSource = interactionSource
-            )
-        }
-    }
 }

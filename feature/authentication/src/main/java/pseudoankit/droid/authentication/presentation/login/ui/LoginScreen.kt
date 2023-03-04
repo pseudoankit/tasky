@@ -14,6 +14,7 @@ import pseudoankit.droid.authentication.presentation.login.LoginUiState
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.unify.component.topbar.UnifyTopBar
+import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
@@ -25,7 +26,7 @@ internal fun LoginScreen(navigator: AuthNavigator) = LoginModule.load {
 
     UnifyScreen(
         config = UnifyScreenConfig(
-            topBar = UnifyTopBar.Config(title = "Welcome Back")
+            topBar = UnifyTopBarConfig(title = "Welcome Back")
         ),
         singleEvents = {
             viewModel.container.sideEffectFlow.collectLatest {
