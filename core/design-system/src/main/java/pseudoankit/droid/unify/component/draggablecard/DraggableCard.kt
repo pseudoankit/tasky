@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.draggablecard
+package pseudoankit.droid.unify.component.draggablecard
 
 import androidx.compose.foundation.gestures.detectHorizontalDragGestures
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,7 @@ import androidx.compose.ui.input.pointer.positionChange
 import androidx.compose.ui.unit.IntOffset
 import pseudoankit.droid.unify.component.card.UnifyCard
 import pseudoankit.droid.unify.component.card.UnifyCardConfig
-import pseudoankit.droid.unify.draggablecard.DraggableCardInternal.getOffsetTransition
+import pseudoankit.droid.unify.component.draggablecard.DraggableCardInternal.getOffsetTransition
 import pseudoankit.droid.unify.utils.logs
 import kotlin.math.roundToInt
 

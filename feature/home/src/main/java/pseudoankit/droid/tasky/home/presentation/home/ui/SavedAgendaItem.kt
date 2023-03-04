@@ -9,7 +9,7 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.draggablecard.DraggableCard
+import pseudoankit.droid.unify.component.draggablecard.DraggableCard
 
 @Composable
 internal fun SavedAgendaItem(

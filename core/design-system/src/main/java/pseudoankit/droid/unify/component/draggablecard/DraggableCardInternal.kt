@@ -1,4 +1,4 @@
-package pseudoankit.droid.unify.draggablecard
+package pseudoankit.droid.unify.component.draggablecard
 
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
