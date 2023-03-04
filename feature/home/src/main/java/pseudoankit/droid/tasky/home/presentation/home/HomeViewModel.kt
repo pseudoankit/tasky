@@ -2,6 +2,7 @@ package pseudoankit.droid.tasky.home.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -42,8 +43,18 @@ internal class HomeViewModel(
         HomeUiState.SideEffect.ShowAgendaItems
     }
 
-    fun onDaySelected(date: TaskyDate) {
-        setState { copy(selectedDate = date) }
+    fun onDateChanged(date: LocalDate) {
+        onDateChanged(TaskyDate(date))
+        highlightCurrentSelectedDate()
+    }
+
+    fun onDateChanged(date: TaskyDate) {
+        setState {
+            copy(
+                selectedDate = date,
+                savedAgendaItems = persistentListOf()
+            )
+        }
         loadAgendaItemsForSelectedDate()
     }
 
@@ -57,11 +68,11 @@ internal class HomeViewModel(
             .launchIn(agendaItemsJob!!)
     }
 
-    fun onDelete(agenda: AgendaItem) = launch {
+    fun onDeleteAgendaItem(agenda: AgendaItem) = launch {
         deleteAgendaUseCase(agenda)
     }
 
-    fun onEdit(agenda: AgendaItem) = postSideEffect {
+    fun onEditAgendaItem(agenda: AgendaItem) = postSideEffect {
         HomeUiState.SideEffect.NavigateToAgendaScreen(agenda.mapToAgendaTypes)
     }
 
@@ -73,18 +84,7 @@ internal class HomeViewModel(
         HomeUiState.SideEffect.ShowDatePicker
     }
 
-    fun onDateChanged(date: LocalDate) {
-        setState {
-            copy(selectedDate = TaskyDate(date))
-        }
-        highlightCurrentSelectedDate()
-    }
-
-    fun onInit() {
-        highlightCurrentSelectedDate()
-    }
-
-    private fun highlightCurrentSelectedDate() = postSideEffect {
+    fun highlightCurrentSelectedDate() = postSideEffect {
         HomeUiState.SideEffect.HighlightCurrentSelectedDate(state.selectedDate.value.dayOfMonth - 1)
     }
 }

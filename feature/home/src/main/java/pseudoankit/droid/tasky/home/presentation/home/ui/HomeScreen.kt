@@ -49,11 +49,14 @@ internal fun HomeScreen(
                     onClick = viewModel::onShowAgendaItems
                 )
             }
-        )
+        ),
+        singleEvents = {
+            viewModel.highlightCurrentSelectedDate()
+        }
     ) {
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,
-            onDaySelected = viewModel::onDaySelected,
+            onDaySelected = viewModel::onDateChanged,
             listState = dateRangeListState,
             selectedDate = state.selectedDate
         )
@@ -61,8 +64,8 @@ internal fun HomeScreen(
         HomeScreenComponents.SavedAgendaItems(
             items = state.savedAgendaItems,
             onItemCompletionToggled = viewModel::onAgendaItemCompletionToggle,
-            onEdit = viewModel::onEdit,
-            onDelete = viewModel::onDelete
+            onEdit = viewModel::onEditAgendaItem,
+            onDelete = viewModel::onDeleteAgendaItem
         )
     }
 }
@@ -83,7 +86,6 @@ private fun HandleHomeScreenSideEffect(
     )
 
     LaunchedEffect(Unit) {
-        viewModel.onInit()
         viewModel.container.sideEffectFlow.collectLatest {
             when (it) {
                 HomeUiState.SideEffect.ShowDatePicker -> datePicker.show()
