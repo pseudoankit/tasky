@@ -1,7 +1,7 @@
 # Tasky
 App to set events &amp; reminder, repo created to apply new concepts in practice
 
-Used :-
+Overview :-
 - Multi Module Structure 
 - buildSrc to centrailize dependencies and to extract repeated portion of gradle [ref](https://github.com/pseudoankit/Tasky/tree/master/buildSrc/src/main/java)
 - UI : Jetpack Compose
@@ -10,7 +10,13 @@ Used :-
 - Architecture :- MVI + Clean Architecture 
 - Single Activity Arch
 
-CI / CD :-
-- generate apk on push to master
-- static code analysis with sonarcloud
-- lint check 
+- CI / CD 
+  - generate apk on push to master
+  - static code analysis with sonarcloud
+  - lint check 
+
+Planned
+- [ ] unit test 
+- [ ] unit test CI and jaccoco setup for coverage
+- [ ] instumentation test 
+- [ ] instumentation test CI 
