@@ -65,6 +65,11 @@ internal class ReminderViewModel(
 
 
     fun onSave() = launch {
+        if (state.reminderText.isEmpty()) {
+            postSideEffect(ReminderUiState.SideEffect.NavigateToHomeScreen)
+            return@launch
+        }
+
         val payload = state.mapToReminderObj
         val alarmDeepLink = deepLinkProvider.agendaRoute(AgendaTypes.Action.Edit(payload.id))
 
