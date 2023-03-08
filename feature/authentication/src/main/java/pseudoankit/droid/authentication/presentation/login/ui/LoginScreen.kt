@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -12,6 +13,7 @@ import pseudoankit.droid.authentication.di.LoginModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.login.LoginUiState
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.unify.component.topbar.UnifyTopBar
 import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
@@ -19,7 +21,11 @@ import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
 
-@Destination
+@Destination(
+    deepLinks = [
+        DeepLink(uriPattern = TaskyDeeplink.login)
+    ]
+)
 @Composable
 internal fun LoginScreen(navigator: AuthNavigator) = LoginModule.load {
     val viewModel: LoginViewModel = getViewModel()

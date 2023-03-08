@@ -13,8 +13,8 @@ internal class DeepLinkProvider : ReminderDeepLinkProvider, HomeDeepLinkProvider
     }
 
     override fun agendaRoute(action: AgendaTypes.Action): String {
-        return TaskyDeeplink.Reminder.route.replace(
-            TaskyDeeplink.Reminder.ARG_ACTION,
+        return TaskyDeeplink.reminder.replace(
+            TaskyDeeplink.ReminderArgs.ACTION,
             ActionNavTypeSerializer.toRouteString(action)
         )
     }

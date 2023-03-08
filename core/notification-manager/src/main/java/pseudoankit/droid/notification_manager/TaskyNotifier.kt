@@ -48,7 +48,7 @@ class TaskyNotifier(
             appContext,
             1,
             intent,
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT else 0
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
         NotificationCompat
             .Builder(appContext, CHANNEL_ID)

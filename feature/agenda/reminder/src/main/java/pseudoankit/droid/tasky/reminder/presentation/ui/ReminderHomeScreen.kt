@@ -33,7 +33,7 @@ import java.time.LocalTime
 
 @Destination(
     deepLinks = [
-        DeepLink(uriPattern = TaskyDeeplink.Reminder.route)
+        DeepLink(uriPattern = TaskyDeeplink.reminder)
     ]
 )
 @Composable
