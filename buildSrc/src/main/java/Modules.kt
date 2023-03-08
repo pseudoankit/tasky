@@ -6,6 +6,7 @@ object Modules {
         const val Event = ":feature:agenda:event"
         const val Reminder = ":feature:agenda:reminder"
         const val Task = ":feature:agenda:task"
+        const val Splash = ":feature:splash"
     }
 
     object Core {

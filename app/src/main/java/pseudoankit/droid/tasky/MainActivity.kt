@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import com.example.permission_manager.taskyStatus
@@ -18,9 +20,11 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
+import org.koin.android.ext.android.get
 import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
+import pseudoankit.droid.preferencesmanager.PreferenceRepository
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
 
@@ -52,7 +56,7 @@ internal class MainActivity : ComponentActivity() {
         val engine = rememberAnimatedNavHostEngine()
         val navController = engine.rememberNavController()
 
-        // TODO : screen transitions
+        ObserveLoginStatus()
 
         DestinationsNavHost(
             navGraph = MainNavGraph,
@@ -62,6 +66,13 @@ internal class MainActivity : ComponentActivity() {
                 dependency(CoreFeatureNavigator(navController, context))
             }
         )
+    }
+
+    @Composable
+    private fun ObserveLoginStatus() {
+        val preferenceRepository = get<PreferenceRepository>()
+        val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = false)
+
     }
 
     @Composable

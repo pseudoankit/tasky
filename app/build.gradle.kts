@@ -41,6 +41,7 @@ dependencies {
         implementation(project(AlarmManager))
         implementation(project(NotificationManager))
         implementation(project(PermissionManager))
+        implementation(project(PreferencesManager))
     }
 
     with(Dependencies.Koin) {

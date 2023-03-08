@@ -24,5 +24,6 @@ dependencies {
         implementation(project(Event))
         implementation(project(Reminder))
         implementation(project(Task))
+        implementation(project(Splash))
     }
 }

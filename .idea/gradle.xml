@@ -31,6 +31,7 @@
             <option value="$PROJECT_DIR$/feature/agenda/task" />
             <option value="$PROJECT_DIR$/feature/authentication" />
             <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/splash" />
           </set>
         </option>
       </GradleProjectSettings>
