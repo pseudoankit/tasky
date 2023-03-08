@@ -14,6 +14,10 @@ Overview :-
   - generate apk on push to master
   - static code analysis with sonarcloud
   - lint check 
+  
+<img src="https://user-images.githubusercontent.com/54987308/223794067-e96e4191-d34e-4dd1-9d03-1b6b1816990f.png" width="500" height="600"/>
+
+ 
 
 Planned
 - [ ] unit test 
