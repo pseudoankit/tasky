@@ -45,7 +45,6 @@ object UnifyTextFieldInternal {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun UnifyOutlinedTextField(config: UnifyTextFieldConfig) = with(config) {
     Column {
@@ -72,7 +71,6 @@ fun UnifyOutlinedTextField(config: UnifyTextFieldConfig) = with(config) {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 internal fun UnifyBasicTextField(config: UnifyTextFieldConfig) = with(config) {
     TextField(

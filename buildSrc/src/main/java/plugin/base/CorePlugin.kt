@@ -10,6 +10,7 @@ import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugin.util.PluginConstants
 import plugin.util.implementation
+import java.io.File
 
 /**
  * Plugin containing all common code for any gradle
@@ -43,6 +44,12 @@ open class CorePlugin : Plugin<Project> {
 
             composeOptions {
                 kotlinCompilerExtensionVersion = Versions.Compose.Compiler
+            }
+
+            lintOptions {
+                disable += mutableSetOf(
+                    "ParcelCreator", "ComposeModifierMissing"
+                )
             }
         }
 

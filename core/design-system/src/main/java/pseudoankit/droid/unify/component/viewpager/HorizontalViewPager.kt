@@ -26,7 +26,6 @@ data class HorizontalViewPagerConfig(
     interface Tag
 }
 
-@SuppressLint("ComposeModifierMissing")
 @Composable
 fun HorizontalViewPager(
     config: HorizontalViewPagerConfig,

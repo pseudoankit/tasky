@@ -9,7 +9,6 @@ import androidx.compose.ui.unit.Dp
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
-@SuppressLint("ComposeModifierMissing")
 @Composable
 fun UnifyProgressIndicator(
     config: UnifyProgressIndicatorConfig = UnifyProgressIndicatorConfig()

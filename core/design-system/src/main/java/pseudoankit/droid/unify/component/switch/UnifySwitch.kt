@@ -18,7 +18,6 @@ data class UnifySwitchConfig(
     val modifier: Modifier = Modifier,
 )
 
-@SuppressLint(value = ["ComposeModifierMissing"])
 @Composable
 fun UnifySwitch(config: UnifySwitchConfig) = with(config) {
     Switch(

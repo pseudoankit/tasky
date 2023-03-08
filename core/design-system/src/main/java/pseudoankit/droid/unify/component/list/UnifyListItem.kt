@@ -10,7 +10,6 @@ import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.switch.UnifySwitchConfig
 import pseudoankit.droid.unify.token.UnifyColors
 
-@SuppressLint("ComposeModifierMissing")
 @Composable
 fun UnifyListItem(config: UnifyListItemConfig) {
     Row(

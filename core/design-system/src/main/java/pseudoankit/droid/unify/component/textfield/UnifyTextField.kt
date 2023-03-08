@@ -15,7 +15,6 @@ import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.utils.rememberFocusRequester
 
-@SuppressLint("ComposeModifierMissing")
 @Composable
 fun UnifyTextField(config: UnifyTextFieldConfig) {
     val focusRequester = rememberFocusRequester()

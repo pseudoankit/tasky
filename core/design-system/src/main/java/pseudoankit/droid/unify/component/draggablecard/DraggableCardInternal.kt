@@ -1,5 +1,6 @@
 package pseudoankit.droid.unify.component.draggablecard
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.runtime.Composable
@@ -10,10 +11,11 @@ import androidx.compose.ui.unit.dp
 
 // TODO right to left
 internal object DraggableCardInternal {
-     const val ANIMATION_DURATION = 500
+    private const val ANIMATION_DURATION = 500
 
+    @SuppressLint("UnusedTransitionTargetStateParameter")
     @Composable
-     fun getElevation(
+    fun getElevation(
         transition: Transition<Boolean>,
         isRevealed: Boolean,
     ) = transition.animateDp(
@@ -22,8 +24,9 @@ internal object DraggableCardInternal {
         targetValueByState = { if (isRevealed) 40.dp else 2.dp }
     )
 
+    @SuppressLint("UnusedTransitionTargetStateParameter")
     @Composable
-     fun getOffsetTransition(
+    fun getOffsetTransition(
         transition: Transition<Boolean>,
         isRevealed: Boolean,
         cardOffset: Float,
@@ -35,7 +38,7 @@ internal object DraggableCardInternal {
     )
 
     @Composable
-     fun getTransition(isRevealed: Boolean): Transition<Boolean> {
+    fun getTransition(isRevealed: Boolean): Transition<Boolean> {
         val transitionState = remember {
             MutableTransitionState(isRevealed).apply {
                 targetState = !isRevealed
@@ -44,8 +47,9 @@ internal object DraggableCardInternal {
         return updateTransition(transitionState, "cardTransition")
     }
 
+    @SuppressLint("UnusedTransitionTargetStateParameter")
     @Composable
-     fun getBackgroundColor(
+    fun getBackgroundColor(
         transition: Transition<Boolean>,
         isRevealed: Boolean,
         revealedBgColor: Color,
@@ -53,8 +57,6 @@ internal object DraggableCardInternal {
     ) = transition.animateColor(
         label = "cardBgColorTransition",
         transitionSpec = { tween(durationMillis = ANIMATION_DURATION) },
-        targetValueByState = {
-            if (isRevealed) revealedBgColor else collapsedBgColor
-        }
+        targetValueByState = { if (isRevealed) revealedBgColor else collapsedBgColor }
     )
 }

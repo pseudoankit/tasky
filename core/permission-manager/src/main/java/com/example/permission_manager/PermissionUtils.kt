@@ -6,7 +6,6 @@ import com.google.accompanist.permissions.*
 import pseudoankit.droid.unify.component.button.UnifyButton
 import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 
-@OptIn(ExperimentalPermissionsApi::class)
 val PermissionState.taskyStatus get() = when(this.status) {
     is PermissionStatus.Denied -> {
         if (this.status.shouldShowRationale) {
@@ -20,7 +19,6 @@ val PermissionState.taskyStatus get() = when(this.status) {
     }
 }
 
-@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 internal fun DemoPermission() {
     val launcher = rememberPermissionState(permission = android.Manifest.permission.ACCESS_FINE_LOCATION)
