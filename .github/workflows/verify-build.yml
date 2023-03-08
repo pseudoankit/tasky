@@ -1,4 +1,4 @@
-name: CI
+name: Verify commit
 on:
   push:
     branches: [ master ]
