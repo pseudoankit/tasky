@@ -10,3 +10,7 @@ Used :-
 - Architecture :- MVI + Clean Architecture 
 - Single Activity Arch
 
+CI / CD :-
+- generate apk on push to master
+- static code analysis with sonarcloud
+- lint check 
