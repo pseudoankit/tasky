@@ -11,3 +11,9 @@ ksp {
 android {
     namespace = "pseudoankit.droid.authentication"
 }
+
+dependencies {
+    with(Modules.Core) {
+        implementation(project(PreferencesManager))
+    }
+}

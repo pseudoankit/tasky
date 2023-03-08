@@ -12,7 +12,7 @@ internal object LoginModule : BaseKoinModule() {
     override val provideModules: List<Module>
         get() = listOf(
             module {
-                factory { LoginUseCase() }
+                factory { LoginUseCase(get()) }
 
                 viewModel { LoginViewModel(get()) }
             }
