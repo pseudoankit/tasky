@@ -48,7 +48,7 @@ open class CorePlugin : Plugin<Project> {
 
             lintOptions {
                 disable += mutableSetOf(
-                    "ParcelCreator", "ComposeModifierMissing"
+                    "ParcelCreator",
                 )
             }
         }
