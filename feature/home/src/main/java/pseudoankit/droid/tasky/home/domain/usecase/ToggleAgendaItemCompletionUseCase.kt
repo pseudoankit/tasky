@@ -17,7 +17,7 @@ internal class ToggleAgendaItemCompletionUseCase(
             is AgendaItem.Event -> TODO()
             is AgendaItem.Reminder -> saveReminderUseCase(
                 payload = agenda.copy(completed = agenda.completed.not()),
-                alarmDeepLink = deepLinkProvider.agendaRoute(AgendaTypes.Action.Edit(agenda.id))
+                alarmDeepLink = deepLinkProvider.reminderScreenRoute(AgendaTypes.Action.Edit(agenda.id))
             )
             is AgendaItem.Task -> TODO()
         }
