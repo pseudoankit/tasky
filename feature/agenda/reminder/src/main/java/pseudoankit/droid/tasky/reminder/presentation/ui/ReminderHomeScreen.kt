@@ -50,7 +50,6 @@ internal fun ReminderHomeScreen(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave
             ),
-            floatingActionButton = {}
         ),
         padding = PaddingValues(),
         singleEvents = {

@@ -18,7 +18,7 @@ internal class DeepLinkProvider : ReminderDeepLinkProvider, HomeDeepLinkProvider
 
     override fun reminderScreenRoute(action: AgendaTypes.Action): String {
         return TaskyDeeplink.reminder.replace(
-            TaskyDeeplink.ReminderArgs.ACTION,
+            TaskyDeeplink.Path.Reminder.ACTION,
             ActionNavTypeSerializer.toRouteString(action)
         )
     }
