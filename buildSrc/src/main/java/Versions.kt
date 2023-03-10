@@ -20,6 +20,6 @@ object Versions {
     }
 
     object Gradle {
-        const val AndroidTools = "7.2.1"
+        const val AndroidTools = "7.4.0"
     }
 }

@@ -1,4 +1,4 @@
-name: Verify commit
+name: verifying
 on:
   push:
     branches: [ master ]
