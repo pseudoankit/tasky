@@ -1,21 +1,26 @@
 package pseudoankit.droid.tasky.home.presentation.home.ui
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.coreui.util.extension.noRippleClickable
+import pseudoankit.droid.unify.component.button.UnifyButton
+import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
@@ -56,13 +61,27 @@ internal object HomeScreenComponents {
     @Composable
     internal fun TopBar(
         headerDate: String,
-        onMonthSelected: () -> Unit
+        onMonthSelected: () -> Unit,
+        onProfileIconClicked: () -> Unit
     ) {
         Row(
             modifier = Modifier.padding(UnifyDimens.ScreenPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             TopBarDateSection(headerDate, onMonthSelected)
+            Spacer(modifier = Modifier.weight(1f))
+            UnifyIcon(
+                config = UnifyIconConfig(
+                    icon = UnifyIcons.Person,
+                    tint = UnifyColors.White,
+                    modifier = Modifier
+                        .size(26.dp)
+                        .clip(CircleShape)
+                        .border(width = 1.dp, color = UnifyColors.White, shape = CircleShape)
+                        .padding(4.dp),
+                    onClick = onProfileIconClicked,
+                )
+            )
         }
     }
 

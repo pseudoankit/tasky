@@ -87,4 +87,8 @@ internal class HomeViewModel(
     fun highlightCurrentSelectedDate() = postSideEffect {
         HomeUiState.SideEffect.HighlightCurrentSelectedDate(state.selectedDate.value.dayOfMonth - 1)
     }
+
+    fun onProfileIconClicked() = postSideEffect {
+        HomeUiState.SideEffect.ShowProfileIcon
+    }
 }

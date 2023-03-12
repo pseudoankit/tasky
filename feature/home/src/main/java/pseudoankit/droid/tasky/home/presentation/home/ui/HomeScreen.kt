@@ -9,10 +9,12 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.compose.get
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.state
+import pseudoankit.droid.preferencesmanager.PreferenceRepository
 import pseudoankit.droid.tasky.home.di.HomeModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
@@ -41,7 +43,8 @@ internal fun HomeScreen(
             topBar = {
                 HomeScreenComponents.TopBar(
                     headerDate = state.displayHeaderDate,
-                    onMonthSelected = viewModel::onHeaderMonthSelected
+                    onMonthSelected = viewModel::onHeaderMonthSelected,
+                    onProfileIconClicked = viewModel::onProfileIconClicked
                 )
             },
             floatingActionButton = {
@@ -92,9 +95,15 @@ private fun HandleHomeScreenSideEffect(
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
                 }
-                HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsSelectorScreen()
-                is HomeUiState.SideEffect.NavigateToAgendaScreen ->
+                HomeUiState.SideEffect.ShowAgendaItems -> {
+                    navigator.navigateToAgendaItemsSelectorScreen()
+                }
+                is HomeUiState.SideEffect.NavigateToAgendaScreen -> {
                     navigator.navigateToAgendaScreen(it.agendaTypes)
+                }
+                HomeUiState.SideEffect.ShowProfileIcon -> {
+                    navigator.navigateToProfileScreen()
+                }
             }
         }
     }

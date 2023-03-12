@@ -14,6 +14,10 @@ internal class HomeScreenNavigatorImpl(
     private val context: Context
 ) : HomeScreenNavigator {
 
+    override fun navigateToProfileScreen() {
+
+    }
+
     override fun navigateToAgendaItemsSelectorScreen() {
         navController.navigate(AgendaItemsScreenDestination)
     }

@@ -6,4 +6,6 @@ interface HomeScreenNavigator {
     fun navigateUp()
     fun navigateToAgendaItemsSelectorScreen()
     fun navigateToAgendaScreen(agendaTypes: AgendaTypes)
+
+    fun navigateToProfileScreen()
 }

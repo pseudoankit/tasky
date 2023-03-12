@@ -15,6 +15,7 @@ internal interface HomeUiState {
         data class HighlightCurrentSelectedDate(val position: Int) : SideEffect
         object ShowAgendaItems : SideEffect
         data class NavigateToAgendaScreen(val agendaTypes: AgendaTypes) : SideEffect
+        object ShowProfileIcon: SideEffect
     }
 
     data class State(

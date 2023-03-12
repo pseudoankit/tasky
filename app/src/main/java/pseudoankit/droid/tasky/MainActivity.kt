@@ -79,7 +79,10 @@ internal class MainActivity : ComponentActivity() {
         val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = false)
 
         if (isLoggedIn.not()) {
-            navController?.navigateViaDeepLink(TaskyDeeplink.login)
+            navController?.apply {
+                backQueue.clear()
+                navigateViaDeepLink(TaskyDeeplink.login)
+            }
         }
     }
 
