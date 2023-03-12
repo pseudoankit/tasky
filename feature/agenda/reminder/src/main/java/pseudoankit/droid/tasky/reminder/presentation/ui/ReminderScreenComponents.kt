@@ -26,7 +26,7 @@ import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
-internal object ReminderHomeScreenComponents {
+internal object ReminderScreenComponents {
 
     @Composable
     fun RepeatIntervalDialogItems(

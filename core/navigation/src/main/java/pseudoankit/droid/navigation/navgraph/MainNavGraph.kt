@@ -7,7 +7,7 @@ import pseudoankit.droid.authentication.presentation.authenticationDestinations
 import pseudoankit.droid.splash.ui.destinations.SplashScreenDestination
 import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
 import pseudoankit.droid.tasky.home.presentation.homeDestinations
-import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderHomeScreenDestination
+import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderScreenDestination
 
 object MainNavGraph : NavGraphSpec {
     override val route: String = "Tasky"
@@ -22,6 +22,6 @@ object MainNavGraph : NavGraphSpec {
     private val destinations
         get() = authenticationDestinations
             .plus(homeDestinations)
-            .plus(ReminderHomeScreenDestination)
+            .plus(ReminderScreenDestination)
             .plus(SplashScreenDestination)
 }
