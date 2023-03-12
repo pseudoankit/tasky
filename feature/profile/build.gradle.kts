@@ -10,11 +10,5 @@ ksp {
 }
 
 android {
-    namespace = "pseudoankit.droid.tasky.home"
-}
-
-dependencies {
-    with(Modules.Core) {
-        implementation(project(AgendaManager))
-    }
+    namespace = "pseudoankit.droid.profile"
 }
