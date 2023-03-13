@@ -6,6 +6,7 @@ import com.ramcosta.composedestinations.navigation.navigate
 import com.ramcosta.composedestinations.navigation.popUpTo
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.destinations.LoginScreenDestination
+import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.coreui.util.extension.finish
 import pseudoankit.droid.navigation.navigator.feature.AuthNavigatorImpl
 import pseudoankit.droid.navigation.navigator.feature.HomeScreenNavigatorImpl
@@ -24,8 +25,9 @@ class CoreFeatureNavigator(
     ReminderNavigator {
 
     override fun navigateToHomeScreen() {
-        navController.backQueue.clear()
-        navController.navigate(HomeScreenDestination)
+        navController.navigate(HomeScreenDestination) {
+            navController.clearStack(this)
+        }
     }
 
     override fun navigateUp() {

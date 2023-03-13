@@ -26,6 +26,7 @@ import org.koin.android.ext.android.get
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
+import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
@@ -80,7 +81,7 @@ internal class MainActivity : ComponentActivity() {
 
         if (isLoggedIn.not()) {
             navController?.apply {
-                backQueue.clear()
+                clearStack()
                 navigateViaDeepLink(TaskyDeeplink.login)
             }
         }
