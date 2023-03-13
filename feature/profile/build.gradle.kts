@@ -6,7 +6,7 @@ plugins {
 // todo create a utility
 ksp {
     arg("compose-destinations.mode", "destinations")
-    arg("compose-destinations.moduleName", "Home")
+    arg("compose-destinations.moduleName", "Profile")
 }
 
 android {

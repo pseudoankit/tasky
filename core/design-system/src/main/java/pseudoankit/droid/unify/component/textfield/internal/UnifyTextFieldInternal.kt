@@ -6,6 +6,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.focus.FocusRequester
@@ -18,6 +19,7 @@ import pseudoankit.droid.unify.component.textfield.internal.UnifyTextFieldCommon
 import pseudoankit.droid.unify.component.textfield.internal.UnifyTextFieldCommon.LeadingIcon
 import pseudoankit.droid.unify.component.textfield.internal.UnifyTextFieldCommon.TrailingIcon
 import pseudoankit.droid.unify.component.textfield.internal.UnifyTextFieldCommon.visualTransformation
+import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 
 object UnifyTextFieldInternal {
@@ -46,7 +48,7 @@ object UnifyTextFieldInternal {
 }
 
 @Composable
-fun UnifyOutlinedTextField(config: UnifyTextFieldConfig) = with(config) {
+internal fun UnifyOutlinedTextField(config: UnifyTextFieldConfig) = with(config) {
     Column {
         OutlinedTextField(
             value = value,
@@ -90,6 +92,8 @@ internal fun UnifyBasicTextField(config: UnifyTextFieldConfig) = with(config) {
         shape = RoundedCornerShape(UnifyDimens.Radius.Small),
         visualTransformation = visualTransformation(),
         textStyle = textType.textStyle,
-        colors = UnifyTextFieldToken.textFieldColors()
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            containerColor = UnifyColors.White,
+        )
     )
 }

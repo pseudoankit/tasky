@@ -19,23 +19,4 @@ internal object UnifyTokens {
             val Size = UnifyDimens.Dp_24
         }
     }
-
-    object CheckBox {
-        val BackgroundColor = UnifyColors.Gray100
-        val CheckMarkColor = UnifyColors.Black
-    }
-
-    object Switch {
-        val BorderColor = UnifyColors.Transparent
-
-        object ThumbColor {
-            val enabled = UnifyColors.Black
-            val disabled = UnifyColors.Gray100
-        }
-
-        object TrackColor {
-            val enabled = UnifyColors.Black.copy(alpha = .1f)
-            val disabled = UnifyColors.Gray100.copy(alpha = .42f)
-        }
-    }
 }

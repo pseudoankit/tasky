@@ -13,7 +13,6 @@ fun UnifyDivider(
     modifier: Modifier = Modifier,
     color: Color = DividerDefaults.color,
     height: Dp = DividerDefaults.Thickness,
-    startIndent: Dp = 0.dp
 ) {
-    Divider(modifier, color, height, startIndent)
+    Divider(modifier = modifier, color = color, thickness = height)
 }
