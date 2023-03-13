@@ -3,9 +3,12 @@ package pseudoankit.droid.tasky.reminder.presentation.ui
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.focusRequester
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.util.TextResource
@@ -13,10 +16,9 @@ import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.component.list.UnifyListItemConfig
 import pseudoankit.droid.unify.component.list.UnifyListItem
+import pseudoankit.droid.unify.component.list.UnifyListItemConfig
 import pseudoankit.droid.unify.component.switch.UnifySwitchConfig
-import pseudoankit.droid.unify.component.textfield.UnifyTextField
 import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
 import pseudoankit.droid.unify.component.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.component.textview.UnifyTextType
@@ -25,6 +27,7 @@ import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.rememberFocusRequester
 
 internal object ReminderScreenComponents {
 
@@ -96,20 +99,33 @@ internal object ReminderScreenComponents {
         value: String,
         onReminderTextFieldValueChanged: (String) -> Unit
     ) {
-        UnifyTextField(
-            config = UnifyTextFieldConfig(
-                placeholder = UnifyTextFieldDefaults.placeHolder(
-                    value = "Remind me to...",
-                    textType = UnifyTextType.HeadlineSmall
-                ),
-                value = value,
-                onValueChange = onReminderTextFieldValueChanged,
-                type = UnifyTextFieldConfig.Type.Basic,
-                textType = UnifyTextType.HeadlineSmall,
-                focusState = UnifyTextFieldConfig.FocusState.Request,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(end = UnifyDimens.Dp_8, start = UnifyDimens.Dp_32)
+        val focusRequester = rememberFocusRequester()
+
+        UnifyTextFieldDefaults.ManageFocus(
+            focusState = UnifyTextFieldConfig.FocusState.Request,
+            focusRequester = focusRequester
+        )
+
+        androidx.compose.material3.TextField(
+            value = value,
+            onValueChange = onReminderTextFieldValueChanged,
+            modifier = Modifier
+                .fillMaxWidth()
+                .focusRequester(focusRequester)
+                .padding(end = UnifyDimens.Dp_8, start = UnifyDimens.Dp_32),
+            placeholder = {
+                UnifyTextView(
+                    config = UnifyTextViewConfig(
+                        text = "Remind me to...",
+                        textType = UnifyTextType.HeadlineSmall
+                    )
+                )
+            },
+            textStyle = UnifyTextType.HeadlineSmall.textStyle,
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                containerColor = UnifyColors.White,
+                focusedBorderColor = UnifyColors.Transparent,
+                unfocusedBorderColor = UnifyColors.Transparent
             )
         )
     }

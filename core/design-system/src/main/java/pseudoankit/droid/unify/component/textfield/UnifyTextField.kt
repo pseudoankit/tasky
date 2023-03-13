@@ -1,41 +1,22 @@
 package pseudoankit.droid.unify.component.textfield
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.input.KeyboardType
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.component.textfield.internal.UnifyBasicTextField
 import pseudoankit.droid.unify.component.textfield.internal.UnifyOutlinedTextField
-import pseudoankit.droid.unify.component.textfield.internal.UnifyTextFieldInternal
 import pseudoankit.droid.unify.component.textview.UnifyTextType
-import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.utils.rememberFocusRequester
 
-@Composable
-fun UnifyTextField(config: UnifyTextFieldConfig) {
-    val focusRequester = rememberFocusRequester()
-    val modifiedConfig = if (config.focusState == UnifyTextFieldConfig.FocusState.None) {
-        config
-    } else {
-        config.copy(modifier = config.modifier.focusRequester(focusRequester))
-    }
-
-    when (config.type) {
-        UnifyTextFieldConfig.Type.Outlined -> {
-            UnifyOutlinedTextField(modifiedConfig)
-        }
-        UnifyTextFieldConfig.Type.Basic -> {
-            UnifyBasicTextField(modifiedConfig)
-        }
-    }
-
-    UnifyTextFieldInternal.ManageFocus(config.focusState, focusRequester)
-}
-
+/**
+ * @param placeholder placeholder of textfield, [UnifyTextFieldDefaults.placeHolder] for implementation
+ */
 data class UnifyTextFieldConfig(
     val value: String,
     val onValueChange: (String) -> Unit,
@@ -49,10 +30,12 @@ data class UnifyTextFieldConfig(
     val maxLines: Int = Int.MAX_VALUE,
     val textType: UnifyTextType = UnifyTextType.BodyLarge,
     val type: Type = Type.Outlined,
-    val focusState: FocusState = FocusState.None
+    val focusState: FocusState = FocusState.None,
+    val keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    val keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
 
-    enum class Type { Outlined, Basic }
+    enum class Type { Outlined }
 
     enum class FocusState {
         Request, Capture, Free, None
@@ -67,4 +50,24 @@ data class UnifyTextFieldConfig(
 
         data class Custom(val icon: UnifyIcons, val onClick: () -> Unit) : TrailingIcon
     }
+}
+
+@Composable
+fun UnifyTextField(
+    config: UnifyTextFieldConfig,
+    focusRequester: FocusRequester = rememberFocusRequester()
+) {
+    val modifiedConfig = if (config.focusState == UnifyTextFieldConfig.FocusState.None) {
+        config
+    } else {
+        config.copy(modifier = config.modifier.focusRequester(focusRequester))
+    }
+
+    when (config.type) {
+        UnifyTextFieldConfig.Type.Outlined -> {
+            UnifyOutlinedTextField(modifiedConfig)
+        }
+    }
+
+    UnifyTextFieldDefaults.ManageFocus(config.focusState, focusRequester)
 }

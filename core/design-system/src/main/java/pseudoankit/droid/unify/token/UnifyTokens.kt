@@ -12,11 +12,4 @@ internal object UnifyTokens {
     object TimePicker {
         val SelectedColor = UnifyColors.Blue200
     }
-
-    object TextField {
-        object Icon {
-            val Color = UnifyColors.Gray500
-            val Size = UnifyDimens.Dp_24
-        }
-    }
 }
