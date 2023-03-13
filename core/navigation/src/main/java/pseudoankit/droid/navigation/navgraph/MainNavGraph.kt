@@ -4,7 +4,6 @@ import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec
 import com.ramcosta.composedestinations.spec.Route
 import pseudoankit.droid.authentication.presentation.authenticationDestinations
-import pseudoankit.droid.splash.ui.destinations.SplashScreenDestination
 import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
 import pseudoankit.droid.tasky.home.presentation.homeDestinations
 import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderScreenDestination
@@ -12,7 +11,7 @@ import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderScr
 object MainNavGraph : NavGraphSpec {
     override val route: String = "Tasky"
 
-    override val startRoute: Route = SplashScreenDestination
+    override val startRoute: Route = HomeScreenDestination
 
     override val destinationsByRoute: Map<String, DestinationSpec<*>>
         get() = destinations.associateBy {
@@ -23,5 +22,4 @@ object MainNavGraph : NavGraphSpec {
         get() = authenticationDestinations
             .plus(homeDestinations)
             .plus(ReminderScreenDestination)
-            .plus(SplashScreenDestination)
 }
