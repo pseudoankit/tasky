@@ -85,11 +85,8 @@ internal class MainActivity : ComponentActivity() {
     private fun ObserveLoginStatus() {
         val preferenceRepository = get<PreferenceRepository>()
         val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = true)
-        val isSplashScreenDisplayedCurrently =
-            navController?.currentDestination?.route == "splash_screen"
-        // checking above condition to not skip splash and not go to login directly
 
-        if (isLoggedIn.not() && isSplashScreenDisplayedCurrently.not()) {
+        if (isLoggedIn.not()) {
             navController?.apply {
                 clearStack()
                 navigateViaDeepLink(TaskyDeeplink.login)
