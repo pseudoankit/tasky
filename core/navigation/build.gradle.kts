@@ -12,6 +12,7 @@ dependencies {
         implementation(project(CoreUi))
         implementation(project(AgendaManager))
         implementation(project(Core))
+        implementation(project(Modules.Core.PreferencesManager))
     }
 
     with(Dependencies.Compose) {
