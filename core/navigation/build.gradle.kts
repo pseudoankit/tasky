@@ -12,6 +12,7 @@ dependencies {
         implementation(project(CoreUi))
         implementation(project(AgendaManager))
         implementation(project(Core))
+        implementation(project(Modules.Core.PreferencesManager))
     }
 
     with(Dependencies.Compose) {
@@ -24,6 +25,5 @@ dependencies {
         implementation(project(Event))
         implementation(project(Reminder))
         implementation(project(Task))
-        implementation(project(Splash))
     }
 }

@@ -37,7 +37,7 @@ import java.time.LocalTime
     ]
 )
 @Composable
-internal fun ReminderHomeScreen(
+internal fun ReminderScreen(
     navigator: ReminderNavigator,
     action: AgendaTypes.Action
 ) = ReminderModule.load {
@@ -46,7 +46,7 @@ internal fun ReminderHomeScreen(
 
     UnifyScreen(
         config = UnifyScreenConfig(
-            topBar = ReminderHomeScreenComponents.topBarConfig(
+            topBar = ReminderScreenComponents.topBarConfig(
                 onNavigateUp = viewModel::onNavigateUp,
                 onSave = viewModel::onSave
             ),
@@ -58,12 +58,12 @@ internal fun ReminderHomeScreen(
     ) {
         val state = viewModel.collectAsState().value
 
-        ReminderHomeScreenComponents.TextField(
+        ReminderScreenComponents.TextField(
             value = state.reminderText,
             onReminderTextFieldValueChanged = viewModel::onTextFieldValueChanged
         )
         UnifyDivider()
-        ReminderHomeScreenComponents.ReminderConfigurations(
+        ReminderScreenComponents.ReminderConfigurations(
             remindAllDay = state.remindAllDay,
             onRemindAllDayToggled = viewModel::onRemindAllDayToggled,
             date = state.displayDate,
@@ -72,7 +72,7 @@ internal fun ReminderHomeScreen(
             onTimeClicked = viewModel::onTimeClicked
         )
         UnifyDivider()
-        ReminderHomeScreenComponents.RepeatsReminderAtText(
+        ReminderScreenComponents.RepeatsReminderAtText(
             repeatIntervalLabel = state.selectedRepeatInterval.label,
             onClick = viewModel::toggleRepeatIntervalSelectionViewVisibility
         )
@@ -105,7 +105,7 @@ private fun HandleSideEffect(
 
     val repeatsOnDialogState = rememberUnifyDialogState()
     UnifyDialog(showActionButton = false, state = repeatsOnDialogState) {
-        ReminderHomeScreenComponents.RepeatIntervalDialogItems(
+        ReminderScreenComponents.RepeatIntervalDialogItems(
             items = viewModel.state.repeatIntervalItems,
             onClick = viewModel::onRepeatIntervalChanged,
             selectedItem = viewModel.state.selectedRepeatInterval

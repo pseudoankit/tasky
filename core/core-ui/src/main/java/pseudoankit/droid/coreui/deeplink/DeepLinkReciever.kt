@@ -16,7 +16,7 @@ private fun String.mapToInternalRoute() = when {
     contains(TaskyDeeplink.Host.home) -> "home_screen"
     contains(TaskyDeeplink.Host.login) -> "login_screen"
     contains(TaskyDeeplink.Host.reminder) -> {
-        replace(TaskyDeeplink.SCHEME + TaskyDeeplink.Host.reminder, "reminder_home_screen")
+        replace(TaskyDeeplink.SCHEME + TaskyDeeplink.Host.reminder, "reminder_screen")
     }
     else -> ""
 }

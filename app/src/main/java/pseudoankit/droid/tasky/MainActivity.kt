@@ -9,10 +9,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
@@ -26,9 +23,12 @@ import org.koin.android.ext.android.get
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
+import pseudoankit.droid.coreui.util.extension.clearStack
+import pseudoankit.droid.coreui.util.extension.rememberMutableStateOf
 import pseudoankit.droid.navigation.navgraph.MainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
+import pseudoankit.droid.tasky.ui.SplashScreen
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
 
@@ -43,14 +43,22 @@ internal class MainActivity : ComponentActivity() {
         TaskyLogger.info(intent.data.toString())
 
         setContent {
-            HandlePermissions()
             UnifyTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = UnifyColors.White
                 ) {
-                    InitializeNavigation()
-                    ObserveLoginStatus()
+                    var hasSplashScreenBeenDisplayed by rememberMutableStateOf(value = false, Unit)
+
+                    SplashScreen(onSplashScreenDisplayFinished = {
+                        hasSplashScreenBeenDisplayed = true
+                    })
+
+                    if (hasSplashScreenBeenDisplayed) {
+                        HandlePermissions()
+                        InitializeNavigation()
+                        ObserveLoginStatus()
+                    }
                 }
             }
         }
@@ -76,10 +84,13 @@ internal class MainActivity : ComponentActivity() {
     @Composable
     private fun ObserveLoginStatus() {
         val preferenceRepository = get<PreferenceRepository>()
-        val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = false)
+        val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = true)
 
         if (isLoggedIn.not()) {
-            navController?.navigateViaDeepLink(TaskyDeeplink.login)
+            navController?.apply {
+                clearStack()
+                navigateViaDeepLink(TaskyDeeplink.login)
+            }
         }
     }
 

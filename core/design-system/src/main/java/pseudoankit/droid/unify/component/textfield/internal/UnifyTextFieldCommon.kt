@@ -1,22 +1,14 @@
 package pseudoankit.droid.unify.component.textfield.internal
 
-import androidx.compose.foundation.interaction.InteractionSource
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.text.selection.TextSelectionColors
-import androidx.compose.material3.TextFieldColors
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.component.textfield.UnifyTextField
 import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
@@ -35,22 +27,22 @@ internal object UnifyTextFieldCommon {
     }
 
     @Composable
-    fun UnifyTextFieldConfig.TrailingIcon(): @Composable() (() -> Unit)? =
+    fun UnifyTextFieldConfig.trailingIcon(): @Composable() (() -> Unit)? =
         takeIf { trailingIcon != null && showTrailingIcon }?.run {
             {
                 when (trailingIcon) {
                     is UnifyTextFieldConfig.TrailingIcon.Custom -> UnifyIcon(
                         config = UnifyIconConfig(
-                            tint = UnifyTokens.TextField.Icon.Color,
-                            size = UnifyTokens.TextField.Icon.Size,
+                            tint = UnifyTextFieldTokens.Icon.Color,
+                            size = UnifyTextFieldTokens.Icon.Size,
                             icon = trailingIcon.icon,
                             onClick = trailingIcon.onClick
                         )
                     )
                     is UnifyTextFieldConfig.TrailingIcon.Password -> UnifyIcon(
                         config = UnifyIconConfig(
-                            tint = UnifyTokens.TextField.Icon.Color,
-                            size = UnifyTokens.TextField.Icon.Size,
+                            tint = UnifyTextFieldTokens.Icon.Color,
+                            size = UnifyTextFieldTokens.Icon.Size,
                             icon = if (trailingIcon.isTextHidden) UnifyIcons.EyeOn else UnifyIcons.EyeOff,
                             onClick = trailingIcon.onVisibilityToggled
                         )
@@ -58,7 +50,7 @@ internal object UnifyTextFieldCommon {
                     is UnifyTextFieldConfig.TrailingIcon.Valid -> UnifyIcon(
                         config = UnifyIconConfig(
                             tint = UnifyColors.Green800,
-                            size = UnifyTokens.TextField.Icon.Size,
+                            size = UnifyTextFieldTokens.Icon.Size,
                             icon = UnifyIcons.Check
                         )
                     )
@@ -68,13 +60,13 @@ internal object UnifyTextFieldCommon {
         }
 
     @Composable
-    fun UnifyTextFieldConfig.LeadingIcon(): @Composable() (() -> Unit)? =
+    fun UnifyTextFieldConfig.leadingIcon(): @Composable() (() -> Unit)? =
         leadingIcon?.run {
             {
                 UnifyIcon(
                     config = UnifyIconConfig(
-                        tint = UnifyTokens.TextField.Icon.Color,
-                        size = UnifyTokens.TextField.Icon.Size,
+                        tint = UnifyTextFieldTokens.Icon.Color,
+                        size = UnifyTextFieldTokens.Icon.Size,
                         icon = this
                     )
                 )
@@ -82,7 +74,7 @@ internal object UnifyTextFieldCommon {
         }
 
     @Composable
-    fun UnifyTextFieldConfig.Label(): @Composable() (() -> Unit)? = placeholder?.run {
+    fun UnifyTextFieldConfig.label(): @Composable() (() -> Unit)? = placeholder?.run {
         {
             UnifyTextView(config = this)
         }

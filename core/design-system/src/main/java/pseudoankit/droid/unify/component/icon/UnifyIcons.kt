@@ -14,6 +14,7 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object DropDown : UnifyIcons(IconType.Vector(Icons.Default.ArrowDropDown))
     object Add : UnifyIcons(IconType.Vector(Icons.Default.Add))
     object Refresh : UnifyIcons(IconType.Vector(Icons.Default.Refresh))
+    object Person : UnifyIcons(IconType.Vector(Icons.Default.Person))
 
     object CheckCircle : UnifyIcons(IconType.FontAwesome(FaIcons.CheckCircleRegular))
     object EyeOff : UnifyIcons(IconType.FontAwesome(FaIcons.EyeSlash))

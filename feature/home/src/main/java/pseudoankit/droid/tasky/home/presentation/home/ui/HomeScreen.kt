@@ -41,7 +41,8 @@ internal fun HomeScreen(
             topBar = {
                 HomeScreenComponents.TopBar(
                     headerDate = state.displayHeaderDate,
-                    onMonthSelected = viewModel::onHeaderMonthSelected
+                    onMonthSelected = viewModel::onHeaderMonthSelected,
+                    onProfileIconClicked = viewModel::onProfileIconClicked
                 )
             },
             floatingActionButton = {
@@ -92,9 +93,15 @@ private fun HandleHomeScreenSideEffect(
                 is HomeUiState.SideEffect.HighlightCurrentSelectedDate -> {
                     dateRangeListState.animateScrollToItem(it.position)
                 }
-                HomeUiState.SideEffect.ShowAgendaItems -> navigator.navigateToAgendaItemsSelectorScreen()
-                is HomeUiState.SideEffect.NavigateToAgendaScreen ->
+                HomeUiState.SideEffect.ShowAgendaItems -> {
+                    navigator.navigateToAgendaItemsSelectorScreen()
+                }
+                is HomeUiState.SideEffect.NavigateToAgendaScreen -> {
                     navigator.navigateToAgendaScreen(it.agendaTypes)
+                }
+                HomeUiState.SideEffect.ShowProfileIcon -> {
+                    navigator.navigateToProfileScreen()
+                }
             }
         }
     }

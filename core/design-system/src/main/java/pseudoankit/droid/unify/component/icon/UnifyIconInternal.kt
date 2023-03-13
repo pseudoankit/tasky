@@ -3,6 +3,7 @@ package pseudoankit.droid.unify.component.icon
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 @Composable
 fun UnifyIconInternal(config: UnifyIconConfig) {
@@ -18,7 +19,6 @@ private fun FontAwesomeIcon(config: UnifyIconConfig) {
 
     lazycoder21.droid.compose.FontAwesomeIcon(
         faIcon = faIcon,
-        modifier = config.modifier,
         size = config.size,
         tint = config.tint
     )
@@ -31,7 +31,7 @@ private fun VectorIcon(config: UnifyIconConfig) {
     Icon(
         imageVector = imageVector,
         contentDescription = config.contentDescription,
-        modifier = config.modifier.size(config.size),
+        modifier = Modifier.size(config.size),
         tint = config.tint
     )
 }

@@ -33,8 +33,9 @@ open class ComposeCorePlugin : Plugin<Project> {
                 this@dependencies.implementation(UiTooling)
                 this@dependencies.implementation(Material3)
                 this@dependencies.implementation(Activity)
+                this@dependencies.implementation(platform(Bom))
             }
-            add("lintChecks","com.slack.lint.compose:compose-lint-checks:1.1.1")
+            add("lintChecks", "com.slack.lint.compose:compose-lint-checks:1.1.1")
         }
     }
 }

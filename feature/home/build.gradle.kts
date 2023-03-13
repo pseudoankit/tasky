@@ -14,7 +14,6 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Compose.Material)
     with(Modules.Core) {
         implementation(project(AgendaManager))
     }

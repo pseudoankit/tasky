@@ -5,28 +5,33 @@ object Dependencies {
     val DataStore by nonThreadSafeLazy { "androidx.datastore:datastore-preferences:1.1.0-alpha01" }
 
     object Compose {
-        val Activity by nonThreadSafeLazy { "androidx.activity:activity-compose:${Versions.Compose.Activity}" }
-        val Material by nonThreadSafeLazy { "androidx.compose.material:material:${Versions.Compose.Core}" }
-        val Material3 by nonThreadSafeLazy { "androidx.compose.material3:material3:${Versions.Compose.Material3}" }
-        val Ui by nonThreadSafeLazy { "androidx.compose.ui:ui:${Versions.Compose.Core}" }
-        val UiTooling by nonThreadSafeLazy { "androidx.compose.ui:ui-tooling:${Versions.Compose.Core}" }
-        val UiToolingPreview by nonThreadSafeLazy { "androidx.compose.ui:ui-tooling-preview:${Versions.Compose.Core}" }
-        val Runtime by nonThreadSafeLazy { "androidx.compose.runtime:runtime:${Versions.Compose.Core}" }
-        val FoundationLayout by nonThreadSafeLazy { "androidx.compose.foundation:foundation-layout:${Versions.Compose.Core}" }
-        val Foundation by nonThreadSafeLazy { "androidx.compose.foundation:foundation:${Versions.Compose.Core}" }
-        val Compiler by nonThreadSafeLazy { "androidx.compose.compiler:compiler:${Versions.Compose.Core}" }
-        val ComposeDestinations by nonThreadSafeLazy { "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}" }
-        val ComposeDestinationsKsp by nonThreadSafeLazy { "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}" }
-        val ConstraintLayout by nonThreadSafeLazy { "androidx.constraintlayout:constraintlayout-compose:${Versions.Compose.ConstraintLayout}" }
-        val DatePicker by nonThreadSafeLazy { "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc" }
-        val FontAwesome by nonThreadSafeLazy { "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0" }
-        val OrbitMvi by nonThreadSafeLazy { "org.orbit-mvi:orbit-compose:4.5.0" }
-        val CoilCompose by nonThreadSafeLazy { "io.coil-kt:coil-compose:${Versions.Compose.Coil}" }
-        val CoilSvg by nonThreadSafeLazy { "io.coil-kt:coil-svg:${Versions.Compose.Coil}" }
-        val Pager by nonThreadSafeLazy { "com.google.accompanist:accompanist-pager:0.23.1" }
-        val PagerIndicator by nonThreadSafeLazy { "com.google.accompanist:accompanist-pager-indicators:0.23.1" }
-        val Permissions by nonThreadSafeLazy { "com.google.accompanist:accompanist-permissions:0.23.1" }
-        val PlaceHolder by nonThreadSafeLazy { "com.google.accompanist:accompanist-placeholder-material:0.26.3-beta" }
+        val Bom = "androidx.compose:compose-bom:2023.01.00"
+        val Activity = "androidx.activity:activity-compose:"
+        val Material = "androidx.compose.material:material:"
+        val Material3 = "androidx.compose.material3:material3:"
+        val Ui = "androidx.compose.ui:ui:"
+        val UiTooling = "androidx.compose.ui:ui-tooling:"
+        val UiToolingPreview = "androidx.compose.ui:ui-tooling-preview:"
+        val FoundationLayout = "androidx.compose.foundation:foundation-layout:"
+        val Foundation = "androidx.compose.foundation:foundation:"
+        val Compiler = "androidx.compose.compiler:compiler:"
+        val ConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:"
+
+        val Runtime = "androidx.compose.runtime:runtime:${Versions.Compose.Core}"
+
+        val ComposeDestinations = "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}"
+        val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
+        val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
+        val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
+        val OrbitMvi = "org.orbit-mvi:orbit-compose:4.5.0"
+        
+        val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
+        val CoilSvg = "io.coil-kt:coil-svg:${Versions.Compose.Coil}"
+
+        val Pager = "com.google.accompanist:accompanist-pager:0.23.1"
+        val PagerIndicator = "com.google.accompanist:accompanist-pager-indicators:0.23.1"
+        val Permissions = "com.google.accompanist:accompanist-permissions:0.23.1"
+        val PlaceHolder = "com.google.accompanist:accompanist-placeholder-material:0.26.3-beta"
     }
 
     object Koin {

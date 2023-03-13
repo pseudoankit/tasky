@@ -16,7 +16,7 @@ internal val Project.libraryExtension
 internal val Project.appExtension
     get() = project.extensions.getByName(PluginConstants.ANDROID) as? AppExtension
 
-internal fun DependencyHandlerScope.implementation(dependency: String) {
+internal fun DependencyHandlerScope.implementation(dependency: Any) {
     add(PluginConstants.IMPLEMENTATION, dependency)
 }
 
