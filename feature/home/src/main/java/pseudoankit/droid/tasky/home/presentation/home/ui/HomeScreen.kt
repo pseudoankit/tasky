@@ -1,5 +1,6 @@
 package pseudoankit.droid.tasky.home.presentation.home.ui
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListState
@@ -7,6 +8,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -53,8 +55,11 @@ internal fun HomeScreen(
         ),
         singleEvents = {
             viewModel.highlightCurrentSelectedDate()
-        }
+        },
+        padding = PaddingValues()
     ) {
+        ShowBannerAndRequestIfNotificationPermissionDenied()
+        Spacer(modifier = Modifier.height(16.dp))
         HomeScreenComponents.SelectedMonthDatePicker(
             dateRange = state.selectedMonthDateRange,
             onDaySelected = viewModel::onDateChanged,
