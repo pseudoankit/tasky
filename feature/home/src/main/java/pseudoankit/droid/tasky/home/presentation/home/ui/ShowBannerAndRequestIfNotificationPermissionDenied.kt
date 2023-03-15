@@ -24,6 +24,7 @@ import pseudoankit.droid.unify.component.pill.UnifyPillConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
+import java.util.*
 
 private const val NOTIFICATION_BANNER_TIME_LIMIT = 10000L
 
@@ -36,7 +37,8 @@ fun ShowBannerAndRequestIfNotificationPermissionDenied() {
         rememberPermissionState(permission = android.Manifest.permission.POST_NOTIFICATIONS)
 
     var timerLimitReached by rememberMutableStateOf(value = false)
-    val shouldShowBanner = permissionStatus.isGranted.not() && timerLimitReached.not()
+    val shouldShowBanner =
+        permissionStatus.isGranted.not() && timerLimitReached.not() && Random().nextBoolean()
 
     LaunchedEffect(Unit) {
         delay(NOTIFICATION_BANNER_TIME_LIMIT)
