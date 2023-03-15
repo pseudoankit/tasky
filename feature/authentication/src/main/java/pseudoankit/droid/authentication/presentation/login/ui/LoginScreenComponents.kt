@@ -1,7 +1,7 @@
 package pseudoankit.droid.authentication.presentation.login.ui
 
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
@@ -11,7 +11,6 @@ import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.textfield.UnifyTextField
 import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
-import pseudoankit.droid.unify.component.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
@@ -24,31 +23,23 @@ internal object LoginScreenComponents {
             config = UnifyTextFieldConfig(
                 value = email.value,
                 onValueChange = onEmailChanged,
-                placeholder = UnifyTextFieldDefaults.placeHolder("Email address"),
+                label = "Email address",
                 leadingIcon = UnifyIcons.Mail,
                 errorMessage = email.errorMessage.asString(),
-                trailingIcon = UnifyTextFieldConfig.TrailingIcon.Valid,
-                showTrailingIcon = email.errorMessage == null
+                trailingIcon = if (email.errorMessage != null) UnifyTextFieldConfig.TrailingIcon.Clear else UnifyTextFieldConfig.TrailingIcon.Valid,
             )
         )
     }
 
     @Composable
     fun Password(password: TextFieldUiConfig, onPasswordChanged: (String) -> Unit) {
-        var isTextHidden by remember { mutableStateOf(false) }
-
         UnifyTextField(
             config = UnifyTextFieldConfig(
                 value = password.value,
                 onValueChange = onPasswordChanged,
-                placeholder = UnifyTextFieldDefaults.placeHolder("Password"),
+                label = "Password",
                 leadingIcon = UnifyIcons.Lock,
-                trailingIcon = UnifyTextFieldConfig.TrailingIcon.Password(
-                    isTextHidden = isTextHidden,
-                    onVisibilityToggled = {
-                        isTextHidden = isTextHidden.not()
-                    }
-                ),
+                trailingIcon = UnifyTextFieldConfig.TrailingIcon.Password,
                 errorMessage = password.errorMessage.asString()
             )
         )

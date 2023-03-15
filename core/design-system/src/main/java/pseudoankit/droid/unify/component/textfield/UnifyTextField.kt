@@ -11,20 +11,18 @@ import androidx.compose.ui.text.input.KeyboardType
 import pseudoankit.droid.unify.component.icon.UnifyIcons
 import pseudoankit.droid.unify.component.textfield.internal.UnifyOutlinedTextField
 import pseudoankit.droid.unify.component.textview.UnifyTextType
-import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.utils.rememberFocusRequester
 
 /**
- * @param placeholder placeholder of textfield, [UnifyTextFieldDefaults.placeHolder] for implementation
+ *
  */
 data class UnifyTextFieldConfig(
     val value: String,
     val onValueChange: (String) -> Unit,
     val keyboardType: KeyboardType = KeyboardType.Text,
-    val placeholder: UnifyTextViewConfig? = null,
+    val label: String? = null,
     val leadingIcon: UnifyIcons? = null,
     val trailingIcon: TrailingIcon? = null,
-    val showTrailingIcon: Boolean = true,
     val errorMessage: String? = null,
     val modifier: Modifier = Modifier.fillMaxWidth(),
     val maxLines: Int = Int.MAX_VALUE,
@@ -43,11 +41,8 @@ data class UnifyTextFieldConfig(
 
     sealed interface TrailingIcon {
         object Valid : TrailingIcon
-        data class Password(
-            val isTextHidden: Boolean = false,
-            val onVisibilityToggled: () -> Unit
-        ) : TrailingIcon
-
+        object Password : TrailingIcon
+        object Clear : TrailingIcon
         data class Custom(val icon: UnifyIcons, val onClick: () -> Unit) : TrailingIcon
     }
 }

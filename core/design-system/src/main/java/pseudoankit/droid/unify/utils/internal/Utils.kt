@@ -5,6 +5,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 
 @Composable
-internal fun <T> rememberMutableState(vararg keys: Any?, value: T) = remember(*keys) {
+internal fun <T> rememberMutableState(value: T, vararg keys: Any?) = remember(*keys) {
     mutableStateOf(value)
 }

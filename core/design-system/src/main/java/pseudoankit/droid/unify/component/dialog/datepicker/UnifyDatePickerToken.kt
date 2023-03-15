@@ -20,16 +20,16 @@ internal object UnifyDatePickerToken {
         @Composable
         override fun dateBackgroundColor(active: Boolean): State<Color> {
             return rememberMutableState(
+                value = if (active) UnifyColors.Black else UnifyColors.White,
                 active,
-                value = if (active) UnifyColors.Black else UnifyColors.White
             )
         }
 
         @Composable
         override fun dateTextColor(active: Boolean): State<Color> {
             return rememberMutableState(
+                value = if (active) UnifyColors.White else UnifyColors.Black,
                 active,
-                value = if (active) UnifyColors.White else UnifyColors.Black
             )
         }
     }

@@ -6,6 +6,7 @@ import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import pseudoankit.droid.coreui.util.extension.postSideEffect
+import pseudoankit.droid.coreui.util.extension.setState
 
 internal class RegistrationViewModel : ViewModel(),
     ContainerHost<RegistrationUiState.State, RegistrationUiState.SideEffect> {
@@ -13,7 +14,18 @@ internal class RegistrationViewModel : ViewModel(),
     override val container: Container<RegistrationUiState.State, RegistrationUiState.SideEffect> =
         viewModelScope.container(RegistrationUiState.State())
 
-    fun navigateBack() = postSideEffect {
-        RegistrationUiState.SideEffect.NavigateBack
+    fun onEvent(event: RegistrationUiState.Event) = when (event) {
+        is RegistrationUiState.Event.OnEmailChanged -> setState {
+            copy(email = event.value)
+        }
+        is RegistrationUiState.Event.OnNameChanged -> setState {
+            copy(name = event.value)
+        }
+        is RegistrationUiState.Event.OnPasswordChanged -> setState {
+            copy(password = event.value)
+        }
+        RegistrationUiState.Event.OnNavigateBack -> postSideEffect {
+            RegistrationUiState.SideEffect.NavigateBack
+        }
     }
 }
