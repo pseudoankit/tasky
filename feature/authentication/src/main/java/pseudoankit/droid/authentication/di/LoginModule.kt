@@ -14,7 +14,7 @@ internal object LoginModule : BaseKoinModule() {
             module {
                 factory { LoginUserUseCase(get()) }
 
-                viewModel { LoginViewModel(get()) }
+                viewModel { LoginViewModel(get(), get()) }
             }
         )
 }

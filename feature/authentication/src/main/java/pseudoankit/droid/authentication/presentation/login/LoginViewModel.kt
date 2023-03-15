@@ -6,14 +6,15 @@ import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import pseudoankit.droid.authentication.domain.LoginUserUseCase
-import pseudoankit.droid.core.util.TaskyResult
+import pseudoankit.droid.core.dispatcher.DispatcherProvider
 import pseudoankit.droid.core.util.validator.Validator
 import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 
 internal class LoginViewModel(
-    private val loginUserUseCase: LoginUserUseCase
+    private val loginUserUseCase: LoginUserUseCase,
+    private val dispatcherProvider: DispatcherProvider
 ) : ViewModel(),
     ContainerHost<LoginUiState.State, LoginUiState.SideEffect> {
 
@@ -38,21 +39,23 @@ internal class LoginViewModel(
         )
     }
 
-    fun onLogin() {
-        setState { copy(isButtonLoading = true) }
-        launch {
-            val loginResult = loginUserUseCase(
-                email = state.emailConfig.value,
-                password = state.passwordConfig.value
-            )
-            when (loginResult) {
-                is TaskyResult.Error -> setState { copy(isButtonLoading = false) }
-                is TaskyResult.Success -> postSideEffect {
-                    setState { copy(isButtonLoading = false) }
-                    LoginUiState.SideEffect.NavigateToHomeScreen
-                }
+    fun onLogin() = launch(dispatcherProvider.io) {
+        setState { copy(isLoginInProgress = true) }
+
+        when (val result = loginUserUseCase(state)) {
+            is LoginUserUseCase.Result.EmailError -> setState {
+                copy(emailConfig = emailConfig.copy(errorMessage = result.message))
+            }
+            is LoginUserUseCase.Result.PasswordError -> setState {
+                copy(passwordConfig = passwordConfig.copy(errorMessage = result.message))
+            }
+            is LoginUserUseCase.Result.Error -> TODO()
+            LoginUserUseCase.Result.Success -> postSideEffect {
+                LoginUiState.SideEffect.NavigateToHomeScreen
             }
         }
+
+        setState { copy(isLoginInProgress = false) }
     }
 
     fun onSignup() = postSideEffect { LoginUiState.SideEffect.NavigateToRegistrationScreen }

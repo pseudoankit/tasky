@@ -21,7 +21,7 @@ interface RegistrationUiState {
         val isRegistrationInProgress: Boolean = false
     ) {
         val doneBtnState = UnifyButtonConfig.State.fromBoolean(
-            isValid = true,
+            isValid = emailConfig.errorMessage == null && passwordConfig.errorMessage == null && nameConfig.errorMessage == null,
             isLoading = isRegistrationInProgress
         )
     }

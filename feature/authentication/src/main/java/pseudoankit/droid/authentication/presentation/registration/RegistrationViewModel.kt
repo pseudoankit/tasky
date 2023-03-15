@@ -5,13 +5,16 @@ import androidx.lifecycle.viewModelScope
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import org.orbitmvi.orbit.syntax.simple.intent
 import pseudoankit.droid.authentication.domain.RegisterUserUseCase
+import pseudoankit.droid.core.dispatcher.DispatcherProvider
+import pseudoankit.droid.core.util.validator.Validator
+import pseudoankit.droid.coreui.util.extension.launch
 import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 
 internal class RegistrationViewModel(
-    private val registerUserUseCase: RegisterUserUseCase
+    private val registerUserUseCase: RegisterUserUseCase,
+    private val dispatcherProvider: DispatcherProvider
 ) : ViewModel(),
     ContainerHost<RegistrationUiState.State, RegistrationUiState.SideEffect> {
 
@@ -23,7 +26,7 @@ internal class RegistrationViewModel(
             copy(
                 emailConfig = emailConfig.copy(
                     value = event.value,
-                    errorMessage = null
+                    errorMessage = Validator.validateEmail(email = event.value)
                 )
             )
         }
@@ -31,7 +34,7 @@ internal class RegistrationViewModel(
             copy(
                 nameConfig = nameConfig.copy(
                     value = event.value,
-                    errorMessage = null
+                    errorMessage = Validator.validateName(name = event.value)
                 )
             )
         }
@@ -39,14 +42,14 @@ internal class RegistrationViewModel(
             copy(
                 passwordConfig = passwordConfig.copy(
                     value = event.value,
-                    errorMessage = null
+                    errorMessage = Validator.validatePassword(password = event.value)
                 )
             )
         }
         RegistrationUiState.Event.OnNavigateBack -> postSideEffect {
             RegistrationUiState.SideEffect.NavigateBack
         }
-        RegistrationUiState.Event.OnRegisterUser -> intent {
+        RegistrationUiState.Event.OnRegisterUser -> launch(dispatcherProvider.io) {
             setState { copy(isRegistrationInProgress = true) }
             when (val result = registerUserUseCase.invoke(state)) {
                 is RegisterUserUseCase.Result.EmailError -> setState {
@@ -58,7 +61,7 @@ internal class RegistrationViewModel(
                 is RegisterUserUseCase.Result.PasswordError -> setState {
                     copy(passwordConfig = passwordConfig.copy(errorMessage = result.message))
                 }
-                is RegisterUserUseCase.Result.OnError -> postSideEffect {
+                is RegisterUserUseCase.Result.Error -> postSideEffect {
                     RegistrationUiState.SideEffect.ShowErrorMessage(result.message)
                 }
                 RegisterUserUseCase.Result.Success -> postSideEffect {

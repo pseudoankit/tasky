@@ -12,8 +12,8 @@ internal object RegistrationModule : BaseKoinModule() {
     override val provideModules: List<Module>
         get() = listOf(
             module {
-                factory { RegisterUserUseCase(get()) }
-                viewModel { RegistrationViewModel(get()) }
+                factory { RegisterUserUseCase() }
+                viewModel { RegistrationViewModel(get(), get()) }
             }
         )
 }
