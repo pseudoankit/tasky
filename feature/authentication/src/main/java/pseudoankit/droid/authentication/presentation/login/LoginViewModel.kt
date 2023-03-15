@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import org.orbitmvi.orbit.Container
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
-import pseudoankit.droid.authentication.domain.LoginUseCase
+import pseudoankit.droid.authentication.domain.LoginUserUseCase
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.validator.Validator
 import pseudoankit.droid.coreui.util.extension.launch
@@ -13,7 +13,7 @@ import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 
 internal class LoginViewModel(
-    private val loginUseCase: LoginUseCase
+    private val loginUserUseCase: LoginUserUseCase
 ) : ViewModel(),
     ContainerHost<LoginUiState.State, LoginUiState.SideEffect> {
 
@@ -41,7 +41,7 @@ internal class LoginViewModel(
     fun onLogin() {
         setState { copy(isButtonLoading = true) }
         launch {
-            val loginResult = loginUseCase(
+            val loginResult = loginUserUseCase(
                 email = state.emailConfig.value,
                 password = state.passwordConfig.value
             )

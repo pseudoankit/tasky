@@ -5,7 +5,7 @@ import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.extension.safeCall
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
 
-internal class LoginUseCase(
+internal class LoginUserUseCase(
     private val preferenceRepository: PreferenceRepository
 ) {
 

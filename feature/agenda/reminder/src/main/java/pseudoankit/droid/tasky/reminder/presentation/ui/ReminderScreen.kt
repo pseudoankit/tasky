@@ -1,6 +1,5 @@
 package pseudoankit.droid.tasky.reminder.presentation.ui
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
@@ -51,7 +50,6 @@ internal fun ReminderScreen(
                 onSave = viewModel::onSave
             ),
         ),
-        padding = PaddingValues(),
         singleEvents = {
             viewModel.onInit(action)
         }

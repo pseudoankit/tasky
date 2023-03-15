@@ -2,6 +2,7 @@ package pseudoankit.droid.authentication.presentation.login.ui
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import com.ramcosta.composedestinations.annotation.DeepLink
@@ -15,7 +16,6 @@ import pseudoankit.droid.authentication.presentation.login.LoginUiState
 import pseudoankit.droid.authentication.presentation.login.LoginViewModel
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.koin.load
-import pseudoankit.droid.unify.component.topbar.UnifyTopBar
 import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
@@ -41,7 +41,8 @@ internal fun LoginScreen(navigator: AuthNavigator) = LoginModule.load {
                     LoginUiState.SideEffect.NavigateToRegistrationScreen -> navigator.navigateToRegistrationScreen()
                 }
             }
-        }
+        },
+        modifier = Modifier.padding(all = UnifyDimens.ScreenPadding)
     ) {
         val state = viewModel.collectAsState().value
 
@@ -54,13 +55,12 @@ internal fun LoginScreen(navigator: AuthNavigator) = LoginModule.load {
             password = state.passwordConfig,
             onPasswordChanged = viewModel::onPasswordValueChanged
         )
+        Spacer(modifier = Modifier.weight(1f))
+        LoginScreenComponents.SignupText(viewModel::onSignup)
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
         LoginScreenComponents.LoginButton(
             state = state.buttonState,
             onLogin = viewModel::onLogin
         )
-        Spacer(modifier = Modifier.weight(1f))
-        LoginScreenComponents.SignupText(viewModel::onSignup)
-        Spacer(modifier = Modifier.height(UnifyDimens.Dp_32))
     }
 }

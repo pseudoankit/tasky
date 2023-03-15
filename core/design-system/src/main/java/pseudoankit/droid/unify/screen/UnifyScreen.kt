@@ -1,6 +1,5 @@
 package pseudoankit.droid.unify.screen
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,8 +20,8 @@ import pseudoankit.droid.unify.token.UnifyTheme
 @Composable
 fun UnifyScreen(
     config: UnifyScreenConfig,
+    modifier: Modifier = Modifier,
     singleEvents: (suspend CoroutineScope.() -> Unit)? = null,
-    padding: PaddingValues = PaddingValues(all = UnifyDimens.ScreenPadding),
     content: @Composable ColumnScope.() -> Unit,
 ) = with(config) {
     if (singleEvents != null) {
@@ -48,7 +47,7 @@ fun UnifyScreen(
                         )
                     )
                     .background(color = UnifyColors.White)
-                    .padding(padding),
+                    .then(modifier),
                 content = content
             )
         }

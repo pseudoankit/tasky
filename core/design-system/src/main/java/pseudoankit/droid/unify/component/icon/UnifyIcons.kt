@@ -28,6 +28,7 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object Circle : UnifyIcons(IconType.FontAwesome(FaIcons.CircleRegular))
     object Delete : UnifyIcons(IconType.FontAwesome(FaIcons.Trash))
     object Edit : UnifyIcons(IconType.FontAwesome(FaIcons.Pen))
+    object User : UnifyIcons(IconType.FontAwesome(FaIcons.User))
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType

@@ -3,10 +3,15 @@ package pseudoankit.droid.core.util.validator
 import pseudoankit.droid.core.util.TextResource
 
 object Validator {
-    const val EMAIL_PATTERN = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}\$"
+    private const val EMAIL_PATTERN = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}\$"
+
+    fun validateName(name: String?): TextResource? {
+        if (name.isNullOrBlank()) return TextResource.NormalString("Name cannot be empty")
+        return null
+    }
 
     /**
-     * email validator returns null if email is valid else will return error message
+     * email validator returns null if [email] is valid else will return error message
      */
     fun validateEmail(email: String?): TextResource? {
         if (email.isNullOrBlank()) return TextResource.NormalString("Email cannot be empty")

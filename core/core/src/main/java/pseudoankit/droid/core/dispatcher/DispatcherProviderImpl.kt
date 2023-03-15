@@ -13,11 +13,11 @@ internal class DispatcherProviderImpl : DispatcherProvider {
     override val default: CoroutineDispatcher
         get() = Dispatchers.Default
 
-    override suspend fun <T> switchToDefault(block: CoroutineScope.() -> T) {
-        withContext(context = default, block = block)
+    override suspend fun <T> switchToDefault(block: suspend CoroutineScope.() -> T): T {
+        return withContext(context = default, block = block)
     }
 
-    override suspend fun <T> switchToIo(block: CoroutineScope.() -> T) {
-        withContext(context = io, block = block)
+    override suspend fun <T> switchToIo(block: suspend CoroutineScope.() -> T): T {
+        return withContext(context = io, block = block)
     }
 }

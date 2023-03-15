@@ -1,6 +1,5 @@
 package pseudoankit.droid.tasky.home.presentation.home.ui
 
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyListState
@@ -55,8 +54,7 @@ internal fun HomeScreen(
         ),
         singleEvents = {
             viewModel.highlightCurrentSelectedDate()
-        },
-        padding = PaddingValues()
+        }
     ) {
         ShowBannerAndRequestIfNotificationPermissionDenied()
         Spacer(modifier = Modifier.height(16.dp))
