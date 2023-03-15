@@ -14,18 +14,17 @@ import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
 import pseudoankit.droid.coreui.util.extension.asString
-import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.icon
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.label
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
-import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.clickable
 
 @Destination(style = TaskyDestinationStyle.Dialog::class)
 @Composable
@@ -39,7 +38,7 @@ internal fun AgendaItemsScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .noRippleClickable(onClick = viewModel::onNavigateUp)
+            .clickable(onClick = viewModel::onNavigateUp, showRipple = false)
             .padding(UnifyDimens.ScreenPadding),
         verticalArrangement = Arrangement.Bottom,
         horizontalAlignment = Alignment.End

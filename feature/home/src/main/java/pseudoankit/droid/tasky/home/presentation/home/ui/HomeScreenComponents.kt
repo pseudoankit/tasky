@@ -18,9 +18,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.model.TaskyDate
-import pseudoankit.droid.coreui.util.extension.noRippleClickable
-import pseudoankit.droid.unify.component.button.UnifyButton
-import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
@@ -30,6 +27,7 @@ import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.clickable
 
 internal object HomeScreenComponents {
 
@@ -122,7 +120,7 @@ internal object HomeScreenComponents {
         Row(
             modifier = Modifier
                 .clip(RoundedCornerShape(UnifyDimens.Radius.Small))
-                .noRippleClickable(onClick = onMonthSelected)
+                .clickable(onClick = onMonthSelected, showRipple = false)
                 .padding(all = UnifyDimens.Dp_4),
             verticalAlignment = Alignment.CenterVertically
         ) {

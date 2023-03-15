@@ -6,7 +6,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
 import pseudoankit.droid.coreui.util.extension.asString
-import pseudoankit.droid.coreui.util.extension.noRippleClickable
 import pseudoankit.droid.unify.component.button.UnifyButton
 import pseudoankit.droid.unify.component.button.UnifyButtonConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
@@ -16,6 +15,7 @@ import pseudoankit.droid.unify.component.textfield.UnifyTextFieldDefaults
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
+import pseudoankit.droid.unify.utils.clickable
 
 internal object LoginScreenComponents {
     @Composable
@@ -72,7 +72,7 @@ internal object LoginScreenComponents {
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .noRippleClickable(onClick = onSignup)
+                    .clickable(onClick = onSignup, showRipple = false)
             )
         )
     }
