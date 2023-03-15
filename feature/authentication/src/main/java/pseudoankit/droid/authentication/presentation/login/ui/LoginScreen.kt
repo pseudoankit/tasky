@@ -55,6 +55,7 @@ internal fun LoginScreen(navigator: AuthNavigator) = LoginModule.load {
             password = state.passwordConfig,
             onPasswordChanged = viewModel::onPasswordValueChanged
         )
+
         Spacer(modifier = Modifier.weight(1f))
         LoginScreenComponents.SignupText(viewModel::onSignup)
         Spacer(modifier = Modifier.height(UnifyDimens.Dp_12))
