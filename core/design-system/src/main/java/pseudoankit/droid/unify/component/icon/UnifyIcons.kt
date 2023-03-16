@@ -1,10 +1,12 @@
 package pseudoankit.droid.unify.component.icon
 
+import androidx.annotation.DrawableRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import lazycoder21.droid.compose.FaIcon
 import lazycoder21.droid.compose.FaIcons
+import pseudoankit.droid.unify.utils.UnifyDrawable
 
 sealed class UnifyIcons(internal val iconType: IconType) {
     object Back : UnifyIcons(IconType.Vector(Icons.Default.ArrowBack))
@@ -20,7 +22,7 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object EyeOff : UnifyIcons(IconType.FontAwesome(FaIcons.EyeSlash))
     object EyeOn : UnifyIcons(IconType.FontAwesome(FaIcons.Eye))
     object Cross : UnifyIcons(IconType.FontAwesome(FaIcons.Times))
-    object Bell : UnifyIcons(IconType.FontAwesome(FaIcons.Bell))
+    object Bell : UnifyIcons(IconType.Svg(UnifyDrawable.ic_notification))
     object Calendar : UnifyIcons(IconType.FontAwesome(FaIcons.CalendarCheck))
     object Tasks : UnifyIcons(IconType.FontAwesome(FaIcons.Tasks))
     object Clock : UnifyIcons(IconType.FontAwesome(FaIcons.ClockRegular))
@@ -33,5 +35,6 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType
         data class FontAwesome(val faIcon: FaIcon) : IconType
+        data class Svg(@DrawableRes val drawableRes: Int) : IconType
     }
 }
