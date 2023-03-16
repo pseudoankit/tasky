@@ -1,5 +1,6 @@
 package pseudoankit.droid.tasky.ui
 
+import android.os.Build
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,6 +21,12 @@ internal const val SPLASH_SCREEN_TIME_OUT = 1000L
 internal fun SplashScreen(
     onSplashScreenDisplayFinished: () -> Unit
 ) {
+    // early return if >= android 12 to avoid double splash
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S_V2) {
+        onSplashScreenDisplayFinished()
+        return
+    }
+
     LaunchedEffect(Unit) {
         delay(SPLASH_SCREEN_TIME_OUT)
         onSplashScreenDisplayFinished()
