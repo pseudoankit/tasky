@@ -16,8 +16,8 @@ internal object AgendaTypesUiMapper {
     val AgendaTypes.icon
         get() = when (this) {
             is AgendaTypes.Reminder -> UnifyIcons.Bell
-            is AgendaTypes.Event -> UnifyIcons.Tasks
-            is AgendaTypes.Task -> UnifyIcons.Calendar
+            is AgendaTypes.Event -> UnifyIcons.Calendar
+            is AgendaTypes.Task -> UnifyIcons.Task
         }
 
 }

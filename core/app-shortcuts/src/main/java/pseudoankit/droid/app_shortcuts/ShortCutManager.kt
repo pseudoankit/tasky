@@ -8,6 +8,7 @@ import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.unify.utils.UnifyDrawable
 
 object ShortCutManager {
 
@@ -16,9 +17,25 @@ object ShortCutManager {
             context = context,
             id = "Reminder",
             label = "Add Reminder",
-            icon = R.drawable.baseline_notifications_24,
+            icon = UnifyDrawable.ic_notification,
             navigationDeepLink = TaskyDeeplink.reminder
         )
+
+/*        addShortCut(
+            context = context,
+            id = "Event",
+            label = "Add Event",
+            icon = UnifyDrawable.ic_calendar,
+            navigationDeepLink = TaskyDeeplink.reminder
+        )
+
+        addShortCut(
+            context = context,
+            id = "Task",
+            label = "Add Task",
+            icon = UnifyDrawable.ic_task,
+            navigationDeepLink = TaskyDeeplink.reminder
+        )*/
     }
 
     private fun addShortCut(
