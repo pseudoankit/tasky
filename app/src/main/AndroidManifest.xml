@@ -36,8 +36,6 @@
 
                 <data android:scheme="tasky" />
             </intent-filter>
-
-
         </activity>
 
     </application>

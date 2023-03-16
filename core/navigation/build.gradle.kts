@@ -12,7 +12,7 @@ dependencies {
         implementation(project(CoreUi))
         implementation(project(AgendaManager))
         implementation(project(Core))
-        implementation(project(Modules.Core.PreferencesManager))
+        implementation(project(PreferencesManager))
     }
 
     with(Dependencies.Compose) {

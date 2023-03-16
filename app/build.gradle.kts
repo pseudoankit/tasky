@@ -42,6 +42,7 @@ dependencies {
         implementation(project(NotificationManager))
         implementation(project(PermissionManager))
         implementation(project(PreferencesManager))
+        implementation(project(AppShortcuts))
     }
 
     with(Dependencies.Koin) {
