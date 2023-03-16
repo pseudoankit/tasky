@@ -1,6 +1,6 @@
 plugins {
-    id(Plugins.Library.Feature)
-    id(Plugins.Library.ComposeFeature)
+    id(Plugins.CoreFeatureLib)
+    id(Plugins.ComposeFeatureLib)
 }
 
 // todo create a utility

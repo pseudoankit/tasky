@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.Library.Feature)
+    id(Plugins.CoreFeatureLib)
     id(Plugins.RoomDatabase)
 }
 

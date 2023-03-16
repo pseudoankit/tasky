@@ -20,5 +20,6 @@ object Modules {
         const val AlarmManager = ":core:alarm-manager"
         const val NotificationManager = ":core:notification-manager"
         const val PermissionManager = ":core:permission-manager"
+        const val AppShortcuts = ":core:app-shortcuts"
     }
 }
