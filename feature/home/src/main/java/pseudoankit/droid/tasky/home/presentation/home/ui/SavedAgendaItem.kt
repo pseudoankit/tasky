@@ -6,10 +6,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.unify.component.draggablecard.SwipeableCard
+import pseudoankit.droid.unify.component.draggablecard.SwipeableCardConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
-import pseudoankit.droid.unify.component.draggablecard.DraggableCard
 
 @Composable
 internal fun SavedAgendaItem(
@@ -24,9 +25,12 @@ internal fun SavedAgendaItem(
             onEdit = onEdit
         )
 
-        DraggableCard(
-            cardOffset = 150f,
-            revealThreshold = 30f
+        SwipeableCard(
+            SwipeableCardConfig(
+                maxOffsetToReveal = 200f,
+                revealThreshold = 60f,
+                direction = SwipeableCardConfig.Direction.LTR
+            )
         ) {
             when (agendaItem) {
                 is AgendaItem.Event -> TODO()
