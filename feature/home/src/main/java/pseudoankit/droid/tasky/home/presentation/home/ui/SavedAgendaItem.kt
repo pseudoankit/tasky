@@ -1,16 +1,18 @@
 package pseudoankit.droid.tasky.home.presentation.home.ui
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.unify.component.draggablecard.SwipeableCard
-import pseudoankit.droid.unify.component.draggablecard.SwipeableCardConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.icon.UnifyIcons
+import pseudoankit.droid.unify.component.swipeablecard.SwipeableCard
+import pseudoankit.droid.unify.component.swipeablecard.SwipeableCardConfig
 
 @Composable
 internal fun SavedAgendaItem(
@@ -27,8 +29,8 @@ internal fun SavedAgendaItem(
 
         SwipeableCard(
             SwipeableCardConfig(
-                maxOffsetToReveal = 200f,
-                revealThreshold = 60f,
+                maxOffsetToReveal = 270f,
+                revealThreshold = 50f,
                 direction = SwipeableCardConfig.Direction.LTR
             )
         ) {
@@ -50,7 +52,6 @@ private fun BoxScope.ActionsItems(
     onEdit: () -> Unit
 ) {
     Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.matchParentSize(),
         verticalAlignment = Alignment.CenterVertically
     ) {
