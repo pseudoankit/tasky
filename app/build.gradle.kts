@@ -27,6 +27,11 @@ android {
                 BuildConfig.App.ProGuardRules
             )
         }
+        create("benchmark") {
+            signingConfig = signingConfigs.getByName("debug")
+            matchingFallbacks += listOf("release")
+            isDebuggable = false
+        }
     }
 }
 
@@ -52,4 +57,5 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
     }
+    implementation(Dependencies.ProfilerInstaller)
 }

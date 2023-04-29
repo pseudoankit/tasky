@@ -21,12 +21,14 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
-import org.koin.android.ext.android.get
+import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.runBlocking
+import org.koin.android.ext.android.inject
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.clearStack
-import pseudoankit.droid.navigation.navgraph.MainNavGraph
+import pseudoankit.droid.navigation.navgraph.mainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
 import pseudoankit.droid.tasky.ui.SplashScreen
@@ -36,6 +38,7 @@ import pseudoankit.droid.unify.token.UnifyTheme
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 internal class MainActivity : ComponentActivity() {
 
+    private val preferenceRepository: PreferenceRepository by inject()
     private var navController: NavHostController? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +47,6 @@ internal class MainActivity : ComponentActivity() {
         TaskyLogger.info(intent.data.toString())
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
 
         setContent {
             UnifyTheme {
@@ -77,8 +79,10 @@ internal class MainActivity : ComponentActivity() {
         val engine = rememberAnimatedNavHostEngine()
         navController = engine.rememberNavController()
 
+        val isUserLoggedIn = runBlocking { preferenceRepository.isLoggedIn().firstOrNull() }
+
         DestinationsNavHost(
-            navGraph = MainNavGraph,
+            navGraph = mainNavGraph(isUserLoggedIn = isUserLoggedIn ?: true),
             navController = navController!!,
             engine = engine,
             dependenciesContainerBuilder = {
@@ -89,7 +93,6 @@ internal class MainActivity : ComponentActivity() {
 
     @Composable
     private fun ObserveLoginStatus() {
-        val preferenceRepository = get<PreferenceRepository>()
         val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = true)
 
         if (isLoggedIn.not()) {

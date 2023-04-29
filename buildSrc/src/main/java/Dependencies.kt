@@ -1,65 +1,68 @@
 object Dependencies {
-    private fun <T> nonThreadSafeLazy(initializer: () -> T) =
-        lazy(LazyThreadSafetyMode.NONE, initializer)
 
-    val DataStore by nonThreadSafeLazy { "androidx.datastore:datastore-preferences:1.1.0-alpha01" }
+    const val DataStore = "androidx.datastore:datastore-preferences:1.1.0-alpha01"
+    const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
 
     object Compose {
-        val Bom = "androidx.compose:compose-bom:2023.01.00"
-        val Activity = "androidx.activity:activity-compose:"
-        val Material = "androidx.compose.material:material:"
-        val Material3 = "androidx.compose.material3:material3:"
-        val Ui = "androidx.compose.ui:ui:"
-        val UiTooling = "androidx.compose.ui:ui-tooling:"
-        val UiToolingPreview = "androidx.compose.ui:ui-tooling-preview:"
-        val FoundationLayout = "androidx.compose.foundation:foundation-layout:"
-        val Foundation = "androidx.compose.foundation:foundation:"
-        val Compiler = "androidx.compose.compiler:compiler:"
-        val ConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:"
+        const val Bom = "androidx.compose:compose-bom:2023.01.00"
+        const val Activity = "androidx.activity:activity-compose:"
+        const val Material = "androidx.compose.material:material:"
+        const val Material3 = "androidx.compose.material3:material3:"
+        const val Ui = "androidx.compose.ui:ui:"
+        const val UiTooling = "androidx.compose.ui:ui-tooling:"
+        const val UiToolingPreview = "androidx.compose.ui:ui-tooling-preview:"
+        const val FoundationLayout = "androidx.compose.foundation:foundation-layout:"
+        const val Foundation = "androidx.compose.foundation:foundation:"
+        const val Compiler = "androidx.compose.compiler:compiler:"
+        const val ConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:"
 
-        val Runtime = "androidx.compose.runtime:runtime:${Versions.Compose.Core}"
+        const val Runtime = "androidx.compose.runtime:runtime:${Versions.Compose.Core}"
 
-        val ComposeDestinations = "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}"
-        val ComposeDestinationsKsp = "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
-        val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
-        val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
-        val OrbitMvi = "org.orbit-mvi:orbit-compose:4.5.0"
-        
-        val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
-        val CoilSvg = "io.coil-kt:coil-svg:${Versions.Compose.Coil}"
+        const val ComposeDestinations =
+            "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}"
+        const val ComposeDestinationsKsp =
+            "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
+        const val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
+        const val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
+        const val OrbitMvi = "org.orbit-mvi:orbit-compose:4.5.0"
 
-        val Pager = "com.google.accompanist:accompanist-pager:0.23.1"
-        val PagerIndicator = "com.google.accompanist:accompanist-pager-indicators:0.23.1"
-        val Permissions = "com.google.accompanist:accompanist-permissions:0.23.1"
-        val PlaceHolder = "com.google.accompanist:accompanist-placeholder-material:0.26.3-beta"
+        const val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
+        const val CoilSvg = "io.coil-kt:coil-svg:${Versions.Compose.Coil}"
+
+        const val Pager = "com.google.accompanist:accompanist-pager:0.23.1"
+        const val PagerIndicator = "com.google.accompanist:accompanist-pager-indicators:0.23.1"
+        const val Permissions = "com.google.accompanist:accompanist-permissions:0.23.1"
+        const val PlaceHolder =
+            "com.google.accompanist:accompanist-placeholder-material:0.26.3-beta"
     }
 
     object Koin {
-        val Core by nonThreadSafeLazy { "io.insert-koin:koin-core:${Versions.Koin.Core}" }
-        val Android by nonThreadSafeLazy { "io.insert-koin:koin-android:${Versions.Koin.Core}" }
-        val Compose by nonThreadSafeLazy { "io.insert-koin:koin-androidx-compose:${Versions.Koin.Compose}" }
+        const val Core = "io.insert-koin:koin-core:${Versions.Koin.Core}"
+        const val Android = "io.insert-koin:koin-android:${Versions.Koin.Core}"
+        const val Compose = "io.insert-koin:koin-androidx-compose:${Versions.Koin.Compose}"
     }
 
     object Kotlin {
-        val ImmutableCollection by nonThreadSafeLazy { "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5" }
-        val Serialization by nonThreadSafeLazy { "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1" }
+        const val ImmutableCollection = "org.jetbrains.kotlinx:kotlinx-collections-immutable:0.3.5"
+        const val Serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
 
         object Coroutine {
-            val Core by nonThreadSafeLazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}" }
-            val Android by nonThreadSafeLazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}" }
+            const val Core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.Coroutine}"
+            const val Android =
+                "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Coroutine}"
         }
     }
 
     object Gradle {
-        val AndroidTools by nonThreadSafeLazy { "com.android.tools.build:gradle:${Versions.Gradle.AndroidTools}" }
-        val KotlinGradle by nonThreadSafeLazy { "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}" }
-        val Kotlin by nonThreadSafeLazy { "org.jetbrains.kotlin:kotlin-stdlib:1.1.2" }
-        val PluginsRepo by nonThreadSafeLazy { "https://plugins.gradle.org/m2/" }
+        const val AndroidTools = "com.android.tools.build:gradle:${Versions.Gradle.AndroidTools}"
+        const val KotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}"
+        const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:1.1.2"
+        const val PluginsRepo = "https://plugins.gradle.org/m2/"
     }
 
     object Room {
-        val Runtime by nonThreadSafeLazy { "androidx.room:room-runtime:${Versions.Room}" }
-        val Compiler by nonThreadSafeLazy { "androidx.room:room-compiler:${Versions.Room}" }
-        val Ktx by nonThreadSafeLazy { "androidx.room:room-ktx:${Versions.Room}" }
+        const val Runtime = "androidx.room:room-runtime:${Versions.Room}"
+        const val Compiler = "androidx.room:room-compiler:${Versions.Room}"
+        const val Ktx = "androidx.room:room-ktx:${Versions.Room}"
     }
 }
