@@ -57,4 +57,5 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
     }
+    implementation(Dependencies.ProfilerInstaller)
 }
