@@ -2,6 +2,7 @@ object Dependencies {
 
     const val DataStore = "androidx.datastore:datastore-preferences:1.1.0-alpha01"
     const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
+    const val SplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"
 
     object Compose {
         const val Bom = "androidx.compose:compose-bom:2023.01.00"
