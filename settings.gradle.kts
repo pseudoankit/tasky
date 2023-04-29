@@ -19,5 +19,6 @@ include(":feature:agenda:event")
 include(":feature:agenda:reminder")
 include(":feature:agenda:task")
 include(":feature:profile")
+include(":feature:developer-tools")
 
 include(":benchmark")

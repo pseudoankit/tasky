@@ -50,6 +50,10 @@ dependencies {
         implementation(project(AppShortcuts))
     }
 
+    with(Modules.Feature) {
+        implementation(project(DeveloperTools))
+    }
+
     with(Dependencies.Koin) {
         implementation(Compose)
     }
