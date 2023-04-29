@@ -10,10 +10,14 @@ import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.core.splashscreen.SplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
 import com.example.permission_manager.taskyStatus
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
@@ -31,7 +35,8 @@ import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.navigation.navgraph.mainNavGraph
 import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
-import pseudoankit.droid.tasky.ui.SplashScreen
+import pseudoankit.droid.tasky.util.hide
+import pseudoankit.droid.tasky.util.show
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
 
@@ -40,8 +45,10 @@ internal class MainActivity : ComponentActivity() {
 
     private val preferenceRepository: PreferenceRepository by inject()
     private var navController: NavHostController? = null
+    private val splashScreen: SplashScreen by lazy { installSplashScreen() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        splashScreen.show()
         super.onCreate(savedInstanceState)
 
         TaskyLogger.info(intent.data.toString())
@@ -54,19 +61,10 @@ internal class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = UnifyColors.White
                 ) {
-                    var hasSplashScreenBeenDisplayed by rememberSaveable(Unit) {
-                        mutableStateOf(false)
-                    }
-
-                    SplashScreen(onSplashScreenDisplayFinished = {
-                        hasSplashScreenBeenDisplayed = true
-                    })
-
-                    if (hasSplashScreenBeenDisplayed) {
-                        HandlePermissions()
-                        InitializeNavigation()
-                        ObserveLoginStatus()
-                    }
+                    InitializeNavigation()
+                    HandlePermissions()
+                    ObserveLoginStatus()
+                    HideSplashScreenAfterNavigation()
                 }
             }
         }
@@ -119,5 +117,14 @@ internal class MainActivity : ComponentActivity() {
     override fun onNewIntent(intent: Intent?) {
         super.onNewIntent(intent)
         navController?.navigateViaDeepLink(intent?.data.toString())
+    }
+
+    @Composable
+    private fun HideSplashScreenAfterNavigation() {
+        LaunchedEffect(navController) {
+            if (navController?.currentDestination != null) {
+                splashScreen.hide()
+            }
+        }
     }
 }

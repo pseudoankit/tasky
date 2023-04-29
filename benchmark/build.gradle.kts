@@ -5,20 +5,20 @@ plugins {
 
 android {
     namespace = "com.pseudoankit.tasky.benchmark"
-    compileSdk = 33
+    compileSdk = BuildConfig.CompileSdkVersion
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = BuildConfig.JavaVersion
+        targetCompatibility = BuildConfig.JavaVersion
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = BuildConfig.JvmTarget
     }
 
     defaultConfig {
-        minSdk = 24
-        targetSdk = 33
+        minSdk = BuildConfig.MinSdkVersion
+        targetSdk = BuildConfig.TargetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
