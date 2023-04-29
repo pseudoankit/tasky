@@ -26,6 +26,7 @@ object Dependencies {
         const val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
         const val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
         const val OrbitMvi = "org.orbit-mvi:orbit-compose:4.5.0"
+        const val SwipeableCard = "com.github.pseudoankit:SwipeableView:1.0.1"
 
         const val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
         const val CoilSvg = "io.coil-kt:coil-svg:${Versions.Compose.Coil}"

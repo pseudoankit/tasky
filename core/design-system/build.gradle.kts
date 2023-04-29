@@ -15,5 +15,6 @@ dependencies {
         implementation(Pager)
         implementation(PagerIndicator)
         implementation(PlaceHolder)
+        implementation(SwipeableCard)
     }
 }

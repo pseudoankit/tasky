@@ -1,22 +1,14 @@
 package pseudoankit.droid.unify.component.swipeablecard
 
-import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.animation.core.tween
-import androidx.compose.foundation.gestures.detectHorizontalDragGestures
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.input.pointer.positionChange
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import pseudoankit.droid.unify.component.card.UnifyCard
-import pseudoankit.droid.unify.component.card.UnifyCardConfig
 import pseudoankit.droid.unify.component.swipeablecard.SwipeableCardConfig.Direction
-import kotlin.math.roundToInt
+import com.pseudoankit.swipeable_card.SwipeableCard as LibSwipeableCard
+import com.pseudoankit.swipeable_card.SwipeableCardConfig as LibSwipeableCardConfig
 
 /**
  * config for [SwipeableCard]
@@ -60,61 +52,22 @@ fun SwipeableCard(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) = with(config) {
-    var dragAmount by remember { mutableStateOf(0f) }
-    var currentOffset by remember(offsetValue) { mutableStateOf(offsetValue) }
-    val displayOffset by remember {
-        derivedStateOf {
-            when (direction) {
-                Direction.RTL -> {
-                    when {
-                        currentOffset < MIN_OFFSET_TO_REVEAL -> -MIN_OFFSET_TO_REVEAL
-                        currentOffset > maxOffsetToReveal -> -maxOffsetToReveal
-                        else -> -currentOffset
-                    }
-                }
-                Direction.LTR -> {
-                    when {
-                        currentOffset < MIN_OFFSET_TO_REVEAL -> MIN_OFFSET_TO_REVEAL
-                        currentOffset > maxOffsetToReveal -> maxOffsetToReveal
-                        else -> currentOffset
-                    }
-                }
-            }
-        }
-    }
-
-    UnifyCard(
-        config = UnifyCardConfig(
-            modifier = modifier
-                .fillMaxWidth()
-                .offset { IntOffset((displayOffset).roundToInt(), 0) }
-                .pointerInput(Unit) {
-                    detectHorizontalDragGestures(
-                        onDragEnd = {
-                            currentOffset = when (direction) {
-                                Direction.RTL -> {
-                                    if (-currentOffset < revealThreshold || dragAmount > 0) MIN_OFFSET_TO_REVEAL else -maxOffsetToReveal
-                                }
-                                Direction.LTR -> {
-                                    if (currentOffset < revealThreshold || dragAmount < 0) MIN_OFFSET_TO_REVEAL else maxOffsetToReveal
-                                }
-                            }
-                        }
-                    ) { change, dragValue ->
-                        dragAmount = dragValue
-                        currentOffset += dragValue
-                        if (change.positionChange() != Offset.Zero) change.consume()
-                    }
-                },
-            elevation = animateDpAsState(
-                targetValue = if (displayOffset != 0f) elevationWhenRevealed else 0.dp,
-                animationSpec = tween(durationMillis = ANIMATION_DURATION)
-            ).value,
+    LibSwipeableCard(
+        config = LibSwipeableCardConfig(
+            direction = direction.rdsValue,
+            maxOffsetToReveal = maxOffsetToReveal,
+            revealThreshold = revealThreshold,
+            offsetValue = offsetValue,
+            elevationWhenRevealed = elevationWhenRevealed
         ),
+        modifier = modifier.padding(1.dp),
+        color = Color.Transparent,
         content = content
     )
 }
 
-private fun log(message: String) {
-    println("SwipeableCardLogs : $message")
-}
+private val Direction.rdsValue
+    get() = when (this) {
+        Direction.RTL -> com.pseudoankit.swipeable_card.SwipeableCardConfig.Direction.RTL
+        Direction.LTR -> com.pseudoankit.swipeable_card.SwipeableCardConfig.Direction.LTR
+    }
