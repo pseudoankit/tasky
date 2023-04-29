@@ -1,9 +1,10 @@
 object Dependencies {
 
     const val DataStore = "androidx.datastore:datastore-preferences:1.1.0-alpha01"
-    const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
     const val SplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"
     const val LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
+    const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
+    const val Benchmark = "androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13"
 
     object Compose {
         const val Bom = "androidx.compose:compose-bom:2023.01.00"
@@ -67,5 +68,11 @@ object Dependencies {
         const val Runtime = "androidx.room:room-runtime:${Versions.Room}"
         const val Compiler = "androidx.room:room-compiler:${Versions.Room}"
         const val Ktx = "androidx.room:room-ktx:${Versions.Room}"
+    }
+
+    object Test {
+        const val JUnitExt = "androidx.test.ext:junit:1.1.5"
+        const val EspressoCore = "androidx.test.espresso:espresso-core:3.5.1"
+        const val UiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
     }
 }

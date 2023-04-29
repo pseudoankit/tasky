@@ -1,26 +1,13 @@
 plugins {
     id("com.android.test")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.Core)
 }
 
 android {
     namespace = "com.pseudoankit.tasky.benchmark"
-    compileSdk = BuildConfig.CompileSdkVersion
-
-    compileOptions {
-        sourceCompatibility = BuildConfig.JavaVersion
-        targetCompatibility = BuildConfig.JavaVersion
-    }
-
-    kotlinOptions {
-        jvmTarget = BuildConfig.JvmTarget
-    }
 
     defaultConfig {
-        minSdk = BuildConfig.MinSdkVersion
-        targetSdk = BuildConfig.TargetSdkVersion
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = BuildConfig.App.TestInstrumentationRunner
     }
 
     buildTypes {
@@ -40,10 +27,14 @@ android {
 }
 
 dependencies {
-    implementation("androidx.test.ext:junit:1.1.5")
-    implementation("androidx.test.espresso:espresso-core:3.5.1")
-    implementation("androidx.test.uiautomator:uiautomator:2.2.0")
-    implementation("androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13")
+    with(Dependencies) {
+        implementation(Benchmark)
+    }
+    with(Dependencies.Test) {
+        implementation(JUnitExt)
+        implementation(EspressoCore)
+        implementation(UiAutomator)
+    }
 }
 
 androidComponents {
