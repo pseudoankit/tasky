@@ -10,10 +10,9 @@ import pseudoankit.droid.preferencesmanager.PreferenceRepository
 
 object PreferencesModule {
 
-    private val Context.dataStore: DataStore<Preferences> by preferencesDataStore("tasky-prefs")
+    internal val Context.dataStore: DataStore<Preferences> by preferencesDataStore("tasky-prefs")
 
     operator fun invoke() = module {
-        single { PreferenceRepository(datStore = androidContext().dataStore) }
+        single { PreferenceRepository.create(androidContext()) }
     }
-
 }

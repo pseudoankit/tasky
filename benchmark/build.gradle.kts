@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 plugins {
     id("com.android.test")
     id(Plugins.Core)
@@ -22,6 +24,18 @@ android {
         }
     }
 
+    testOptions {
+        managedDevices {
+            devices {
+                create("pixelapi31", ManagedVirtualDevice::class) {
+                    device = "Pixel"
+                    apiLevel = 31
+                    systemImageSource = "aosp"
+                }
+            }
+        }
+    }
+
     targetProjectPath = ":app"
     experimentalProperties["android.experimental.self-instrumenting"] = true
 }
@@ -30,6 +44,7 @@ dependencies {
     with(Modules.Core) {
         implementation(project(Core))
         implementation(project(AgendaManager))
+        implementation(project(PreferencesManager))
     }
 
     with(Dependencies) {

@@ -25,12 +25,7 @@ class BenchmarkTest {
     }
 
     @Test
-    fun scrollHomeScreenAgendaList() {
-
-    }
-
-    @Test
-    fun scrollHomeScreenDateList() {
+    fun homeScreenTest() {
 
     }
 }

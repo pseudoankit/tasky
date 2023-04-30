@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
 import pseudoankit.droid.unify.token.UnifyTheme
+import pseudoankit.droid.unify.utils.enableTestTagAsResourceId
 
 /**
  * Helper method to configure repeating logic for any destination
@@ -38,6 +39,7 @@ fun UnifyScreen(
         ) {
             Column(
                 modifier = Modifier
+                    .enableTestTagAsResourceId()
                     .padding(it)
                     .fillMaxSize()
                     .clip(

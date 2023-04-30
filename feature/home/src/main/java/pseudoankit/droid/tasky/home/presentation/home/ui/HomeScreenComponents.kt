@@ -18,6 +18,7 @@ import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.core.model.TaskyDate
+import pseudoankit.droid.core.testtag.HomeTestTag
 import pseudoankit.droid.unify.component.fab.UnifyFloatingButton
 import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
@@ -27,6 +28,7 @@ import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.addTestTag
 import pseudoankit.droid.unify.utils.clickable
 
 internal object HomeScreenComponents {
@@ -38,7 +40,10 @@ internal object HomeScreenComponents {
         onEdit: (AgendaItem) -> Unit,
         onDelete: (AgendaItem) -> Unit,
     ) {
-        LazyColumn(verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_12)) {
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(UnifyDimens.Dp_12),
+            modifier = Modifier.addTestTag(HomeTestTag.agendaItemList)
+        ) {
             items(items) {
                 SavedAgendaItem(
                     agendaItem = it,
@@ -90,7 +95,12 @@ internal object HomeScreenComponents {
         onDaySelected: (TaskyDate) -> Unit,
         selectedDate: TaskyDate
     ) {
-        LazyRow(modifier = Modifier.fillMaxWidth(), state = listState) {
+        LazyRow(
+            modifier = Modifier
+                .addTestTag(HomeTestTag.monthDatesHorizontalList)
+                .fillMaxWidth(),
+            state = listState
+        ) {
             items(dateRange, key = { it.value.dayOfMonth }) { date ->
                 SelectedMonthDatePickerItem(
                     date = date,
