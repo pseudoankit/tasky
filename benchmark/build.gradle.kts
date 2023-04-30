@@ -27,9 +27,15 @@ android {
 }
 
 dependencies {
+    with(Modules.Core) {
+        implementation(project(Core))
+        implementation(project(AgendaManager))
+    }
+
     with(Dependencies) {
         implementation(Benchmark)
     }
+
     with(Dependencies.Test) {
         implementation(JUnitExt)
         implementation(EspressoCore)
