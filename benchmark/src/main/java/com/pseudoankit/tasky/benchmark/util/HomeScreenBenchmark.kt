@@ -11,7 +11,9 @@ import pseudoankit.droid.core.util.extension.parseToString
 fun MacrobenchmarkScope.performHomeScreenOperations() {
     openApplication()
 
-    performLogin()
+    if (device.findObject(By.res(HomeTestTag.monthDatesHorizontalList)) == null) {
+        performLogin()
+    }
 
     val todayDateInMMMYYY = TaskyDate.Today.parseToString("MMM yyyy").orEmpty()
     device.wait(Until.hasObject(By.text(todayDateInMMMYYY)), 10_000)
