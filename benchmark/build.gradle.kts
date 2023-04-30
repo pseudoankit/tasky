@@ -43,8 +43,6 @@ android {
 dependencies {
     with(Modules.Core) {
         implementation(project(Core))
-        implementation(project(AgendaManager))
-        implementation(project(PreferencesManager))
     }
 
     with(Dependencies) {

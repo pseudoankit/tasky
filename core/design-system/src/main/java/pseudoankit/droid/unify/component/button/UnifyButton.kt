@@ -16,7 +16,6 @@ import pseudoankit.droid.unify.token.UnifyTokens
 
 data class UnifyButtonConfig(
     val text: String,
-    val modifier: Modifier = Modifier,
     val state: State = State.Enabled
 ) {
 
@@ -38,13 +37,14 @@ data class UnifyButtonConfig(
 @Composable
 fun UnifyButton(
     config: UnifyButtonConfig,
+    modifier: Modifier = Modifier,
     onClick: () -> Unit
 ) {
     Button(
         onClick = onClick,
         enabled = config.state.isEnabled,
         shape = RoundedCornerShape(UnifyTokens.Button.Radius),
-        modifier = config.modifier
+        modifier = modifier
             .fillMaxWidth()
             .height(UnifyTokens.Button.Height),
         colors = config.state.buttonColors()

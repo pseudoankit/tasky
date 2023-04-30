@@ -39,6 +39,7 @@ import pseudoankit.droid.tasky.util.hide
 import pseudoankit.droid.tasky.util.show
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyTheme
+import pseudoankit.droid.unify.utils.enableTestTagAsResourceId
 
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 internal class MainActivity : ComponentActivity() {
@@ -85,7 +86,8 @@ internal class MainActivity : ComponentActivity() {
             engine = engine,
             dependenciesContainerBuilder = {
                 dependency(CoreFeatureNavigator(navController, context))
-            }
+            },
+            modifier = Modifier.enableTestTagAsResourceId()
         )
     }
 

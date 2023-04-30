@@ -13,6 +13,6 @@ object PreferencesModule {
     internal val Context.dataStore: DataStore<Preferences> by preferencesDataStore("tasky-prefs")
 
     operator fun invoke() = module {
-        single { PreferenceRepository.create(androidContext()) }
+        single { PreferenceRepository(datStore = androidContext().dataStore) }
     }
 }

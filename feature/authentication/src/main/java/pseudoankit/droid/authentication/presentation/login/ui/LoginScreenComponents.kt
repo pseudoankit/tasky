@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
+import pseudoankit.droid.core.testtag.AuthTestTag
 import pseudoankit.droid.coreui.model.TextFieldUiConfig
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.unify.component.button.UnifyButton
@@ -14,6 +15,7 @@ import pseudoankit.droid.unify.component.textfield.UnifyTextFieldConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextType
 import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
+import pseudoankit.droid.unify.utils.addTestTag
 import pseudoankit.droid.unify.utils.clickable
 
 internal object LoginScreenComponents {
@@ -27,6 +29,9 @@ internal object LoginScreenComponents {
                 leadingIcon = UnifyIcons.Mail,
                 errorMessage = email.errorMessage.asString(),
                 trailingIcon = if (email.errorMessage != null) UnifyTextFieldConfig.TrailingIcon.Clear else UnifyTextFieldConfig.TrailingIcon.Valid,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .addTestTag(AuthTestTag.email)
             )
         )
     }
@@ -40,7 +45,10 @@ internal object LoginScreenComponents {
                 label = "Password",
                 leadingIcon = UnifyIcons.Lock,
                 trailingIcon = UnifyTextFieldConfig.TrailingIcon.Password,
-                errorMessage = password.errorMessage.asString()
+                errorMessage = password.errorMessage.asString(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .addTestTag(AuthTestTag.password)
             )
         )
     }
@@ -49,7 +57,8 @@ internal object LoginScreenComponents {
     fun LoginButton(onLogin: () -> Unit, state: UnifyButtonConfig.State) {
         UnifyButton(
             config = UnifyButtonConfig(text = "LOGIN", state = state),
-            onClick = onLogin
+            onClick = onLogin,
+            modifier = Modifier.addTestTag(AuthTestTag.loginBtn)
         )
     }
 

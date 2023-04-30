@@ -3,7 +3,7 @@ package com.pseudoankit.tasky.benchmark
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.pseudoankit.tasky.benchmark.util.PackageName
-import com.pseudoankit.tasky.benchmark.util.homeScreenTest
+import com.pseudoankit.tasky.benchmark.util.performHomeScreenOperations
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -23,6 +23,6 @@ class BaselineProfileGenerator {
     fun homeScreenTest() = rule.collectBaselineProfile(
         packageName = PackageName
     ) {
-        homeScreenTest()
+        performHomeScreenOperations()
     }
 }
