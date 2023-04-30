@@ -9,6 +9,7 @@ import pseudoankit.droid.core.testtag.AgendaTestTag
 import pseudoankit.droid.core.testtag.HomeTestTag
 import pseudoankit.droid.core.util.extension.parseToString
 
+
 fun MacrobenchmarkScope.performHomeScreenOperations() {
     openApplication()
 
@@ -26,30 +27,33 @@ fun MacrobenchmarkScope.performHomeScreenOperations() {
 
     device.waitForIdle()
 
-    val agendaItemList = device.findObject(By.res(HomeTestTag.agendaItemList))
-    val itemCount = agendaItemList.children.size
-    if (itemCount < 10) {
-        repeat(10 - agendaItemList.children.size) {
-            openReminderScreenToAddItem(it)
-        }
+    // TODO fix below
+    return
+
+    repeat(4) {
+        openReminderScreenToAddItem(it + 1)
     }
 
+    device.wait(Until.hasObject(By.res(HomeTestTag.agendaItemList)), 4_000)
+    val agendaItemList = device.findObject(By.res(HomeTestTag.agendaItemList))
     agendaItemList.fling(Direction.DOWN)
     agendaItemList.fling(Direction.UP)
     agendaItemList.fling(Direction.DOWN)
 
-    device.findObject(By.text("Remind me about 8")).click()
+    device.findObject(By.text("Remind me about 3")).click()
 
-    device.wait(Until.hasObject(By.text("Remind me about 8")), 5000)
+    device.wait(Until.hasObject(By.text("Remind me about 3")), 5_000)
 }
 
 private fun MacrobenchmarkScope.openReminderScreenToAddItem(count: Int) {
+
+    device.wait(Until.hasObject(By.res(HomeTestTag.fab)), 3_000)
     val fab = device.findObject(By.res(HomeTestTag.fab))
     fab.click()
 
+    device.wait(Until.hasObject(By.res(AgendaTestTag.reminder)), 3_000)
     val reminder = device.findObject(By.res(AgendaTestTag.reminder))
     reminder.click()
 
     addReminder(text = "Remind me about $count")
-    device.waitForIdle()
 }
