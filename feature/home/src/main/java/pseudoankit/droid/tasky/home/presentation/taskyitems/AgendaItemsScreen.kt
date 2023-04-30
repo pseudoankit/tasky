@@ -24,6 +24,7 @@ import pseudoankit.droid.unify.component.textview.UnifyTextView
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.addTestTag
 import pseudoankit.droid.unify.utils.clickable
 
 @Destination(style = TaskyDestinationStyle.Dialog::class)
@@ -61,7 +62,7 @@ private fun AgendaItems(
 }
 
 @Composable
-private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> Unit) {
+private fun RowScope.AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> Unit) {
     UnifyTextView(
         config = UnifyTextViewConfig(
             text = agenda.label.asString(),
@@ -75,7 +76,8 @@ private fun AgendaItem(agenda: AgendaTypes, onAgendaSelected: (AgendaTypes) -> U
         iconConfig = UnifyIconConfig(icon = agenda.icon),
         onClick = {
             onAgendaSelected(agenda)
-        }
+        },
+        modifier = Modifier.addTestTag(agenda.testTag)
     )
 }
 

@@ -17,7 +17,7 @@ import pseudoankit.droid.unify.utils.clickable
 @Composable
 fun UnifySmallTopBar(config: UnifyTopBarConfig) {
     Box(
-        modifier = Modifier
+        modifier = config.modifier
             .fillMaxWidth()
             .height(UnifyDimens.Dp_64)
             .padding(UnifyDimens.ScreenPadding)

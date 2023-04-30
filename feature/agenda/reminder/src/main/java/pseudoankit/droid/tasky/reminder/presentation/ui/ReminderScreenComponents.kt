@@ -5,12 +5,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.focusRequester
 import kotlinx.collections.immutable.ImmutableList
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
+import pseudoankit.droid.core.testtag.AgendaTestTag
+import pseudoankit.droid.core.testtag.ReminderTestTag
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.tasky.reminder.presentation.mapper.RepeatIntervalUiMapper.label
@@ -27,6 +28,7 @@ import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.component.topbar.UnifyTopBarConfig
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.token.UnifyDimens
+import pseudoankit.droid.unify.utils.addTestTag
 import pseudoankit.droid.unify.utils.rememberFocusRequester
 
 internal object ReminderScreenComponents {
@@ -112,7 +114,8 @@ internal object ReminderScreenComponents {
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
-                .padding(end = UnifyDimens.Dp_8, start = UnifyDimens.Dp_32),
+                .padding(end = UnifyDimens.Dp_8, start = UnifyDimens.Dp_32)
+                .addTestTag(ReminderTestTag.edtRemindMe),
             placeholder = {
                 UnifyTextView(
                     config = UnifyTextViewConfig(
@@ -143,8 +146,9 @@ internal object ReminderScreenComponents {
                 text = "Save"
             ),
             icon = UnifyIconConfig(icon = UnifyIcons.CheckCircle),
-            onClick = onSave
-        )
+            onClick = onSave,
+            modifier = Modifier.addTestTag(AgendaTestTag.save)
+        ),
     )
 
     @Composable

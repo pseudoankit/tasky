@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import pseudoankit.droid.unify.component.icon.UnifyIcon
 import pseudoankit.droid.unify.component.icon.UnifyIconConfig
 import pseudoankit.droid.unify.component.textview.UnifyTextViewConfig
 import pseudoankit.droid.unify.token.UnifyColors
@@ -28,7 +27,8 @@ data class UnifyTopBarConfig(
     val title: String = "",
     val type: Type = Type.Small,
     val trailingSection: TrailingSection? = null,
-    val tintColor: Color = UnifyColors.White
+    val tintColor: Color = UnifyColors.White,
+    val modifier: Modifier = Modifier
 ) {
 
     data class TrailingSection(

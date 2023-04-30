@@ -118,7 +118,8 @@ internal object HomeScreenComponents {
                 icon = UnifyIcons.Add,
                 size = UnifyDimens.Dp_36
             ),
-            onClick = onClick
+            onClick = onClick,
+            modifier = Modifier.addTestTag(HomeTestTag.fab)
         )
     }
 
