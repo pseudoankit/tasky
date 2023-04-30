@@ -1,7 +1,6 @@
 package pseudoankit.droid.tasky.reminder.presentation.mapper
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
-import pseudoankit.droid.agendamanger.util.AgendaConstants
 import pseudoankit.droid.core.model.TaskyTime
 import pseudoankit.droid.core.util.datetime.TimeUtils.orNow
 import pseudoankit.droid.tasky.reminder.presentation.ReminderUiState
@@ -19,7 +18,7 @@ internal object ReminderMapper {
                     AgendaItem.Reminder.Time.Time(selectedTime.orNow)
                 },
                 repeatInterval = selectedRepeatInterval,
-                id = editId ?: AgendaConstants.id
+                id = editId ?: System.currentTimeMillis()
             )
         }
 
