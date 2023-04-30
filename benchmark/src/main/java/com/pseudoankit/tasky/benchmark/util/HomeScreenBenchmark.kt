@@ -27,22 +27,18 @@ fun MacrobenchmarkScope.performHomeScreenOperations() {
 
     device.waitForIdle()
 
-    // TODO fix below
-    return
-
-    repeat(4) {
+    repeat(10) {
         openReminderScreenToAddItem(it + 1)
     }
 
     device.wait(Until.hasObject(By.res(HomeTestTag.agendaItemList)), 4_000)
     val agendaItemList = device.findObject(By.res(HomeTestTag.agendaItemList))
     agendaItemList.fling(Direction.DOWN)
-    agendaItemList.fling(Direction.UP)
-    agendaItemList.fling(Direction.DOWN)
 
-    device.findObject(By.text("Remind me about 3")).click()
+    device.waitForIdle()
 
-    device.wait(Until.hasObject(By.text("Remind me about 3")), 5_000)
+    agendaItemList.children[agendaItemList.childCount - 1].click()
+    device.wait(Until.hasObject(By.text("Remind me about ${agendaItemList.childCount}")), 5_000)
 }
 
 private fun MacrobenchmarkScope.openReminderScreenToAddItem(count: Int) {

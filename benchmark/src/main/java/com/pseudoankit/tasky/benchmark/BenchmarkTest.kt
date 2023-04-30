@@ -1,5 +1,7 @@
 package com.pseudoankit.tasky.benchmark
 
+import androidx.benchmark.macro.CompilationMode
+import androidx.benchmark.macro.FrameTimingMetric
 import androidx.benchmark.macro.StartupMode
 import androidx.benchmark.macro.StartupTimingMetric
 import androidx.benchmark.macro.junit4.MacrobenchmarkRule
@@ -17,21 +19,33 @@ class BenchmarkTest {
     val benchmarkRule = MacrobenchmarkRule()
 
     @Test
-    fun startup() = benchmarkRule.measureRepeated(
+    fun startUpCompilationPartial() = startup(CompilationMode.Partial())
+
+    @Test
+    fun startUpCompilationNone() = startup(CompilationMode.None())
+
+    @Test
+    fun homeScreenTestCompilationPartial() = homeScreenTest(CompilationMode.Partial())
+
+    @Test
+    fun homeScreenTestCompilationNone() = homeScreenTest(CompilationMode.None())
+
+    private fun startup(compilationMode: CompilationMode) = benchmarkRule.measureRepeated(
         packageName = PackageName,
         metrics = listOf(StartupTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.COLD
+        startupMode = StartupMode.COLD,
+        compilationMode = compilationMode
     ) {
         openApplication()
     }
 
-    @Test
-    fun homeScreenTest() = benchmarkRule.measureRepeated(
+    private fun homeScreenTest(compilationMode: CompilationMode) = benchmarkRule.measureRepeated(
         packageName = PackageName,
-        metrics = listOf(StartupTimingMetric()),
+        metrics = listOf(FrameTimingMetric()),
         iterations = 5,
-        startupMode = StartupMode.COLD
+        startupMode = StartupMode.COLD,
+        compilationMode = compilationMode
     ) {
         performHomeScreenOperations()
     }
