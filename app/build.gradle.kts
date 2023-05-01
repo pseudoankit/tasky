@@ -61,6 +61,6 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
     }
-    implementation(Dependencies.SplashScreen)
+    implementation(Dependencies.Core.SplashScreen)
     implementation(Dependencies.ProfilerInstaller)
 }
