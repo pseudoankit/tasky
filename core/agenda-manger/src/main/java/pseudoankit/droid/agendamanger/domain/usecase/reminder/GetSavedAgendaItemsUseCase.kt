@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky.home.domain.usecase
+package pseudoankit.droid.agendamanger.domain.usecase.reminder
 
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
@@ -8,7 +8,7 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.core.model.TaskyDate
 
-internal class GetSavedAgendaItemsUseCase(
+class GetSavedAgendaItemsUseCase(
     private val agendaRepository: AgendaRepository
 ) {
 

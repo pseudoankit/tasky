@@ -13,6 +13,7 @@ dependencies {
     implementation(Dependencies.Core.Core)
     implementation(Dependencies.Core.AppShortcut)
     with(Modules.Core) {
+        implementation(project(AgendaManager))
         implementation(project(DesignSystem))
     }
 }

@@ -1,4 +1,4 @@
-package pseudoankit.droid.app_shortcuts.widget
+package pseudoankit.droid.app_shortcuts.widget.ui
 
 import android.appwidget.AppWidgetManager
 import android.content.Context
@@ -12,8 +12,8 @@ fun taskyWidgetView(
     appWidgetId: Int
 ) {
     val view = TaskyWidgetBinding.inflate(LayoutInflater.from(context))
-    val views = RemoteViews(context.packageName, view.root.id)
+    val remoteViews = RemoteViews(context.packageName, view.root.id)
 
     // Instruct the widget manager to update the widget
-    appWidgetManager.updateAppWidget(appWidgetId, views)
+    appWidgetManager.updateAppWidget(appWidgetId, remoteViews)
 }

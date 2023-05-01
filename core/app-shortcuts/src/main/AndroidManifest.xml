@@ -3,7 +3,7 @@
 
     <application>
         <receiver
-            android:name=".TaskyWidget"
+            android:name=".widget.TaskyWidget"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
