@@ -14,7 +14,6 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object Lock : UnifyIcons(IconType.Vector(Icons.Default.Lock))
     object Check : UnifyIcons(IconType.Vector(Icons.Default.Check))
     object DropDown : UnifyIcons(IconType.Vector(Icons.Default.ArrowDropDown))
-    object Add : UnifyIcons(IconType.Vector(Icons.Default.Add))
     object Refresh : UnifyIcons(IconType.Vector(Icons.Default.Refresh))
     object Person : UnifyIcons(IconType.Vector(Icons.Default.Person))
 
@@ -22,15 +21,17 @@ sealed class UnifyIcons(internal val iconType: IconType) {
     object EyeOff : UnifyIcons(IconType.FontAwesome(FaIcons.EyeSlash))
     object EyeOn : UnifyIcons(IconType.FontAwesome(FaIcons.Eye))
     object Cross : UnifyIcons(IconType.FontAwesome(FaIcons.Times))
-    object Bell : UnifyIcons(IconType.Svg(UnifyDrawable.ic_notification))
-    object Calendar : UnifyIcons(IconType.Svg(UnifyDrawable.ic_calendar))
-    object Task : UnifyIcons(IconType.Svg(UnifyDrawable.ic_task))
     object Clock : UnifyIcons(IconType.FontAwesome(FaIcons.ClockRegular))
     object EllipsisV : UnifyIcons(IconType.FontAwesome(FaIcons.EllipsisV))
     object Circle : UnifyIcons(IconType.FontAwesome(FaIcons.CircleRegular))
     object Delete : UnifyIcons(IconType.FontAwesome(FaIcons.Trash))
     object Edit : UnifyIcons(IconType.FontAwesome(FaIcons.Pen))
     object User : UnifyIcons(IconType.FontAwesome(FaIcons.User))
+
+    object Bell : UnifyIcons(IconType.Svg(UnifyDrawable.ic_notification))
+    object Calendar : UnifyIcons(IconType.Svg(UnifyDrawable.ic_calendar))
+    object Task : UnifyIcons(IconType.Svg(UnifyDrawable.ic_task))
+    object Add : UnifyIcons(IconType.Svg(UnifyDrawable.ic_add))
 
     sealed interface IconType {
         data class Vector(val imageVector: ImageVector) : IconType

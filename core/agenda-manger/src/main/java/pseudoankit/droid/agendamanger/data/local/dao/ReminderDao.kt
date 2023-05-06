@@ -8,6 +8,9 @@ import java.time.LocalDate
 @Dao
 interface ReminderDao {
 
+    @Query("Select * from reminderentity")
+    fun getReminders(): Flow<List<ReminderEntity>>
+
     @Query("Select * from reminderentity where date= :date")
     fun getReminders(date: LocalDate): Flow<List<ReminderEntity>>
 

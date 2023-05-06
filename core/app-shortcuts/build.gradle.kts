@@ -7,9 +7,12 @@ android {
 }
 
 dependencies {
-    implementation("androidx.core:core:1.9.0")
-    implementation("androidx.core:core-google-shortcuts:1.1.0")
+    implementation(Dependencies.AndroidX.Core)
+    implementation(Dependencies.AndroidX.AppShortcut)
+
     with(Modules.Core) {
+        implementation(project(AgendaManager))
         implementation(project(DesignSystem))
+        implementation(project(CoreUi))
     }
 }

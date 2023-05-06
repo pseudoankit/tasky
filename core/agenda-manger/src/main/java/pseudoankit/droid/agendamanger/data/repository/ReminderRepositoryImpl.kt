@@ -19,6 +19,10 @@ internal class ReminderRepositoryImpl(
         return dao.getReminder(id).mapToDomain
     }
 
+    override fun getReminders(): Flow<List<AgendaItem.Reminder>> {
+        return dao.getReminders().map { it.map { it.mapToDomain } }
+    }
+
     override fun getReminders(date: LocalDate): Flow<List<AgendaItem.Reminder>> {
         return dao.getReminders(date).map { it.map { it.mapToDomain } }
     }

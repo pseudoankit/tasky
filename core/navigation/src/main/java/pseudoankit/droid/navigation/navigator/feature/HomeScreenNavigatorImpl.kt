@@ -6,10 +6,11 @@ import com.ramcosta.composedestinations.navigation.navigate
 import kotlinx.coroutines.runBlocking
 import org.koin.java.KoinJavaComponent.inject
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.toastNotImplemented
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
-import pseudoankit.droid.tasky.home.presentation.destinations.AgendaItemsScreenDestination
 import pseudoankit.droid.tasky.reminder.presentation.ui.destinations.ReminderScreenDestination
 
 internal class HomeScreenNavigatorImpl(
@@ -24,7 +25,7 @@ internal class HomeScreenNavigatorImpl(
     }
 
     override fun navigateToAgendaItemsSelectorScreen() {
-        navController.navigate(AgendaItemsScreenDestination)
+        navController.navigateViaDeepLink(TaskyDeeplink.agendaSelection)
     }
 
     override fun navigateToAgendaScreen(agendaTypes: AgendaTypes) {

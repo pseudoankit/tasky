@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:description="@string/app_widget_description"
+    android:initialKeyguardLayout="@layout/tasky_widget"
+    android:initialLayout="@layout/tasky_widget"
+    android:minWidth="220dp"
+    android:minHeight="220dp"
+    android:previewLayout="@layout/tasky_widget"
+    android:resizeMode="horizontal|vertical"
+    android:targetCellWidth="4"
+    android:targetCellHeight="3"
+    android:updatePeriodMillis="100000"
+    android:widgetCategory="home_screen" />

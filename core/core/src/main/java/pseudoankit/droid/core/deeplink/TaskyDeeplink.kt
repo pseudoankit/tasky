@@ -5,12 +5,13 @@ package pseudoankit.droid.core.deeplink
  * Preferred way to create deeplink is via [pseudoankit.droid.navigation.deeplink.DeepLinkProvider]
  */
 object TaskyDeeplink {
-    const val SCHEME = "tasky://"
+    private const val SCHEME = "tasky://"
 
-    object Host {
+    private object Host {
         const val login = "login"
         const val home = "home"
         const val reminder = "reminder"
+        const val agendaSelection = "agendaSelection"
     }
 
     object Path {
@@ -22,6 +23,7 @@ object TaskyDeeplink {
     const val login = "${SCHEME}${Host.login}"
     const val home = "${SCHEME}${Host.home}"
     const val reminder = "${SCHEME}${Host.reminder}/${Path.Reminder.ACTION}"
+    const val agendaSelection = "${SCHEME}${Host.agendaSelection}"
 
 
     fun mapToInternalRoute(externalLink: String) = externalLink.run {
@@ -31,6 +33,7 @@ object TaskyDeeplink {
             contains(Host.reminder) -> {
                 replace(SCHEME + Host.reminder, "reminder_screen")
             }
+            contains(Host.agendaSelection) -> "agenda_items_screen"
             else -> ""
         }
     }
