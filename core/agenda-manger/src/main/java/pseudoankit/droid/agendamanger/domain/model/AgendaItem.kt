@@ -43,4 +43,11 @@ sealed interface AgendaItem {
         override val title: String = "",
         override val date: TaskyDate = TaskyDate.Today,
     ) : AgendaItem
+
+    val mapToAgendaTypes
+        get() = when (this) {
+            is Event -> AgendaTypes.Event(AgendaTypes.Action.Edit(id))
+            is Reminder -> AgendaTypes.Reminder(AgendaTypes.Action.Edit(id))
+            is Task -> AgendaTypes.Task(AgendaTypes.Action.Edit(id))
+        }
 }

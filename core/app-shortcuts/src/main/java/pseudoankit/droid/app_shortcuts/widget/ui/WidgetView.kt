@@ -18,10 +18,10 @@ fun taskyWidgetView(
     val remoteViews = RemoteViews(context.packageName, R.layout.tasky_widget)
     remoteViews.setOnClickPendingIntent(
         R.id.ivAddAgenda,
-        PendingIntent.getActivities(
+        PendingIntent.getActivity(
             context,
             1,
-            arrayOf(createDeeplinkIntent(TaskyDeeplink.agendaSelection)),
+            createDeeplinkIntent(TaskyDeeplink.agendaSelection),
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
     )
@@ -29,6 +29,17 @@ fun taskyWidgetView(
     remoteViews.setRemoteAdapter(
         R.id.lvAgendaItems,
         Intent(context, WidgetAgendaItemsService::class.java)
+    )
+
+    // TODO item fix item selection
+    remoteViews.setPendingIntentTemplate(
+        R.id.root,
+        PendingIntent.getActivity(
+            context,
+            appWidgetId,
+            createDeeplinkIntent(TaskyDeeplink.agendaSelection),
+            PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
+        )
     )
 
     // Instruct the widget manager to update the widget

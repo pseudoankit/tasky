@@ -13,6 +13,7 @@ dependencies {
         implementation(project(AgendaManager))
         implementation(project(Core))
         implementation(project(PreferencesManager))
+        implementation(project(AppShortcuts))
     }
 
     with(Dependencies.Compose) {
