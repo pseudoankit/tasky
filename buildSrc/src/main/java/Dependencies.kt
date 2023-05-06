@@ -5,7 +5,7 @@ object Dependencies {
     const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
     const val Benchmark = "androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13"
 
-    object Core {
+    object AndroidX {
         const val Core = "androidx.core:core:1.10.0"
         const val AppShortcut = "androidx.core:core-google-shortcuts:1.1.0"
         const val SplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"

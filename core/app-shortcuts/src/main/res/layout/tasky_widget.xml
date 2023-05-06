@@ -2,11 +2,29 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/white"
     android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#F2D2F4"
+        android:gravity="center_vertical|end"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp">
+
+        <ImageView
+            android:id="@+id/ivAddAgenda"
+            android:tint="#220BE3"
+            app:tint="@android:color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/lvAgendaItems"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TODO Tasky Widget" />
+        android:layout_height="wrap_content" />
 </LinearLayout>

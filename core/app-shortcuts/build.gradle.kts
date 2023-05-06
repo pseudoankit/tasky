@@ -7,10 +7,12 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.Core.Core)
-    implementation(Dependencies.Core.AppShortcut)
+    implementation(Dependencies.AndroidX.Core)
+    implementation(Dependencies.AndroidX.AppShortcut)
+
     with(Modules.Core) {
         implementation(project(AgendaManager))
         implementation(project(DesignSystem))
+        implementation(project(CoreUi))
     }
 }

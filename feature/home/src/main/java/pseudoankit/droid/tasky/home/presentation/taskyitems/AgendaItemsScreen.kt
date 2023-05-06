@@ -6,12 +6,14 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontStyle
+import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
 import pseudoankit.droid.coreui.util.extension.asString
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
@@ -27,7 +29,12 @@ import pseudoankit.droid.unify.token.UnifyDimens
 import pseudoankit.droid.unify.utils.addTestTag
 import pseudoankit.droid.unify.utils.clickable
 
-@Destination(style = TaskyDestinationStyle.Dialog::class)
+@Destination(
+    style = TaskyDestinationStyle.Dialog::class,
+    deepLinks = [
+        DeepLink(uriPattern = TaskyDeeplink.agendaSelection)
+    ]
+)
 @Composable
 internal fun AgendaItemsScreen(
     navigator: HomeScreenNavigator

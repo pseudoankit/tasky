@@ -4,13 +4,10 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.PendingIntent
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import androidx.core.graphics.drawable.IconCompat
-import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.core.deeplink.createDeeplinkIntent
 import pseudoankit.droid.unify.utils.UnifyDrawable
 
 class TaskyNotifier(
@@ -41,9 +38,7 @@ class TaskyNotifier(
         }
 
     private fun TaskyNotifierConfig.createNotification(): Notification = run {
-        val intent = Intent(Intent.ACTION_VIEW).apply {
-            data = Uri.parse(navigationUrl)
-        }
+        val intent = createDeeplinkIntent(navigationUrl)
         val pendingIntent = PendingIntent.getActivity(
             appContext,
             1,

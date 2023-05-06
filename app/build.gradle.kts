@@ -61,6 +61,6 @@ dependencies {
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
     }
-    implementation(Dependencies.Core.SplashScreen)
+    implementation(Dependencies.AndroidX.SplashScreen)
     implementation(Dependencies.ProfilerInstaller)
 }
