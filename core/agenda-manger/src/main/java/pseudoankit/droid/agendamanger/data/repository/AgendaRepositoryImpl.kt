@@ -18,4 +18,12 @@ internal class AgendaRepositoryImpl(
             items[0]
         }
     }
+
+    override fun getAllSavedItem(): Flow<List<AgendaItem>> {
+        return combine(
+            reminderRepository.getReminders()
+        ) { items ->
+            items[0]
+        }
+    }
 }

@@ -5,6 +5,8 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import java.time.LocalDate
 
 interface ReminderRepository {
+    fun getReminders(): Flow<List<AgendaItem.Reminder>>
+
     fun getReminders(date: LocalDate): Flow<List<AgendaItem.Reminder>>
     fun getReminder(id: Long): AgendaItem.Reminder
     suspend fun delete(payload: AgendaItem.Reminder)
