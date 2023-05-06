@@ -4,9 +4,6 @@ plugins {
 
 android {
     namespace = "pseudoankit.droid.app_shortcuts"
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {

@@ -3,6 +3,7 @@ package pseudoankit.droid.app_shortcuts.widget
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import pseudoankit.droid.app_shortcuts.widget.ui.taskyWidgetView
 
 /**
  * Implementation of App Widget functionality.
