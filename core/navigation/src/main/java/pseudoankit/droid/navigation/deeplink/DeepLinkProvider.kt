@@ -1,7 +1,7 @@
 package pseudoankit.droid.navigation.deeplink
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
-import pseudoankit.droid.app_shortcuts.widget.util.WidgetDeeplinkProvider
+import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.tasky.home.navigator.HomeDeepLinkProvider
 import pseudoankit.droid.tasky.reminder.navigator.ActionNavTypeSerializer

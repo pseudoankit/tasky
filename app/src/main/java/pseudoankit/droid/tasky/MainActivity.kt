@@ -52,7 +52,7 @@ internal class MainActivity : ComponentActivity() {
         splashScreen.show()
         super.onCreate(savedInstanceState)
 
-        TaskyLogger.info(intent.data.toString())
+        TaskyLogger.info("intent = $intent")
 
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 

@@ -12,6 +12,7 @@ object TaskyDeeplink {
         const val home = "home"
         const val reminder = "reminder"
         const val agendaSelection = "agendaSelection"
+        const val widget = "widget"
     }
 
     object Path {
@@ -24,7 +25,7 @@ object TaskyDeeplink {
     const val home = "${SCHEME}${Host.home}"
     const val reminder = "${SCHEME}${Host.reminder}/${Path.Reminder.ACTION}"
     const val agendaSelection = "${SCHEME}${Host.agendaSelection}"
-
+    const val fromWidget = "${SCHEME}${Host.widget}"
 
     fun mapToInternalRoute(externalLink: String) = externalLink.run {
         when {

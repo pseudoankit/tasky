@@ -1,4 +1,4 @@
-package pseudoankit.droid.app_shortcuts.widget.service
+package pseudoankit.droid.app_widgets.service
 
 import android.content.Context
 import android.content.Intent
@@ -12,11 +12,11 @@ import org.koin.java.KoinJavaComponent.inject
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.app_shortcuts.R
-import pseudoankit.droid.app_shortcuts.widget.util.WidgetDeeplinkProvider
-import pseudoankit.droid.app_shortcuts.widget.util.displayDateTime
+import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
+import pseudoankit.droid.app_widgets.util.displayDateTime
+import pseudoankit.droid.app_widgets.widget.TaskyWidgetProvider
 import pseudoankit.droid.core.coroutine.launch
 import pseudoankit.droid.core.util.extension.orZero
-
 
 class WidgetAgendaItemsService : RemoteViewsService() {
     override fun onGetViewFactory(intent: Intent?): RemoteViewsFactory {
@@ -64,11 +64,11 @@ class WidgetAgendaItemsService : RemoteViewsService() {
             remoteView.setTextViewText(R.id.title, item.title)
             remoteView.setTextViewText(R.id.dateTime, item.displayDateTime.orEmpty())
             remoteView.setOnClickFillInIntent(
-                R.id.root,
+                R.id.widget_item,
                 Intent().apply {
                     putExtras(Bundle().apply {
                         putString(
-                            "extra",
+                            TaskyWidgetProvider.EXTRA_ITEM,
                             deeplinkProvider.agendaDetailRoute(item.mapToAgendaTypes)
                         )
                     })

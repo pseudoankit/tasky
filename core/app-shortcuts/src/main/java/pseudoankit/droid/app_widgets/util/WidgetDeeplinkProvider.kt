@@ -1,4 +1,4 @@
-package pseudoankit.droid.app_shortcuts.widget.util
+package pseudoankit.droid.app_widgets.util
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 
