@@ -2,7 +2,6 @@ package pseudoankit.droid.app_widgets.service
 
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.widget.RemoteViews
 import android.widget.RemoteViewsService
 import kotlinx.coroutines.Job
@@ -11,7 +10,7 @@ import kotlinx.coroutines.flow.onEach
 import org.koin.java.KoinJavaComponent.inject
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
-import pseudoankit.droid.app_shortcuts.R
+import pseudoankit.droid.app_shortcuts_n_widgets.R
 import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
 import pseudoankit.droid.app_widgets.util.displayDateTime
 import pseudoankit.droid.app_widgets.widget.TaskyWidgetProvider
@@ -66,12 +65,10 @@ class WidgetAgendaItemsService : RemoteViewsService() {
             remoteView.setOnClickFillInIntent(
                 R.id.widget_item,
                 Intent().apply {
-                    putExtras(Bundle().apply {
-                        putString(
-                            TaskyWidgetProvider.EXTRA_ITEM,
-                            deeplinkProvider.agendaDetailRoute(item.mapToAgendaTypes)
-                        )
-                    })
+                    putExtra(
+                        TaskyWidgetProvider.EXTRA_ITEM,
+                        deeplinkProvider.agendaDetailRoute(item.mapToAgendaTypes)
+                    )
                 }
             )
             return remoteView

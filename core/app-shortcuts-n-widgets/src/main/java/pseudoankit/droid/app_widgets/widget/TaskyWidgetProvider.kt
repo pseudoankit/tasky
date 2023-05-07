@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.RemoteViews
-import pseudoankit.droid.app_shortcuts.R
+import pseudoankit.droid.app_shortcuts_n_widgets.R
 import pseudoankit.droid.app_widgets.service.WidgetAgendaItemsService
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.deeplink.createDeeplinkIntent

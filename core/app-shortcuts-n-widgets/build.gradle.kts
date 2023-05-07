@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "pseudoankit.droid.app_shortcuts"
+    namespace = "pseudoankit.droid.app_shortcuts_n_widgets"
 }
 
 dependencies {
