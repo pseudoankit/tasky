@@ -8,11 +8,11 @@ android {
 
 dependencies {
     with(Dependencies.Test) {
-        testImplementation(mockk)
-        testImplementation(junit)
-        testImplementation(kotlinTests)
-        testImplementation(coroutine)
-        testImplementation(orbitMvi)
-        testImplementation(turbine)
+        implementation(mockk)
+        implementation(junit)
+        implementation(kotlinTests)
+        implementation(coroutine)
+        implementation(orbitMvi)
+        implementation(turbine)
     }
 }

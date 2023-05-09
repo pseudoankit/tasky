@@ -79,11 +79,11 @@ object Dependencies {
         const val JUnitExt = "androidx.test.ext:junit:1.1.5"
         const val EspressoCore = "androidx.test.espresso:espresso-core:3.5.1"
         const val UiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
-        const val junit = "junit:junit:4.13"
-        const val mockk = "io.mockk:mockk:1.12.5"
-        const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
-        const val kotlinTests = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.Kotlin}"
-        const val turbine = "app.cash.turbine:turbine:0.9.0"
-        const val orbitMvi = "org.orbit-mvi:orbit-test:${Versions.Compose.OrbitMvi}"
+        const val junit = "junit:junit:4.13.2"
+        const val mockk = "io.mockk:mockk:1.13.1"
+        const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.0"
+        const val kotlinTests = "org.jetbrains.kotlin:kotlin-test-junit:1.8.21"
+        const val turbine = "app.cash.turbine:turbine:0.12.3"
+        const val orbitMvi = "org.orbit-mvi:orbit-test:4.3.0"
     }
 }

@@ -1,6 +1,7 @@
 plugins {
     id(Plugins.CoreFeatureLib)
     id(Plugins.RoomDatabase)
+    id(Plugins.UnitTestPlugin)
 }
 
 android {
