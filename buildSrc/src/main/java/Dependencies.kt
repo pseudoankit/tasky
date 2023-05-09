@@ -32,7 +32,7 @@ object Dependencies {
             "io.github.raamcosta.compose-destinations:ksp:${Versions.Compose.Destinations}"
         const val DatePicker = "io.github.vanpra.compose-material-dialogs:datetime:0.8.1-rc"
         const val FontAwesome = "com.github.pseudoankit:ComposeFontAwesomeLibrary:v1.2.0"
-        const val OrbitMvi = "org.orbit-mvi:orbit-compose:4.5.0"
+        const val OrbitMvi = "org.orbit-mvi:orbit-compose:${Versions.Compose.OrbitMvi}"
         const val SwipeableCard = "com.github.pseudoankit:SwipeableView:1.0.1"
 
         const val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
@@ -79,5 +79,11 @@ object Dependencies {
         const val JUnitExt = "androidx.test.ext:junit:1.1.5"
         const val EspressoCore = "androidx.test.espresso:espresso-core:3.5.1"
         const val UiAutomator = "androidx.test.uiautomator:uiautomator:2.2.0"
+        const val junit = "junit:junit:4.13"
+        const val mockk = "io.mockk:mockk:1.12.5"
+        const val coroutine = "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+        const val kotlinTests = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.Kotlin}"
+        const val turbine = "app.cash.turbine:turbine:0.9.0"
+        const val orbitMvi = "org.orbit-mvi:orbit-test:${Versions.Compose.OrbitMvi}"
     }
 }

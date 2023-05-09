@@ -4,6 +4,7 @@ object Versions {
     const val Room = "2.4.2"
 
     object Compose {
+        const val OrbitMvi = "4.5.0"
         const val Core = "1.3.3"
         const val Compiler = "1.4.3"
         const val Destinations = "1.8.36-beta"

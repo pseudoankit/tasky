@@ -6,4 +6,5 @@ internal object PluginConstants {
     const val PATH = "path"
     const val KOTLIN = "kotlin"
     const val KSP = "ksp"
+    const val TEST_IMPLEMENTATION = "testImplementation"
 }
