@@ -12,6 +12,7 @@ include(":core:alarm-manager")
 include(":core:notification-manager")
 include(":core:permission-manager")
 include(":core:app-shortcuts-n-widgets")
+include(":core:test-helper")
 
 include(":feature:authentication")
 include(":feature:home")

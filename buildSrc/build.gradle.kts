@@ -20,7 +20,8 @@ gradlePlugin {
             "core-library-feature-plugin" to "plugin.base.CoreLibraryFeaturePlugin",
             "compose-core-plugin" to "plugin.compose.ComposeCorePlugin",
             "compose-feature-plugin" to "plugin.compose.ComposeFeaturePlugin",
-            "room-db-plugin" to "plugin.RoomPlugin"
+            "room-db-plugin" to "plugin.RoomPlugin",
+            "ut-plugin" to "plugin.UnitTestPlugin"
         )
 
         plugins.forEach {

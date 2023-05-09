@@ -32,6 +32,9 @@ object Plugins {
      */
     const val RoomDatabase = "room-db-plugin"
 
+    /** Plugin containing setup to add unit test in a module */
+    const val UnitTestPlugin = "ut-plugin"
+
     const val AndroidLibrary = "com.android.library"
     const val AndroidApplication = "com.android.application"
     const val Ksp = "com.google.devtools.ksp"

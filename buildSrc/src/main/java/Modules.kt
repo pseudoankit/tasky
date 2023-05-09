@@ -22,5 +22,6 @@ object Modules {
         const val NotificationManager = ":core:notification-manager"
         const val PermissionManager = ":core:permission-manager"
         const val AppShortcuts = ":core:app-shortcuts-n-widgets"
+        const val TestHelper = ":core:test-helper"
     }
 }

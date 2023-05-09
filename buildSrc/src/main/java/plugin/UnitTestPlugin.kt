@@ -20,7 +20,7 @@ class UnitTestPlugin : Plugin<Project> {
                 testImplementation(coroutine)
                 testImplementation(orbitMvi)
                 testImplementation(turbine)
-                testImplementationProject(Modules.Base.testShared)
+                testImplementationProject(Modules.Core.TestHelper)
             }
         }
     }
