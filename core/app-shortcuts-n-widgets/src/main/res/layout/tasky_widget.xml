@@ -16,8 +16,7 @@
 
         <ImageView
             android:id="@+id/ivAddAgenda"
-            android:tint="#220BE3"
-            app:tint="@android:color/white"
+            app:tint="#220BE3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_add" />
