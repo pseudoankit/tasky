@@ -39,9 +39,9 @@ internal fun DemoPermission() {
         rememberPermissionState(permission = android.Manifest.permission.ACCESS_FINE_LOCATION)
 
     when (launcher.taskyStatus) {
-        TaskyPermissionStatus.Granted -> TODO()
-        TaskyPermissionStatus.DeclinedOnce -> TODO()
-        TaskyPermissionStatus.DeclinedPermanently -> TODO()
+        TaskyPermissionStatus.Granted -> {}
+        TaskyPermissionStatus.DeclinedOnce -> {}
+        TaskyPermissionStatus.DeclinedPermanently -> {}
     }
 
     UnifyButton(UnifyButtonConfig(text = "Btn")) {
