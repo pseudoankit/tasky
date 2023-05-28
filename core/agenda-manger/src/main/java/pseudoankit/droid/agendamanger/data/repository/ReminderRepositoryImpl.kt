@@ -5,6 +5,7 @@ import kotlinx.coroutines.flow.map
 import pseudoankit.droid.agendamanger.data.local.dao.ReminderDao
 import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToDomain
 import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.mapToEntity
+import pseudoankit.droid.agendamanger.domain.mapper.ReminderMapper.sortByAscDateTime
 import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryInternal
@@ -16,7 +17,9 @@ internal class ReminderRepositoryImpl(
 ) : ReminderRepository, ReminderRepositoryInternal {
 
     override fun getReminders(): List<AgendaItem.Reminder> {
-        return dao.getReminders().map { it.mapToDomain }
+        return dao.getReminders()
+            .map { it.mapToDomain }
+            .sortByAscDateTime
     }
 
     override fun getReminder(id: Long): AgendaItem.Reminder {
@@ -30,7 +33,12 @@ internal class ReminderRepositoryImpl(
             dao.getRemindersFlow()
         }
 
-        return reminders.map { it.map { it.mapToDomain } }
+        return reminders
+            .map { list ->
+                list.map {
+                    it.mapToDomain
+                }.sortByAscDateTime
+            }
     }
 
     override suspend fun save(payload: AgendaItem.Reminder) {

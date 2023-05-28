@@ -37,4 +37,11 @@ internal object ReminderMapper {
             id = id,
             completed = completed.orFalse
         )
+
+    val List<AgendaItem.Reminder>.sortByAscDateTime
+        get() = sortedWith { o1, o2 ->
+            if (o1.date.value > o2.date.value) return@sortedWith 1
+            if (o1.date.value < o2.date.value) return@sortedWith -1
+            o1.time.seconds - o2.time.seconds
+        }
 }

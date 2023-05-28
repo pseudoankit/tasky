@@ -13,7 +13,7 @@ import androidx.glance.appwidget.GlanceAppWidget
 import androidx.glance.appwidget.action.actionStartActivity
 import androidx.glance.appwidget.cornerRadius
 import androidx.glance.appwidget.lazy.LazyColumn
-import androidx.glance.appwidget.lazy.items
+import androidx.glance.appwidget.lazy.itemsIndexed
 import androidx.glance.background
 import androidx.glance.layout.Alignment
 import androidx.glance.layout.Column
@@ -33,8 +33,10 @@ import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
 import pseudoankit.droid.core.deeplink.DeepLinkUtil
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.core.util.extension.parseToString
 import pseudoankit.droid.unify.token.UnifyColors
 import pseudoankit.droid.unify.utils.UnifyDrawable
+import java.time.LocalDate
 
 internal object AgendaItemsAppWidget : GlanceAppWidget() {
 
@@ -42,7 +44,10 @@ internal object AgendaItemsAppWidget : GlanceAppWidget() {
     private val deeplinkProvider: WidgetDeeplinkProvider by inject(WidgetDeeplinkProvider::class.java)
 
     @WorkerThread
-    fun agendaItems() = agendaRepository.getAllSavedItem()
+    fun agendaItemsFromToday() = agendaRepository.getAllSavedItem().mapNotNull {
+        if (it.date.value < LocalDate.now()) return@mapNotNull null
+        it
+    }
 
     @Composable
     override
@@ -57,7 +62,7 @@ internal object AgendaItemsAppWidget : GlanceAppWidget() {
                 )
             )
 
-            val items = agendaItems()
+            val items = agendaItemsFromToday()
 
             SavedAgendaItems(items = items)
         }
@@ -68,8 +73,14 @@ internal object AgendaItemsAppWidget : GlanceAppWidget() {
         LazyColumn(
             modifier = GlanceModifier.fillMaxSize()
         ) {
-            items(items) { item ->
-                Column {
+            itemsIndexed(items) { index, item ->
+                Column(
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    DateChip(
+                        currentItem = item,
+                        previousItem = items.getOrNull(index - 1)
+                    )
                     Row(
                         modifier = GlanceModifier
                             .fillMaxWidth()
@@ -98,6 +109,23 @@ internal object AgendaItemsAppWidget : GlanceAppWidget() {
                     Spacer(GlanceModifier.height(4.dp))
                 }
             }
+        }
+    }
+
+    @Composable
+    private fun DateChip(currentItem: AgendaItem, previousItem: AgendaItem?) {
+        if (currentItem.date != previousItem?.date) {
+            Text(
+                text = currentItem.date.parseToString("dd MMM").orEmpty(),
+                modifier = GlanceModifier
+                    .background(UnifyColors.White)
+                    .cornerRadius(8.dp)
+                    .padding(horizontal = 12.dp, vertical = 4.dp),
+                style = TextStyle(
+
+                )
+            )
+            Spacer(GlanceModifier.height(4.dp))
         }
     }
 

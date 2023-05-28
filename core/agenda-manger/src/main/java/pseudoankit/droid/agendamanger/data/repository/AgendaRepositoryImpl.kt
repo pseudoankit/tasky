@@ -7,6 +7,7 @@ import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import java.time.LocalDate
 
+// TODO sorting for all agenda types
 internal class AgendaRepositoryImpl(
     private val reminderRepository: ReminderRepository
 ) : AgendaRepository {
