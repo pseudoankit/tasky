@@ -1,12 +1,11 @@
 package pseudoankit.droid.app_shortcuts
 
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
 import androidx.annotation.DrawableRes
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.content.pm.ShortcutManagerCompat
 import androidx.core.graphics.drawable.IconCompat
+import pseudoankit.droid.core.deeplink.DeepLinkUtil
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.unify.utils.UnifyDrawable
 
@@ -50,7 +49,7 @@ object TaskyShortCutManager {
             .setShortLabel(label)
             .setLongLabel(longLabel)
             .setIcon(IconCompat.createWithResource(context, icon))
-            .setIntent(Intent(Intent.ACTION_VIEW, Uri.parse(navigationDeepLink)))
+            .setIntent(DeepLinkUtil.createDeeplinkIntent(navigationDeepLink))
             .build()
 
         ShortcutManagerCompat.pushDynamicShortcut(context, shortcut)
