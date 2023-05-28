@@ -16,6 +16,7 @@ import org.koin.java.KoinJavaComponent.inject
 import pseudoankit.droid.agendamanger.domain.repository.AgendaRepository
 import pseudoankit.droid.app_widgets.util.WidgetPrefsKey
 import pseudoankit.droid.core.util.defaultJsonSerializer
+import java.time.LocalDate
 
 class AgendaItemAppWidgetReceiver : GlanceAppWidgetReceiver() {
 
@@ -40,12 +41,17 @@ class AgendaItemAppWidgetReceiver : GlanceAppWidgetReceiver() {
 
     private fun syncPrefsToDb(context: Context) {
         MainScope().launch {
-            val items = agendaRepository.getAllSavedItem().firstOrNull().orEmpty().map {
-                WidgetAgendaItem(
-                    id = it.id,
-                    title = it.title
-                )
-            }
+            val items = agendaRepository
+                .getAllSavedItem()
+                .firstOrNull()
+                .orEmpty()
+                .mapNotNull {
+                    if (it.date.value < LocalDate.now()) return@mapNotNull null
+                    WidgetAgendaItem(
+                        id = it.id,
+                        title = it.title
+                    )
+                }
             val itemsJson = defaultJsonSerializer.encodeToString(items)
             val glanceId = GlanceAppWidgetManager(context)
                 .getGlanceIds(AgendaItemsAppWidget::class.java)

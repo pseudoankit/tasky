@@ -11,17 +11,9 @@ internal class AgendaRepositoryImpl(
     private val reminderRepository: ReminderRepository
 ) : AgendaRepository {
 
-    override fun getAllSavedItem(selectedDate: LocalDate): Flow<List<AgendaItem>> {
+    override fun getAllSavedItem(selectedDate: LocalDate?): Flow<List<AgendaItem>> {
         return combine(
             reminderRepository.getReminders(selectedDate)
-        ) { items ->
-            items[0]
-        }
-    }
-
-    override fun getAllSavedItem(): Flow<List<AgendaItem>> {
-        return combine(
-            reminderRepository.getReminders()
         ) { items ->
             items[0]
         }
