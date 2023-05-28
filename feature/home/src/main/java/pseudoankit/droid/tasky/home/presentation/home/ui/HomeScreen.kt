@@ -14,7 +14,7 @@ import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.state
-import pseudoankit.droid.tasky.home.di.HomeModule
+import pseudoankit.droid.tasky.home.di.HomeScreenModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.home.HomeUiState
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
@@ -29,7 +29,7 @@ import pseudoankit.droid.unify.token.UnifyDimens
 @Composable
 internal fun HomeScreen(
     navigator: HomeScreenNavigator
-) = HomeModule.load {
+) = HomeScreenModule.load {
     val viewModel = getViewModel<HomeViewModel>()
 
     val dateRangeListState = rememberLazyListState()

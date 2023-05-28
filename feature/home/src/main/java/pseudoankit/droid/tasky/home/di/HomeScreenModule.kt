@@ -8,9 +8,8 @@ import pseudoankit.droid.core.koin.BaseKoinModule
 import pseudoankit.droid.tasky.home.domain.usecase.DeleteAgendaUseCase
 import pseudoankit.droid.tasky.home.domain.usecase.ToggleAgendaItemCompletionUseCase
 import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
-import pseudoankit.droid.tasky.home.presentation.taskyitems.AgendaItemsViewModel
 
-internal object HomeModule : BaseKoinModule() {
+internal object HomeScreenModule : BaseKoinModule() {
 
     override val provideModules: List<Module>
         get() = listOf(
@@ -19,7 +18,6 @@ internal object HomeModule : BaseKoinModule() {
                 factory { ToggleAgendaItemCompletionUseCase(get(), get(), get()) }
                 factory { DeleteAgendaUseCase(get()) }
 
-                viewModel { AgendaItemsViewModel() }
                 viewModel { HomeViewModel(get(), get(), get()) }
             }
         )

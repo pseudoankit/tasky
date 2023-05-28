@@ -6,6 +6,8 @@ object Dependencies {
     const val Benchmark = "androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13"
 
     object AndroidX {
+        const val Glance = "androidx.glance:glance:1.0.0-alpha05"
+        const val GlanceAppWidget = "androidx.glance:glance-appwidget:1.0.0-alpha05"
         const val Core = "androidx.core:core:1.10.0"
         const val AppShortcut = "androidx.core:core-google-shortcuts:1.1.0"
         const val SplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"

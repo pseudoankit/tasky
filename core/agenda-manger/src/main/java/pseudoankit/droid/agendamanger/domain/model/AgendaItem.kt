@@ -2,6 +2,7 @@ package pseudoankit.droid.agendamanger.domain.model
 
 import android.os.Parcelable
 import androidx.compose.runtime.Stable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import pseudoankit.droid.core.model.TaskyDate
 import pseudoankit.droid.core.model.TaskyTime
@@ -29,6 +30,13 @@ sealed interface AgendaItem {
         sealed class Time : Parcelable {
             data class Time(val value: TaskyTime = TaskyTime.Now) : Reminder.Time()
             object AllDay : Reminder.Time()
+
+            @IgnoredOnParcel
+            val seconds
+                get() = when (this) {
+                    AllDay -> Int.MAX_VALUE
+                    is Time -> value.value.second
+                }
         }
     }
 

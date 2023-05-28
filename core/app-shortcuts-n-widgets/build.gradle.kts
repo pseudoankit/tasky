@@ -1,5 +1,6 @@
 plugins {
     id(Plugins.CoreFeatureLib)
+    id(Plugins.ComposeCore)
 }
 
 android {
@@ -7,12 +8,16 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.AndroidX.Core)
-    implementation(Dependencies.AndroidX.AppShortcut)
+    with(Dependencies.AndroidX) {
+        implementation(GlanceAppWidget)
+        implementation(Glance)
+        implementation(AppShortcut)
+    }
 
     with(Modules.Core) {
         implementation(project(AgendaManager))
         implementation(project(DesignSystem))
         implementation(project(CoreUi))
+        implementation(project(PreferencesManager))
     }
 }

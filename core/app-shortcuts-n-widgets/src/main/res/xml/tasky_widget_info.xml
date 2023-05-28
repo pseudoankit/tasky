@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-    android:description="@string/app_widget_description"
-    android:initialKeyguardLayout="@layout/tasky_widget"
-    android:initialLayout="@layout/tasky_widget"
-    android:minWidth="220dp"
-    android:minHeight="220dp"
+    android:description="@string/app_name"
+    android:minWidth="200dp"
+    android:minHeight="200dp"
     android:resizeMode="horizontal|vertical"
-    android:updatePeriodMillis="86400000"
     android:widgetCategory="home_screen" />

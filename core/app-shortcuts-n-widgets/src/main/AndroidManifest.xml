@@ -3,7 +3,7 @@
 
     <application android:usesCleartextTraffic="false">
         <receiver
-            android:name="pseudoankit.droid.app_widgets.widget.TaskyWidgetProvider"
+            android:name="pseudoankit.droid.app_widgets.agenda_items.AgendaItemAppWidgetReceiver"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -13,10 +13,5 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/tasky_widget_info" />
         </receiver>
-
-        <service
-            android:name="pseudoankit.droid.app_widgets.service.WidgetAgendaItemsService"
-            android:permission="android.permission.BIND_REMOTEVIEWS" />
     </application>
-
 </manifest>

@@ -7,7 +7,7 @@ import android.content.Context
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
-import pseudoankit.droid.core.deeplink.createDeeplinkIntent
+import pseudoankit.droid.core.deeplink.DeepLinkUtil.createDeeplinkIntent
 import pseudoankit.droid.unify.utils.UnifyDrawable
 
 class TaskyNotifier(

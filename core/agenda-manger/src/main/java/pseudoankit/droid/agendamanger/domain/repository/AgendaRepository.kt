@@ -6,7 +6,7 @@ import java.time.LocalDate
 
 interface AgendaRepository {
 
-    fun getAllSavedItem(selectedDate: LocalDate): Flow<List<AgendaItem>>
+    fun getAllSavedItemFlow(selectedDate: LocalDate? = null): Flow<List<AgendaItem>>
 
-    fun getAllSavedItem(): Flow<List<AgendaItem>>
+    fun getAllSavedItem(): List<AgendaItem>
 }

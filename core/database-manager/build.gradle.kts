@@ -11,5 +11,6 @@ android {
 dependencies {
     with(Modules.Core) {
         implementation(project(AgendaManager))
+        implementation(project(Core))
     }
 }
