@@ -1,6 +1,8 @@
 # Tasky
 App to set events &amp; reminder, repo created to apply new concepts in practice
 
+[Demo](https://drive.google.com/file/d/1FpIbR176fost0GjCY3byaZ6Bqba6ioTY/view?usp=sharing)
+
 Overview :-
 - Multi Module Structure 
 - buildSrc to centrailize dependencies and to extract repeated portion of gradle [ref](https://github.com/pseudoankit/Tasky/tree/master/buildSrc/src/main/java)
