@@ -15,15 +15,19 @@ internal class ReminderRepositoryImpl(
     private val dao: ReminderDao
 ) : ReminderRepository, ReminderRepositoryInternal {
 
+    override fun getReminders(): List<AgendaItem.Reminder> {
+        return dao.getReminders().map { it.mapToDomain }
+    }
+
     override fun getReminder(id: Long): AgendaItem.Reminder {
         return dao.getReminder(id).mapToDomain
     }
 
     override fun getReminders(date: LocalDate?): Flow<List<AgendaItem.Reminder>> {
         val reminders = if (date != null) {
-            dao.getReminders(date)
+            dao.getRemindersFlow(date)
         } else {
-            dao.getReminders()
+            dao.getRemindersFlow()
         }
 
         return reminders.map { it.map { it.mapToDomain } }

@@ -9,10 +9,13 @@ import java.time.LocalDate
 interface ReminderDao {
 
     @Query("Select * from reminderentity")
-    fun getReminders(): Flow<List<ReminderEntity>>
+    fun getReminders(): List<ReminderEntity>
+
+    @Query("Select * from reminderentity")
+    fun getRemindersFlow(): Flow<List<ReminderEntity>>
 
     @Query("Select * from reminderentity where date= :date")
-    fun getReminders(date: LocalDate): Flow<List<ReminderEntity>>
+    fun getRemindersFlow(date: LocalDate): Flow<List<ReminderEntity>>
 
     @Query("Select * from reminderentity where id=:id")
     fun getReminder(id: Long): ReminderEntity

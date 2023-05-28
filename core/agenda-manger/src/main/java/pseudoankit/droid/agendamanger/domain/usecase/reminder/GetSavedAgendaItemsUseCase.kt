@@ -13,7 +13,7 @@ class GetSavedAgendaItemsUseCase(
 ) {
 
     operator fun invoke(selectedDate: TaskyDate): Flow<ImmutableList<AgendaItem>> {
-        return agendaRepository.getAllSavedItem(selectedDate.value)
+        return agendaRepository.getAllSavedItemFlow(selectedDate.value)
             .map { it.toImmutableList() }
     }
 }
