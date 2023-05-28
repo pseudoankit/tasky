@@ -4,7 +4,7 @@
     <application android:usesCleartextTraffic="false">
         <receiver
             android:name="pseudoankit.droid.app_widgets.agenda_items.AgendaItemAppWidgetReceiver"
-            android:exported="true">
+            android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
