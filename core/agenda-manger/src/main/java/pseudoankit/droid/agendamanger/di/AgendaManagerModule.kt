@@ -9,6 +9,7 @@ import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryIntern
 import pseudoankit.droid.agendamanger.domain.usecase.reminder.SaveReminderUseCase
 import pseudoankit.droid.agendamanger.domain.usecase.reminder.TriggerAlarmUseCase
 
+// TODO move this to individual screen level
 object AgendaManagerModule {
 
     operator fun invoke() = module {

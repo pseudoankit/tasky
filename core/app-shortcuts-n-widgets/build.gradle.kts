@@ -11,7 +11,6 @@ dependencies {
     with(Dependencies.AndroidX) {
         implementation(GlanceAppWidget)
         implementation(Glance)
-        implementation(Core)
         implementation(AppShortcut)
     }
 
@@ -19,5 +18,6 @@ dependencies {
         implementation(project(AgendaManager))
         implementation(project(DesignSystem))
         implementation(project(CoreUi))
+        implementation(project(PreferencesManager))
     }
 }
