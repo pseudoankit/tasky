@@ -1,6 +1,14 @@
 package pseudoankit.droid.tasky.home.presentation.taskyitems
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
@@ -15,7 +23,9 @@ import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.destination.TaskyDestinationStyle
+import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.asString
+import pseudoankit.droid.tasky.home.di.AgendaItemScreenModule
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.icon
 import pseudoankit.droid.tasky.home.presentation.mapper.AgendaTypesUiMapper.label
@@ -38,7 +48,7 @@ import pseudoankit.droid.unify.utils.clickable
 @Composable
 internal fun AgendaItemsScreen(
     navigator: HomeScreenNavigator
-) {
+) = AgendaItemScreenModule.load {
     val viewModel = getViewModel<AgendaItemsViewModel>()
     HandleSideEffect(navigator = navigator)
 
@@ -99,6 +109,7 @@ private fun HandleSideEffect(
                 is AgendaItemsUiState.SideEffect.NavigateToAgenda -> {
                     navigator.navigateToAgendaScreen(it.type)
                 }
+
                 AgendaItemsUiState.SideEffect.NavigateUp -> navigator.navigateUp()
             }
         }

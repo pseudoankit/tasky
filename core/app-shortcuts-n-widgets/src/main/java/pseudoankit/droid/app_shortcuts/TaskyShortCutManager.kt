@@ -10,7 +10,7 @@ import androidx.core.graphics.drawable.IconCompat
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.unify.utils.UnifyDrawable
 
-object ShortCutManager {
+object TaskyShortCutManager {
 
     fun initialize(context: Context) {
         addShortCut(
