@@ -3,5 +3,6 @@
     android:description="@string/app_name"
     android:minWidth="200dp"
     android:minHeight="200dp"
+    android:previewImage="@mipmap/ic_launcher"
     android:resizeMode="horizontal|vertical"
     android:widgetCategory="home_screen" />
