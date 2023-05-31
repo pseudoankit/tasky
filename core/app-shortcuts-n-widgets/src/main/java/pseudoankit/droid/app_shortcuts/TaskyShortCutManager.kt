@@ -9,7 +9,7 @@ import pseudoankit.droid.core.deeplink.DeepLinkUtil
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.unify.utils.UnifyDrawable
 
-object TaskyShortCutManager {
+internal object TaskyShortCutManager {
 
     fun initialize(context: Context) {
         addShortCut(

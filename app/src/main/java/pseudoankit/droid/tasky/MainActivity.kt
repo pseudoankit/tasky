@@ -28,7 +28,6 @@ import com.ramcosta.composedestinations.navigation.dependency
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
-import pseudoankit.droid.app_widgets.agenda_items.AgendaItemAppWidgetReceiver
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.logger.TaskyLogger
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
@@ -132,7 +131,6 @@ internal class MainActivity : ComponentActivity() {
     }
 
     override fun onDestroy() {
-        AgendaItemAppWidgetReceiver.sendAppsUpdatedBroadcast(this)
         super.onDestroy()
     }
 }

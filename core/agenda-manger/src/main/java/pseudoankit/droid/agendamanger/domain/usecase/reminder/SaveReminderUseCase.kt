@@ -8,8 +8,11 @@ import pseudoankit.droid.agendamanger.domain.model.AgendaItem
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryInternal
 import pseudoankit.droid.core.util.TaskyResult
 import pseudoankit.droid.core.util.extension.safeCall
+import pseudoankit.droid.core.widget.UpdateAppWidgetFlow
 
-class SaveReminderUseCase : KoinComponent {
+class SaveReminderUseCase(
+    private val updateAppWidgetFlow: UpdateAppWidgetFlow
+) : KoinComponent {
 
     private val repository: ReminderRepositoryInternal by inject()
     private val triggerAlarmUseCase: TriggerAlarmUseCase by inject()
@@ -30,6 +33,7 @@ class SaveReminderUseCase : KoinComponent {
                 launch {
                     repository.save(payload)
                 }
+                updateAppWidgetFlow.emit(Unit)
             }
             TaskyResult.Success(Unit)
         },

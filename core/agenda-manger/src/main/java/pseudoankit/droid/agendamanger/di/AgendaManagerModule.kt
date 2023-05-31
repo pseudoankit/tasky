@@ -8,12 +8,13 @@ import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryInternal
 import pseudoankit.droid.agendamanger.domain.usecase.reminder.SaveReminderUseCase
 import pseudoankit.droid.agendamanger.domain.usecase.reminder.TriggerAlarmUseCase
+import pseudoankit.droid.core.widget.UpdateAppWidgetFlowInstance
 
 // TODO move this to individual screen level
 object AgendaManagerModule {
 
     operator fun invoke() = module {
-        single { SaveReminderUseCase() }
+        single { SaveReminderUseCase(UpdateAppWidgetFlowInstance) }
         single { TriggerAlarmUseCase(get()) }
 
         single<ReminderRepositoryInternal> { ReminderRepositoryImpl(get()) }
