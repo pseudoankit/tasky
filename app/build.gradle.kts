@@ -54,13 +54,11 @@ dependencies {
         implementation(project(DeveloperTools))
     }
 
-    with(Dependencies.Koin) {
-        implementation(Compose)
-    }
+    implementation("io.insert-koin:koin-androidx-compose:3.2.1")
 
     with(Dependencies.Compose) {
         implementation(ComposeDestinations)
     }
-    implementation(Dependencies.AndroidX.SplashScreen)
+    implementation("androidx.core:core-splashscreen:1.0.0-beta02")
     implementation(Dependencies.ProfilerInstaller)
 }
