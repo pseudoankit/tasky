@@ -4,13 +4,13 @@ import android.util.Log
 
 object TaskyLogger {
 
-    private const val TAG = "TASKY LOGS"
+    private const val INTERNAL_TAG = "TASKY LOGS"
 
-    fun info(vararg value: String) {
-        Log.i("$TAG Info", value.joinToString(", "))
+    fun info(vararg value: Any, tag: String = "") {
+        Log.i("$INTERNAL_TAG $tag", value.joinToString(", "))
     }
 
-    fun error(vararg value: String) {
-        Log.e("$TAG Error", value.joinToString(", "))
+    fun error(vararg value: Any, tag: String = "") {
+        Log.e("$INTERNAL_TAG $tag", value.joinToString(", "))
     }
 }
