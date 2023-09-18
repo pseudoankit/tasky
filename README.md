@@ -1,6 +1,9 @@
 # Tasky
 App to set events &amp; reminder, repo created to apply new concepts in practice
 
+
+https://github.com/pseudoankit/Tasky/assets/54987308/87b45ad4-2cb9-46ad-9ff0-a4a87c4c6674
+
 [Demo](https://drive.google.com/file/d/1FpIbR176fost0GjCY3byaZ6Bqba6ioTY/view?usp=sharing)
 
 Overview :-
