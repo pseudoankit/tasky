@@ -5,6 +5,11 @@ object Dependencies {
     const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
     const val Benchmark = "androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13"
 
+    object DeteKt {
+        const val Compose = "o.nlopez.compose.rules:detekt:0.3.0"
+        const val Gradle = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.Detekt}"
+    }
+
     object AndroidX {
         const val Glance = "androidx.glance:glance:1.0.0-alpha05"
         const val GlanceAppWidget = "androidx.glance:glance-appwidget:1.0.0-alpha05"
