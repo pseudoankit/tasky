@@ -2,7 +2,6 @@ object Versions {
     const val Kotlin = "1.8.10"
     const val Coroutine = "1.6.4"
     const val Room = "2.4.2"
-    const val Detekt = "1.21.0"
 
     object Compose {
         const val OrbitMvi = "4.5.0"

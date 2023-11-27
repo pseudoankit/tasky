@@ -3,7 +3,6 @@ plugins {
     id(Plugins.Core)
     id(Plugins.Ksp)
     id(Plugins.ComposeCore)
-    id("detekt-plugin")
 }
 
 android {

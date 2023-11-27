@@ -15,7 +15,6 @@ buildscript {
 
 plugins {
     id(Plugins.Ksp) version Versions.Compose.KspPlugin apply false
-    id(Plugins.Detekt) version Versions.Detekt
 }
 
 allprojects {
