@@ -69,6 +69,8 @@ object Dependencies {
         const val KotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.Kotlin}"
         const val Kotlin = "org.jetbrains.kotlin:kotlin-stdlib:1.1.2"
         const val PluginsRepo = "https://plugins.gradle.org/m2/"
+        const val Detekt = "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${Versions.Detekt}"
+        const val SonarQube = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7.1"
     }
 
     object Room {

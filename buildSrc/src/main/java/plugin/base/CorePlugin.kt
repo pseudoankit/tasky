@@ -2,6 +2,7 @@ package plugin.base
 
 import BuildConfig
 import Dependencies
+import Plugins
 import Versions
 import com.android.build.gradle.BaseExtension
 import org.gradle.api.Plugin
@@ -10,7 +11,6 @@ import org.gradle.kotlin.dsl.dependencies
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import plugin.util.PluginConstants
 import plugin.util.implementation
-import java.io.File
 
 /**
  * Plugin containing all common code for any gradle
@@ -24,6 +24,7 @@ open class CorePlugin : Plugin<Project> {
             apply("kotlinx-serialization")
             apply("kotlin-parcelize")
             apply("org.sonarqube")
+            apply(Plugins.Detekt)
         }
 
         val androidExtension =
