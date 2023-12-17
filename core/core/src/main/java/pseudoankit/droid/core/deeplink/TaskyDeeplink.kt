@@ -35,6 +35,7 @@ object TaskyDeeplink {
                 replace(SCHEME + Host.reminder, "reminder_screen")
             }
             contains(Host.agendaSelection) -> "agenda_items_screen"
+            contains(Host.registration) -> "registration_screen"
             else -> ""
         }
     }
