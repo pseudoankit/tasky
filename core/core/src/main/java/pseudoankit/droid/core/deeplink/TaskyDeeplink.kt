@@ -5,25 +5,16 @@ package pseudoankit.droid.core.deeplink
  * Preferred way to create deeplink is via [pseudoankit.droid.navigation.deeplink.DeepLinkProvider]
  */
 object TaskyDeeplink {
-    private const val SCHEME = "tasky://"
-
-    private object Host {
-        const val registration = "registration"
-        const val login = "login"
-        const val home = "home"
-        const val reminder = "reminder"
-        const val agendaSelection = "agendaSelection"
-    }
-
     object Path {
         object Reminder {
             const val action = "{action}"
         }
     }
 
-    const val login = "${SCHEME}${Host.login}"
-    const val registration = "${SCHEME}${Host.registration}"
-    const val home = "${SCHEME}${Host.home}"
-    const val reminder = "${SCHEME}${Host.reminder}/${Path.Reminder.action}"
-    const val agendaSelection = "${SCHEME}${Host.agendaSelection}"
+    const val login = "tasky://login"
+    const val registration = "tasky://registration"
+    const val home = "tasky://home"
+    const val reminder = "tasky://reminder/${Path.Reminder.action}"
+    const val agendaSelection = "tasky://agendaSelection"
+    const val profile = "tasky://profile"
 }
