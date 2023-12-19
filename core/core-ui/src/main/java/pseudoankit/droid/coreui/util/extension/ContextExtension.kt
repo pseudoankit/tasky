@@ -7,8 +7,13 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import android.widget.Toast
+import pseudoankit.droid.core.deeplink.DeepLinkUtil
 import pseudoankit.droid.core.util.TextResource
 import pseudoankit.droid.core.util.TextResource.Companion.asString
+
+fun Context.openDeeplink(deeplink: String) {
+    startActivity(DeepLinkUtil.createDeeplinkIntent(deeplink))
+}
 
 fun Context.finish() {
     (this as? Activity)?.finish()

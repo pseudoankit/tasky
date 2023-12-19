@@ -8,10 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.tasky.home.di.HomeScreenModule
@@ -25,7 +27,11 @@ import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
 
-@Destination
+@Destination(
+    deepLinks = [
+        DeepLink(uriPattern = TaskyDeeplink.home)
+    ]
+)
 @Composable
 internal fun HomeScreen(
     navigator: HomeScreenNavigator

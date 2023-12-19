@@ -10,6 +10,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.DeepLink
 import com.ramcosta.composedestinations.annotation.Destination
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.compose.getViewModel
@@ -18,6 +19,7 @@ import pseudoankit.droid.authentication.di.RegistrationModule
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.authentication.presentation.registration.ui.RegistrationScreenComponents
 import pseudoankit.droid.authentication.presentation.registration.ui.RegistrationScreenComponents.RegistrationInputFields
+import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.koin.load
 import pseudoankit.droid.coreui.util.extension.showToast
 import pseudoankit.droid.unify.component.button.UnifyButton
@@ -26,7 +28,11 @@ import pseudoankit.droid.unify.screen.UnifyScreen
 import pseudoankit.droid.unify.screen.UnifyScreenConfig
 import pseudoankit.droid.unify.token.UnifyDimens
 
-@Destination
+@Destination(
+    deepLinks = [
+        DeepLink(uriPattern = TaskyDeeplink.registration)
+    ]
+)
 @Composable
 internal fun RegistrationScreen(navigator: AuthNavigator) = RegistrationModule.load {
     val viewModel: RegistrationViewModel = getViewModel()
