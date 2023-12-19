@@ -8,8 +8,8 @@ fun NavController.navigateViaDeepLink(deepLink: String) {
     navigateViaDeepLink(Uri.parse(deepLink))
 }
 
-fun NavController.navigateViaDeepLink(uri: Uri) = try {
-    navigate(uri)
+fun NavController.navigateViaDeepLink(uri: Uri?) = try {
+    navigate(uri!!)
 } catch (e: IllegalArgumentException) {
     e.printStackTrace()
     logError("deeplink [${uri}] failed with error msg ${e.message}")
