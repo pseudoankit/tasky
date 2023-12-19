@@ -26,17 +26,4 @@ object TaskyDeeplink {
     const val home = "${SCHEME}${Host.home}"
     const val reminder = "${SCHEME}${Host.reminder}/${Path.Reminder.action}"
     const val agendaSelection = "${SCHEME}${Host.agendaSelection}"
-
-    fun mapToInternalRoute(externalLink: String) = externalLink.run {
-        when {
-            contains(Host.home) -> "home_screen"
-            contains(Host.login) -> "login_screen"
-            contains(Host.reminder) -> {
-                replace(SCHEME + Host.reminder, "reminder_screen")
-            }
-            contains(Host.agendaSelection) -> "agenda_items_screen"
-            contains(Host.registration) -> "registration_screen"
-            else -> ""
-        }
-    }
 }

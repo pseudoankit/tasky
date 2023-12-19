@@ -29,7 +29,7 @@ import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.runBlocking
 import org.koin.android.ext.android.inject
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
-import pseudoankit.droid.core.logger.TaskyLogger
+import pseudoankit.droid.core.logger.logInfo
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.navigation.navgraph.mainNavGraph
@@ -107,7 +107,7 @@ internal class MainActivity : ComponentActivity() {
 
         val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
 
-        TaskyLogger.info("Notification Permission Status", launcher.taskyStatus.name)
+        logInfo("Notification Permission Status", launcher.taskyStatus.name)
 
         LaunchedEffect(key1 = Unit) {
             launcher.launchPermissionRequest()
@@ -126,9 +126,5 @@ internal class MainActivity : ComponentActivity() {
                 splashScreen.hide()
             }
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 }

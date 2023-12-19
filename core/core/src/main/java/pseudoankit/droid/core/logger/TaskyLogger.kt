@@ -18,3 +18,7 @@ object TaskyLogger {
 fun logInfo(vararg value: Any, tag: String = "") {
     TaskyLogger.info(*value, tag)
 }
+
+fun logError(vararg value: Any, tag: String = "") {
+    TaskyLogger.error(*value, tag)
+}

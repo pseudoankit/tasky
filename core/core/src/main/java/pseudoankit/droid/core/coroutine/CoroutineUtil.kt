@@ -6,7 +6,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 
-fun launch(
+fun launchCoroutine(
     dispatcher: CoroutineContext = Dispatchers.IO,
     block: suspend CoroutineScope.() -> Unit
 ): Job {
