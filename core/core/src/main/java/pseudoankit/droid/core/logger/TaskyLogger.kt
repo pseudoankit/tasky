@@ -14,3 +14,7 @@ object TaskyLogger {
         Log.e("$INTERNAL_TAG $tag", value.joinToString(", "))
     }
 }
+
+fun logInfo(vararg value: Any, tag: String = "") {
+    TaskyLogger.info(*value, tag)
+}
