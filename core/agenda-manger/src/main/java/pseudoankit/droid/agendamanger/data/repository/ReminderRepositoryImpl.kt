@@ -11,7 +11,6 @@ import pseudoankit.droid.agendamanger.domain.repository.ReminderRepository
 import pseudoankit.droid.agendamanger.domain.repository.ReminderRepositoryInternal
 import java.time.LocalDate
 
-// TODO thread switching in repo
 internal class ReminderRepositoryImpl(
     private val dao: ReminderDao
 ) : ReminderRepository, ReminderRepositoryInternal {
