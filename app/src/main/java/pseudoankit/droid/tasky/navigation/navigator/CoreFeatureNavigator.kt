@@ -1,4 +1,4 @@
-package pseudoankit.droid.navigation.navigator
+package pseudoankit.droid.tasky.navigation.navigator
 
 import android.content.Context
 import androidx.navigation.NavController
@@ -6,10 +6,10 @@ import com.ramcosta.composedestinations.navigation.navigate
 import pseudoankit.droid.authentication.navigator.AuthNavigator
 import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.coreui.util.extension.finish
-import pseudoankit.droid.navigation.navigator.feature.AuthNavigatorImpl
-import pseudoankit.droid.navigation.navigator.feature.HomeScreenNavigatorImpl
 import pseudoankit.droid.tasky.home.navigator.HomeScreenNavigator
 import pseudoankit.droid.tasky.home.presentation.destinations.HomeScreenDestination
+import pseudoankit.droid.tasky.navigation.navigator.feature.AuthNavigatorImpl
+import pseudoankit.droid.tasky.navigation.navigator.feature.HomeScreenNavigatorImpl
 import pseudoankit.droid.tasky.reminder.navigator.ReminderNavigator
 
 class CoreFeatureNavigator(

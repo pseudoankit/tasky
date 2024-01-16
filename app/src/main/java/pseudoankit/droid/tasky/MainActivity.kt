@@ -32,9 +32,9 @@ import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.core.logger.logInfo
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.clearStack
-import pseudoankit.droid.navigation.navgraph.mainNavGraph
-import pseudoankit.droid.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
+import pseudoankit.droid.tasky.navigation.navgraph.mainNavGraph
+import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.tasky.util.hide
 import pseudoankit.droid.tasky.util.show
 import pseudoankit.droid.unify.token.UnifyColors

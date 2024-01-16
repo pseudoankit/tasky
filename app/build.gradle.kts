@@ -41,7 +41,6 @@ dependencies {
         implementation(project(Core))
         implementation(project(CoreUi))
         implementation(project(DataBaseManager))
-        implementation(project(Navigation))
         implementation(project(AgendaManager))
         implementation(project(AlarmManager))
         implementation(project(NotificationManager))
@@ -51,14 +50,16 @@ dependencies {
     }
 
     with(Modules.Feature) {
+        implementation(project(Authentication))
+        implementation(project(Home))
+        implementation(project(Event))
+        implementation(project(Reminder))
+        implementation(project(Task))
         implementation(project(DeveloperTools))
     }
 
-    implementation("io.insert-koin:koin-androidx-compose:3.2.1")
-
-    with(Dependencies.Compose) {
-        implementation(ComposeDestinations)
-    }
-    implementation("androidx.core:core-splashscreen:1.0.0-beta02")
+    implementation(Dependencies.Koin.Compose)
+    implementation(Dependencies.Compose.ComposeDestinations)
+    implementation(Dependencies.AndroidX.SplashScreen)
     implementation(Dependencies.ProfilerInstaller)
 }

@@ -1,4 +1,4 @@
-package pseudoankit.droid.navigation.deeplink
+package pseudoankit.droid.tasky.navigation.deeplink
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
