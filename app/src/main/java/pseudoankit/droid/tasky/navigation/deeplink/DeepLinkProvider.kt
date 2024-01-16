@@ -20,10 +20,6 @@ internal class DeepLinkProvider : ReminderDeepLinkProvider, HomeDeepLinkProvider
         is AgendaTypes.Task -> TODO()
     }
 
-    override fun homeScreenRoute(): String {
-        return TaskyDeeplink.home
-    }
-
     override fun reminderScreenRoute(action: AgendaTypes.Action): String {
         return TaskyDeeplink.reminder.replace(
             TaskyDeeplink.Path.Reminder.action,
