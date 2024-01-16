@@ -93,7 +93,7 @@ internal class MainActivity : ComponentActivity() {
     private fun ObserveLoginStatus() {
         val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = true)
 
-        if (isLoggedIn.not()) {
+        if (isLoggedIn.not() && navController?.currentDestination?.route?.equals("login_screen") == false) {
             navController?.apply {
                 clearStack()
                 navigateViaDeepLink(TaskyDeeplink.login)
