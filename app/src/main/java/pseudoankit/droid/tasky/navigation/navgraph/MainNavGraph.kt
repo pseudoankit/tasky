@@ -1,4 +1,4 @@
-package pseudoankit.droid.navigation.navgraph
+package pseudoankit.droid.tasky.navigation.navgraph
 
 import com.ramcosta.composedestinations.spec.DestinationSpec
 import com.ramcosta.composedestinations.spec.NavGraphSpec

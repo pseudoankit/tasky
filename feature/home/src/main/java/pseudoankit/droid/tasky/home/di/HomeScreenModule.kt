@@ -12,14 +12,12 @@ import pseudoankit.droid.tasky.home.presentation.home.HomeViewModel
 
 internal object HomeScreenModule : BaseKoinModule() {
 
-    override val provideModules: List<Module>
-        get() = listOf(
-            module {
-                factory { GetSavedAgendaItemsUseCase(get()) }
-                factory { ToggleAgendaItemCompletionUseCase(get(), get(), get()) }
-                factory { DeleteAgendaUseCase(get(), UpdateAppWidgetFlowInstance) }
+    override val modules: Module
+        get() = module {
+            factory { GetSavedAgendaItemsUseCase(get()) }
+            factory { ToggleAgendaItemCompletionUseCase(get(), get(), get()) }
+            factory { DeleteAgendaUseCase(get(), UpdateAppWidgetFlowInstance) }
 
-                viewModel { HomeViewModel(get(), get(), get()) }
-            }
-        )
+            viewModel { HomeViewModel(get(), get(), get()) }
+        }
 }

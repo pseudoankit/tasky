@@ -1,4 +1,4 @@
-package pseudoankit.droid.navigation.navigator.feature
+package pseudoankit.droid.tasky.navigation.navigator.feature
 
 import android.content.Context
 import androidx.navigation.NavController

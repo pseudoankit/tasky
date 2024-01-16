@@ -1,4 +1,4 @@
-package pseudoankit.droid.navigation.deeplink
+package pseudoankit.droid.tasky.navigation.deeplink
 
 import pseudoankit.droid.agendamanger.domain.model.AgendaTypes
 import pseudoankit.droid.app_widgets.util.WidgetDeeplinkProvider
@@ -18,10 +18,6 @@ internal class DeepLinkProvider : ReminderDeepLinkProvider, HomeDeepLinkProvider
         is AgendaTypes.Event -> TODO()
         is AgendaTypes.Reminder -> reminderScreenRoute(action.action)
         is AgendaTypes.Task -> TODO()
-    }
-
-    override fun homeScreenRoute(): String {
-        return TaskyDeeplink.home
     }
 
     override fun reminderScreenRoute(action: AgendaTypes.Action): String {

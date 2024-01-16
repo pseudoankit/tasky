@@ -10,7 +10,7 @@ object Dependencies {
         const val GlanceAppWidget = "androidx.glance:glance-appwidget:1.0.0-alpha05"
         const val Core = "androidx.core:core:1.10.0"
         const val AppShortcut = "androidx.core:core-google-shortcuts:1.1.0"
-        const val SplashScreen = "androidx.core:core-splashscreen:1.0.0-beta02"
+        const val SplashScreen = "androidx.core:core-splashscreen:1.0.1"
     }
 
     object Compose {

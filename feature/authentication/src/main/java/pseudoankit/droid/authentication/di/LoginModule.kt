@@ -9,12 +9,10 @@ import pseudoankit.droid.core.koin.BaseKoinModule
 
 internal object LoginModule : BaseKoinModule() {
 
-    override val provideModules: List<Module>
-        get() = listOf(
-            module {
-                factory { LoginUserUseCase(get()) }
+    override val modules: Module
+        get() = module {
+            factory { LoginUserUseCase(get()) }
 
-                viewModel { LoginViewModel(get(), get()) }
-            }
-        )
+            viewModel { LoginViewModel(get(), get()) }
+        }
 }
