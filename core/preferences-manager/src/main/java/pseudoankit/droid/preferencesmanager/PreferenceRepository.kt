@@ -8,6 +8,7 @@ class PreferenceRepository(
     datStore: DataStore<Preferences>
 ) : BasePreference(datStore) {
 
-    fun isLoggedIn() = getValueAsFlow(Keys.isLoggedIn).map { it == true }
+    fun isLoggedInFlow() = getValueAsFlow(Keys.isLoggedIn).map { it == true }
+    suspend fun isLoggedIn() = getValue(Keys.isLoggedIn)
     suspend fun setIsLoggedIn(value: Boolean) = setValue(Keys.isLoggedIn, value)
 }

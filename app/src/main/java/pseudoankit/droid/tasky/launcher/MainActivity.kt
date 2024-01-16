@@ -2,7 +2,6 @@ package pseudoankit.droid.tasky.launcher
 
 import android.Manifest
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.view.WindowManager
 import androidx.activity.ComponentActivity
@@ -12,27 +11,22 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.NavHostController
-import com.example.permission_manager.taskyStatus
 import com.google.accompanist.navigation.material.ExperimentalMaterialNavigationApi
 import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
-import kotlinx.coroutines.flow.firstOrNull
-import kotlinx.coroutines.runBlocking
-import org.koin.android.ext.android.inject
+import kotlinx.coroutines.flow.collectLatest
+import org.koin.androidx.viewmodel.ext.android.getViewModel
+import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
-import pseudoankit.droid.core.logger.logInfo
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.clearStack
-import pseudoankit.droid.preferencesmanager.PreferenceRepository
 import pseudoankit.droid.tasky.navigation.navgraph.mainNavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.tasky.util.hide
@@ -44,7 +38,6 @@ import pseudoankit.droid.unify.utils.enableTestTagAsResourceId
 @OptIn(ExperimentalAnimationApi::class, ExperimentalMaterialNavigationApi::class)
 internal class MainActivity : ComponentActivity() {
 
-    private val preferenceRepository: PreferenceRepository by inject()
     private var navController: NavHostController? = null
     private val splashScreen: SplashScreen by lazy { installSplashScreen() }
 
@@ -52,6 +45,7 @@ internal class MainActivity : ComponentActivity() {
         splashScreen.show()
         super.onCreate(savedInstanceState)
 
+        MainActivityModule.loadModules()
         window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
 
         setContent {
@@ -60,9 +54,13 @@ internal class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = UnifyColors.White
                 ) {
-                    InitializeNavigation()
-                    HandlePermissions()
-                    ObserveLoginStatus()
+                    val viewModel = getViewModel<MainActivityViewModel>()
+                    val state = viewModel.collectAsState().value
+
+                    InitializeNavigation(
+                        isUserLoggedIn = state.isUserLoggedIn
+                    )
+                    viewModel.HandleSideEffect()
                     HideSplashScreenAfterNavigation()
                 }
             }
@@ -70,16 +68,16 @@ internal class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    private fun InitializeNavigation() {
+    private fun InitializeNavigation(
+        isUserLoggedIn: Boolean
+    ) {
         val context = LocalContext.current
 
         val engine = rememberAnimatedNavHostEngine()
         navController = engine.rememberNavController()
 
-        val isUserLoggedIn = runBlocking { preferenceRepository.isLoggedIn().firstOrNull() }
-
         DestinationsNavHost(
-            navGraph = mainNavGraph(isUserLoggedIn = isUserLoggedIn ?: true),
+            navGraph = mainNavGraph(isUserLoggedIn = isUserLoggedIn),
             navController = navController!!,
             engine = engine,
             dependenciesContainerBuilder = {
@@ -87,31 +85,6 @@ internal class MainActivity : ComponentActivity() {
             },
             modifier = Modifier.enableTestTagAsResourceId()
         )
-    }
-
-    @Composable
-    private fun ObserveLoginStatus() {
-        val isLoggedIn by preferenceRepository.isLoggedIn().collectAsState(initial = true)
-
-        if (isLoggedIn.not() && navController?.currentDestination?.route?.equals("login_screen") == false) {
-            navController?.apply {
-                clearStack()
-                navigateViaDeepLink(TaskyDeeplink.login)
-            }
-        }
-    }
-
-    @Composable
-    private fun HandlePermissions() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
-
-        val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
-
-        logInfo("Notification Permission Status", launcher.taskyStatus.name)
-
-        LaunchedEffect(key1 = Unit) {
-            launcher.launchPermissionRequest()
-        }
     }
 
     override fun onNewIntent(intent: Intent?) {
@@ -124,6 +97,28 @@ internal class MainActivity : ComponentActivity() {
         LaunchedEffect(navController) {
             if (navController?.currentDestination != null) {
                 splashScreen.hide()
+            }
+        }
+    }
+
+    @Composable
+    private fun MainActivityViewModel.HandleSideEffect() {
+        val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
+
+        LaunchedEffect(Unit) {
+            container.sideEffectFlow.collectLatest { effect ->
+                when (effect) {
+                    MainActivityViewModel.SideEffect.ClearBackStackAndNavigateToLogin -> {
+                        navController?.apply {
+                            clearStack()
+                            navigateViaDeepLink(TaskyDeeplink.login)
+                        }
+                    }
+
+                    MainActivityViewModel.SideEffect.LaunchNotificationPermissionRequest -> {
+                        launcher.launchPermissionRequest()
+                    }
+                }
             }
         }
     }

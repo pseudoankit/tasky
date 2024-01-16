@@ -9,6 +9,6 @@ object MainActivityModule : BaseKoinModule() {
 
     override val modules: Module
         get() = module {
-            viewModel { MainActivityViewModel() }
+            viewModel { MainActivityViewModel(get()) }
         }
 }
