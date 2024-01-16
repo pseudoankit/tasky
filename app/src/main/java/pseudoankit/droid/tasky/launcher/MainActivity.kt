@@ -1,4 +1,4 @@
-package pseudoankit.droid.tasky
+package pseudoankit.droid.tasky.launcher
 
 import android.Manifest
 import android.content.Intent

@@ -58,8 +58,12 @@ dependencies {
         implementation(project(DeveloperTools))
     }
 
+    with(Dependencies.Compose) {
+        implementation(ComposeDestinations)
+        implementation(OrbitMvi)
+    }
+
     implementation(Dependencies.Koin.Compose)
-    implementation(Dependencies.Compose.ComposeDestinations)
     implementation(Dependencies.AndroidX.SplashScreen)
     implementation(Dependencies.ProfilerInstaller)
 }

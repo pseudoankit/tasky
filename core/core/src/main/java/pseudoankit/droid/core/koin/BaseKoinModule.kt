@@ -7,19 +7,19 @@ import org.koin.core.module.Module
 abstract class BaseKoinModule {
     private var isLoaded = false
 
-    abstract val provideModules: List<Module>
+    abstract val modules: Module
 
     fun loadModules() {
         if (isLoaded) return
 
         isLoaded = true
-        loadKoinModules(provideModules)
+        loadKoinModules(modules)
     }
 
     fun unloadModules() {
         if (isLoaded.not()) return
 
         isLoaded = false
-        unloadKoinModules(provideModules)
+        unloadKoinModules(modules)
     }
 }
