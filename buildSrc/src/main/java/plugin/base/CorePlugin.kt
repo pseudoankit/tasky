@@ -5,6 +5,7 @@ import Dependencies
 import Plugins
 import Versions
 import com.android.build.gradle.BaseExtension
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -38,8 +39,8 @@ open class CorePlugin : Plugin<Project> {
             }
 
             compileOptions {
-                sourceCompatibility = BuildConfig.JavaVersion
-                targetCompatibility = BuildConfig.JavaVersion
+                sourceCompatibility = JavaVersion.VERSION_11
+                targetCompatibility = JavaVersion.VERSION_11
                 isCoreLibraryDesugaringEnabled = true
             }
 

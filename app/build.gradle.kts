@@ -9,10 +9,10 @@ android {
     namespace = "pseudoankit.droid.tasky"
 
     defaultConfig {
-        applicationId = BuildConfig.App.ApplicationId
+        applicationId = "pseudoankit.droid.tasky"
         versionCode = BuildConfig.App.VersionCode
         versionName = BuildConfig.App.VersionName
-        testInstrumentationRunner = BuildConfig.App.TestInstrumentationRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -23,8 +23,8 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile(BuildConfig.App.DefaultProguardOptimizeFile),
-                BuildConfig.App.ProGuardRules
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
         create("benchmark") {

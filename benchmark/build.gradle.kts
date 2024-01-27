@@ -9,7 +9,7 @@ android {
     namespace = "com.pseudoankit.tasky.benchmark"
 
     defaultConfig {
-        testInstrumentationRunner = BuildConfig.App.TestInstrumentationRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
