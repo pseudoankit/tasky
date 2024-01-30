@@ -3,27 +3,23 @@ buildscript {
         gradlePluginPortal()
         google()
         mavenCentral()
-        maven { url = uri(Dependencies.Gradle.PluginsRepo) }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
     }
     dependencies {
-        classpath(Dependencies.Gradle.AndroidTools)
-        classpath(Dependencies.Gradle.KotlinGradle)
-        classpath(kotlin("serialization", version = Versions.Kotlin))
-        classpath(Dependencies.Gradle.SonarQube)
-        classpath(Dependencies.Gradle.Detekt)
+        classpath(libs.android.gradle.plugin)
+        classpath(libs.kotlin.gradle.plugin)
+        classpath(libs.kotlin.serialization.plugin)
+        classpath(libs.sonarQube.gradle.plugin)
+        classpath(libs.detekt.gradle.plugin)
+        classpath(libs.ksp.gradle.plugin)
     }
-}
-
-plugins {
-    id(Plugins.Ksp) version Versions.Compose.KspPlugin apply false
-    id(Plugins.Detekt) version Versions.Detekt
 }
 
 allprojects {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri(Dependencies.Gradle.PluginsRepo) }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
         maven { url = uri("https://jitpack.io") }
     }
 }

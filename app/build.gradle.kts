@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.AndroidApplication)
+    id("com.android.application")
     id(Plugins.Core)
     id(Plugins.Ksp)
     id(Plugins.ComposeCore)

@@ -9,8 +9,8 @@ repositories {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:7.4.0")
-    implementation(kotlin("gradle-plugin", "1.8.10"))
+    implementation(libs.android.gradle.plugin)
+    implementation(libs.kotlin.gradle.plugin)
 
     // Make version catalog available in precompiled scripts
     // https://github.com/gradle/gradle/issues/15383#issuecomment-1567461389

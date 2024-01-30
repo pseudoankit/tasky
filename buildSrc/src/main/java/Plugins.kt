@@ -36,7 +36,6 @@ object Plugins {
     const val UnitTestPlugin = "ut-plugin"
 
     const val AndroidLibrary = "com.android.library"
-    const val AndroidApplication = "com.android.application"
     const val Ksp = "com.google.devtools.ksp"
     const val Detekt = "io.gitlab.arturbosch.detekt"
 }

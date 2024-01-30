@@ -1,14 +1,12 @@
 [versions]
-kotlin = "1.9.10"
-kotlin-coroutines = "1.7.3"
+kotlin = "1.8.10"
+kotlin-coroutines = "1.6.4"
 ktor = "2.3.5"
 kotest = "5.7.2"
-compose = "1.5.3"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-compose-compiler = "1.5.3" # It's used! Use compatible with Kotlin one
-glance = "1.0.0"
-room = "2.6.1"
-kotlinx-collections = "0.3.6"
+compose-compiler = "1.4.3" # It's used! Use compatible with Kotlin one
+glance = "1.0.0-alpha05"
+room = "2.4.2"
 
 # Android
 minSdk = "23"
@@ -16,25 +14,23 @@ compileSdk = "34"
 targetSdk = "34"
 version-code = "1"
 version-name = "1.0.0"
-jvmTarget = "11"
+jvmTarget = "11"    # when modifying make sure to update all usage of `JavaVersion.VERSION_11`
 
 # Linters
-detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
+detekt = "1.21.0" # https://detekt.dev/docs/gettingstarted/gradle/
 
 [libraries]
-android-gradle-plugin = { module = "com.android.tools.build:gradle", version = "8.1.2" }
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version = "7.4.0" }
 
 # Kotlin
 kotlin-gradle-plugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version = "1.1.2" }
 kotlin-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "kotlin-coroutines" }
 kotlin-coroutines-googleplay-temp = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services", version.ref = "kotlin-coroutines" }
-kotlinx-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinx-collections" }
-
-# KotlinX Serialization
-kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.6.0" }
-kotlinx-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
+kotlin-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
+kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.4.1" }
+kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
 
 # Ktor
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -63,14 +59,14 @@ compose-material3-windowsize = { module = "androidx.compose.material3:material3-
 compose-runtime = { module = "androidx.compose.runtime:runtime" }
 compose-ui = { module = "androidx.compose.ui:ui" }
 compose-activity = { module = "androidx.activity:activity-compose" }
-compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
+compose-tooling = { module = "androidx.compose.ui:ui-tooling" }
 glance = { module = "androidx.glance:glance", version.ref = "glance" }
 glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = "glance" }
 glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glance" }
 compose-coil = { module = "io.coil-kt:coil-compose", version = "2.5.0" }
 
 # Local persistence
-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.0.0" }
+datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.0-alpha01" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -82,21 +78,23 @@ detekt-ruleset-ktlint = { module = "io.gitlab.arturbosch.detekt:detekt-formattin
 detekt-ruleset-compose = { module = "io.nlopez.compose.rules:detekt", version = "0.3.0" }
 slack-lint-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.2.0" }
 
+sonarQube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version = "2.7.1" }
+
 # KSP
-ksp-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.9.10-1.0.13" }
+ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.8.10-1.0.9" }
 
 [bundles]
 kotlin = [
     "kotlin-stdlib",
     "kotlin-coroutines-core",
-    "kotlinx-collections-immutable"
+    "kotlin-collections-immutable"
 ]
 kotlin-android = [
     "kotlin-coroutines-android",
     "kotlin-coroutines-googleplay-temp",
 ]
 ktor = [
-    "kotlinx-serialization-json",
+    "kotlin-serialization-json",
     "ktor-client-okhttp",
     "ktor-content-negotiation",
     "ktor-serialization",
@@ -136,3 +134,4 @@ room = [
 
 [plugins]
 gradleWrapperUpgrade = { id = "org.gradle.wrapper-upgrade", version = "0.11.4" }
+deteKt = { id = "io.gitlab.arturbosch.detekt" }
