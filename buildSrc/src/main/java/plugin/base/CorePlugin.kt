@@ -1,10 +1,10 @@
 package plugin.base
 
-import BuildConfig
 import Dependencies
 import Plugins
 import Versions
 import com.android.build.gradle.BaseExtension
+import libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -33,9 +33,9 @@ open class CorePlugin : Plugin<Project> {
 
         androidExtension.apply {
             defaultConfig {
-                targetSdk = BuildConfig.TargetSdkVersion
-                minSdk = BuildConfig.MinSdkVersion
-                setCompileSdkVersion(BuildConfig.CompileSdkVersion)
+                targetSdk = project.libs.versions.targetSdk.get().toInt()
+                minSdk = project.libs.versions.minSdk.get().toInt()
+                setCompileSdkVersion(project.libs.versions.compileSdk.get().toInt())
             }
 
             compileOptions {
@@ -57,7 +57,7 @@ open class CorePlugin : Plugin<Project> {
 
         project.tasks.withType(KotlinCompile::class.java).configureEach {
             kotlinOptions {
-                jvmTarget = BuildConfig.JvmTarget
+                jvmTarget = project.libs.versions.jvmTarget.get()
 
                 // to avoid unncessary annotations
                 freeCompilerArgs = freeCompilerArgs + listOf(

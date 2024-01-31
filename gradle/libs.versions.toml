@@ -10,8 +10,8 @@ room = "2.4.2"
 
 # Android
 minSdk = "23"
-compileSdk = "34"
-targetSdk = "34"
+compileSdk = "33"
+targetSdk = "33"
 version-code = "1"
 version-name = "1.0.0"
 jvmTarget = "11"    # when modifying make sure to update all usage of `JavaVersion.VERSION_11`

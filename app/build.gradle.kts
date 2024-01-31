@@ -10,8 +10,8 @@ android {
 
     defaultConfig {
         applicationId = "pseudoankit.droid.tasky"
-        versionCode = BuildConfig.App.VersionCode
-        versionName = BuildConfig.App.VersionName
+        versionCode = 1
+        versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
