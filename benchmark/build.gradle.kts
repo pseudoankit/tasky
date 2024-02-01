@@ -41,10 +41,7 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(Core))
-    }
-
+    implementation(projects.core.core)
     implementation(libs.androidx.benchmark)
     implementation(libs.bundles.uiTest)
 }

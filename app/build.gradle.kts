@@ -36,27 +36,23 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(DesignSystem))
-        implementation(project(Core))
-        implementation(project(CoreUi))
-        implementation(project(DataBaseManager))
-        implementation(project(AgendaManager))
-        implementation(project(AlarmManager))
-        implementation(project(NotificationManager))
-        implementation(project(PermissionManager))
-        implementation(project(PreferencesManager))
-        implementation(project(AppShortcuts))
-    }
+    implementation(projects.core.designSystem)
+    implementation(projects.core.core)
+    implementation(projects.core.coreUi)
+    implementation(projects.core.databaseManager)
+    implementation(projects.core.agendaManger)
+    implementation(projects.core.alarmManager)
+    implementation(projects.core.notificationManager)
+    implementation(projects.core.permissionManager)
+    implementation(projects.core.preferencesManager)
+    implementation(projects.core.appShortcutsNWidgets)
 
-    with(Modules.Feature) {
-        implementation(project(Authentication))
-        implementation(project(Home))
-        implementation(project(Event))
-        implementation(project(Reminder))
-        implementation(project(Task))
-        implementation(project(DeveloperTools))
-    }
+    implementation(projects.feature.authentication)
+    implementation(projects.feature.home)
+    implementation(projects.feature.agenda.event)
+    implementation(projects.feature.agenda.reminder)
+    implementation(projects.feature.agenda.task)
+    implementation(projects.feature.developerTools)
 
     implementation(libs.compose.destinations)
     implementation(libs.compose.orbit.mvi)
