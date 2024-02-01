@@ -7,6 +7,9 @@ import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
 import org.gradle.kotlin.dsl.the
 
+//val org.gradle.api.Project.`projects`: org.gradle.accessors.dm.RootProjectAccessor get() =
+//    (this as org.gradle.api.plugins.ExtensionAware).extensions.getByName("projects") as org.gradle.accessors.dm.RootProjectAccessor
+
 // Make version catalog available in precompiled scripts
 // https://github.com/gradle/gradle/issues/15383#issuecomment-1567461389
 val Project.libs: LibrariesForLibs
