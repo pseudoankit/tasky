@@ -7,12 +7,5 @@ android {
 }
 
 dependencies {
-    with(Dependencies.Test) {
-        implementation(mockk)
-        implementation(junit)
-        implementation(kotlinTests)
-        implementation(coroutine)
-        implementation(orbitMvi)
-        implementation(turbine)
-    }
+    implementation(libs.bundles.test)
 }

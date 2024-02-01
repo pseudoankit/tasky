@@ -45,15 +45,8 @@ dependencies {
         implementation(project(Core))
     }
 
-    with(Dependencies) {
-        implementation(libs.androidx.benchmark)
-    }
-
-    with(Dependencies.Test) {
-        implementation(JUnitExt)
-        implementation(EspressoCore)
-        implementation(UiAutomator)
-    }
+    implementation(libs.androidx.benchmark)
+    implementation(libs.bundles.uiTest)
 }
 
 androidComponents {

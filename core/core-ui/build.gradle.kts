@@ -12,8 +12,6 @@ dependencies {
         implementation(project(DesignSystem))
     }
 
-    with(Dependencies.Compose) {
-        implementation(ComposeDestinations)
-        implementation(OrbitMvi)
-    }
+    implementation(libs.compose.destinations)
+    implementation(libs.compose.orbit.mvi)
 }

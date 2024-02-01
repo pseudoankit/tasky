@@ -42,6 +42,6 @@ internal fun DependencyHandlerScope.implementationProject(dependency: String) {
     )
 }
 
-internal fun DependencyHandlerScope.ksp(dependency: String) {
+internal fun DependencyHandlerScope.ksp(dependency: Any) {
     add(PluginConstants.KSP, dependency)
 }

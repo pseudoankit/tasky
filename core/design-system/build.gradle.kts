@@ -9,12 +9,8 @@ android {
 }
 
 dependencies {
-    with(Dependencies.Compose) {
-        implementation(FontAwesome)
-        implementation(DatePicker)
-        implementation(Pager)
-        implementation(PagerIndicator)
-        implementation(PlaceHolder)
-        implementation(SwipeableCard)
-    }
+    implementation(libs.compose.fontawesome)
+    implementation(libs.compose.datepicker)
+    implementation(libs.compose.placeholder)
+    implementation(libs.compose.swipe)
 }

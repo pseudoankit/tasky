@@ -1,7 +1,7 @@
 package plugin
 
-import Dependencies
 import Plugins
+import libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -17,11 +17,9 @@ class RoomPlugin : Plugin<Project> {
         }
 
         project.dependencies {
-            with(Dependencies.Room) {
-                implementation(Ktx)
-                implementation(Runtime)
-                ksp(Compiler)
-            }
+            implementation(project.libs.room.ktx)
+            implementation(project.libs.room.runtime)
+            ksp(project.libs.room.compiler)
         }
     }
 }

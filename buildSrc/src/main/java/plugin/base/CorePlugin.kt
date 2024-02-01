@@ -1,7 +1,6 @@
 package plugin.base
 
 import Plugins
-import Versions
 import com.android.build.gradle.BaseExtension
 import libs
 import org.gradle.api.JavaVersion
@@ -44,7 +43,7 @@ open class CorePlugin : Plugin<Project> {
             }
 
             composeOptions {
-                kotlinCompilerExtensionVersion = Versions.Compose.Compiler
+                kotlinCompilerExtensionVersion = project.libs.versions.compose.compiler.get()
             }
 
             lintOptions {

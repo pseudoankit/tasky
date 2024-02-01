@@ -47,14 +47,16 @@ ktor-client-serialization = { module = "io.ktor:ktor-client-serialization", vers
 ktor-logging = { module = "io.ktor:ktor-client-logging", version.ref = "ktor" }
 
 # Testing
-mockk = { module = "io.mockk:mockk", version = "1.13.8" }
-kotest-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
-kotest-assertions = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
-kotest-property = { module = "io.kotest:kotest-property", version.ref = "kotest" }
-kotest-datatest = { module = "io.kotest:kotest-framework-datatest", version.ref = "kotest" }
-kotlin-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
-cashapp-molecule-plugin = { module = "app.cash.molecule:molecule-gradle-plugin", version = "1.2.1" }
-cashapp-turbine = { module = "app.cash.turbine:turbine", version = "1.0.0" }
+test-mockk = { module = "io.mockk:mockk", version = "1.13.8" }
+test-kotlin-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "kotlin-coroutines" }
+test-kotlin = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+test-junit = { module = "junit:junit", version = "4.13.2" }
+test-turbine = { module = "app.cash.turbine:turbine", version = "0.12.3" }
+test-orbit-mvi = { module = "org.orbit-mvi:orbit-test", version = "4.3.0" }
+
+uitest-junit-ext = { module = "androidx.test.ext:junit", version = "1.1.5" }
+uitest-espresso-core = { module = "androidx.test.espresso:espresso-core", version = "3.5.1" }
+uitest-ui-atomator = { module = "androidx.test.uiautomator:uiautomator", version = "2.2.0" }
 
 # Compose
 compose-bom = { module = "androidx.compose:compose-bom", version = "2023.01.00" }
@@ -69,7 +71,7 @@ compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling" }
 compose-coil = { module = "io.coil-kt:coil-compose", version = "2.5.0" }
 compose-destinations = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "composeDestinations" }
-compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:animations-core", version.ref = "composeDestinations" }
+compose-destinations-ksp = { module = "io.github.raamcosta.compose-destinations:ksp", version.ref = "composeDestinations" }
 compose-datepicker = { module = "io.github.vanpra.compose-material-dialogs:datetime", version = "0.8.1-rc" }
 compose-fontawesome = { module = "com.github.pseudoankit:ComposeFontAwesomeLibrary", version = "v1.2.0" }
 compose-swipe = { module = "com.github.pseudoankit:SwipeableView", version = "1.0.1" }
@@ -122,14 +124,18 @@ ktor = [
     "ktor-client-serialization",
     "ktor-logging"
 ]
-testing = [
-    "kotest-junit5",
-    "kotest-assertions",
-    "kotest-property",
-    "kotest-datatest",
-    "kotlin-coroutines-test",
-    "mockk",
-    "cashapp-turbine"
+test = [
+    "test-mockk",
+    "test-kotlin-coroutines",
+    "test-kotlin",
+    "test-junit",
+    "test-turbine",
+    "test-orbit-mvi",
+]
+uiTest = [
+    "uitest-junit-ext",
+    "uitest-espresso-core",
+    "uitest-ui-atomator",
 ]
 compose = [
     "compose-animation",
@@ -145,10 +151,6 @@ glance = [
     "glance",
     "glance-appwidget",
     "glance-material3"
-]
-room = [
-    "room-runtime",
-    "room-ktx"
 ]
 
 [plugins]

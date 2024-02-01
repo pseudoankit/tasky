@@ -1,10 +1,14 @@
 package plugin.compose
 
-import Dependencies
 import Modules
+import libs
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
-import plugin.util.*
+import plugin.util.implementation
+import plugin.util.implementationProject
+import plugin.util.kotlinExtension
+import plugin.util.ksp
+import plugin.util.libraryExtension
 
 /**
  * Plugin containing setup for adding compose core deps with navigation lib setup
@@ -27,14 +31,11 @@ class ComposeFeaturePlugin : ComposeCorePlugin() {
         }
 
         project.dependencies {
-            with(Dependencies.Compose) {
-                this@dependencies.implementation(ComposeDestinations)
-                this@dependencies.ksp(ComposeDestinationsKsp)
-                this@dependencies.implementation(OrbitMvi)
-            }
-            with(Dependencies.Koin) {
-                this@dependencies.implementation(Compose)
-            }
+            implementation(project.libs.compose.destinations)
+            ksp(project.libs.compose.destinations.ksp)
+            implementation(project.libs.compose.orbit.mvi)
+            implementation(project.libs.koin.compose)
+
             with(Modules.Core) {
                 this@dependencies.implementationProject(DesignSystem)
                 this@dependencies.implementationProject(CoreUi)
