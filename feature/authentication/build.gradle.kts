@@ -13,7 +13,5 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(PreferencesManager))
-    }
+    implementation(projects.core.preferencesManager)
 }

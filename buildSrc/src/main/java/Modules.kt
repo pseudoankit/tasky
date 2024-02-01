@@ -14,14 +14,6 @@ object Modules {
         const val Core = ":core:core"
         const val CoreUi = ":core:core-ui"
         const val DesignSystem = ":core:design-system"
-        const val Navigation = ":core:navigation"
-        const val AgendaManager = ":core:agenda-manger"
-        const val DataBaseManager = ":core:database-manager"
-        const val PreferencesManager = ":core:preferences-manager"
-        const val AlarmManager = ":core:alarm-manager"
-        const val NotificationManager = ":core:notification-manager"
-        const val PermissionManager = ":core:permission-manager"
-        const val AppShortcuts = ":core:app-shortcuts-n-widgets"
         const val TestHelper = ":core:test-helper"
     }
 }

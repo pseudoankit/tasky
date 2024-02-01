@@ -12,10 +12,8 @@ dependencies {
     implementation(libs.glance)
     implementation(libs.androidx.appShortcut)
 
-    with(Modules.Core) {
-        implementation(project(AgendaManager))
-        implementation(project(DesignSystem))
-        implementation(project(CoreUi))
-        implementation(project(PreferencesManager))
-    }
+    implementation(projects.core.agendaManger)
+    implementation(projects.core.designSystem)
+    implementation(projects.core.coreUi)
+    implementation(projects.core.preferencesManager)
 }

@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    implementation(project(Modules.Core.DesignSystem))
+    implementation(projects.core.designSystem)
 }

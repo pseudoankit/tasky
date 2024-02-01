@@ -14,8 +14,6 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(AgendaManager))
-        implementation(project(PermissionManager))
-    }
+    implementation(projects.core.agendaManger)
+    implementation(projects.core.permissionManager)
 }

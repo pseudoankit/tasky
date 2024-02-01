@@ -8,10 +8,7 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(DesignSystem))
-    }
-
+    implementation(projects.core.designSystem)
     implementation(libs.compose.destinations)
     implementation(libs.compose.orbit.mvi)
 }

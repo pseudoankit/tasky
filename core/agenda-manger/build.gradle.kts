@@ -9,8 +9,6 @@ android {
 }
 
 dependencies {
-    with(Modules.Core) {
-        implementation(project(AlarmManager))
-        implementation(project(NotificationManager))
-    }
+    implementation(projects.core.alarmManager)
+    implementation(projects.core.notificationManager)
 }
