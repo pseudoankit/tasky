@@ -8,5 +8,5 @@ android {
 }
 
 dependencies {
-    implementation(Dependencies.DataStore)
+    implementation(libs.datastore)
 }
