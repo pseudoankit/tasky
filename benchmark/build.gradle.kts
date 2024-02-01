@@ -9,7 +9,7 @@ android {
     namespace = "com.pseudoankit.tasky.benchmark"
 
     defaultConfig {
-        testInstrumentationRunner = BuildConfig.App.TestInstrumentationRunner
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -45,15 +45,8 @@ dependencies {
         implementation(project(Core))
     }
 
-    with(Dependencies) {
-        implementation(Benchmark)
-    }
-
-    with(Dependencies.Test) {
-        implementation(JUnitExt)
-        implementation(EspressoCore)
-        implementation(UiAutomator)
-    }
+    implementation(libs.androidx.benchmark)
+    implementation(libs.bundles.uiTest)
 }
 
 androidComponents {

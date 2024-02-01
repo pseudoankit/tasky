@@ -8,11 +8,9 @@ android {
 }
 
 dependencies {
-    with(Dependencies.AndroidX) {
-        implementation(GlanceAppWidget)
-        implementation(Glance)
-        implementation(AppShortcut)
-    }
+    implementation(libs.glance.appwidget)
+    implementation(libs.glance)
+    implementation(libs.androidx.appShortcut)
 
     with(Modules.Core) {
         implementation(project(AgendaManager))

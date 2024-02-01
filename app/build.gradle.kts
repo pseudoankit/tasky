@@ -1,5 +1,5 @@
 plugins {
-    id(Plugins.AndroidApplication)
+    id("com.android.application")
     id(Plugins.Core)
     id(Plugins.Ksp)
     id(Plugins.ComposeCore)
@@ -9,10 +9,10 @@ android {
     namespace = "pseudoankit.droid.tasky"
 
     defaultConfig {
-        applicationId = BuildConfig.App.ApplicationId
-        versionCode = BuildConfig.App.VersionCode
-        versionName = BuildConfig.App.VersionName
-        testInstrumentationRunner = BuildConfig.App.TestInstrumentationRunner
+        applicationId = "pseudoankit.droid.tasky"
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -23,8 +23,8 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(
-                getDefaultProguardFile(BuildConfig.App.DefaultProguardOptimizeFile),
-                BuildConfig.App.ProGuardRules
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
             )
         }
         create("benchmark") {
@@ -58,12 +58,10 @@ dependencies {
         implementation(project(DeveloperTools))
     }
 
-    with(Dependencies.Compose) {
-        implementation(ComposeDestinations)
-        implementation(OrbitMvi)
-    }
+    implementation(libs.compose.destinations)
+    implementation(libs.compose.orbit.mvi)
 
-    implementation(Dependencies.Koin.Compose)
-    implementation(Dependencies.AndroidX.SplashScreen)
-    implementation(Dependencies.ProfilerInstaller)
+    implementation(libs.koin.compose)
+    implementation(libs.androidx.splashScreen)
+    implementation(libs.androidx.profilerInstaller)
 }

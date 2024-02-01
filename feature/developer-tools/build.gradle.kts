@@ -7,5 +7,5 @@ android {
 }
 
 dependencies {
-    debugImplementation(Dependencies.LeakCanary)
+    debugImplementation(libs.leakCanary)
 }

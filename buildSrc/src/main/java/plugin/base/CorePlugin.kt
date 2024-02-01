@@ -1,10 +1,9 @@
 package plugin.base
 
-import BuildConfig
-import Dependencies
 import Plugins
-import Versions
 import com.android.build.gradle.BaseExtension
+import libs
+import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.dependencies
@@ -32,19 +31,19 @@ open class CorePlugin : Plugin<Project> {
 
         androidExtension.apply {
             defaultConfig {
-                targetSdk = BuildConfig.TargetSdkVersion
-                minSdk = BuildConfig.MinSdkVersion
-                setCompileSdkVersion(BuildConfig.CompileSdkVersion)
+                targetSdk = project.libs.versions.targetSdk.get().toInt()
+                minSdk = project.libs.versions.minSdk.get().toInt()
+                setCompileSdkVersion(project.libs.versions.compileSdk.get().toInt())
             }
 
             compileOptions {
-                sourceCompatibility = BuildConfig.JavaVersion
-                targetCompatibility = BuildConfig.JavaVersion
+                sourceCompatibility = JavaVersion.VERSION_11
+                targetCompatibility = JavaVersion.VERSION_11
                 isCoreLibraryDesugaringEnabled = true
             }
 
             composeOptions {
-                kotlinCompilerExtensionVersion = Versions.Compose.Compiler
+                kotlinCompilerExtensionVersion = project.libs.versions.compose.compiler.get()
             }
 
             lintOptions {
@@ -56,7 +55,7 @@ open class CorePlugin : Plugin<Project> {
 
         project.tasks.withType(KotlinCompile::class.java).configureEach {
             kotlinOptions {
-                jvmTarget = BuildConfig.JvmTarget
+                jvmTarget = project.libs.versions.jvmTarget.get()
 
                 // to avoid unncessary annotations
                 freeCompilerArgs = freeCompilerArgs + listOf(
@@ -80,17 +79,12 @@ open class CorePlugin : Plugin<Project> {
         }
 
         project.dependencies {
-            with(Dependencies.Koin) {
-                this@dependencies.implementation(Core)
-                this@dependencies.implementation(Android)
-            }
-            with(Dependencies.Kotlin) {
-                this@dependencies.implementation(ImmutableCollection)
-                this@dependencies.implementation(Serialization)
-            }
-            with(Dependencies.Compose) {
-                this@dependencies.implementation(Runtime)
-            }
+            implementation(project.libs.koin.core)
+            implementation(project.libs.koin.android)
+            implementation(project.libs.kotlin.collections.immutable)
+            implementation(project.libs.kotlin.serialization.json)
+            implementation(platform(project.libs.compose.bom))
+            implementation(project.libs.compose.runtime)
             add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
         }
     }
