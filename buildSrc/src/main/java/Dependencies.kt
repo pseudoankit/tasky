@@ -1,32 +1,6 @@
 object Dependencies {
 
-    const val DataStore = "androidx.datastore:datastore-preferences:1.1.0-alpha01"
-    const val LeakCanary = "com.squareup.leakcanary:leakcanary-android:2.9.1"
-    const val ProfilerInstaller = "androidx.profileinstaller:profileinstaller:1.3.0"
-    const val Benchmark = "androidx.benchmark:benchmark-macro-junit4:1.2.0-alpha13"
-
-    object AndroidX {
-        const val Glance = "androidx.glance:glance:1.0.0-alpha05"
-        const val GlanceAppWidget = "androidx.glance:glance-appwidget:1.0.0-alpha05"
-        const val Core = "androidx.core:core:1.10.0"
-        const val AppShortcut = "androidx.core:core-google-shortcuts:1.1.0"
-        const val SplashScreen = "androidx.core:core-splashscreen:1.0.1"
-    }
-
     object Compose {
-        const val Bom = "androidx.compose:compose-bom:2023.01.00"
-        const val Activity = "androidx.activity:activity-compose:"
-        const val Material = "androidx.compose.material:material:"
-        const val Material3 = "androidx.compose.material3:material3:"
-        const val Ui = "androidx.compose.ui:ui:"
-        const val UiTooling = "androidx.compose.ui:ui-tooling:"
-        const val UiToolingPreview = "androidx.compose.ui:ui-tooling-preview:"
-        const val FoundationLayout = "androidx.compose.foundation:foundation-layout:"
-        const val Foundation = "androidx.compose.foundation:foundation:"
-        const val Compiler = "androidx.compose.compiler:compiler:"
-        const val ConstraintLayout = "androidx.constraintlayout:constraintlayout-compose:"
-
-        const val Runtime = "androidx.compose.runtime:runtime:${Versions.Compose.Core}"
 
         const val ComposeDestinations =
             "io.github.raamcosta.compose-destinations:animations-core:${Versions.Compose.Destinations}"
@@ -37,12 +11,9 @@ object Dependencies {
         const val OrbitMvi = "org.orbit-mvi:orbit-compose:${Versions.Compose.OrbitMvi}"
         const val SwipeableCard = "com.github.pseudoankit:SwipeableView:1.0.1"
 
-        const val CoilCompose = "io.coil-kt:coil-compose:${Versions.Compose.Coil}"
-        const val CoilSvg = "io.coil-kt:coil-svg:${Versions.Compose.Coil}"
 
         const val Pager = "com.google.accompanist:accompanist-pager:0.23.1"
         const val PagerIndicator = "com.google.accompanist:accompanist-pager-indicators:0.23.1"
-        const val Permissions = "com.google.accompanist:accompanist-permissions:0.23.1"
         const val PlaceHolder =
             "com.google.accompanist:accompanist-placeholder-material:0.26.3-beta"
     }

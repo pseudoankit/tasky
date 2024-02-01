@@ -17,22 +17,26 @@ internal class AndroidAlarmScheduler(
     override fun schedule(alarm: Alarm) {
         TaskyLogger.info("scheduling alarm", alarm.toString())
 
-        alarmManager.setExactAndAllowWhileIdle(
-            AlarmManager.RTC_WAKEUP,
-            alarm.timeInMillis,
-            createPendingIntent(alarm, intent = {
-                AlarmReceiver.instance(context, alarm)
-            })
-        )
+        createPendingIntent(alarm, intent = {
+            AlarmReceiver.instance(context, alarm)
+        })?.let {
+            alarmManager.setExactAndAllowWhileIdle(
+                AlarmManager.RTC_WAKEUP,
+                alarm.timeInMillis,
+                it
+            )
+        }
     }
 
     override fun cancel(alarm: Alarm) {
         TaskyLogger.info("cancelling alarm", alarm.toString())
-        alarmManager.cancel(
-            createPendingIntent(alarm, intent = {
-                AlarmReceiver.instance(context, alarm)
-            })
-        )
+        createPendingIntent(alarm, intent = {
+            AlarmReceiver.instance(context, alarm)
+        })?.let {
+            alarmManager.cancel(
+                it
+            )
+        }
     }
 
     private fun createPendingIntent(alarm: Alarm, intent: () -> Intent): PendingIntent? {

@@ -21,6 +21,10 @@ internal fun DependencyHandlerScope.implementation(dependency: Any) {
     add(PluginConstants.IMPLEMENTATION, dependency)
 }
 
+internal fun DependencyHandlerScope.lintChecks(dependency: Any) {
+    add(PluginConstants.IMPLEMENTATION, dependency)
+}
+
 internal fun DependencyHandlerScope.testImplementation(dependencyNotation: Any): Dependency? =
     add(PluginConstants.TEST_IMPLEMENTATION, dependencyNotation)
 

@@ -1,6 +1,5 @@
 package plugin.base
 
-import Dependencies
 import Plugins
 import Versions
 import com.android.build.gradle.BaseExtension
@@ -81,17 +80,12 @@ open class CorePlugin : Plugin<Project> {
         }
 
         project.dependencies {
-            with(Dependencies.Koin) {
-                this@dependencies.implementation(Core)
-                this@dependencies.implementation(Android)
-            }
-            with(Dependencies.Kotlin) {
-                this@dependencies.implementation(ImmutableCollection)
-                this@dependencies.implementation(Serialization)
-            }
-            with(Dependencies.Compose) {
-                this@dependencies.implementation(Runtime)
-            }
+            implementation(project.libs.koin.core)
+            implementation(project.libs.koin.android)
+            implementation(project.libs.kotlin.collections.immutable)
+            implementation(project.libs.kotlin.serialization.json)
+            implementation(platform(project.libs.compose.bom))
+            implementation(project.libs.compose.runtime)
             add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
         }
     }

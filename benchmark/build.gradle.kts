@@ -46,7 +46,7 @@ dependencies {
     }
 
     with(Dependencies) {
-        implementation(Benchmark)
+        implementation(libs.androidx.benchmark)
     }
 
     with(Dependencies.Test) {
