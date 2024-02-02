@@ -7,7 +7,7 @@ kotest = "5.7.2"
 compose-compiler = "1.4.3" # It's used! Use compatible with Kotlin one
 glance = "1.0.0-alpha05"
 room = "2.4.2"
-detekt = "1.21.0" # https://detekt.dev/docs/gettingstarted/gradle/
+detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
 composeDestinations = "1.8.36-beta"
 
 # Android
