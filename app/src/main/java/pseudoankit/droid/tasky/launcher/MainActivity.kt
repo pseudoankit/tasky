@@ -1,6 +1,7 @@
 package pseudoankit.droid.tasky.launcher
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
@@ -27,7 +28,7 @@ import org.orbitmvi.orbit.compose.collectAsState
 import pseudoankit.droid.core.deeplink.TaskyDeeplink
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
 import pseudoankit.droid.coreui.util.extension.clearStack
-import pseudoankit.droid.tasky.navigation.navgraph.mainNavGraph
+import pseudoankit.droid.tasky.navigation.navgraph.NavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.tasky.util.hide
 import pseudoankit.droid.tasky.util.show
@@ -77,7 +78,7 @@ internal class MainActivity : ComponentActivity() {
         navController = engine.rememberNavController()
 
         DestinationsNavHost(
-            navGraph = mainNavGraph(isUserLoggedIn = isUserLoggedIn),
+            navGraph = NavGraph.root(isUserLoggedIn = isUserLoggedIn),
             navController = navController!!,
             engine = engine,
             dependenciesContainerBuilder = {
@@ -101,6 +102,7 @@ internal class MainActivity : ComponentActivity() {
         }
     }
 
+    @SuppressLint("InlinedApi")
     @Composable
     private fun MainActivityViewModel.HandleSideEffect() {
         val launcher = rememberPermissionState(permission = Manifest.permission.POST_NOTIFICATIONS)
