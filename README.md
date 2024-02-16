@@ -8,17 +8,20 @@ Login | Home | App Widget | Add Reminder | Shortcuts
 
 [Demo](https://drive.google.com/file/d/1FpIbR176fost0GjCY3byaZ6Bqba6ioTY/view?usp=sharing)
 
-Overview :-
-- Architecture :- MVI + Clean Architecture
+ 
+🎯 Key Features:
+
+- Architecture :- MVI [uses orbit mvi](https://orbit-mvi.org/) + Clean Architecture
 - Single Activity Arch
-- Multi Module Setup 
-- buildSrc to centrailize dependencies and to extract repeated portion of gradle [ref](https://github.com/pseudoankit/Tasky/tree/master/buildSrc/src/main/java)
-- UI : Jetpack Compose
-- Navigation : [compose destinations](https://github.com/raamcosta/compose-destinations)
-- DI : Koin
-- CI / CD 
+- Multi-Module Setup:- demonstrates how to structure an Android project with multiple modules for better code organization and scalability.
+- Dependency Injection:- [Koin](https://github.com/InsertKoinIO/koin)
+- Jetpack Compose UI
+- Navigation in Multi-Module project [uses compose destinations](https://github.com/raamcosta/compose-destinations)
+- CI/CD Setup
   - generate apk on push to master
   - static code analysis with sonarcloud
-  - lint check 
+  - lint check
+- BuildSrc Setup: Dependency management is centralized using BuildSrc, simplifying dependency declarations and version management.
+- Adding widgets and app shortcut
   
 <img src="https://user-images.githubusercontent.com/54987308/223794067-e96e4191-d34e-4dd1-9d03-1b6b1816990f.png" width="500" height="600"/>
