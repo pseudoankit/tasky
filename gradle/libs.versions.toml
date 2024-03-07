@@ -1,10 +1,10 @@
 [versions]
-kotlin = "1.8.10"
+kotlin = "1.9.22"
 kotlin-coroutines = "1.6.4"
 ktor = "2.3.5"
 kotest = "5.7.2"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-compose-compiler = "1.4.3" # It's used! Use compatible with Kotlin one
+compose-compiler = "1.5.8" # It's used! Use compatible with Kotlin one
 glance = "1.0.0-alpha05"
 room = "2.4.2"
 detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
@@ -36,7 +36,7 @@ kotlin-coroutines-googleplay-temp = { module = "org.jetbrains.kotlinx:kotlinx-co
 kotlin-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.4.1" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
-ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.8.10-1.0.9" }
+ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.9.22-1.0.16" }
 
 # Ktor
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -79,9 +79,9 @@ compose-placeholder = { module = "com.google.accompanist:accompanist-placeholder
 compose-orbit-mvi = { module = "org.orbit-mvi:orbit-compose", version = "4.5.0" }
 
 # Koin
-koin-core = { module = "io.insert-koin:koin-core", version = "3.2.2" }
-koin-android = { module = "io.insert-koin:koin-android", version = "3.2.2" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version = "3.2.1" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 
 # Glance
 glance = { module = "androidx.glance:glance", version.ref = "glance" }
