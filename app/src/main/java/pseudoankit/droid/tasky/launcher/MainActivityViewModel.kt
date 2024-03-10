@@ -11,7 +11,6 @@ import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.container
 import pseudoankit.droid.core.util.extension.orFalse
 import pseudoankit.droid.coreui.util.extension.postSideEffect
-import pseudoankit.droid.coreui.util.extension.state
 import pseudoankit.droid.preferencesmanager.PreferenceRepository
 
 class MainActivityViewModel(
@@ -33,9 +32,9 @@ class MainActivityViewModel(
     private fun observeLoggedInStatus() {
         preferenceRepository.isLoggedInFlow()
             .onEach { isLoggedIn ->
-                if (!isLoggedIn && !state.isUserLoggedIn) {
+                if (!isLoggedIn) {
                     postSideEffect {
-                        SideEffect.ClearBackStackAndNavigateToLogin
+                        SideEffect.NavigateToLoginScreen
                     }
                 }
             }
@@ -55,7 +54,7 @@ class MainActivityViewModel(
     )
 
     sealed interface SideEffect {
-        object ClearBackStackAndNavigateToLogin : SideEffect
+        object NavigateToLoginScreen : SideEffect
         object LaunchNotificationPermissionRequest : SideEffect
     }
 }

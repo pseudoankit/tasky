@@ -10,7 +10,7 @@ detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
 composeDestinations = "1.9.57"
 
 # Android
-minSdk = "23"
+minSdk = "26"
 compileSdk = "34"
 targetSdk = "33"
 version-code = "1"

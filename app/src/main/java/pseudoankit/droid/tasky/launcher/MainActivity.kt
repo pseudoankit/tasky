@@ -22,12 +22,12 @@ import com.google.accompanist.permissions.rememberPermissionState
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.ramcosta.composedestinations.navigation.dependency
+import com.ramcosta.composedestinations.navigation.navigate
 import kotlinx.coroutines.flow.collectLatest
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.orbitmvi.orbit.compose.collectAsState
-import pseudoankit.droid.core.deeplink.TaskyDeeplink
+import pseudoankit.droid.authentication.presentation.destinations.LoginScreenDestination
 import pseudoankit.droid.coreui.deeplink.navigateViaDeepLink
-import pseudoankit.droid.coreui.util.extension.clearStack
 import pseudoankit.droid.tasky.navigation.navgraph.NavGraph
 import pseudoankit.droid.tasky.navigation.navigator.CoreFeatureNavigator
 import pseudoankit.droid.tasky.util.hide
@@ -110,10 +110,9 @@ internal class MainActivity : ComponentActivity() {
         LaunchedEffect(Unit) {
             container.sideEffectFlow.collectLatest { effect ->
                 when (effect) {
-                    MainActivityViewModel.SideEffect.ClearBackStackAndNavigateToLogin -> {
-                        navController?.apply {
-                            clearStack()
-                            navigateViaDeepLink(TaskyDeeplink.login)
+                    MainActivityViewModel.SideEffect.NavigateToLoginScreen -> {
+                        if (navController?.currentDestination?.route != LoginScreenDestination.route) {
+                            navController?.navigate(LoginScreenDestination)
                         }
                     }
 
