@@ -39,7 +39,7 @@ open class CorePlugin : Plugin<Project> {
             compileOptions {
                 sourceCompatibility = JavaVersion.VERSION_11
                 targetCompatibility = JavaVersion.VERSION_11
-                isCoreLibraryDesugaringEnabled = true
+//                isCoreLibraryDesugaringEnabled = true
             }
 
             composeOptions {
@@ -79,13 +79,14 @@ open class CorePlugin : Plugin<Project> {
         }
 
         project.dependencies {
+            implementation(platform("io.insert-koin:koin-bom:3.5.3"))
             implementation(project.libs.koin.core)
             implementation(project.libs.koin.android)
             implementation(project.libs.kotlin.collections.immutable)
             implementation(project.libs.kotlin.serialization.json)
             implementation(platform(project.libs.compose.bom))
             implementation(project.libs.compose.runtime)
-            add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
+//            add("coreLibraryDesugaring", "com.android.tools:desugar_jdk_libs:1.1.5")
         }
     }
 }

@@ -1,14 +1,13 @@
 [versions]
-kotlin = "1.8.10"
-kotlin-coroutines = "1.6.4"
+kotlin = "1.9.22"
+kotlin-coroutines = "1.7.3"
 ktor = "2.3.5"
-kotest = "5.7.2"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
-compose-compiler = "1.4.3" # It's used! Use compatible with Kotlin one
+compose-compiler = "1.5.8" # It's used! Use compatible with Kotlin one
 glance = "1.0.0-alpha05"
-room = "2.4.2"
+room = "2.6.1"
 detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
-composeDestinations = "1.8.36-beta"
+composeDestinations = "1.9.57"
 
 # Android
 minSdk = "23"
@@ -36,7 +35,7 @@ kotlin-coroutines-googleplay-temp = { module = "org.jetbrains.kotlinx:kotlinx-co
 kotlin-collections-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.3.5" }
 kotlin-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.4.1" }
 kotlin-serialization-plugin = { module = "org.jetbrains.kotlin:kotlin-serialization", version.ref = "kotlin" }
-ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.8.10-1.0.9" }
+ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version = "1.9.22-1.0.16" }
 
 # Ktor
 ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
@@ -79,9 +78,9 @@ compose-placeholder = { module = "com.google.accompanist:accompanist-placeholder
 compose-orbit-mvi = { module = "org.orbit-mvi:orbit-compose", version = "4.5.0" }
 
 # Koin
-koin-core = { module = "io.insert-koin:koin-core", version = "3.2.2" }
-koin-android = { module = "io.insert-koin:koin-android", version = "3.2.2" }
-koin-compose = { module = "io.insert-koin:koin-androidx-compose", version = "3.2.1" }
+koin-core = { module = "io.insert-koin:koin-core" }
+koin-android = { module = "io.insert-koin:koin-android" }
+koin-compose = { module = "io.insert-koin:koin-androidx-compose" }
 
 # Glance
 glance = { module = "androidx.glance:glance", version.ref = "glance" }
@@ -89,7 +88,7 @@ glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = 
 glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glance" }
 
 # Local persistence
-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.0-alpha01" }
+datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.0-beta02" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -99,7 +98,7 @@ detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plu
 detekt-ruleset-compiler = { module = "com.braisgabin.detekt:kotlin-compiler-wrapper", version = "0.0.4" }
 detekt-ruleset-ktlint = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detekt-ruleset-compose = { module = "io.nlopez.compose.rules:detekt", version = "0.3.0" }
-slack-lint-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.2.0" }
+slack-lint-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.3.1" }
 sonarQube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version = "2.7.1" }
 
 # Dev Tools
@@ -154,5 +153,4 @@ glance = [
 ]
 
 [plugins]
-gradleWrapperUpgrade = { id = "org.gradle.wrapper-upgrade", version = "0.11.4" }
 deteKt = { id = "io.gitlab.arturbosch.detekt" }
