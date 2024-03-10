@@ -1,12 +1,11 @@
 [versions]
 kotlin = "1.9.22"
-kotlin-coroutines = "1.6.4"
+kotlin-coroutines = "1.7.3"
 ktor = "2.3.5"
-kotest = "5.7.2"
 # https://developer.android.com/jetpack/androidx/releases/compose-kotlin
 compose-compiler = "1.5.8" # It's used! Use compatible with Kotlin one
 glance = "1.0.0-alpha05"
-room = "2.4.2"
+room = "2.6.1"
 detekt = "1.23.1" # https://detekt.dev/docs/gettingstarted/gradle/
 composeDestinations = "1.9.57"
 
@@ -89,7 +88,7 @@ glance-appwidget = { module = "androidx.glance:glance-appwidget", version.ref = 
 glance-material3 = { module = "androidx.glance:glance-material3", version.ref = "glance" }
 
 # Local persistence
-datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.0-alpha01" }
+datastore = { module = "androidx.datastore:datastore-preferences", version = "1.1.0-beta02" }
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
@@ -99,7 +98,7 @@ detekt-gradle-plugin = { module = "io.gitlab.arturbosch.detekt:detekt-gradle-plu
 detekt-ruleset-compiler = { module = "com.braisgabin.detekt:kotlin-compiler-wrapper", version = "0.0.4" }
 detekt-ruleset-ktlint = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 detekt-ruleset-compose = { module = "io.nlopez.compose.rules:detekt", version = "0.3.0" }
-slack-lint-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.2.0" }
+slack-lint-compose = { module = "com.slack.lint.compose:compose-lint-checks", version = "1.3.1" }
 sonarQube-gradle-plugin = { module = "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin", version = "2.7.1" }
 
 # Dev Tools
@@ -154,5 +153,4 @@ glance = [
 ]
 
 [plugins]
-gradleWrapperUpgrade = { id = "org.gradle.wrapper-upgrade", version = "0.11.4" }
 deteKt = { id = "io.gitlab.arturbosch.detekt" }
