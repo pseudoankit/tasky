@@ -13,6 +13,6 @@ internal object LoginModule : BaseKoinModule() {
         get() = module {
             factory { LoginUserUseCase(get()) }
 
-            viewModel { LoginViewModel(get(), get()) }
+            viewModel { LoginViewModel(inject(), get()) }
         }
 }

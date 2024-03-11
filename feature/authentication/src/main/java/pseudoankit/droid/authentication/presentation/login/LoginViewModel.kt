@@ -13,7 +13,7 @@ import pseudoankit.droid.coreui.util.extension.postSideEffect
 import pseudoankit.droid.coreui.util.extension.setState
 
 internal class LoginViewModel(
-    private val loginUserUseCase: LoginUserUseCase,
+    private val loginUserUseCase: Lazy<LoginUserUseCase>,
     private val dispatcherProvider: DispatcherProvider
 ) : ViewModel(),
     ContainerHost<LoginUiState.State, LoginUiState.SideEffect> {
@@ -42,13 +42,15 @@ internal class LoginViewModel(
     fun onLogin() = launch(dispatcherProvider.io) {
         setState { copy(isLoginInProgress = true) }
 
-        when (val result = loginUserUseCase(state)) {
+        when (val result = loginUserUseCase.value(state)) {
             is LoginUserUseCase.Result.EmailError -> setState {
                 copy(emailConfig = emailConfig.copy(errorMessage = result.message))
             }
+
             is LoginUserUseCase.Result.PasswordError -> setState {
                 copy(passwordConfig = passwordConfig.copy(errorMessage = result.message))
             }
+
             is LoginUserUseCase.Result.Error -> TODO()
             LoginUserUseCase.Result.Success -> postSideEffect {
                 LoginUiState.SideEffect.NavigateToHomeScreen
