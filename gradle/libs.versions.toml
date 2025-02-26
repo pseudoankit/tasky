@@ -18,7 +18,7 @@ version-name = "1.0.0"
 jvmTarget = "11"    # when modifying make sure to update all usage of `JavaVersion.VERSION_11`
 
 [libraries]
-android-gradle-plugin = { module = "com.android.tools.build:gradle", version = "7.4.0" }
+android-gradle-plugin = { module = "com.android.tools.build:gradle", version = "8.7.3" }
 
 #AndroidX
 androidx-appShortcut = { module = "androidx.core:core-google-shortcuts", version = "1.1.0" }
